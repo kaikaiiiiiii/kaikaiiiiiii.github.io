@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
+
+    <meta name="description" content=".red {     color: red; } .green {     color: green; } .f{     border-bottom: 1px solid #333;     padding-bottom: 2px;     font-size:0.9em }    Hexo Next 开启 MathjaxHexo Next 主题默认支持 Mathjax 和 katex，以在博">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Latex 语法简单总结">
+<meta property="og:url" content="https://www.kaikai.men/mathjax-latex-syntax/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content=".red {     color: red; } .green {     color: green; } .f{     border-bottom: 1px solid #333;     padding-bottom: 2px;     font-size:0.9em }    Hexo Next 开启 MathjaxHexo Next 主题默认支持 Mathjax 和 katex，以在博">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-05T13:36:16.000Z">
+<meta property="article:modified_time" content="2024-01-09T21:06:35.028Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="Hexo Next">
+<meta property="article:tag" content="Mathjax">
+<meta property="article:tag" content="Latex">
+<meta property="article:tag" content="Latex Syntax">
+<meta property="article:tag" content="Latex 语法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/mathjax-latex-syntax/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/mathjax-latex-syntax/","path":"/mathjax-latex-syntax/","title":"Latex 语法简单总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Latex 语法简单总结 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">120</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">381</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Next-%E5%BC%80%E5%90%AF-Mathjax"><span class="nav-number">1.</span> <span class="nav-text">Hexo Next 开启 Mathjax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latex-%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Latex 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A4%B4%E7%BB%93%E5%B0%BE%E4%B8%8E%E9%94%AE%E7%9B%98%E5%AD%97%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">开头结尾与键盘字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E6%8E%A7%E5%88%B6%EF%BC%9A%E5%88%9D%E6%AD%A5"><span class="nav-number">2.2.</span> <span class="nav-text">格式控制：初步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.3.</span> <span class="nav-text">转义字符与修饰符号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E7%AC%A6"><span class="nav-number">2.3.1.</span> <span class="nav-text">希腊字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.3.2.</span> <span class="nav-text">数学符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E8%BD%AC%E4%B9%89%E7%AC%A6"><span class="nav-number">2.3.3.</span> <span class="nav-text">特殊转义符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.3.4.</span> <span class="nav-text">修饰符号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BF%AE%E9%A5%B0%E5%91%BD%E4%BB%A4"><span class="nav-number">2.4.</span> <span class="nav-text">大型运算符的修饰命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E6%8E%A7%E5%88%B6%EF%BC%9A%E5%A4%9A%E8%A1%8C%E8%BF%90%E7%AE%97-%E5%85%AC%E5%BC%8F%E7%BB%84%E3%80%81%E7%9F%A9%E9%98%B5%E4%B8%8E%E8%A1%A8%E6%A0%BC"><span class="nav-number">2.5.</span> <span class="nav-text">格式控制：多行运算 - 公式组、矩阵与表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">2.6.</span> <span class="nav-text">打印控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">2.7.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E-Markdown-%E7%9A%84%E5%86%B2%E7%AA%81%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">与 Markdown 的冲突处理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">381</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/mathjax-latex-syntax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Latex 语法简单总结 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Latex 语法简单总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-05 13:36:16" itemprop="dateCreated datePublished" datetime="2024-01-05T13:36:16Z">2024-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><style >
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.f{
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    font-size:0.9em
+}
+</style>
+
+
+<h2 id="Hexo-Next-开启-Mathjax"><a href="#Hexo-Next-开启-Mathjax" class="headerlink" title="Hexo Next 开启 Mathjax"></a>Hexo Next 开启 Mathjax</h2><p>Hexo Next 主题默认支持 Mathjax 和 katex，以在博客文章中显示数学公式。其中，Mathjax 默认以『按需加载』的方式开着，只需要在 md 文件的头部区域添加 <code>mathjax: true</code> 即可激活该文的 Mathjax 支持。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#x27;Latex 简单语法总结&#x27;</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span>  <span class="comment"># 开启 Mathjax</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+<p>也可以在 <code>_config.next.yml</code> 配置文件中设置 <code>math: ↴ every_page: true</code> 为所有文章开启数学公式支持。</p>
+<h2 id="Latex-语法"><a href="#Latex-语法" class="headerlink" title="Latex 语法"></a>Latex 语法</h2><blockquote>
+<p>Mathjax 不只支持 Latex，还支持 MathML 等语法。本着快速入门的实用主义角度，本文只记录一部分 Latex 语法。</p>
+</blockquote>
+<p>Latex 的基本语法包括：</p>
+<ul>
+<li>开头结尾与键盘字符。</li>
+<li>格式控制，包括公式组合、上下标、分数、根式、矩阵等 。</li>
+<li>转义字符，包括希腊字符、数学符号、运算符、箭头、修饰符等。</li>
+<li>打印控制，包括字体、颜色、大小、对齐等。</li>
+</ul>
+<h3 id="开头结尾与键盘字符"><a href="#开头结尾与键盘字符" class="headerlink" title="开头结尾与键盘字符"></a>开头结尾与键盘字符</h3><p>用 <code>$ ... $</code> 包裹的内容会被 Mathjax 重新改写为<code>行内公式</code>，比如 <span class="f">\$F&#x3D;ma\$</span> 就会被自动渲染为 $F&#x3D;ma$，行内公式后续文字会在同一行继续。用 <code>$$ ... $$</code> 包裹的内容称为 <code>行间公式</code>或者<code>块内公式</code>，公式在文章中是独立的块，<span class="f">\$\$E&#x3D;mc^2\$\$</span> 会被渲染为 $$E&#x3D;mc^2$$ 文字将被断开换行并形成上下围绕。</p>
+<p>可以看到，对于英文字母，以及一些键盘上有的字符，Mathjax 也会适当地重新渲染，$+ - * &#x2F; &#x3D; &gt; &lt; ( ) [ ]$ 等均会被渲染为数学符号。因此像 F&#x3D;ma 这样的公式，直接前后套上 $ 就是 Latex 表达式了。</p>
+<h3 id="格式控制：初步"><a href="#格式控制：初步" class="headerlink" title="格式控制：初步"></a>格式控制：初步</h3><p>从上面我们还注意到，c^2 经过 Mathjax 渲染后变成了 $c^2$。没错，<code>^</code> 就是上标控制符，将紧随其后的字符变为上标。同理，<code>_</code> 就是下标控制符。<span class="f">\$C_4^1 * C^2_4\$</span> 将渲染为 $C_4^1 * C^2_4$。可以看到，上下标没有先后顺序，都会附着到前一个全高字符上。</p>
+<p>但当表达『24选4』时，<span class="f">\$C_24^4\$</span> 被渲染为了 $C_24^4$。可以看到，规则是严格执行的，但结果却不是我们想要的。这时候需要用到花括号 <code>&#123;&#125;</code> 来控制上下标的范围，用 <span class="f">\$C_{24}^4\$</span> 就能正确渲染为 $C_{24}^4$ 了。</p>
+<p><code>&#123;&#125;</code> 分组符不光能用于上下标，其用途如名称所述，是将若干 latex 表达式视为一个组一个整体与其它表达式作用。比如 <span class="f">\$1^{3^{5^{7^9}}}\$</span> &#x3D;&gt; $1^{3^{5^{7^9}}}$，就是先将 7^9 视为整体，作为 5 的上标，再以三者的组合作为整体，作为 3 的上标，以此类推直到完成这个叠幂公式。分组符的灵活应用是大型公式的基础之一。</p>
+<p>数学上，$C_{24}^4$ 可以进一步展开为 $(1 * 2 * 3 * 4)&#x2F;(24 * 23 * 22 * 21)$，即 $C_n^k &#x3D; \frac{1 \times 2 \times \dots \times k}{n (n-1) (n-2) (n-k+1)}$，写作 <span class="f">\$\$ C_n^k &#x3D; \frac {1 \times 2 \times \dots \times k } { n (n-1) (n-2) (n-k+1) } \$\$</span></p>
+<p>这里，我们开始入门大型公式。可以看到，分数的表达式是 <code>$\frac &#123;分子&#125; &#123;分母&#125;$</code>，在 <code>\frac</code> 后面，分子和分母的位置是固定的，分子在前，分母在后，这与上下标有所不同。大括号 <code>&#123;&#125;</code> 则发挥了分组的作用。在分子分母两组内部，我们又用了 <code>\times</code> 作为乘号，<code>\dots</code> 作为三点省略号。我们也可以看到，Mathjax 会自动识别空格，因此我们不必担心空格的问题，在源代码上添加空格可以使阅读与编辑更方便。</p>
+<p>在初步掌握格式控制后，就可以展开阅读以下表格了：</p>
+<table>
+<thead>
+<tr>
+<th align="center">控制符</th>
+<th align="center">作用</th>
+<th align="center">效果</th>
+<th align="center"></th>
+<th align="center">控制符</th>
+<th align="center">作用</th>
+<th align="center">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>^</strong></td>
+<td align="center">上标</td>
+<td align="center">2^3 &#x3D;&gt; $2^3$</td>
+<td align="center"></td>
+<td align="center"><strong>_</strong></td>
+<td align="center">下标</td>
+<td align="center">C_2 &#x3D;&gt; $C_2$</td>
+</tr>
+<tr>
+<td align="center">{ }</td>
+<td align="center">分组</td>
+<td align="center">1^{3^5} &#x3D;&gt; $1^{3^5}$</td>
+<td align="center"></td>
+<td align="center">\quad</td>
+<td align="center">宽度1em的空格$^*$</td>
+<td align="center">1\quad2 &#x3D;&gt; $1\quad 2$</td>
+</tr>
+<tr>
+<td align="center">\frac</td>
+<td align="center">上下分式</td>
+<td align="center">\frac 1 2 &#x3D;&gt; $\frac 1 2$</td>
+<td align="center"></td>
+<td align="center">\over</td>
+<td align="center">上下分式</td>
+<td align="center">1 \over 2 &#x3D;&gt; $1\over2$</td>
+</tr>
+<tr>
+<td align="center">\sqrt</td>
+<td align="center">根号</td>
+<td align="center">\sqrt[3]{27} &#x3D;&gt; $\sqrt[3]{27}$</td>
+<td align="center"></td>
+<td align="center">\binom</td>
+<td align="center">组合数</td>
+<td align="center">\binom {4}{24} &#x3D;&gt; $\binom{4}{24}$</td>
+</tr>
+<tr>
+<td align="center">\left(</td>
+<td align="center">左大括号</td>
+<td align="center">\left( \frac{4}{24} \right) &#x3D;&gt; $\left( \dfrac4{24} \right)$</td>
+<td align="center">$\Leftrightarrow$</td>
+<td align="center">\right)</td>
+<td align="center">右大括号</td>
+<td align="center">&lt;小括号反例&gt;  (\frac{4}{24}) &#x3D;&gt; $( \dfrac4{24} )$</td>
+</tr>
+<tr>
+<td align="center">\left[</td>
+<td align="center">左大方括号</td>
+<td align="center">\left[ \frac{4}{24} \right] &#x3D;&gt; $\left[ \dfrac4{24} \right]$</td>
+<td align="center">$\Leftrightarrow$</td>
+<td align="center">\right]</td>
+<td align="center">右大方括号</td>
+<td align="center">&lt;小方括反例&gt; [\frac{4}{24}] &#x3D;&gt; $[ \dfrac4{24} ]$</td>
+</tr>
+<tr>
+<td align="center">\left\{</td>
+<td align="center">左大方括号</td>
+<td align="center">\left\{ \frac{4}{24} \right\} &#x3D;&gt; $\left\{\dfrac4{24}\right\}$</td>
+<td align="center">$\Leftrightarrow$</td>
+<td align="center">\right]</td>
+<td align="center">右大方括号</td>
+<td align="center">&lt;小花括反例&gt; \{\frac{4}{24}\} &#x3D;&gt; $\{\dfrac4{24}\}$</td>
+</tr>
+</tbody></table>
+<p>* 为兼容源代码的可读性，Latex 会忽略普通空格。因此在公式中需要添加额外空格时要用 \quad。<br>* 左右大括号是指，在所属代码块内，以最大上下范围为准，自动调整括号大小。</p>
+<h3 id="转义字符与修饰符号"><a href="#转义字符与修饰符号" class="headerlink" title="转义字符与修饰符号"></a>转义字符与修饰符号</h3><p>在数学中我们会用到很多字符，比如圆周率 π，积分符号 ∫，无穷大 ∞，等等。当然可以直接从输入法的特殊字符输入，或者其它查码表的方式来输入这些字符，Mathjax 也都是支持的。但 Latex 自身也提供了一套转义字符的机制，用于输入这些特殊字符，并且显示效果也更好。</p>
+<h4 id="希腊字符"><a href="#希腊字符" class="headerlink" title="希腊字符"></a>希腊字符</h4><table>
+<thead>
+<tr>
+<th align="center">小写希腊字符</th>
+<th>Latex 转义</th>
+<th align="center">Mathjax 效果</th>
+<th></th>
+<th align="center">大写希腊字符</th>
+<th>Latex 转义</th>
+<th>Mathjax 效果</th>
+<th align="center">Unicode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">α</td>
+<td>\alpha</td>
+<td align="center">$\alpha$</td>
+<td></td>
+<td align="center">Α</td>
+<td>\Alpha</td>
+<td>$\Alpha$</td>
+<td align="center">x0391</td>
+</tr>
+<tr>
+<td align="center">β</td>
+<td>\beta</td>
+<td align="center">$\beta$</td>
+<td></td>
+<td align="center">Β</td>
+<td>\Beta</td>
+<td>$\Beta$</td>
+<td align="center">x0392</td>
+</tr>
+<tr>
+<td align="center">γ</td>
+<td>\gamma</td>
+<td align="center">$\gamma$</td>
+<td></td>
+<td align="center">Γ</td>
+<td>\Gamma</td>
+<td>$\Gamma$</td>
+<td align="center">x0393</td>
+</tr>
+<tr>
+<td align="center">δ</td>
+<td>\delta</td>
+<td align="center">$\delta$</td>
+<td></td>
+<td align="center">Δ</td>
+<td>\Delta</td>
+<td>$\Delta$</td>
+<td align="center">x0394</td>
+</tr>
+<tr>
+<td align="center">ϵ</td>
+<td>\epsilon</td>
+<td align="center">$\epsilon$</td>
+<td></td>
+<td align="center">Ε</td>
+<td>\Epsilon</td>
+<td>$\Epsilon$</td>
+<td align="center">x0395</td>
+</tr>
+<tr>
+<td align="center">ζ</td>
+<td>\zeta</td>
+<td align="center">$\zeta$</td>
+<td></td>
+<td align="center">Ζ</td>
+<td>\Zeta</td>
+<td>$\Zeta$</td>
+<td align="center">x0396</td>
+</tr>
+<tr>
+<td align="center">η</td>
+<td>\eta</td>
+<td align="center">$\eta$</td>
+<td></td>
+<td align="center">Η</td>
+<td>\Eta</td>
+<td>$\Eta$</td>
+<td align="center">x0397</td>
+</tr>
+<tr>
+<td align="center">θ</td>
+<td>\theta</td>
+<td align="center">$\theta$</td>
+<td></td>
+<td align="center">Θ</td>
+<td>\Theta</td>
+<td>$\Theta$</td>
+<td align="center">x0398</td>
+</tr>
+<tr>
+<td align="center">ι</td>
+<td>\iota</td>
+<td align="center">$\iota$</td>
+<td></td>
+<td align="center">Ι</td>
+<td>\Iota</td>
+<td>$\Iota$</td>
+<td align="center">x0399</td>
+</tr>
+<tr>
+<td align="center">κ</td>
+<td>\kappa</td>
+<td align="center">$\kappa$</td>
+<td></td>
+<td align="center">Κ</td>
+<td>\Kappa</td>
+<td>$\Kappa$</td>
+<td align="center">x039a</td>
+</tr>
+<tr>
+<td align="center">λ</td>
+<td>\lambda</td>
+<td align="center">$\lambda$</td>
+<td></td>
+<td align="center">Λ</td>
+<td>\Lambda</td>
+<td>$\Lambda$</td>
+<td align="center">x039b</td>
+</tr>
+<tr>
+<td align="center">μ</td>
+<td>\mu</td>
+<td align="center">$\mu$</td>
+<td></td>
+<td align="center">Μ</td>
+<td>\Mu</td>
+<td>$\Mu$</td>
+<td align="center">x039c</td>
+</tr>
+<tr>
+<td align="center">ν</td>
+<td>\nu</td>
+<td align="center">$\nu$</td>
+<td></td>
+<td align="center">Ν</td>
+<td>\Nu</td>
+<td>$\Nu$</td>
+<td align="center">x039d</td>
+</tr>
+<tr>
+<td align="center">ξ</td>
+<td>\xi</td>
+<td align="center">$\xi$</td>
+<td></td>
+<td align="center">Ξ</td>
+<td>\Xi</td>
+<td>$\Xi$</td>
+<td align="center">x039e</td>
+</tr>
+<tr>
+<td align="center">ο</td>
+<td>\omicron</td>
+<td align="center">$\omicron$</td>
+<td></td>
+<td align="center">Ο</td>
+<td>\Omicron</td>
+<td>$\Omicron$</td>
+<td align="center">x039f</td>
+</tr>
+<tr>
+<td align="center">π</td>
+<td>\pi</td>
+<td align="center">$\pi$</td>
+<td></td>
+<td align="center">Π</td>
+<td>\Pi</td>
+<td>$\Pi$</td>
+<td align="center">x03a0</td>
+</tr>
+<tr>
+<td align="center">ρ</td>
+<td>\rho</td>
+<td align="center">$\rho$</td>
+<td></td>
+<td align="center">Ρ</td>
+<td>\Rho</td>
+<td>$\Rho$</td>
+<td align="center">x03a1</td>
+</tr>
+<tr>
+<td align="center">σ</td>
+<td>\sigma</td>
+<td align="center">$\sigma$</td>
+<td></td>
+<td align="center">Σ</td>
+<td>\Sigma</td>
+<td>$\Sigma$</td>
+<td align="center">x03a3</td>
+</tr>
+<tr>
+<td align="center">τ</td>
+<td>\tau</td>
+<td align="center">$\tau$</td>
+<td></td>
+<td align="center">Τ</td>
+<td>\Tau</td>
+<td>$\Tau$</td>
+<td align="center">x03a4</td>
+</tr>
+<tr>
+<td align="center">υ</td>
+<td>\upsilon</td>
+<td align="center">$\upsilon$</td>
+<td></td>
+<td align="center">Υ</td>
+<td>\Upsilon</td>
+<td>$\Upsilon$</td>
+<td align="center">x03a5</td>
+</tr>
+<tr>
+<td align="center">ϕ</td>
+<td>\phi</td>
+<td align="center">$\phi$</td>
+<td></td>
+<td align="center">Φ</td>
+<td>\Phi</td>
+<td>$\Phi$</td>
+<td align="center">x03a6</td>
+</tr>
+<tr>
+<td align="center">χ</td>
+<td>\chi</td>
+<td align="center">$\chi$</td>
+<td></td>
+<td align="center">Χ</td>
+<td>\Chi</td>
+<td>$\Chi$</td>
+<td align="center">x03a7</td>
+</tr>
+<tr>
+<td align="center">ψ</td>
+<td>\psi</td>
+<td align="center">$\psi$</td>
+<td></td>
+<td align="center">Ψ</td>
+<td>\Psi</td>
+<td>$\Psi$</td>
+<td align="center">x03a8</td>
+</tr>
+<tr>
+<td align="center">ω</td>
+<td>\omega</td>
+<td align="center">$\omega$</td>
+<td></td>
+<td align="center">Ω</td>
+<td>\Omega</td>
+<td>$\Omega$</td>
+<td align="center">x03a9</td>
+</tr>
+</tbody></table>
+<div id="GCLUE"></div>
+可以看到，希腊字母的转义就是它的英语名称前加反斜杠 `\`。大写希腊字母则首字母大写。同时也会注意到，不少大写的 Mathjax 渲染效果并不是西腊字符，而是<span class="red">将源码染红</span>了。
+
+<p>标红是因为 Mathjax 认为它是错误代码。标红错误代码有助于作者顺利进行排查，比如 $\fracc{k}{n(n-k)}$ 很容易便能看出来是 \frac 拼写错误。但为何 $\Alpha$ 是错误的呢？原因如下：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://tex.stackexchange.com/a/111549">[引用]</a> There is no uppercase Alpha, Beta etc. deﬁned in LATEX2ε because it looks the same as a normal roman A, B.</p>
+</blockquote>
+<p>由于历史原因，Latex 以『形状相似』为由，没有定义几个与英文相似的大写希腊字母，包括 Α Β Ε Ζ Τ 等，因此建议你用英文字母代替这几个大写希腊字符。所以 Mathjax 也跟着报错了。仔细想来，只是用于公式排版倒也差不多说得过去。只是极端节省到这地步，我的心情如下述评论：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://math.meta.stackexchange.com/a/22051">[引用]</a> The fact that they actually bothered to make a capital tau symbol surprises me ... </p>
+</blockquote>
+<p>这种情况下，如果有心要输入正确的大写希腊字符，一种方法是上文所述，直接用输入法的特殊字符输入，或者用 Latex 后续版本扩展出来的 \unicode{} 方法，例如 <span class="f">\$\unicode{x0391}\$</span> &#x3D;&gt; $\unicode{x0391}$。</p>
+<h4 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h4><table>
+<thead>
+<tr>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\infty$</td>
+<td>\infty</td>
+<td align="center">$\aleph$</td>
+<td>\aleph</td>
+<td align="center">$\because$</td>
+<td>\because</td>
+<td align="center">$\therefore$</td>
+<td>\therefore</td>
+</tr>
+<tr>
+<td align="center">$\approx$</td>
+<td>\approx</td>
+<td align="center">$\neq$</td>
+<td>\neq</td>
+<td align="center">$\equiv$</td>
+<td>\equiv</td>
+<td align="center">$\simeq$</td>
+<td>\simeq</td>
+</tr>
+<tr>
+<td align="center">$\oplus$</td>
+<td>\oplus</td>
+<td align="center">$\pm$</td>
+<td>\pm</td>
+<td align="center">$\parallel$</td>
+<td>\parallel</td>
+<td align="center">$\nparallel$</td>
+<td>\nparallel</td>
+</tr>
+<tr>
+<td align="center">$\times$</td>
+<td>\times</td>
+<td align="center">$\div$</td>
+<td>\div</td>
+<td align="center">$\forall$</td>
+<td>\forall</td>
+<td align="center">$\exists$</td>
+<td>\exists</td>
+</tr>
+<tr>
+<td align="center">$\cup$</td>
+<td>\cup</td>
+<td align="center">$\cap$</td>
+<td>\cap</td>
+<td align="center">$\subset$</td>
+<td>\subset</td>
+<td align="center">$\supset$</td>
+<td>\supset</td>
+</tr>
+<tr>
+<td align="center">$\in$</td>
+<td>\in</td>
+<td align="center">$\notin$</td>
+<td>\notin</td>
+<td align="center">$\sum$</td>
+<td>\sum</td>
+<td align="center">$\prod$</td>
+<td>\prod</td>
+</tr>
+<tr>
+<td align="center">$\partial$</td>
+<td>\partial</td>
+<td align="center">$\int$</td>
+<td>\int</td>
+<td align="center">$\iint$</td>
+<td>\iint</td>
+<td align="center">$\oint$</td>
+<td>\oint</td>
+</tr>
+<tr>
+<td align="center">$\geq$</td>
+<td>\geq</td>
+<td align="center">$\leq$</td>
+<td>\leq</td>
+<td align="center">$\gg$</td>
+<td>\gg</td>
+<td align="center">$\ll$</td>
+<td>\ll</td>
+</tr>
+<tr>
+<td align="center">$\to$</td>
+<td>\to</td>
+<td align="center">$\gets$</td>
+<td>\gets</td>
+<td align="center">$\mapsto$</td>
+<td>\mapsto</td>
+<td align="center">$\leadsto$</td>
+<td>\leadsto</td>
+</tr>
+<tr>
+<td align="center">$\uparrow$</td>
+<td>\uparrow</td>
+<td align="center">$\upuparrows$</td>
+<td>\upuparrows</td>
+<td align="center">$\Uparrow$</td>
+<td>\Uparrow</td>
+<td align="center">$\downarrow$</td>
+<td>\downarrow</td>
+</tr>
+<tr>
+<td align="center">$\updownarrow$</td>
+<td>\updownarrow</td>
+<td align="center">$\leftrightarrow$</td>
+<td>\leftrightarrow</td>
+<td align="center">$\twoheadrightarrow$</td>
+<td>\twoheadrightarrow</td>
+<td align="center">$\xtwoheadrightarrow{abc}$</td>
+<td>\xtwoheadrightarrow{abc}</td>
+</tr>
+<tr>
+<td align="center">$\curvearrowleft$</td>
+<td>\curvearrowleft</td>
+<td align="center">$\curvearrowright$</td>
+<td>\curvearrowright</td>
+<td align="center">$\circlearrowleft$</td>
+<td>\circlearrowleft</td>
+<td align="center">$\circlearrowright$</td>
+<td>\circlearrowright</td>
+</tr>
+<tr>
+<td align="center">$\square$</td>
+<td>\square</td>
+<td align="center">$\triangle$</td>
+<td>\triangle</td>
+<td align="center">$\perp$</td>
+<td>\perp</td>
+<td align="center">$\angle$</td>
+<td>\angle</td>
+</tr>
+<tr>
+<td align="center">$\lim$</td>
+<td>\lim</td>
+<td align="center">$\log$</td>
+<td>\log</td>
+<td align="center">$\sin$</td>
+<td>\sin</td>
+<td align="center">$\cos$</td>
+<td>\cos</td>
+</tr>
+</tbody></table>
+<p>Latex 定义了大量的符号，上表只列出了一小部分。大部分符号用不到就是不需要，知识领域没覆盖那部分。<a href="../attach/2024/01/symbols-a4.pdf">这里</a> 有一份号称完整的符号表，不过比起查书，问问 ChatGPT 也许更直接。</p>
+<h4 id="特殊转义符"><a href="#特殊转义符" class="headerlink" title="特殊转义符"></a>特殊转义符</h4><p>我们使用 <code>$ ... $</code> 和 <code>$$ ... $$</code> 来包裹 Latex 表达式，用 <code>&#123;&#125;</code> 来分组包裹，用 <code>^_</code> 作为上下标。那么当我们需要在公式中显示这几个字符时，就需要额外添加转义符了。</p>
+<table>
+<thead>
+<tr>
+<th align="center">转义字符</th>
+<th align="center">Latex 表示法</th>
+<th align="center">Mathjax 效果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$  _  {  }</td>
+<td align="center">\\$  \_  \{  \}</td>
+<td align="center">\\{ \\_ \\\$ \\} &#x3D;&gt; $ \{ \_ \$ \}$</td>
+<td>普通地添加 \ 前缀即可，{} 大括号本身也是公式常用字符。</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">\verb!^!</td>
+<td align="center">3\verb!^!3&#x3D;27 &#x3D;&gt; $3\verb!^!3&#x3D;27$</td>
+<td>\verb 可能在一些复杂公式中与其它控制符冲突。</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">^\wedge</td>
+<td align="center">3^\wedge3&#x3D;27 &#x3D;&gt; $3^\wedge3&#x3D;27$</td>
+<td>只是像，不是同一个字符。但<a href="#GCLUE">参考上文</a>，像有时就够了。</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">\backslash</td>
+<td align="center">C:{\backslash}Windows &#x3D;&gt; $C:{\backslash}Windows$</td>
+<td>这里用到 { } 是因为要与Windows这个单词分开。</td>
+</tr>
+</tbody></table>
+<h4 id="修饰符号"><a href="#修饰符号" class="headerlink" title="修饰符号"></a>修饰符号</h4><table>
+<thead>
+<tr>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+<th align="center">效果</th>
+<th>Latex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$\hat{abc}$</td>
+<td>\hat{abc}</td>
+<td align="center">$\widehat{abc}$</td>
+<td>\widehat{abc}</td>
+<td align="center">$\bar{abc}$</td>
+<td>\bar{abc}</td>
+<td align="center">$\overline{abc}$</td>
+<td>\overline{abc}</td>
+</tr>
+<tr>
+<td align="center">$\vec{abc}$</td>
+<td>\vec{abc}</td>
+<td align="center">$\overrightarrow{abc}$</td>
+<td>\overrightarrow{abc}</td>
+<td align="center">$\dot{abc}$</td>
+<td>\dot{abc}</td>
+<td align="center">$\ddot{abc}$</td>
+<td>\ddot{abc}</td>
+</tr>
+<tr>
+<td align="center">$\tilde{abc}$</td>
+<td>\tilde{abc}</td>
+<td align="center">$\widetilde{abc}$</td>
+<td>\widetilde{abc}</td>
+<td align="center">$\overbrace{abc}^n$</td>
+<td>\overbrace{abc}^n</td>
+<td align="center">$\underbrace{abc}_n$</td>
+<td>\underbrace{abc}_n</td>
+</tr>
+</tbody></table>
+<p>修饰符号的使用类似于函数，用 <code>&#123;&#125;</code> 将修饰对象包裹起来，修饰符号的位置总是相对于修饰对象进行调整，而与修饰对象在整个公式中的位置无关。</p>
+<h3 id="大型运算符的修饰命令"><a href="#大型运算符的修饰命令" class="headerlink" title="大型运算符的修饰命令"></a>大型运算符的修饰命令</h3><p>我们在前面已经见到了 \sum \prod \int 等大型运算符，这些符号在公式中往往还配有上下限、积分定义域等算子与脚标。Mathjax 会自动根据行内或块内的场景来调整算子的大小和脚标的相对位置。比如 <span class="f">\$\sum_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6\$</span> 将渲染为 $\sum_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6$，而相同的公式在块内渲染为：<br>$$\sum_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6$$</p>
+<p>可以看到，$_{i&#x3D;1}$ 与 $^n$ 的位置随着不同的条件自动调整了。这种自动调整的机制在大型公式中非常有用，我们只需要关心公式的结构即可。但如果一定要坚持特定的格式，也可以用 \limits 和 \nolimits 来强制调整上下限的位置。比如 <span class="f">\$\sum<span class="green">\limits</span>_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6\$</span> 将渲染为 $\sum\limits_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6$。而<span class="f">\$\$\sum<span class="green">\nolimits</span>_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6\$\$</span> 将渲染为：$$\sum\nolimits_{i&#x3D;1}^n i^2 &#x3D; \frac {n(n+1)(2n+1)} 6$$</p>
+<p><span class="green">\limits</span> 与 <span class="green">\nolimits</span> 没有自己的符号，但可以修饰很多带脚标的运算符，强制调整其形式，且只能用在运算符上。如果你用在别处，Mathjax 会报错。比如： <span class="f">\$C\limits_4^2\$</span> &#x3D;&gt; $C\limits_4^2$。我们期望的是 4 出现在 C 的下方，想通过修饰 <code>_</code> 实现效果，实际却报错了。正确的实现方式是用下面的 \underset 命令：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><div style="width:130px">修饰命令</div></th>
+<th><div style="width:280px">作用</div></th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">\limits \nolimits</td>
+<td>强制上下限以指定场景显示</td>
+<td>上文已述</td>
+</tr>
+<tr>
+<td align="left">\substack{}</td>
+<td>创建一个多行块，整体通常作为上下标</td>
+<td>\sum_{\substack{0&lt;i&lt;3\\0&lt;j&lt;5}}a_{ij} &#x3D;&gt; $\sum_{\substack{0&lt;i&lt;3\\0&lt;j&lt;5}}a_{ij}$</td>
+</tr>
+<tr>
+<td align="left">\mathop{}</td>
+<td>将 { }内的内容整体视作一个大型运算符</td>
+<td>\mathop{\sum\sum}\limits_{i,j&#x3D;1}^{i,j&#x3D;n} (i *j) &#x3D;&gt; $\mathop{\sum\sum}\limits_{i,j&#x3D;1}^{i,j&#x3D;n} (i *j)$</td>
+</tr>
+<tr>
+<td align="left">\mbox{}</td>
+<td>{ } 内的文本不会断行，可能导致溢出</td>
+<td>\mbox{ ... very long contnet ... } &#x3D;&gt; $$\mbox{Very very very very very very very long content in the mbox and there is no line break. }$$</td>
+</tr>
+<tr>
+<td align="left">\sideset{}{}\prod</td>
+<td>在 \prod 的左右边分别添加指定内容</td>
+<td>\sideset{_1^2}{_3^4}\prod &#x3D;&gt; $\sideset{_1^2}{_3^4}\prod$</td>
+</tr>
+<tr>
+<td align="left">\overset{A}{B}</td>
+<td>在内容 B 的上方添加内容 A</td>
+<td>2Cu+2Al\overset{\triangle}{&#x3D;}2Au+Cl_2\uparrow &#x3D;&gt; $2Cu+2Al\overset{\triangle}{&#x3D;}2Au+Cl_2\uparrow$</td>
+</tr>
+<tr>
+<td align="left">\underset{A}{B}</td>
+<td>在内容 B 的下方添加内容 A</td>
+<td>\underset{probability}{P}(X&#x3D;x) &#x3D; \frac{1}{x}^2 &#x3D;&gt; $\underset{probability}{P}(X&#x3D;x) &#x3D; \frac{1}{x}^2$</td>
+</tr>
+</tbody></table>
+<h3 id="格式控制：多行运算-公式组、矩阵与表格"><a href="#格式控制：多行运算-公式组、矩阵与表格" class="headerlink" title="格式控制：多行运算 - 公式组、矩阵与表格"></a>格式控制：多行运算 - 公式组、矩阵与表格</h3><p>经过前面的铺垫，我们可以开始对公式进行组合了。公式组的基本形式是：</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">    <span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">        x + y = 35 <span class="keyword">\\</span></span><br><span class="line">        2x + 4y = 94</span><br><span class="line">    <span class="keyword">\end</span>&#123;cases&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br>\begin{equation}<br>    \begin{cases}<br>        x + y &#x3D; 35 \\<br>        2x + 4y &#x3D; 94<br>    \end{cases}<br>\end{equation}</p>
+<p><a target="_blank" rel="noopener" href="https://www.rollpie.com/post/471">[引用]</a></p>
+<h3 id="打印控制"><a href="#打印控制" class="headerlink" title="打印控制"></a>打印控制</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">不同格式的空格间距</span><br><span class="line">ab</span><br><span class="line">a b</span><br><span class="line">a\ b</span><br><span class="line">a\  b</span><br><span class="line">a\ \ b</span><br><span class="line">a\quad b</span><br><span class="line">a\qquad b</span><br><span class="line">a\ b</span><br><span class="line">a\,b</span><br><span class="line">a\:b</span><br><span class="line">a\;b</span><br><span class="line">a\!b</span><br><span class="line">​</span><br><span class="line">行末 \\[15pt]</span><br><span class="line">控制下一行间距</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><h2 id="与-Markdown-的冲突处理"><a href="#与-Markdown-的冲突处理" class="headerlink" title="与 Markdown 的冲突处理"></a>与 Markdown 的冲突处理</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo-Next/" rel="tag"># Hexo Next</a>
+              <a href="/tags/Mathjax/" rel="tag"># Mathjax</a>
+              <a href="/tags/Latex/" rel="tag"># Latex</a>
+              <a href="/tags/Latex-Syntax/" rel="tag"># Latex Syntax</a>
+              <a href="/tags/Latex-%E8%AF%AD%E6%B3%95/" rel="tag"># Latex 语法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/disqusjs-installation/" rel="prev" title="通过 DisqusJS 添加 Disqus 评论系统">
+                  <i class="fa fa-angle-left"></i> 通过 DisqusJS 添加 Disqus 评论系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/config.min.js"></script>
+
+    <meta name="description" content="142857近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：  不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1&#x2F;n 与 n-1 位循环节">
+<meta property="og:url" content="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="142857近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：  不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/08/1_7_circle.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/08/circle_in_10e6.png">
+<meta property="article:published_time" content="2024-08-10T20:18:12.000Z">
+<meta property="article:modified_time" content="2024-11-14T01:19:02.924Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="循环节">
+<meta property="article:tag" content="1&#x2F;n">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2024/08/1_7_circle.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/","path":"/1-over-n-and-n-1-recurring decimal/","title":"1/n 与 n-1 位循环节"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1/n 与 n-1 位循环节 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">126</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">396</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#142857"><span class="nav-number">1.</span> <span class="nav-text">142857</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.</span> <span class="nav-text">研究原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E4%BD%99"><span class="nav-number">2.1.</span> <span class="nav-text">同余</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">2.3.</span> <span class="nav-text">推论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">计算程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E8%BF%9B%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">其它进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E8%BF%9B%E5%88%B6-R-s-2"><span class="nav-number">3.2.</span> <span class="nav-text">特殊进制 $R&#x3D;s^2$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E5%BE%8B"><span class="nav-number">3.3.</span> <span class="nav-text">费马小定律</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">396</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1/n 与 n-1 位循环节 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1/n 与 n-1 位循环节
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-10 20:18:12" itemprop="dateCreated datePublished" datetime="2024-08-10T20:18:12Z">2024-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="142857"><a href="#142857" class="headerlink" title="142857"></a>142857</h2><p>近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：</p>
+<p><img src="/../attach/2024/08/1_7_circle.png" alt="1/7 Circle" loading="lazy"></p>
+<p>不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和长度不变，只是起始位置换了一下。因此写了段程序简单搜索一下还有没有其它的 n 也有这个特征。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">loop</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line">    <span class="keyword">let</span> pool = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;  </span><br><span class="line">        <span class="keyword">let</span> digi = (a / n) | <span class="number">0</span></span><br><span class="line">        a = a % n * <span class="number">10</span> </span><br><span class="line">        <span class="keyword">if</span> (a == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="string">&quot;&quot;</span> &#125;   <span class="comment">// 除尽没有循环节</span></span><br><span class="line">        <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123;          <span class="comment">// 当余数作为被除数曾出现过，新的循环节开始。</span></span><br><span class="line">            <span class="keyword">let</span> loop = [...pool]</span><br><span class="line">            <span class="keyword">let</span> index = loop.<span class="title function_">findIndex</span>(<span class="function"><span class="params">i</span> =&gt;</span> i == ele)</span><br><span class="line">            <span class="keyword">let</span> str = loop.<span class="title function_">slice</span>(index).<span class="title function_">map</span>(<span class="function"><span class="params">e</span> =&gt;</span> e % <span class="number">10</span>).<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> str</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pool.<span class="title function_">add</span>(ele)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="number">7</span></span><br><span class="line"><span class="keyword">while</span> (start &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="title function_">loop</span>(start)</span><br><span class="line">    <span class="keyword">if</span> (str.<span class="property">length</span> == start - <span class="number">1</span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(start, str) &#125;</span><br><span class="line">    start++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果出人意料地多：</p>
+<table>
+<thead>
+<tr>
+<th>1&#x2F;n</th>
+<th>循环节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1&#x2F;7</td>
+<td>142857</td>
+</tr>
+<tr>
+<td>1&#x2F;17</td>
+<td>0588235294117647</td>
+</tr>
+<tr>
+<td>1&#x2F;19</td>
+<td>052631578947368421</td>
+</tr>
+<tr>
+<td>1&#x2F;23</td>
+<td>0434782608695652173913</td>
+</tr>
+<tr>
+<td>1&#x2F;29</td>
+<td>0344827586206896551724137931</td>
+</tr>
+<tr>
+<td>1&#x2F;47</td>
+<td>0212765957446808510638297872340425531914893617</td>
+</tr>
+<tr>
+<td>1&#x2F;59</td>
+<td>0169491525423728813559322033898305084745762711864406779661</td>
+</tr>
+<tr>
+<td>1&#x2F;61</td>
+<td>016393442622950819672131147540983606557377049180327868852459</td>
+</tr>
+<tr>
+<td>1&#x2F;97</td>
+<td>010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567</td>
+</tr>
+<tr>
+<td>1&#x2F;109</td>
+<td><span style="font-size:15px">009174311926605504587155963302752293577981651376146788990825688073394495412844036697247706422018348623853211                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </span></td>
+</tr>
+<tr>
+<td>1&#x2F;113</td>
+<td><span style="font-size:14px">0088495575221238938053097345132743362831858407079646017699115044247787610619469026548672566371681415929203539823                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </span></td>
+</tr>
+<tr>
+<td>1&#x2F;131</td>
+<td><span style="font-size:12px">0076335877862595419847328244274809160305343511450381679389312977099236641221374045801526717557251908396946564885496183206106870229                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </span></td>
+</tr>
+<tr>
+<td>1&#x2F;149</td>
+<td><span style="font-size:11px">0067114093959731543624161073825503355704697986577181208053691275167785234899328859060402684563758389261744966442953020134228187919463087248322147651                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </span></td>
+</tr>
+<tr>
+<td>1&#x2F;167</td>
+<td><span style="font-size:10px">0059880239520958083832335329341317365269461077844311377245508982035928143712574850299401197604790419161676646706586826347305389221556886227544910179640718562874251497                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </span></td>
+</tr>
+<tr>
+<td>1&#x2F;179</td>
+<td><span style="font-size:9px">0055865921787709497206703910614525139664804469273743016759776536312849162011173184357541899441340782122905027932960893854748603351955307262569832402234636871508379888268156424581                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </span></td>
+</tr>
+<tr>
+<td>1&#x2F;181</td>
+<td><span style="font-size:9px">005524861878453038674033149171270718232044198895027624309392265193370165745856353591160220994475138121546961325966850828729281767955801104972375690607734806629834254143646408839779                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </span></td>
+</tr>
+<tr>
+<td>1&#x2F;193</td>
+<td><span style="font-size:8px">005181347150259067357512953367875647668393782383419689119170984455958549222797927461139896373056994818652849740932642487046632124352331606217616580310880829015544041450777202072538860103626943                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </span></td>
+</tr>
+<tr>
+<td>1&#x2F;223</td>
+<td><span style="font-size:7px">004484304932735426008968609865470852017937219730941704035874439461883408071748878923766816143497757847533632286995515695067264573991031390134529147982062780269058295964125560538116591928251121076233183856502242152466367713                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td>
+</tr>
+<tr>
+<td>1&#x2F;229</td>
+<td><span style="font-size:7px">004366812227074235807860262008733624454148471615720524017467248908296943231441048034934497816593886462882096069868995633187772925764192139737991266375545851528384279475982532751091703056768558951965065502183406113537117903930131                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </span></td>
+</tr>
+<tr>
+<td>1&#x2F;233</td>
+<td><span style="font-size:7px">0042918454935622317596566523605150214592274678111587982832618025751072961373390557939914163090128755364806866952789699570815450643776824034334763948497854077253218884120171673819742489270386266094420600858369098712446351931330472103                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td>
+</tr>
+<tr>
+<td>1&#x2F;257</td>
+<td><span style="font-size:6px">0038910505836575875486381322957198443579766536964980544747081712062256809338521400778210116731517509727626459143968871595330739299610894941634241245136186770428015564202334630350194552529182879377431906614785992217898832684824902723735408560311284046692607                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </span></td>
+</tr>
+<tr>
+<td>1&#x2F;263</td>
+<td><span style="font-size:6px">0038022813688212927756653992395437262357414448669201520912547528517110266159695817490494296577946768060836501901140684410646387832699619771863117870722433460076045627376425855513307984790874524714828897338403041825095057034220532319391634980988593155893536121673                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;269</td>
+<td><span style="font-size:6px">0037174721189591078066914498141263940520446096654275092936802973977695167286245353159851301115241635687732342007434944237918215613382899628252788104089219330855018587360594795539033457249070631970260223048327137546468401486988847583643122676579925650557620817843866171                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </span></td>
+</tr>
+<tr>
+<td>1&#x2F;313</td>
+<td><span style="font-size:5px">003194888178913738019169329073482428115015974440894568690095846645367412140575079872204472843450479233226837060702875399361022364217252396166134185303514376996805111821086261980830670926517571884984025559105431309904153354632587859424920127795527156549520766773162939297124600638977635782747603833865814696485623                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               </span></td>
+</tr>
+<tr>
+<td>1&#x2F;337</td>
+<td><span style="font-size:4px">002967359050445103857566765578635014836795252225519287833827893175074183976261127596439169139465875370919881305637982195845697329376854599406528189910979228486646884272997032640949554896142433234421364985163204747774480712166172106824925816023738872403560830860534124629080118694362017804154302670623145400593471810089020771513353115727                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </span></td>
+</tr>
+<tr>
+<td>1&#x2F;367</td>
+<td><span style="font-size:4px">002724795640326975476839237057220708446866485013623978201634877384196185286103542234332425068119891008174386920980926430517711171662125340599455040871934604904632152588555858310626702997275204359673024523160762942779291553133514986376021798365122615803814713896457765667574931880108991825613079019073569482288828337874659400544959128065395095367847411444141689373297                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td>
+</tr>
+<tr>
+<td>1&#x2F;379</td>
+<td><span style="font-size:4px">002638522427440633245382585751978891820580474934036939313984168865435356200527704485488126649076517150395778364116094986807387862796833773087071240105540897097625329815303430079155672823218997361477572559366754617414248021108179419525065963060686015831134564643799472295514511873350923482849604221635883905013192612137203166226912928759894459102902374670184696569920844327176781                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </span></td>
+</tr>
+<tr>
+<td>1&#x2F;383</td>
+<td><span style="font-size:4px">0026109660574412532637075718015665796344647519582245430809399477806788511749347258485639686684073107049608355091383812010443864229765013054830287206266318537859007832898172323759791122715404699738903394255874673629242819843342036553524804177545691906005221932114882506527415143603133159268929503916449086161879895561357702349869451697127937336814621409921671018276762402088772845953                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </span></td>
+</tr>
+<tr>
+<td>1&#x2F;389</td>
+<td><span style="font-size:4px">0025706940874035989717223650385604113110539845758354755784061696658097686375321336760925449871465295629820051413881748071979434447300771208226221079691516709511568123393316195372750642673521850899742930591259640102827763496143958868894601542416452442159383033419023136246786632390745501285347043701799485861182519280205655526992287917737789203084832904884318766066838046272493573264781491                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </span></td>
+</tr>
+<tr>
+<td>1&#x2F;419</td>
+<td><span style="font-size:3px">0023866348448687350835322195704057279236276849642004773269689737470167064439140811455847255369928400954653937947494033412887828162291169451073985680190930787589498806682577565632458233890214797136038186157517899761336515513126491646778042959427207637231503579952267303102625298329355608591885441527446300715990453460620525059665871121718377088305489260143198090692124105011933174224343675417661097852028639618138424821                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </span></td>
+</tr>
+<tr>
+<td>1&#x2F;433</td>
+<td><span style="font-size:3px">002309468822170900692840646651270207852193995381062355658198614318706697459584295612009237875288683602771362586605080831408775981524249422632794457274826789838337182448036951501154734411085450346420323325635103926096997690531177829099307159353348729792147806004618937644341801385681293302540415704387990762124711316397228637413394919168591224018475750577367205542725173210161662817551963048498845265588914549653579676674364896073903                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </span></td>
+</tr>
+<tr>
+<td>1&#x2F;461</td>
+<td><span style="font-size:3px">0021691973969631236442516268980477223427331887201735357917570498915401301518438177874186550976138828633405639913232104121475054229934924078091106290672451193058568329718004338394793926247288503253796095444685466377440347071583514099783080260303687635574837310195227765726681127982646420824295010845986984815618221258134490238611713665943600867678958785249457700650759219088937093275488069414316702819956616052060737527114967462039045553145336225596529284164859                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </span></td>
+</tr>
+<tr>
+<td>1&#x2F;487</td>
+<td><span style="font-size:3px">002053388090349075975359342915811088295687885010266940451745379876796714579055441478439425051334702258726899383983572895277207392197125256673511293634496919917864476386036960985626283367556468172484599589322381930184804928131416837782340862422997946611909650924024640657084188911704312114989733059548254620123203285420944558521560574948665297741273100616016427104722792607802874743326488706365503080082135523613963039014373716632443531827515400410677618069815195071868583162217659137577                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;491</td>
+<td><span style="font-size:3px">0020366598778004073319755600814663951120162932790224032586558044806517311608961303462321792260692464358452138492871690427698574338085539714867617107942973523421588594704684317718940936863543788187372708757637474541751527494908350305498981670061099796334012219959266802443991853360488798370672097759674134419551934826883910386965376782077393075356415478615071283095723014256619144602851323828920570264765784114052953156822810590631364562118126272912423625254582484725050916496945010183299389                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </span></td>
+</tr>
+<tr>
+<td>1&#x2F;499</td>
+<td><span style="font-size:3px">002004008016032064128256513026052104208416833667334669338677354709418837675350701402805611222444889779559118236472945891783567134268537074148296593186372745490981963927855711422845691382765531062124248496993987975951903807615230460921843687374749498997995991983967935871743486973947895791583166332665330661322645290581162324649298597194388777555110220440881763527054108216432865731462925851703406813627254509018036072144288577154308617234468937875751503006012024048096192384769539078156312625250501                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </span></td>
+</tr>
+</tbody></table>
+<p>简化代码并扩大计算量搜索后，得到 100 万以内的走马灯数分布：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">n_devide_len</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>, pool = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        a = a % n * <span class="number">10</span></span><br><span class="line">        <span class="keyword">if</span> (a == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">        <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123; <span class="keyword">return</span> pool.<span class="property">size</span> &#125; <span class="keyword">else</span> &#123; pool.<span class="title function_">add</span>(a) &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../attach/2024/08/circle_in_10e6.png" alt="100 万以内的走马灯数分布" loading="lazy"></p>
+<p>有点意思。</p>
+<hr>
+<h2 id="研究原因"><a href="#研究原因" class="headerlink" title="研究原因"></a>研究原因</h2><p>对于任意由 1&#x2F;n 形成的循环小数，$\frac{1}{n} &#x3D; 0.\overline{******}$，设循环节部分为 r，其长度为 l，都可以写成一个无穷级数之和：</p>
+<p>$$\frac{1}{n} &#x3D; \frac{r}{10^l}+\frac{r}{10^{2l}}+\cdots+\frac{r}{10^{kl}} +\cdots &#x3D; \sum_{k&#x3D;1}^\infty\frac{r}{10^{kl}}$$</p>
+<p>对这个无穷等比数列重新求和，$S&#x3D;1&#x2F;n$，$10^l * S-S &#x3D; r$，得到 $S &#x3D; \frac{r}{10^l-1} &#x3D; \frac{1}{n}$，所以 $n&#x3D;\frac{10^l - 1}{r}$ ，或者写成 $r&#x3D;\frac{\overbrace{999\cdots999}^l}{n}$，根据前面的推导过程，这里的 r 一定是整数。这个方法同时也是将循环小数化为分数的标准方法。</p>
+<ul>
+<li><p>当 $n &#x3D; 7, l &#x3D; 6$ 时，也就得到了 $142857 &#x3D; \frac{\overbrace{999999}^6}{7}$，所以 $1&#x2F;7 &#x3D; 0.\overline{142857}$</p>
+</li>
+<li><p>当 $n &#x3D; 3, l &#x3D; 2$ 时，得到 $r &#x3D; \frac{99}{3} &#x3D; 33$，所以 $1&#x2F;3 &#x3D; 0.\overline{33}$，逻辑上其实也是对的，只是一般来说小数循环时只考虑最小周期，所以正确的写法应该是 $1&#x2F;3 &#x3D; 0.\overline{3}$。</p>
+</li>
+<li><p>当 $n &#x3D; 11, l&#x3D; 10$ 时，得到 $r &#x3D; \frac{9999999999}{11} &#x3D; 0909090909$，要注意这是循环节的计算因此首位的 0 不能去掉，所以 $1&#x2F;11 &#x3D; 0.\overline{0909090909}$，正写为 $1&#x2F;11&#x3D;0.\overline{09}$</p>
+</li>
+</ul>
+<blockquote>
+<p>对于 $1&#x2F;6 &#x3D; 0.1\overline{6}$ 这类存在非循环小数部分的，可以通过乘 10 等操作，把非循环部分移到整数上并抛弃，即化为 $10&#x2F;6 \rightarrow 4&#x2F;6 &#x3D; 2&#x2F;3 &#x3D; 0.\overline{6}$，考察 $0.\overline{6}$ 即可。</p>
+</blockquote>
+<h3 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h3><p>在上述 $n&#x3D;3, n&#x3D;11$ 两个例子中，虽然得到了逻辑上可行的循环节，但不符合通常的习惯，所以在结果上进行了缩减，变为符合习惯的最小循环节。</p>
+<ul>
+<li><p>$10^k-1$ 本身就是 3 的倍数，所以循环节永远只有一位。</p>
+</li>
+<li><p>11 因其自身的特殊性质，11 &#x3D; 10 + 1，天然地符合 10 为底的级数的结构，如果一个数字各位数值相同，那么奇数位数字对 11 都是同余的，偶数位也是。所以 $10^k-1 (mod\ 11)$ 只有两个结果 9 和 0。并且在两者间不断跳转。</p>
+</li>
+</ul>
+<p>可见，循环节长度即是最早出现同余时的 k 值，若要 1&#x2F;n 的循环节长度为 n-1，需要 $10^k (mod\ n)$ 在 $k &#x3D; 1, \cdots, n-1$ 时都不同余。</p>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><p>从上可见，循环小数与进制密切相关。例如在 8 进制中，9（在 8 进制中也写为 11）的性质将和 10 进制中的 11 相似，也会出现奇位同余偶位同余的情况。所以 $1&#x2F;11_{(8)} &#x3D; 0.\overline{07}_{(8)}$，形式上完全一致。</p>
+<p>而 $1&#x2F;7_{(8)}$ 则变为了 $0.\overline{1}<em>{(8)}$，因为 $8^k-1</em>{(8)} &#x3D; {\overbrace{77\dots7}^{k}}_{(8)}$ 各位恒为 7，也就不存在什么神秘数字循环了。</p>
+<p>由于和进制本身高度相关，因此某个 1&#x2F;n 是否有 n-1 位循环节，取决于它和进制 $R^k - 1$ 之间的相除结果，这个关系不知道数论中是否已有结论。</p>
+<h3 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h3><ul>
+<li><p>由于 n-1 位循环节一定存在，只是未必最短。而在 n- 1 基础上的缩减不会破坏原有模式，因此最小循环节长度一定是 n-1 的因数。</p>
+</li>
+<li><p>只有当 n 为素数时，才有可能出现 n-1 位循环节。由于余数需要遍历 1 到 n-1 的所有数。若 n &#x3D; pq，余数会在 q-1 与 p-1 的共同作用下循环，但 p-1 与 q-1 至少含有公因素 2，不可能产生所有 {0, p-1} 与 {0, q-1} 之间的全部两两组合。</p>
+</li>
+<li><p>一切循环节在若干次乘 10 排除不循环部分，整理为 $0.\overline{******}$ 形式后，都可以用 $a * 1&#x2F;n$ 来表示。 </p>
+</li>
+<li><p>如果 n 为素数，而其循环节长度 $l$ 不为 $n-1$，则必有互相不能抵达的 $\frac{n-1}{l}$ 套循环，进入哪套循环取决于分子 $a$ 的值。因为素数没有因数，$a&#x2F;n (a&#x3D;1, 2,\dots, n-1)$ 必然有 n-1 个不同余数。实例如 $1&#x2F;3&#x3D;0.\overline{3}$ 和 $2&#x2F;3&#x3D;0.\overline{6}$。</p>
+</li>
+<li><p>如果 n 为素数，则 1&#x2F;n 的循环节必然形如 $0.\overline{******}$，从小数点后就开始，即使起始是若干个 0 也是循环节的一部分。</p>
+</li>
+<li><p>如果 n 是若干个不同素数乘积，则循环节长度是这些素数对应的循环节长度的最小公倍数。如果 n 是素数 p 的 k 次方，则循环节长度是 $l * p^{k-1}$，但如果 $p&#x3D;3$，则为 $l * p^{k-2}$。以上两者可以结合。$p&#x3D;3$ 的特例在于 $p^2&#x3D;9$ 仍然小于 10，没有触发进退位，即当 p^k 仍小于对应进制单位时，不往上叠加循环节长度。在 8 进制下就是正常的 $l*p^{k-1}$ 了。</p>
+</li>
+<li><p>不存在比 n-1 更长的循环节。</p>
+</li>
+<li><p>不同进制下的走马灯数具体是不一样的，例如 7 在 10 进制下是走马灯数，但在 8 进制下则不是。2 在一切奇数进制下都是走马灯数，因为只需要循环节长度为 1 但不除尽即可。</p>
+</li>
+<li><p>除 2 以外，走马灯数的循环节长必度是偶数，将循环节的两段拆分后相加，一定是 $999\cdots$。例如 $1&#x2F;7 &#x3D; 0.\overline{142857}$，则 $142 + 857 &#x3D; 999$。上述结论在其它进制下也成立，例如 8 进制下为 $777\cdots_{(8)}$。</p>
+<p>证明：设一个循环小数 $\frac{1}{p}$ 的循环节两段分别为 $\overline{r_1r_2}$，则其既可以表达为 </p>
+<p>\begin{align*}    \frac{1}{p} &#x3D; \frac{r_1r_2}{10^{2n}} + \frac{r_1r_2}{10^{4n}} + \cdots + \frac{r_1r_2}{10^{kn}}+\cdots &#x3D; \frac{r_1r_2}{10^{2n}-1} &amp;&amp;(1)     \end{align*}</p>
+<p>也可以表示为：</p>
+<p>\begin{align*}    \frac{1}{p} &#x3D;\frac{r_1}{10^n} + \frac{r_2r_1}{10^{3n}} + \cdots + \frac{r_2r_1}{10^{(k+1)n}}+\cdots &amp;&amp;(2)   \end{align*}</p>
+<p>$(2)$ 式乘以 $10^n$ 再加 $(1)$ 式，得到：</p>
+<p>\begin{align*}    \frac{(10^n+1)}{p} &#x3D; r_1 + \frac{(r_1+r_2)(10^n+1)}{10^{2n}-1} &#x3D; r_1 +\frac{r_1+r_2}{10^n-1}  &amp;&amp;(3)   \end{align*}</p>
+<p>再将 $(1)$ 式分子分母同除 $10^n+1$ 得到：</p>
+<p>\begin{align*}<br>  &amp;&amp;\frac{1}{p} &#x3D; \frac{r_1r_2}{10^{2n}-1} &#x3D; \frac{r_1r_2&#x2F;(10^n+1)}{(10^{2n}-1)(10^n+1)} &#x3D; \frac{\frac{r_1r_2}{10^n+1}}{10^n-1} &amp;&amp;(4)   \\<br>  \Rightarrow &amp;&amp;\frac{r_1r_2 * p}{10^n+1} &#x3D; 10^n-1  &amp;&amp;(5)<br>\end{align*}</p>
+<p>$r_1r_2 &#x2F; (10^n+1)$ 不可能为整数，否则 $(4)$ 直接可以化简：</p>
+<p>\begin{align*}    \frac{1}{p} &#x3D; \frac{\frac{r_1r_2}{10^n+1}}{10^n-1} &#x3D; \frac{r_x}{10^n-1}    &amp;&amp;(6)   \end{align*}</p>
+<p>循环节直接可以减少一半，这与之前的假设不符。因此在 $(5)$ 式中，$p$ 与 $(10^n+1)$ 必然存在公因数。而 p 为素数，则 $(10^n+1)$ 为 $p$ 的倍数。即 $(3)$ 式中 $\frac{(10^n+1)}{p}$ 为整数。</p>
+<p>因此，$r_1 + \frac{r_1+r_2}{10^n-1}$ 为整数。$r_1$ 本来就是提出来的整数部分，而 $\frac{r_1+r_2}{10^n-1}$ 是由两个小数部分加和得到，要求其为整数只可能是 1。所以 $r_1+r_2 &#x3D; 10^n-1 &#x3D; 999\cdots$ </p>
+<p>得证。其它进制只需要将 10 底替换为对应进制即可。</p>
+</li>
+</ul>
+<h2 id="计算程序"><a href="#计算程序" class="headerlink" title="计算程序"></a>计算程序</h2><p>走马灯数搜索程序在得到以上结论后可以提升一些效率：</p>
+<ul>
+<li>使用 <a href="./2024-04-05-primes-algorith-with-sugar.md">欧拉筛法</a>，只在素数堆里进行验证。</li>
+<li>如果循环节小于 n-1，由于推论 1，则其至多 $\frac{n-1}{2}$，因此当计算到第 $\frac{n+1}{2}$ 项时，便可得出结论而不必计算后半段。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">searchCarousel</span>(<span class="params">n</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">let</span> carousels = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">isCarousel</span> = (<span class="params">p, radix = <span class="number">10</span></span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>, pool = <span class="keyword">new</span> <span class="title class_">Set</span>(), end = (p + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> (pool.<span class="property">size</span> &lt; end) &#123;</span><br><span class="line">            a = a % p * radix</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span> &#125;</span><br><span class="line">            <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123; <span class="keyword">return</span> <span class="literal">false</span> &#125; <span class="keyword">else</span> &#123; pool.<span class="title function_">add</span>(a) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i);</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isCarousel</span>(i)) &#123; carousels.<span class="title function_">push</span>(i) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>;           <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>;         <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> carousels</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">searchCarousel</span>(<span class="number">1000</span>))</span><br><span class="line"><span class="comment">// [7, 17, 19, 23, 29, 47, 59, 61, 97, 109, 113, 131, 149, 167, 179, 181, 193, 223, 229, 233,  257, 263,</span></span><br><span class="line"><span class="comment">// 269, 313, 337, 367, 379, 383, 389, 419,  433, 461, 487, 491, 499, 503, 509, 541, 571, 577,  593, 619,</span></span><br><span class="line"><span class="comment">// 647, 659, 701, 709, 727, 743, 811, 821, 823, 857, 863, 887, 937, 941, 953, 971, 977, 983]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其它进制"><a href="#其它进制" class="headerlink" title="其它进制"></a>其它进制</h3><p>根据前文继续厘清思路，在其它进制下：</p>
+<ul>
+<li>循环节长度的度量和进制数无关，表述形式不改变数值大小，在 10 进制下若为 16，在 8 进制下就写为 20，但都指的是同一个值。</li>
+<li>但循环节的生成和进制有关，在当前位下不满足该进制条件下的整除，产生余数，就会退到下一位。</li>
+<li>在其它进制下，$r &#x3D; \frac{R^{n-1}-1}{n}$ 仍然成立，这是循环小数定义公式的变形。</li>
+<li>仍然只需要在素数表中搜索走马灯数，因为 r 需要由 $\frac{k}{n},k&#x3D;1,2,\dots,n-1$ 来确保循环长度上限。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 计算各进制下的走马灯数 */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">searchCarousel</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123; primes.<span class="title function_">push</span>(i) &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>;           <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>;         <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">isCarousel</span> = (<span class="params">p, radix = <span class="number">10</span></span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (p === <span class="number">2</span> &amp;&amp; radix % <span class="number">2</span> !== <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// 2 在奇数进制下必然是 1 位循环</span></span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>, pool = <span class="keyword">new</span> <span class="title class_">Set</span>(), end = (p + <span class="number">1</span>) / <span class="number">2</span></span><br><span class="line">        <span class="keyword">while</span> (pool.<span class="property">size</span> &lt; end) &#123;</span><br><span class="line">            a = a % p * radix</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">0</span>) &#123; <span class="keyword">return</span> <span class="literal">false</span> &#125;</span><br><span class="line">            <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123; <span class="keyword">return</span> <span class="literal">false</span> &#125; <span class="keyword">else</span> &#123; pool.<span class="title function_">add</span>(a) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (thisRadix = <span class="number">2</span>; thisRadix &lt; <span class="number">100</span>; thisRadix++) &#123;</span><br><span class="line">        <span class="keyword">let</span> carousels = []</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; primes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isCarousel</span>(primes[i], thisRadix)) &#123; carousels.<span class="title function_">push</span>(primes[i]) &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(thisRadix, carousels.<span class="property">length</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">searchCarousel</span>(<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+
+<p>搜索在各不同进制下， 10000 以内的走马灯数的数量，结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>21</td>
+<td>447</td>
+<td>41</td>
+<td>460</td>
+<td>61</td>
+<td>457</td>
+<td>81</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>470</td>
+<td>22</td>
+<td>472</td>
+<td>42</td>
+<td>476</td>
+<td>62</td>
+<td>482</td>
+<td>82</td>
+<td>455</td>
+</tr>
+<tr>
+<td>3</td>
+<td>477</td>
+<td>23</td>
+<td>459</td>
+<td>43</td>
+<td>490</td>
+<td>63</td>
+<td>457</td>
+<td>83</td>
+<td>453</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>24</td>
+<td>461</td>
+<td>44</td>
+<td>460</td>
+<td>64</td>
+<td>0</td>
+<td>84</td>
+<td>466</td>
+</tr>
+<tr>
+<td>5</td>
+<td>493</td>
+<td>25</td>
+<td>1</td>
+<td>45</td>
+<td>483</td>
+<td>65</td>
+<td>477</td>
+<td>85</td>
+<td>468</td>
+</tr>
+<tr>
+<td>6</td>
+<td>470</td>
+<td>26</td>
+<td>455</td>
+<td>46</td>
+<td>445</td>
+<td>66</td>
+<td>469</td>
+<td>86</td>
+<td>464</td>
+</tr>
+<tr>
+<td>7</td>
+<td>466</td>
+<td>27</td>
+<td>278</td>
+<td>47</td>
+<td>477</td>
+<td>67</td>
+<td>471</td>
+<td>87</td>
+<td>478</td>
+</tr>
+<tr>
+<td>8</td>
+<td>277</td>
+<td>28</td>
+<td>451</td>
+<td>48</td>
+<td>468</td>
+<td>68</td>
+<td>459</td>
+<td>88</td>
+<td>454</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>29</td>
+<td>465</td>
+<td>49</td>
+<td>1</td>
+<td>69</td>
+<td>461</td>
+<td>89</td>
+<td>470</td>
+</tr>
+<tr>
+<td>10</td>
+<td>467</td>
+<td>30</td>
+<td>488</td>
+<td>50</td>
+<td>471</td>
+<td>70</td>
+<td>473</td>
+<td>90</td>
+<td>478</td>
+</tr>
+<tr>
+<td>11</td>
+<td>444</td>
+<td>31</td>
+<td>469</td>
+<td>51</td>
+<td>471</td>
+<td>71</td>
+<td>471</td>
+<td>91</td>
+<td>453</td>
+</tr>
+<tr>
+<td>12</td>
+<td>459</td>
+<td>32</td>
+<td>372</td>
+<td>52</td>
+<td>460</td>
+<td>72</td>
+<td>470</td>
+<td>92</td>
+<td>464</td>
+</tr>
+<tr>
+<td>13</td>
+<td>458</td>
+<td>33</td>
+<td>474</td>
+<td>53</td>
+<td>470</td>
+<td>73</td>
+<td>465</td>
+<td>93</td>
+<td>446</td>
+</tr>
+<tr>
+<td>14</td>
+<td>459</td>
+<td>34</td>
+<td>473</td>
+<td>54</td>
+<td>471</td>
+<td>74</td>
+<td>447</td>
+<td>94</td>
+<td>485</td>
+</tr>
+<tr>
+<td>15</td>
+<td>454</td>
+<td>35</td>
+<td>461</td>
+<td>55</td>
+<td>486</td>
+<td>75</td>
+<td>471</td>
+<td>95</td>
+<td>462</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0</td>
+<td>36</td>
+<td>0</td>
+<td>56</td>
+<td>461</td>
+<td>76</td>
+<td>467</td>
+<td>96</td>
+<td>464</td>
+</tr>
+<tr>
+<td>17</td>
+<td>451</td>
+<td>37</td>
+<td>466</td>
+<td>57</td>
+<td>451</td>
+<td>77</td>
+<td>449</td>
+<td>97</td>
+<td>471</td>
+</tr>
+<tr>
+<td>18</td>
+<td>472</td>
+<td>38</td>
+<td>466</td>
+<td>58</td>
+<td>478</td>
+<td>78</td>
+<td>451</td>
+<td>98</td>
+<td>459</td>
+</tr>
+<tr>
+<td>19</td>
+<td>473</td>
+<td>39</td>
+<td>489</td>
+<td>59</td>
+<td>465</td>
+<td>79</td>
+<td>466</td>
+<td>99</td>
+<td>476</td>
+</tr>
+<tr>
+<td>20</td>
+<td>487</td>
+<td>40</td>
+<td>458</td>
+<td>60</td>
+<td>455</td>
+<td>80</td>
+<td>490</td>
+<td>100</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>这里最有特点的是当进制为偶数的完全平方时，没有走马灯数，当进制为奇数的完全平方时，只有唯一一个走马灯数 2，循环节长度为 1。</p>
+<h3 id="特殊进制-R-s-2"><a href="#特殊进制-R-s-2" class="headerlink" title="特殊进制 $R&#x3D;s^2$"></a>特殊进制 $R&#x3D;s^2$</h3><p>无论在哪种进制下，循环节公式 $r &#x3D; \frac{R^{n-1}-1}{n}$ 都仍然是成立的。其中 $R$ 为指定的进制数，$n$ 为测试数字， $r$ 为对应的循环节。根据前文所述，在一些情况下循环节会缩减。即当 r 的数字序列内部出现重复时，需要用更短的循环节代替。前文 $\frac{1}{11} &#x3D; 0.\overline{0909090909} &#x3D; 0.\overline{09}$ 便是例子。</p>
+<p>而当 $R$ 为完全平方数 $s^2$ 时，将循环节公式展开为；</p>
+<p>$$ r_{(R)} &#x3D; \frac{(s^2)^{n-1}-1}{n} &#x3D; \frac{(s^{n-1}+1)(s^{n-1}-1)}{n} &#x3D; (s^{n-1}+1) \cdot \frac{s^{n-1}-1}{n}$$</p>
+<p>因为 $s$ 是整数，注意到 $\frac{s^{n-1}-1}{n}$ 实际上是在 $s$ 进制下的 $\frac{1}{n}$ 的循环节表达式 $r_{s(s)}$，必定是有整数解的，并且在 $s$ 进制下的长度至多为 $n-1$ 。</p>
+<p>现在将 $r_{s}$ 的数值从 $s$ 进制转到 $R$ 进制。因为$R&#x3D;s^2$，$R$ 进制下一位数值可以容纳 $s$ 进制下两位。其长度在转换后正好一半 $\frac{n-1}{2}$，n 为素数。则：</p>
+<p>$$r_{(R)} &#x3D;(s^{n-1} + 1) * r_{s(s)} \overset{s\rightarrow R}{&#x3D;\!&#x3D;\!&#x3D;}  (R^{\frac{n-1}{2}} + 1) * r_{s(R)}$$</p>
+<p>除 2 以外的 n 都是素数，所以 $\frac{n-1}{2}$ 是整数，$(R^{\frac{n-1}{2}} + 1)$ 是形如 $\overbrace{100\cdots01}^{(n+1)&#x2F;2}$ 的整数，长度上正好使 $r_{s(R)}$ 重复两遍，而不会有叠加进位。</p>
+<p>因此当进制 $R$ 为完全平方数时，任意 $n$ 的 $r_{(R)} &#x3D; \frac{R^{n-1}-1}{n}$ 数字序列至少会内部重复一次，所以长度一定小于 $n-1$，也就不存在跑马灯数。</p>
+<blockquote>
+<p>推论：当进制 $R&#x3D;s^{(2^n)}$ 时，对应的最长循环节为 $\frac{n-1}{2^n}$ 向上取整。</p>
+</blockquote>
+<h3 id="费马小定律"><a href="#费马小定律" class="headerlink" title="费马小定律"></a>费马小定律</h3><p>在前文中数次使用 $r&#x3D;(R^{n-1}-1)&#x2F;n$，并且认定它是整数，是因为该式是从循环节的级数表示法计算出来的，而循环节本身一定是 n-1 位的整数，所以认为是整数。这个推论是单薄的，不能证明任意 $(R^{n-1}-1)&#x2F;n$ 一定是整数。但其实关于这一点的正向证明早就在三百多年前就被书空白写不下学家完成了：</p>
+<p>$(R^{n-1}-1)&#x2F;n$ 为整数，其实本身就是 <strong><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86">费马小定理</a></strong> 的一部分，即：</p>
+<ul>
+<li>假如 $a$ 是整数，$p$ 是素数，那么 $a^p \equiv a (mod\ p)$</li>
+<li>如果 $a$ 不是 $p$ 的倍数，则 $a^{p-1} \equiv 1 (mod\ p)$，这其实就是我们用的循环节公式。</li>
+<li>如果 $a$ 是 $p$ 的倍数，则 $a^{p-1} \equiv 0 (mod\ p)$，这时就除尽不构成循环节了。</li>
+</ul>
+<p>我们之前提到，进制的转换会影响循环节数字序列的变化，但不影响素数、整除等基于数本身的性质，因此这里的 R 在整除判定上反而和进制本身没什么关系，就是一个单纯的幂底数。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AA%E7%8E%AF%E8%8A%82/" rel="tag"># 循环节</a>
+              <a href="/tags/1-n/" rel="tag"># 1/n</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/vmware-download-link/" rel="prev" title="VMWare 17 免费了，但下载链接不好找">
+                  <i class="fa fa-angle-left"></i> VMWare 17 免费了，但下载链接不好找
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/sidebar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.21.1/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

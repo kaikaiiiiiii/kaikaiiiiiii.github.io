@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="1. Ubuntu Family Mini ISO如果网络条件不错的话，安装虚拟机可以使用适用于 Ubuntu 全家族（Kubuntu、Lubuntu、Xubuntu、Edubuntu、Mythubuntu 等）的通用迷你 ISO。32 位或 64 位都有。 https:&#x2F;&#x2F;help.ubuntu.com&#x2F;community&#x2F;Installation&#x2F;MinimalCD （32 位或 64 位）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMWare 安装 Ubuntu 的一些豆知识">
+<meta property="og:url" content="https://www.kaikai.men/vmware-ubuntu-trivias/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="1. Ubuntu Family Mini ISO如果网络条件不错的话，安装虚拟机可以使用适用于 Ubuntu 全家族（Kubuntu、Lubuntu、Xubuntu、Edubuntu、Mythubuntu 等）的通用迷你 ISO。32 位或 64 位都有。 https:&#x2F;&#x2F;help.ubuntu.com&#x2F;community&#x2F;Installation&#x2F;MinimalCD （32 位或 64 位）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/04/Ubuntu-64-2016-04-18-15-28-38.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/04/Ubuntu-64-2016-04-18-15-58-27.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/04/Ubuntu-64-2016-04-18-16-37-35.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/04/Ubuntu-64-2016-04-18-15-59-02.png">
+<meta property="article:published_time" content="2016-04-18T08:50:24.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.138Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="disk">
+<meta property="article:tag" content="bean knowledges">
+<meta property="article:tag" content="miniISO">
+<meta property="article:tag" content="shrink">
+<meta property="article:tag" content="vmtools">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2016/04/Ubuntu-64-2016-04-18-15-28-38.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/vmware-ubuntu-trivias/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/vmware-ubuntu-trivias/","path":"/vmware-ubuntu-trivias/","title":"VMWare 安装 Ubuntu 的一些豆知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>VMWare 安装 Ubuntu 的一些豆知识 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Ubuntu-Family-Mini-ISO"><span class="nav-number">1.</span> <span class="nav-text">1. Ubuntu Family Mini ISO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%89%E8%A3%85-VMWare-Tools"><span class="nav-number">2.</span> <span class="nav-text">2. 命令行安装 VMWare Tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85-Google-Chrome-%E4%B8%8D%E7%94%A8%E7%BF%BB%E5%A2%99"><span class="nav-number">3.</span> <span class="nav-text">3. 安装 Google Chrome 不用翻墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8E%8B%E7%BC%A9%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98%EF%BC%8C%E5%87%8F%E5%B0%91%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%A3%81%E7%9B%98%E5%8D%A0%E7%94%A8%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">4. 压缩虚拟磁盘，减少宿主机磁盘占用。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%87%8F%E5%B0%91-var-log-%E4%BD%93%E7%A7%AF"><span class="nav-number">5.</span> <span class="nav-text">5. 减少 &#x2F;var&#x2F;log 体积</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/vmware-ubuntu-trivias/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="VMWare 安装 Ubuntu 的一些豆知识 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VMWare 安装 Ubuntu 的一些豆知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-04-18 08:50:24" itemprop="dateCreated datePublished" datetime="2016-04-18T08:50:24Z">2016-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%91%BD%E4%BB%A4%E8%A1%8C/" itemprop="url" rel="index"><span itemprop="name">命令行</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="1-Ubuntu-Family-Mini-ISO"><a href="#1-Ubuntu-Family-Mini-ISO" class="headerlink" title="1. Ubuntu Family Mini ISO"></a><strong>1. Ubuntu Family Mini ISO</strong></h4><p>如果网络条件不错的话，安装虚拟机可以使用适用于 Ubuntu 全家族（Kubuntu、Lubuntu、Xubuntu、Edubuntu、Mythubuntu 等）的通用迷你 ISO。32 位或 64 位都有。</p>
+<p><a target="_blank" rel="noopener" href="https://help.ubuntu.com/community/Installation/MinimalCD">https://help.ubuntu.com/community/Installation/MinimalCD</a> （32 位或 64 位）</p>
+<p>这个 ISO 只有不到 40MB，在安装过程中会自动从网上下载需要的文件，并在某个步骤让用户选择桌面环境。本来 desktop 版 ISO 在安装时也会上网更新，所以这个 Mini ISO 能节约的时间还是不少的，体积小还易于本地保存。我的网络带宽上限速度大约是 2MB&#x2F;s，apt 源实际速度大约是 1MB&#x2F;s 安装完成费时和先用迅雷下完整 ISO 再安装再 update 差不多。顺便还能满足软件洁癖们。</p>
+<p><img src="/../attach/2016/04/Ubuntu-64-2016-04-18-15-28-38.png" alt="其实就是 Tasksel 整合安装器" loading="lazy">其实就是 Tasksel 整合安装器</p>
+<p>缺点也是有的，界面和 Server 版映像文件一样是纯英文，且有些步骤的默认选择是&lt;No&gt;，不能一路回车到底。所以得能看懂提示。安装步骤倒是和 desktop 版没区别，无非是语言地区、分区、用户名密码这几个选项。</p>
+<h4 id="2-命令行安装-VMWare-Tools"><a href="#2-命令行安装-VMWare-Tools" class="headerlink" title="2. 命令行安装 VMWare Tools"></a><strong>2. 命令行安装 VMWare Tools</strong></h4><p>使用虚拟机下拉菜单的『安装 VMWare Tools』只会自动载入 VMTools 的 ISO 文件，需要自行解压 VMTools 安装包。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd ~ --当前目录</span><br><span class="line">sudo mkdir /mnt/cdrom --建立目录</span><br><span class="line">sudo mount /dev/cdrom /mnt/cdrom --加载光盘内容到这个目录</span><br><span class="line">tar -zxpf /mnt/cdrom/VMwareTools-*.tar.gz --解压到当前目录</span><br><span class="line">cd vmware-tools-distrib --进入安装包目录</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../attach/2016/04/Ubuntu-64-2016-04-18-15-58-27.png" alt="Ubuntu 64-2016-04-18-15-58-27" loading="lazy"></p>
+<p>可以看到 vmware tools 安装包目录下有 vmware-install.pl，有时还有 vmware-install.real.pl。但由于 vmware tools 需要 gcc 来重新编译，所以在安装 vmware tools 前需要先确保 gcc 已经安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential</span><br></pre></td></tr></table></figure>
+
+<p>然后再安装 vmware tools</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./vmware-install.real.pl</span><br></pre></td></tr></table></figure>
+
+<p>第一个问题问，现在有 open-vm-tools 了，是否还要用这个老的，默认是 no，选 yes。我试用了一下 open-vm-tools，缺陷依然太多，没法用。</p>
+<p>然后一路回车到结束。安装完成时提示你，如果是图形界面的话，需要手动启动 &#x2F;usr&#x2F;bin&#x2F;vmware-user，然后注销重登录。其实这步作用不大，系统关机下次再开效果是一样的。</p>
+<p><img src="/../attach/2016/04/Ubuntu-64-2016-04-18-16-37-35.png" alt="Ubuntu 64-2016-04-18-16-37-35" loading="lazy"></p>
+<p>如果之前没有安装 gcc，有时就会出现以下情况：</p>
+<p><img src="/../attach/2016/04/Ubuntu-64-2016-04-18-15-59-02.png" alt="Ubuntu 64-2016-04-18-15-59-02" loading="lazy">gcc 路径为空，无限循环无法往下</p>
+<p>这时需要用 Ctrl+C 中断，安装 gcc 后重新安装 vmware tools</p>
+<h4 id="3-安装-Google-Chrome-不用翻墙"><a href="#3-安装-Google-Chrome-不用翻墙" class="headerlink" title="3. 安装 Google Chrome 不用翻墙"></a><strong>3. 安装 Google Chrome 不用翻墙</strong></h4><p>因为下载浏览器的实际域是 dl.google.com，没有被墙。（北京联通）当然这个域名用浏览器是打不开的，因为它只提供下载，但知道路径的话就可以用 wget 直接下载了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb --64位</span><br><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb --32位</span><br><span class="line">sudo dpkg -i google-chrome*.deb</span><br><span class="line">sudo apt-get install -f</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-压缩虚拟磁盘，减少宿主机磁盘占用。"><a href="#4-压缩虚拟磁盘，减少宿主机磁盘占用。" class="headerlink" title="4. 压缩虚拟磁盘，减少宿主机磁盘占用。"></a><strong>4. 压缩虚拟磁盘，减少宿主机磁盘占用。</strong></h4><p>虚拟机用得时间长了，虚拟硬盘文件会变大。VMware 提供了清理磁盘功能释放空间，在 Windows 下很正常，但在 linux 下提供的 vmware-toolbox-cmd 有 bug，并不能起到压缩作用，需要先用零数据覆盖磁盘，再使用 vmware tool 的磁盘清理功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dd if=/dev/zero of=zerowipe bs=1024x1024</span><br><span class="line">sudo rm zerowipe</span><br><span class="line">sudo vmware-toolbox-cmd disk shrinkonly</span><br></pre></td></tr></table></figure>
+
+<p>检查语言支持并补充安装，特别是使用 Minimal CD 在线安装的系统。<br>安装语言选择控制面板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install language-selector-gnome</span><br></pre></td></tr></table></figure>
+
+<p>检查缺失语言：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install $(check-language-support)</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-减少-var-log-体积"><a href="#5-减少-var-log-体积" class="headerlink" title="5. 减少 &#x2F;var&#x2F;log 体积"></a><strong>5. 减少 &#x2F;var&#x2F;log 体积</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo journalctl --vacuum-time=1d # 普通用户不看日志。要延长就改成 7d 或 30d</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/disk/" rel="tag"># disk</a>
+              <a href="/tags/bean-knowledges/" rel="tag"># bean knowledges</a>
+              <a href="/tags/miniISO/" rel="tag"># miniISO</a>
+              <a href="/tags/shrink/" rel="tag"># shrink</a>
+              <a href="/tags/vmtools/" rel="tag"># vmtools</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/heidisql-ssh-tunnel/" rel="prev" title="HeidiSQL 的 SSH Tunnel 连接方式">
+                  <i class="fa fa-angle-left"></i> HeidiSQL 的 SSH Tunnel 连接方式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/random-in-computer/" rel="next" title="计算机里的随机数">
+                  计算机里的随机数 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

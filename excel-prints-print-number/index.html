@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="#Update: 改进了。现在的样式如下：  第一步，先做一张报销单：从自动化的角度来说，尽量采用公式帮助计算、限定单元格可输入的内容、以及设置单元格格式。在这张单据里，编号单元格为 K1。  公式： 对于报销单而言，使用 &#x3D;SUM() 和 &#x3D;VLOOKUP() 通常就足够了，至多再加个 &#x3D;SUMIF()、&#x3D;COUNTIF() 就足以做出挺复杂的报销单了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel 自动打印表格份数&#x2F;序号">
+<meta property="og:url" content="https://www.kaikai.men/excel-prints-print-number/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="#Update: 改进了。现在的样式如下：  第一步，先做一张报销单：从自动化的角度来说，尽量采用公式帮助计算、限定单元格可输入的内容、以及设置单元格格式。在这张单据里，编号单元格为 K1。  公式： 对于报销单而言，使用 &#x3D;SUM() 和 &#x3D;VLOOKUP() 通常就足够了，至多再加个 &#x3D;SUMIF()、&#x3D;COUNTIF() 就足以做出挺复杂的报销单了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/01.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step1.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step1-2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step1-3.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step3.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step4.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step4-2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step4-3.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/step5.png">
+<meta property="article:published_time" content="2015-08-11T08:39:48.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.137Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="excel">
+<meta property="article:tag" content="press number">
+<meta property="article:tag" content="print">
+<meta property="article:tag" content="份数">
+<meta property="article:tag" content="序号">
+<meta property="article:tag" content="打印">
+<meta property="article:tag" content="编号">
+<meta property="article:tag" content="自动变化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2015/08/01.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/excel-prints-print-number/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/excel-prints-print-number/","path":"/excel-prints-print-number/","title":"Excel 自动打印表格份数/序号"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Excel 自动打印表格份数/序号 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%85%88%E5%81%9A%E4%B8%80%E5%BC%A0%E6%8A%A5%E9%94%80%E5%8D%95%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">第一步，先做一张报销单：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8C%E6%B7%BB%E5%8A%A0-Excel-%E7%9A%84%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E8%8F%9C%E5%8D%95%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">第二步，添加 Excel 的开发工具菜单：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0%E5%AE%8F%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">第三步，设置打印宏：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%AE%8F%E6%8C%89%E9%92%AE%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">第四步，添加宏按钮：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%8C%E8%AE%BE%E7%BD%AE%E6%89%93%E5%8D%B0%E5%8C%BA%E5%9F%9F%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">第五步，设置打印区域：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%8C%E5%8F%A6%E5%AD%98%E4%B8%BA-xlsm%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">第六步，另存为 xlsm：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/excel-prints-print-number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Excel 自动打印表格份数/序号 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Excel 自动打印表格份数/序号
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-08-11 08:39:48" itemprop="dateCreated datePublished" datetime="2015-08-11T08:39:48Z">2015-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>#Update:</p>
+<p>改进了。现在的样式如下：</p>
+<p><img src="/../attach/2015/08/01.png" alt="0" loading="lazy"></p>
+<h4 id="第一步，先做一张报销单："><a href="#第一步，先做一张报销单：" class="headerlink" title="第一步，先做一张报销单："></a>第一步，先做一张报销单：</h4><p>从自动化的角度来说，尽量采用公式帮助计算、限定单元格可输入的内容、以及设置单元格格式。在这张单据里，编号单元格为 <span style="color: #3366ff;">K1<span style="color: #000000;">。</span></span></p>
+<p><img src="/../attach/2015/08/step1.png" loading="lazy"></p>
+<p><strong>公式：</strong></p>
+<p>对于报销单而言，使用 &#x3D;SUM() 和 &#x3D;VLOOKUP() 通常就足够了，至多再加个 &#x3D;SUMIF()、&#x3D;COUNTIF() 就足以做出挺复杂的报销单了。</p>
+<p><strong>单元格格式：</strong></p>
+<p>选定单元格后 『右键 → 设置单元格格式』。标准的可以选择第三类货币格式，复杂的可以自行定义格式，使用#代表一个数位，使用 0 代表『<strong>当这个数位是最高位但为 0 时依然显示</strong>』。</p>
+<p><img src="/../attach/2015/08/step1-2.png" alt="step1-2" loading="lazy"></p>
+<p><strong>限定填充序列：</strong></p>
+<p>选定单元格后菜单栏选择『 数据 → 数据验证 → 数据验证』。允许序列，来源直接写入需要的内容，用英文逗号分隔。</p>
+<p><img src="/../attach/2015/08/step1-3.png" alt="step1-3" loading="lazy"></p>
+<h4 id="第二步，添加-Excel-的开发工具菜单："><a href="#第二步，添加-Excel-的开发工具菜单：" class="headerlink" title="第二步，添加 Excel 的开发工具菜单："></a>第二步，添加 Excel 的开发工具菜单：</h4><p>依次点击菜单上的 『文件 → 选项 →（跳出 Excel 选项窗口)→ 自定义功能区 →☑ 开发工具』打钩。</p>
+<p><img src="/../attach/2015/08/step2.png" alt="step2" loading="lazy"></p>
+<h4 id="第三步，设置打印宏："><a href="#第三步，设置打印宏：" class="headerlink" title="第三步，设置打印宏："></a>第三步，设置打印宏：</h4><p>点击菜单上的 『开发工具 →Visual Basic』，打开 VBA 面板，左侧双击 『ThisWorkbook』，把以下代码粘贴到出现的窗口内，然后关闭窗口</p>
+<p>注意 <span style="color: #3366ff;">K1</span> 为这篇文章中的编号位置，其它表单需要相应调整。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Sub PrintWithNumber()                                       &#x27;定义宏名</span><br><span class="line">Dim startnum, loopnum, N As Long                            &#x27;定义变量：起始编码，打印份数和循环值</span><br><span class="line">loopnum = Application.InputBox(Prompt:=&quot;需要打印多少份？&quot;)     &#x27;定义打印份数</span><br><span class="line">startnum = Sheet1.Range(&quot;K1&quot;)                               &#x27;读入表格上的份数的起始值</span><br><span class="line">For N = startnum To startnum + loopnum - 1                  &#x27;开始循环</span><br><span class="line">ActiveSheet.PrintOut                                        &#x27;打印当前表格</span><br><span class="line">Range(&quot;K1&quot;) = N + 1                                         &#x27;份数加一</span><br><span class="line">Next N                                                      &#x27;下一个循环直到结束</span><br><span class="line">End Sub                                                     &#x27;结束</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../attach/2015/08/step3.png" alt="step3" loading="lazy"></p>
+<h4 id="第四步，添加宏按钮："><a href="#第四步，添加宏按钮：" class="headerlink" title="第四步，添加宏按钮："></a>第四步，添加宏按钮：</h4><p>点击『开发工具 → 插入 → 按钮（窗体按钮）』。</p>
+<p><img src="/../attach/2015/08/step4.png" alt="step4" loading="lazy"></p>
+<p>然后用鼠标在 Excel 空白处拖出一个方块，当松开鼠标时，会自动跳出『指定宏』窗口，选择窗口内的『ThisWorkbook.PrintWithNumber』，然后确定。</p>
+<p><img src="/../attach/2015/08/step4-2.png" alt="step4-2" loading="lazy"></p>
+<p>右键点击该按钮，选择『编辑文字』，修改为『打印报销单』。</p>
+<p><img src="/../attach/2015/08/step4-3.png" alt="step4-3" loading="lazy"></p>
+<h4 id="第五步，设置打印区域："><a href="#第五步，设置打印区域：" class="headerlink" title="第五步，设置打印区域："></a>第五步，设置打印区域：</h4><p>这一步是为了防止把按钮本身也打印出来。</p>
+<p>全选需要打印的区域，选择菜单 『页面布局 → 打印区域 → 设置打印区域』。</p>
+<p><img src="/../attach/2015/08/step5.png" alt="step5" loading="lazy"></p>
+<h4 id="第六步，另存为-xlsm："><a href="#第六步，另存为-xlsm：" class="headerlink" title="第六步，另存为 xlsm："></a>第六步，另存为 xlsm：</h4><p>由于使用了 vba，必须把文件存为 xlsm 格式。（启用宏的 Excel 格式）</p>
+<p>完工。</p>
+<hr>
+<p>今天接到一个小任务，寥寥一记。</p>
+<p>在 Excel 中，常见的一种需求是打印带份数号码的各种表单，例如报销单、外出单等。通常财务都会提供模板给员工自行填写，再由财务按入帐顺序统一写上序号。但当某人一次性要写几十份，或者说类似的需求，需要一次性打印 N 份时，有没有办法让打印的表格上自动带上序号？</p>
+<p>解决办法需要依赖 Excel 中的宏程序，在 Excel 中按 Alt+F11 可以直接打开宏编辑器。或需要先通过『视图』→『宏』→『录制宏』，再经由编辑宏的办法来打开。</p>
+<p>核心宏程序如下，一目了然：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Sub test()</span><br><span class="line">Dim N As Integer</span><br><span class="line">For N = 1 To 10</span><br><span class="line">Range(&quot;E1&quot;) = N</span><br><span class="line">ActiveSheet.PrintOut</span><br><span class="line">Next N</span><br><span class="line">End Sub</span><br></pre></td></tr></table></figure>
+
+<p>E1 为需要填序号的单元格。程序先定义一个变量用来作为页码，然后不断用它替换指定单元格中的值，每替换一次就打印一张。这一方法硬要说有什么缺点的话，大概也就是打印任务数比较多，可能在几千份时会占用不少内存。</p>
+<p>更完整的模板还需要在界面上做个按钮和两个输入框，以便让完全没有宏能力的财务也能定义起始和结束页码并打印。但今天这需求仅仅是帮助打印而不是做个新模版，所以这任务也就完成了不再搞复杂了。</p>
+<p>样例下载 <a href="../attach/2015/08/%E6%A8%A1%E6%9D%BF-%E6%97%A5%E5%B8%B8%E8%B4%B9%E7%94%A8%E6%8A%A5%E9%94%80%E8%A1%A8.xlsm">模板-日常费用报销表</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/excel/" rel="tag"># excel</a>
+              <a href="/tags/press-number/" rel="tag"># press number</a>
+              <a href="/tags/print/" rel="tag"># print</a>
+              <a href="/tags/%E4%BB%BD%E6%95%B0/" rel="tag"># 份数</a>
+              <a href="/tags/%E5%BA%8F%E5%8F%B7/" rel="tag"># 序号</a>
+              <a href="/tags/%E6%89%93%E5%8D%B0/" rel="tag"># 打印</a>
+              <a href="/tags/%E7%BC%96%E5%8F%B7/" rel="tag"># 编号</a>
+              <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8F%98%E5%8C%96/" rel="tag"># 自动变化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/chrome-44-spellcheck-perform-bug/" rel="prev" title="Chrome 44 拼写检查的浏览器性能 bug">
+                  <i class="fa fa-angle-left"></i> Chrome 44 拼写检查的浏览器性能 bug
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/batch-create-github-repos/" rel="next" title="命令行批量建立 github 库">
+                  命令行批量建立 github 库 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

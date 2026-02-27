@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content=".containerblock1 { text-align: center; background: #b9f9ff; height: 360px; border-radius: 16px; border:1px solid #45c3ce; } .containerblock1:before { content: &#39; &#39;; display: inline-block; height: 100%">
+<meta property="og:type" content="article">
+<meta property="og:title" content="水平且垂直居中 CSS 详解">
+<meta property="og:url" content="https://www.kaikai.men/css-vertical-horizontal-center/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content=".containerblock1 { text-align: center; background: #b9f9ff; height: 360px; border-radius: 16px; border:1px solid #45c3ce; } .containerblock1:before { content: &#39; &#39;; display: inline-block; height: 100%">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-09-20T05:27:53.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.136Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content=":before">
+<meta property="article:tag" content="伪元素">
+<meta property="article:tag" content="垂直">
+<meta property="article:tag" content="水平">
+<meta property="article:tag" content="对齐">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/css-vertical-horizontal-center/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/css-vertical-horizontal-center/","path":"/css-vertical-horizontal-center/","title":"水平且垂直居中 CSS 详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>水平且垂直居中 CSS 详解 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/css-vertical-horizontal-center/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="水平且垂直居中 CSS 详解 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          水平且垂直居中 CSS 详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-20 05:27:53" itemprop="dateCreated datePublished" datetime="2014-09-20T05:27:53Z">2014-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%89%8B%E8%8F%A9%E8%90%A8%E4%BF%9D%E4%BD%91/" itemprop="url" rel="index"><span itemprop="name">前端新手菩萨保佑</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><style type="text/css">
+.containerblock1 {
+text-align: center;
+background: #b9f9ff;
+height: 360px;
+border-radius: 16px;
+border:1px solid #45c3ce;
+}
+.containerblock1:before {
+content: ' ';
+display: inline-block;
+height: 100%;
+vertical-align: middle;
+}
+.containerblock1:after {
+content: ' ';
+display: inline-block;
+vertical-align: middle;
+}
+.specialcentered1 {
+display: inline-block;
+width:80%;
+max-width: 300px;
+padding: 20px;
+vertical-align: middle;
+border: #ffca65 solid 1px;
+background: #fffdc6;
+box-shadow: 0px 0px 2px #ccc;
+}
+</style><div class="containerblock1"><div class="specialcentered1">## 自适应的水平垂直居中
+
+<p>旅行商人罗伦斯在马车货台上的麦束堆里，发现沉睡中的少女——自称是丰收之神赫萝的美丽少女，有着狼的耳朵及尾巴。</p>
+<p>「虽然奴家长久以来被尊为神，不过，奴家就是奴家，奴家是赫萝。」</p>
+</div></div>相比于水平居中用 margin:auto; 的简便，CSS 没有直接的垂直居中属性，必须通过各种诡异的技巧去实现，确实让人很头疼。以上算是一种实现方式，核心的代码如下：
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">.outer &#123;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: #b9f9ff;</span><br><span class="line">  height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">.outer:before &#123;</span><br><span class="line">  content: &#x27;&#x27;;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  height: 100%;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line">.inner &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 300px;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  background: #fffdc6;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;inner&quot; &gt;</span><br><span class="line">    &lt;p&gt;水平垂直居中&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码中，最重要的是 .outer:before 这个伪元素。它起到了连接内外元素以及垂直对齐的作用。  </p>
+<p>需要明白的是，对一个 div 而言，它的伪元素会放在这个 div 包含的任何内容元素的前面，默认为 inline-block 元素（即“行内元素”或者“内联元素”）。示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">.outer &#123;</span><br><span class="line">  background: #b9f9ff;</span><br><span class="line">  height: 120px;</span><br><span class="line">  width: 300px;</span><br><span class="line">  margin: auto;</span><br><span class="line">&#125;</span><br><span class="line">.outer:before &#123;</span><br><span class="line">  content: &#x27;:before 伪元素&#x27;;</span><br><span class="line">  border: 1px solid;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;outer&quot;&gt;元素内容&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<style type="text/css">
+.containerblock2 {
+background: #b9f9ff;
+height: 120px;
+width: 80%;
+max-width: 300px;
+margin: auto;
+}
+.containerblock2:before {
+content: ':before 伪元素';
+border: 1px solid;
+}
+</style><div class="containerblock2">元素内容</div>   
+<p>当元素内容为其它元素，尤其是块级元素时，则有内容的 :before 会在最顶上。</p>
+<div class="containerblock2">&lt;p&gt;元素块级内容&lt;/p&gt;</div>   
+
+<p>再强调一遍，:before 其实是一个元素的子元素，永远排在其它实际子元素的前面，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">p &#123;</span><br><span class="line">  border: 1px solid;</span><br><span class="line">&#125;</span><br><span class="line">p:before &#123;</span><br><span class="line">  content: &#x27;:before&#x27;;</span><br><span class="line">  background:#fffdc6;</span><br><span class="line">  color: #f00;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;special&quot;&gt;是特殊的子元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>的实际执行效果如下：</p>
+<style type="text/css">
+p.special1 {
+border: 1px solid;
+}
+p.special1:before {
+content: ':before';
+background:#fffdc6;
+color: #f00;
+}
+</style> 是特殊的子元素
+
+<p>可以看到，对于 p 元素添加的 border，连 <span style="color:#f00;background:#fffdc6;">:before</span> 这段文字也被包含在内。  </p>
+<p>现在再回头来看原始代码，如果把 :before 的部分修改一下，给 :before 元素加个边框，修改内容，使得识别更简单：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.outer:before &#123;</span><br><span class="line">  content: &#x27;B&#x27;;</span><br><span class="line">  border: 1px solid;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  height: 100%;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<style type="text/css">
+.containerblock4 {
+text-align: center;
+background: #b9f9ff;
+width: 80%;
+max-width: 300px;
+height: 200px;
+margin:auto;
+}
+.containerblock4:before {
+content: 'B';
+display: inline-block;
+height: 100%;
+border: 1px solid;
+vertical-align: middle;
+}
+.specialcentered4 {
+display: inline-block;
+max-width: 240px;
+padding: 20px 40px;
+vertical-align: middle;
+background: #fffdc6;
+}
+</style><div class="containerblock4"><div class="specialcentered4">垂直居中
+
+</div></div>这样这段代码的原理就非常清楚了。首先，:before 伪元素和内部元素（通过 display:inline-block 设置为行内元素）共同构成了“一行文字”。其次，所有的行内元素都利用 vertical-align:middle 进行了垂直居中对齐。最后，再设置 :before 的高度使得它上下都顶到父元素的边框。这样，同一”行”内的其它元素在视觉就都相对父元素垂直居中了。其实它们在逻辑上真正对齐的对象是 :before。而 :before 自己，则被“卡”到了正中间的位置。  
+   
+<p>最后，由于 :before 在没有实际内容（通常用 ” ” 空格填充 content 属性）时其实也有宽度，所以在父元素上使用针对文本的 text-align: center; 虽然可以把左右居中也一起做掉。不过还是用常规的 margin:auto 更精确一点。解决办法是对 :after 伪元素也设置 content:” “。</p>
+<p>PS：因为 ie6 不支持伪元素，所以……要不还是用 table 吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/before/" rel="tag"># :before</a>
+              <a href="/tags/%E4%BC%AA%E5%85%83%E7%B4%A0/" rel="tag"># 伪元素</a>
+              <a href="/tags/%E5%9E%82%E7%9B%B4/" rel="tag"># 垂直</a>
+              <a href="/tags/%E6%B0%B4%E5%B9%B3/" rel="tag"># 水平</a>
+              <a href="/tags/%E5%AF%B9%E9%BD%90/" rel="tag"># 对齐</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/love-monmon-the-godzilla/" rel="prev" title="很是喜欢这个微信表情包：小哥斯拉么么">
+                  <i class="fa fa-angle-left"></i> 很是喜欢这个微信表情包：小哥斯拉么么
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/recruit-cosjiaoyi-com/" rel="next" title="羞羞的招募">
+                  羞羞的招募 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

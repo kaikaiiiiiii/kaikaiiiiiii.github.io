@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="年前发过一个微信状态：  事实上，用户要求，有时并不是用户需求。随口一提不费钱，或者别有意图不能直说。说没某功能就不买的，有了也不会买。说买去是干嘛的，改进了有时也起反作用。这很容易理解，如果你是学校对面小旅馆老板，因为每天少男少女们来开房『找个安静地方学习』夜夜爆满，会把旅馆改造成自习室？  这是例行搞笑的。但用户需求却确实是件需要仔细琢磨的一件事情。他们说出口的，常是谎言。 一，不好意思说真实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深一步理解客户需求">
+<meta property="og:url" content="https://www.kaikai.men/one-more-step-to-demand/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="年前发过一个微信状态：  事实上，用户要求，有时并不是用户需求。随口一提不费钱，或者别有意图不能直说。说没某功能就不买的，有了也不会买。说买去是干嘛的，改进了有时也起反作用。这很容易理解，如果你是学校对面小旅馆老板，因为每天少男少女们来开房『找个安静地方学习』夜夜爆满，会把旅馆改造成自习室？  这是例行搞笑的。但用户需求却确实是件需要仔细琢磨的一件事情。他们说出口的，常是谎言。 一，不好意思说真实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/03/tdrd.org_att.php_s.51.42974.596.jpg_%E5%94%B1%E5%BE%97%E5%A5%BD.....jpg">
+<meta property="article:published_time" content="2015-03-06T19:10:18.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.137Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="产品">
+<meta property="article:tag" content="深入理解">
+<meta property="article:tag" content="用户需求">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2015/03/tdrd.org_att.php_s.51.42974.596.jpg_%E5%94%B1%E5%BE%97%E5%A5%BD.....jpg">
+
+
+<link rel="canonical" href="https://www.kaikai.men/one-more-step-to-demand/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/one-more-step-to-demand/","path":"/one-more-step-to-demand/","title":"深一步理解客户需求"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>深一步理解客户需求 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%EF%BC%8C%E4%B8%8D%E5%A5%BD%E6%84%8F%E6%80%9D%E8%AF%B4%E7%9C%9F%E5%AE%9E%E5%8E%9F%E5%9B%A0%E7%9A%84%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">一，不好意思说真实原因的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%EF%BC%8C%E4%B8%BA%E4%BA%86%E8%8E%B7%E5%BE%97%E6%84%89%E6%82%A6%E6%84%9F%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">二，为了获得愉悦感。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%96%E9%9C%80%E8%A6%81%E6%84%9F%E8%A7%89%E5%88%B0%E4%BD%A0%E7%9A%84%E5%8A%AA%E5%8A%9B%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">三、他需要感觉到你的努力。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BB%96%E9%9C%80%E8%A6%81%E6%84%9F%E8%A7%89%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%A6%A5%E5%8D%8F%EF%BC%8C%E4%BD%86%E5%B8%8C%E6%9C%9B%E9%80%89%E5%A6%A5%E5%8D%8F%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%B0%8F%E7%9A%84%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">四、他需要感觉到自己的妥协，但希望选妥协尽可能小的。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BB%96%E9%9C%80%E8%A6%81%E5%85%8B%E6%9C%8D%E8%87%AA%E5%B7%B1%E5%AF%B9%E4%BD%A0%E7%9A%84%E4%B8%8D%E4%BF%A1%E4%BB%BB%E6%84%9F%EF%BC%8C%E9%9C%80%E8%A6%81%E5%AE%89%E5%85%A8%E6%84%9F%E3%80%82"><span class="nav-number">5.</span> <span class="nav-text">五、他需要克服自己对你的不信任感，需要安全感。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BA%BA%E4%BB%AC%E9%9C%80%E8%A6%81%E7%9A%84%E4%B8%8D%E6%98%AF%E8%B6%81%E6%89%8B%E5%B7%A5%E5%85%B7%EF%BC%8C%E8%80%8C%E6%98%AF%E8%A2%AB%E8%B5%9E%E7%BE%8E%E3%80%82"><span class="nav-number">6.</span> <span class="nav-text">六、人们需要的不是趁手工具，而是被赞美。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%94%A8%E6%88%B7%E4%B8%8D%E6%87%92%EF%BC%8C%E5%8F%AA%E6%98%AF%E7%BC%BA%E4%B9%8F%E5%8A%A8%E6%9C%BA%E3%80%82"><span class="nav-number">7.</span> <span class="nav-text">七、用户不懒，只是缺乏动机。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9D%9F"><span class="nav-number">8.</span> <span class="nav-text">结束</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/one-more-step-to-demand/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="深一步理解客户需求 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深一步理解客户需求
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-06 19:10:18" itemprop="dateCreated datePublished" datetime="2015-03-06T19:10:18Z">2015-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">产品经理</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>年前发过一个微信状态：</p>
+<blockquote>
+<p>事实上，用户要求，有时并不是用户需求。随口一提不费钱，或者别有意图不能直说。说没某功能就不买的，有了也不会买。说买去是干嘛的，改进了有时也起反作用。这很容易理解，如果你是学校对面小旅馆老板，因为每天少男少女们来开房『找个安静地方学习』夜夜爆满，会把旅馆改造成自习室？<br><img src="/../attach/2015/03/tdrd.org_att.php_s.51.42974.596.jpg_%E5%94%B1%E5%BE%97%E5%A5%BD.....jpg" alt="__tdrd.org_att.php_s.51.42974.596.jpg_唱得好...." loading="lazy"></p>
+</blockquote>
+<p>这是例行搞笑的。但用户需求却确实是件需要仔细琢磨的一件事情。他们说出口的，常是谎言。</p>
+<h4 id="一，不好意思说真实原因的。"><a href="#一，不好意思说真实原因的。" class="headerlink" title="一，不好意思说真实原因的。"></a><strong>一，不好意思说真实原因的。</strong></h4><p>这个是最常见的。上面的笑话是一例，生活中还有更多例子，大家可以自行琢磨一下。我这里先举个不那么常规的。</p>
+<p>日本动漫里的热门人物角色往往也会被制造成各种小人玩偶，做工相当精细，称之为『手办』。有些更会备有大量同比例可更换的衣服。手办通常都是价格不菲的，一个 30cm 高的手办有时就价值 RMB 数千甚至数万元，所以这一开始就是很小众的东西，也只在少数日本动漫专营店放着，作为店长的个人收藏品，兼『镇店之宝』。</p>
+<p>这些玩具店是要做生意的，而大部分生意都是几十块钱一件的大路货，卖得最好的通常也是卡片纸、印刷品之类。</p>
+<p>于是总有妈妈带着小孩来店里逛的，于是总有小孩眼尖发现了这个镇店之宝的，于是总有缠着妈妈要的，然后就有如下的对话了。</p>
+<blockquote>
+<p>『这个多少钱啊？』</p>
+<p>『抱歉，这个不卖的。』</p>
+<p>『不卖？』</p>
+<p>『嗯，不卖的，放着看的。』</p>
+<p>『你家的东西放店里还有不卖的啊，孩子要你就卖他呗。』</p>
+<p>『这位妈妈这个真的不卖的。』</p>
+<p>『奇了怪了，咋了怕我买不起啊。』</p>
+<p>『真不是这意思，这位妈妈，这是花了大价钱专门弄回来的限量版，就是吸引人气用的，真不卖。（真就是这个意思，太贵了你买不起）』</p>
+<p>『你不就说贵么，多少钱。你再进一个不就行了，三百顶多了吧。四百？五百？你说你这人摇什么头啊你倒是说清楚啊当我傻逼是不是？』</p>
+<p>『阿姨，这东西光每星期保养费就不止四百。我弄来就花了一万多。』</p>
+<p>『……』</p>
+<p>『…………』</p>
+<p>『………………』</p>
+<p>『你坑傻子啊，就这东西一万多？就这做工……（发现做工确实挺好）……手脚根本就不能动！哟！这姿势那么撩骚，这是要当鸡的样子啊。你开个玩具店放这么淫秽的东西还放小孩子进来？我要去举报你，趁早倒闭吧你个黑店！』</p>
+</blockquote>
+<p>or</p>
+<blockquote>
+<p>『你这东西还要每星期保养啊？哦哦，钱不是问题，但我家孩子玩劲大爱拆东西，玩两天就要买新的了，算了吧。看你也不是正经做生意的，以后不来了这种黑店。』</p>
+</blockquote>
+<p>你看，很常见吧，买不起时，就找一大堆理由，证明某样东西不值这个价，并试图向围观群众说明，她不是买不起，只是这个东西不符合她的需求，尽管可能旁边连个人都没有。她只是要找个理由说服自己，甚至要依靠打倒对方的人格、名誉，来证明自己『不选择』的正确性。</p>
+<p>在这过程中提出来的所有需求，都不是真正的需求。</p>
+<h4 id="二，为了获得愉悦感。"><a href="#二，为了获得愉悦感。" class="headerlink" title="二，为了获得愉悦感。"></a><strong>二，为了获得愉悦感。</strong></h4><p>常见的无非是讨价还价的各种奇葩理由。</p>
+<p>我小时候，经常看大人们默契地合演一出戏。这边问多少钱，那边说多少钱，这边说好贵这么小，那边说这可新鲜了，这边说旁边那家店一样的才卖多少，那边说我这足斤足两，这边说多少钱，那边说真卖不了，这边转头走，那边喊回来回来，这边喜滋滋掏钱算着省了多少钱，那边装苦脸心里暗爽多赚了多少钱。</p>
+<p>完美配合演绎鸡同鸭讲+欲擒故纵+双簧。演出费两人各……两毛。</p>
+<p>虽然钱不多，但是开心呀。</p>
+<p>所以那一串理由都不是理由。买东西当然是需求，但讨价还价背后却不止于东西本身了。客户需要的还包括近身白刃搏杀后胜利的愉悦感。</p>
+<p>码农们有时就理解不了商务那边的兜兜转转。他们总觉得报个一口价就完了，为什么要扯那么半天皮呢。但在砍价这事上，固然有节约成本的因素，但也有砍杀以后的愉悦。如果你直接一步让到位，不但自己吃亏了，客户那边也没有享受到愉悦。他势必会继续往下砍，直到获得足够的愉悦感为止。</p>
+<p>扯会皮，满足了客户，自己也能多赚点，为什么不呢？</p>
+<h4 id="三、他需要感觉到你的努力。"><a href="#三、他需要感觉到你的努力。" class="headerlink" title="三、他需要感觉到你的努力。"></a><strong>三、他需要感觉到你的努力。</strong></h4><p>这是比较隐形的需求了。</p>
+<p>首先，客户需要某种特性，是真需。比如需要产品能防水，那是真要。他需要在狂风骤雨的户外使用。因此防水是必须的。</p>
+<p>但仅仅有防水，很多时候还是不够。原因在于人的感知与认同。事实上，利用现在的纳米拒水材料，完全可以做出带很多细微网眼的防水材料，足以让产品放入水下依然能见到盒子内部漂亮而脆弱的电路，却如出水芙蓉，滴水不沾。</p>
+<p>透光不透水，见干不见湿，要逼格有逼格，要高端有高端。</p>
+<p>但是在防水设计上，未来很长一段时间都不可能用这种方案。原因就在于，你的客户并不这么想，而你却没有机会向他演示以改变他的观念。即使演示了，也会被认为是障眼法。或者用一个完全无法反驳的理由回绝：『现在不出问题，怎么保证以后不出问题。』</p>
+<p>正常来说，用一个带严实的橡胶密封圈的盒子，用卡扣紧紧卡上，发出的『啪』的一声，才能为客户带来足够的安全感。这比任何高科技都有效。如果说防水的成本有 5 块钱，大约有 3-4 块钱都是花费在让用户感觉上的。</p>
+<h4 id="四、他需要感觉到自己的妥协，但希望选妥协尽可能小的。"><a href="#四、他需要感觉到自己的妥协，但希望选妥协尽可能小的。" class="headerlink" title="四、他需要感觉到自己的妥协，但希望选妥协尽可能小的。"></a><strong>四、他需要感觉到自己的妥协，但希望选妥协尽可能小的。</strong></h4><p>没有成本的东西不足以让人认真对待。别提互联网免费策略，这里的成本可不一定指钱。</p>
+<p>我们有两款产品，A 款非常美观，但缺乏某个特性。B 款拥有这个特性，价格还便宜将近一半，但美观性稍差一点。事实上 B 款的出现，也是因为所有的客户几乎都在抱怨 A 款缺乏的那个特性。但结果是，自从有了 B 款以后，A 款的销量反而更好了。</p>
+<p>如果你不理解，我再举一个《经济学人》杂志的例子。</p>
+<blockquote>
+<p>《经济学人》有三种定价，电子版 59 美元，印刷版 125 美元，电子版 + 印刷版 125 美元。印刷版的定价让人感到莫名其妙。便宜一点有 59 美元的电子版，付出同样代价又可以同时拥有电子版 + 印刷版，125 美元光购买印刷版，又是何必呢？</p>
+<p>看上去《经济学人》提供了一个无意义的产品和定价。但印刷版的定价起到了诱导消费者心理和行为的作用。丹·艾瑞里当时为了验证《经济学人》定价的作用，把学生分为两组人，进行对比测试。结果发现，如果没有 125 美元只购买印刷版的选项，84% 的人会选择购买 59 美元的电子版，只有 16% 的人购买 125 美元的电子版 + 印刷版。而如果价格表里，出现了 125 美元印刷版的选项，消费者的购买行为就发生了有趣的变化，只有 32% 的人选择购买电子版，而足足有 68% 的人购买了电子版 + 印刷版。</p>
+</blockquote>
+<p>当进行消费的时候，除非是这个领域的专业人士，否则一个东西应该值多少钱，其实我们不是很清楚的。这时候我们判断的依据就是做一个笼统的测试，粗陋的横向比较，根据结果来决定自己应该买哪个。第二个方案放在这里，它的用途是让第三个方案感觉超值。</p>
+<p>虽然产品设计可能和最后定价略有区别，但本质上，定价也是产品的一部分。</p>
+<h4 id="五、他需要克服自己对你的不信任感，需要安全感。"><a href="#五、他需要克服自己对你的不信任感，需要安全感。" class="headerlink" title="五、他需要克服自己对你的不信任感，需要安全感。"></a><strong>五、他需要克服自己对你的不信任感，需要安全感。</strong></h4><p>其实在商务中有很有意思的一点：一个客户对你的质问越多，往往就越愿意选择你的产品。</p>
+<p>原因其实也很简单，他作为一个非专业人者，如何去判断产品本身的价值？如何去判断产品是否有看不出来的偷工减料？他是没办法判断的。那么他就会转而通过其它外部信息作出判断，例如品牌、广告、其它人的使用评价等。</p>
+<p>很多东西都会指向企业的实力，而实力一定程度上代表着品质。在央视砸了几亿做广告，结果做出来的产品很烂，没人买，这损失可就大了。而街边小摊，顶多城管查抄了，也损失不到哪里去。这就是选择建立信任感的某种方式。</p>
+<p>而用户很多让码农觉得麻烦的行为，也正是因为建立双方信任感的需求。其中之一，就是将销售问到无言以对，或者问到自己问不出来。这时，他并不是追求愉悦感，而是追求安全感。他面对的销售有多深的知识积累，就意味着这个产品有多专业，从而产生多大的信任感。买过汽车的同学们可能感受会深一点，卖过汽车的大概已经在微笑了。</p>
+<p>而更日常化的最终用户的产品，信任感由更多地来自于品牌宣传、口碑、负面新闻等。因此除了对品控的高要求以外，大型品牌也都愿意每年花费巨资去经营、监测、预警网络上关于品牌的各种消息。舆情监测行业也早已是个水深如谷的行业了。</p>
+<h4 id="六、人们需要的不是趁手工具，而是被赞美。"><a href="#六、人们需要的不是趁手工具，而是被赞美。" class="headerlink" title="六、人们需要的不是趁手工具，而是被赞美。"></a><strong>六、人们需要的不是趁手工具，而是被赞美。</strong></h4><p>少数 Geek 向的玩具，粗糙的质感与不完善的结构，反而可能引发那一小部分人的好奇心。但大多数产品，对大多数人而言，都不过是获得赞美的工具。所以人们才会用各种顶级品牌去标榜自己的品味，用各种先进工具去装饰自己的能力，用各种奇趣玩艺证明自己的知趣广博，用 PHP 去写世界上最好的程序。所以产品设计，要不能为人博得赞美，要不能为人带来赞美。前者靠的是优秀的做工、设计，后者靠的是巨大的人气与流量，比如社交软件。</p>
+<p>企业客户在这点上其实也没什么区别。企业客户，往细了分无非也就是建议者、决策者、执行者一系列角色。无论是哪一类，都希望自己做的事情是正确的，能获得上级的肯定，平辈的艳羡，下级的赞美的。这些，则是由内在的可靠性、优雅的外观、良好的服务、精心设计的流程和用户的充分参与，来一步一步完成的。</p>
+<h4 id="七、用户不懒，只是缺乏动机。"><a href="#七、用户不懒，只是缺乏动机。" class="headerlink" title="七、用户不懒，只是缺乏动机。"></a><strong>七、用户不懒，只是缺乏动机。</strong></h4><p>有些产品经理说的用户很懒，其实是不对的。你根本想不到很多人会为了装一个逼能做出多么匪夷所思的行为，根本不理解很多人会为了朋友圈向领导暗示勤奋有多么的勾心斗角，根本不懂得人们心底的欲望可以驱动他们去做多么奇葩的事情。</p>
+<p>啊，或许你能理解。</p>
+<blockquote>
+<p>以前我觉得学上网实在是太难了，但后来我发现网上可以下载免费 A 片，瞬间我就学会了。</p>
+</blockquote>
+<p>为了获得赞美，人们无所不用其极。苹果的 Keynote 用的是 『影院效果，彻底迷倒观众』。相比之下，微软用的『做出非凡演示，节约时间，随处访问』就差上一截了。</p>
+<blockquote>
+<p>我真的不在乎节约时间，更讨厌随处都得做 PPT，你再好用有毛用，我在家就想休息不想再碰什么 PPT 了。但如果观众们能惊叹，我能装个逼，那再难用的软件我倒也认了。</p>
+<p>————开开心声。</p>
+</blockquote>
+<p>我不认为微软的文案是傻逼，大企业内部的人际历练，对人心的洞察一点不少。但也是同样的原因，让他们在做文案的时候，选择的是讨好公司自己的文化，而不是讨好用户。</p>
+<p>用户不懒，只是缺乏动机。</p>
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a><strong>结束</strong></h4><p>用户需求不是『我认为』如何的。每个人处于不同的环境，基于不同的利益，都有不同的诉求。生活中的，工作中的，个人的，家庭的，集体的。同一个人都会有诸多变化。</p>
+<p>甚至也不是数据分析能得出来结果的，诚然，数据分析有助于你发现问题，但揣摩背后的意思，还是需要有一颗又能正经又能变态的心。</p>
+<p>我品过甜美，也咽过苦涩，但依然觉得那些随口说出的谎言，包括自己的谎言，是世界上最美丽的声音之一。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%A7%E5%93%81/" rel="tag"># 产品</a>
+              <a href="/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" rel="tag"># 深入理解</a>
+              <a href="/tags/%E7%94%A8%E6%88%B7%E9%9C%80%E6%B1%82/" rel="tag"># 用户需求</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/about-curious-to-love/" rel="prev" title="关于好奇、兴趣与爱好">
+                  <i class="fa fa-angle-left"></i> 关于好奇、兴趣与爱好
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/monmon-the-godzilla-2/" rel="next" title="小怪兽么么表情包更新">
+                  小怪兽么么表情包更新 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

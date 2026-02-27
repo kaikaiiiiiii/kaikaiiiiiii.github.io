@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="修理（人族 SCV&#x2F;矿骡） 一个可修理的单位，从 1 滴血修到满血的花费是它生产费用的 25%。（极限地说，应该是 0 滴血修理到满血，也就是完整 100%的血量，但 0 血就死了所以实际无法存在这种情况）。 一个可修理的单位，由一个 SCV 从 1 滴血修到满血的时间和生产这个单位的时间相同。 也就是说，不同单位的修理速度并不一致。地堡 100 矿，建造花费 40 秒 400 血，那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="星际争霸2建造与修理详解">
+<meta property="og:url" content="https://www.kaikai.men/starcraft2-repair-build-detail/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="修理（人族 SCV&#x2F;矿骡） 一个可修理的单位，从 1 滴血修到满血的花费是它生产费用的 25%。（极限地说，应该是 0 滴血修理到满血，也就是完整 100%的血量，但 0 血就死了所以实际无法存在这种情况）。 一个可修理的单位，由一个 SCV 从 1 滴血修到满血的时间和生产这个单位的时间相同。 也就是说，不同单位的修理速度并不一致。地堡 100 矿，建造花费 40 秒 400 血，那">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2014/09/Repair1.gif">
+<meta property="og:image" content="https://www.kaikai.men/attach/2014/09/Build1.png">
+<meta property="article:published_time" content="2014-09-09T15:08:38.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.136Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="修理">
+<meta property="article:tag" content="建造">
+<meta property="article:tag" content="数据">
+<meta property="article:tag" content="时间">
+<meta property="article:tag" content="星际争霸2">
+<meta property="article:tag" content="Starcraft II">
+<meta property="article:tag" content="计算">
+<meta property="article:tag" content="费用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2014/09/Repair1.gif">
+
+
+<link rel="canonical" href="https://www.kaikai.men/starcraft2-repair-build-detail/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/starcraft2-repair-build-detail/","path":"/starcraft2-repair-build-detail/","title":"星际争霸2建造与修理详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>星际争霸2建造与修理详解 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E7%90%86%EF%BC%88%E4%BA%BA%E6%97%8F-SCV-%E7%9F%BF%E9%AA%A1%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text"> 修理（人族 SCV&#x2F;矿骡）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E9%80%A0-%E6%8A%98%E8%B7%83-%E5%8F%98%E5%BC%82"><span class="nav-number">2.</span> <span class="nav-text"> 建造&#x2F;折跃&#x2F;变异</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/starcraft2-repair-build-detail/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="星际争霸2建造与修理详解 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          星际争霸2建造与修理详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-09 15:08:38" itemprop="dateCreated datePublished" datetime="2014-09-09T15:08:38Z">2014-09-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">游戏中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="修理（人族-SCV-矿骡）"><a href="#修理（人族-SCV-矿骡）" class="headerlink" title=" 修理（人族 SCV&#x2F;矿骡）"></a><img src="/../attach/2014/09/Repair1.gif" alt="Repair[1]" loading="lazy"> 修理（人族 SCV&#x2F;矿骡）</h2><ol>
+<li>一个可修理的单位，从 1 滴血修到满血的花费是它生产费用的 25%。（极限地说，应该是 0 滴血修理到满血，也就是完整 100%的血量，但 0 血就死了所以实际无法存在这种情况）。</li>
+<li>一个可修理的单位，由一个 SCV 从 1 滴血修到满血的时间和生产这个单位的时间相同。</li>
+<li>也就是说，不同单位的修理速度并不一致。地堡 100 矿，建造花费 40 秒 400 血，那么一个 SCV 每秒修理 10 血，消耗 10&#x2F;400*100*25%&#x3D;0.625 矿。而兵营 150 矿 1000 血 65 秒，一个 SCV 每秒修理 1000&#x2F;65&#x3D;15.3846 血，消耗 150*25%&#x2F;65&#x3D;0.577 矿。补给站 100 矿 400 血 30 秒，每秒修 13.333 血，耗 0.8333 矿。</li>
+<li>所以要强攻人族路口时，如果没有地堡，则攻击补给站比攻击兵营合算。攻击输出相同的情况下，补给站修理慢还费钱，总血量也少。</li>
+<li>多个 SCV 可以同时修理同一个建筑，效果累加。单位时间的回血量和花费与 SCV 数量成正比，总花费不变。</li>
+<li>SCV 在修理或建造时不能采矿。而 16 农高效采集时每个 SCV 每分钟采 42 矿，故算总帐时需要额外计算每秒 0.7 矿的未采集成本。</li>
+<li>人族建筑在低于 33% 血量时会着火，实战中修理起火建筑需要额外修理火烧掉的那些血量。</li>
+<li>起火掉血为每秒 3 点。但没建造完的建筑反而不会起火。比如一个完成度 99% 的指挥中心因敌方骚扰只剩 1 血，依然不会起火。但如果另派一个 SCV 建造完成，则完成的一瞬间将起火。因为指挥中心总血量为 1500，1% 完成度有 15+1 滴血，可以烧 5.333 秒钟。理论上你可以造出一个完成一瞬间就烧掉的建筑。</li>
+<li>轨道控制基地和行星要塞的费用基数包含指挥中心的花费。也就是说星轨费用 550 矿 135 秒，要塞 550 矿 150 气和 150 秒。所以要塞每个 SCV 每秒修理 10 血。</li>
+<li>尽管矿、气、血量、能量等数值最终显示为整数，但在游戏内部其实是高精度计算的，到结果时再根据需要取整。</li>
+<li>修理费是“先扣款后维修，多不退少补”的扣费办法。也就是说，你修理一个掉 5 血 &#x2F; 10 血 &#x2F; 15 血的地堡都花费 1 矿，但修理掉 20 血的地堡就得 2 矿。从条目 3 我们知道地堡每 5 血修理费是 0.3125 矿。</li>
+<li>但如果派两个 SCV 去修掉 15 血的地堡，则反而需要花费 2 矿，还是因为“先扣再修多不退”，每个 SCV 在开始修理时都需要扣掉一矿，各自修了七八滴血，也不会再还你半个矿了。</li>
+<li>修理过程中，矿和气的扣费是分开的，随着血量回升到各个扣费临界点，逐步分别地一矿一气扣除。</li>
+<li>如果你只剩 1 点矿，那么你可以修理地堡 16 滴血。</li>
+<li>如果你只剩 1 点矿 1 点气，你的矿可以修理行星要塞 1500&#x2F;550*4 &#x3D; 10.91 向上取整 11 点血，你的气可以修理 1500&#x2F;150*4 &#x3D; 40 点血。合起来你只能修理 11 点血，之后就因为矿物不足而停止了。此时气实际上仍有 3&#x2F;4 未用，但也不会还给你。</li>
+<li>传说中的雷神修理时间是生产时间 130% 的情况已经被修正了。现在雷神修理和生产时间同样是 60 秒。</li>
+<li>铁鸦召唤的 自动机炮 和 定点防御靶机 以 100 矿 50 秒作为修理基准费用，也就是修到满血要 25 矿 50 秒。（谁会去修这个啊……)*</li>
+<li>矿骡的修理能力和 SCV 完全相同。</li>
+<li>矿骡也可以被修理，修理基准费用为 60 矿 17 秒。（未验证）</li>
+<li>开启自动修理的 SCV 在地堡&#x2F;医疗艇里面可以修理同乘的其它机械单位，但不能修理搭乘的地堡&#x2F;医疗艇本身。SCV 可以进地堡，SCV&#x2F;坦克&#x2F;寡妇雷&#x2F;恶火&#x2F;恶蝠&#x2F;落地维京可以进医疗艇，这些单位可以仓内修理。</li>
+<li>尽管雷神也是机械单位，但雷神需要独占一只医疗艇，没有仓位再给 SCV，无法实现“仓内修理”。</li>
+<li>尽管雷神是挂在医疗艇下面的，但地面上的 SCV 却只能修理医疗艇，无法修理视觉上明明是挂在医疗艇下方的雷神 (づ￣ 3 ￣)づ。这是智商问题。</li>
+<li>技能优先级修理高于攻击，A 地面时如果附近有掉血机械单位会优先修理。结合前述的修理扣费逻辑，不应当让 SCV 和部队一起走 A，如果部队里有掉血机械单位的话，每次走 A 操作都有可能会浪费一次修理费。</li>
+<li>SCV 可以修理星灵队友的机械单位，但不能修理星灵建筑。SCV 不能修理虫族的任何单位和建筑。</li>
+<li>星灵机械单位包括：探机、追猎者、机械哨兵、不朽者、巨像、侦测器、折跃棱镜、凤凰、先知、虚空辉光舰、风暴战舰、航母、拦截机、母舰核心、母舰。</li>
+<li>星灵护盾不能修理，但能靠护盾充能器快速恢复。</li>
+<li>修理只恢复血量部分，因此修理星灵单位速度非常慢。例如侦测器 30 秒生产时间 40 血 20 盾，则 SCV 每秒只修理 1.333 血。</li>
+<li>航母的拦截机是个不可选中单位，但开启自动修理的 SCV 确实可以在飞过头顶的一瞬间修上那么两下。</li>
+<li>尽管没有被修理能力，但星灵建筑的等离子护盾一定程度起到了类似修理的作用。等离子护盾在脱离战斗 10 秒后以每秒 2 点的速度恢复。</li>
+<li>尽管没有被修理能力，但虫族建筑自有回血能力，速度为每秒 0.27 点。同时虫后拥有哺液技能，可以为建筑回血，消耗 50 能量，回 125 点血，瞬发，CD 1 秒。哺液同样可为单位回血。</li>
+<li>女王哺液可以给友军生物单位回血，主要是人类单位，但不合算。虫族外只有火车侠是血量高于 125 的生物单位，为 135 血，是相对最合算的回血对象。其次是劫掠者 125 血。从单兵价值角度来讲，也可以考虑给幽灵回血。</li>
+<li>实战来讲因为人类有医疗兵 &#x2F; 医疗救生艇，由人族给虫族队友回血更靠谱一些。</li>
+</ol>
+<h2 id="建造-折跃-变异"><a href="#建造-折跃-变异" class="headerlink" title=" 建造&#x2F;折跃&#x2F;变异"></a><img src="/../attach/2014/09/Build1.png" alt="Build[1]" loading="lazy"> 建造&#x2F;折跃&#x2F;变异</h2><ol>
+<li>任何建筑在开始建造的一瞬间有 10% 的血量，之后全部时间匀速地完成剩下 90%。所以刚扔下的建筑靠少量兵并不容易打掉。</li>
+<li>建造完成的建筑默认有 1 点的的重甲，人类可以升级（+2），但建造过程中护甲为 0 点，属性依然是重甲。建造过程中劫掠者一枪会造成 20 点伤害，建造完成后一枪 19 点。</li>
+<li>所有建筑的建筑网格都分为 1×1、2×2、3×3、5×5 四种，其中，只有三族的主基地为 5×5 网格。只有感应塔和菌毯瘤为 1×1。</li>
+<li>角对角相接的建筑中间可以穿过 1 体积单位的兵种。要堵路口需要错开一格。5x5 网格需要错开两格。</li>
+<li>人类的建筑在建造过程中，若 SCV 被击毁则会中断。</li>
+<li>星灵建筑的建造过程不需要探机，虫族则会消耗掉工蜂，两族的建筑生产不需要靠工兵持续维护。</li>
+<li>SCV 需要持续工作，因此计算成本时还需要额外考虑损失的采集能力，约每秒 0.7 矿。因此人族基地相当于需要 470 矿，为三族最贵。</li>
+<li>虫族工蜂建造建筑后会消耗掉，需要补充相应数量的工蜂，相当于任何建筑都有 17 秒的采集能力损失（新生产一只工蜂），约 11.9 矿。此外还需要消耗一个虫卵，虫卵在虫族本身也是一种特殊资源。</li>
+<li>退掉正在建造的建筑返还 75% 的花费，采用的是“进 1 制”反还。比如对于一个 75 矿的精炼厂，理论上返还 75*75% &#x3D;56.25 矿，实际上返还 57 矿。</li>
+<li>建造过程中的星灵建筑同样有护盾，增长速度与血量同步。受攻击时先损耗护盾。</li>
+<li>所有的星灵建筑的盾和血量最大值都相同。</li>
+<li>星灵的建筑，除了星灵枢纽、吸纳舱、水晶塔以外，其它建筑都必须在能量场范围内开始建造，折跃棱镜的能量场也可以。只要开始建造了，在建造过程中能量场可以消失。（水晶塔被打，棱镜收起）。</li>
+<li>“在能量场内”指的是建造的建筑最中心点在能量场的圆弧范围内。也就是说，建筑边缘最多可以离开能量场略小于 1.5 格。</li>
+<li>水晶塔提供半径为 6.5 的能量场，由于自身为 2×2 建筑，所以实际的横向到边缘长度为 5.5 格，可以造 3 个光子炮台。棱镜提供半径 3.75 的能量场。</li>
+<li>所以两个相距 13 的水晶塔正好边缘相切，切线与两塔连线的交点上可以放下一个 2×2 的建筑，但放不下一个偏 1 格的 3×3 的建筑。（仔细思考“中心点必须在能量场内”的规则）。</li>
+<li>没有能量场的建筑的生产&#x2F;研发进度是冻结状态，重新供能以后进度条会继续，不重置。</li>
+<li>虫族建筑，除了孵化场、萃取房以外，都必须完全地建造在菌毯上，这与星灵只需要中心点覆盖的方式不一样。即使是处于行走状态的孢子爬虫和脊针爬虫，要重新扎根也必须在菌毯上。</li>
+<li>虫族建筑都相对便宜，显然是因为要消耗工蜂，所以变异建筑的价格是减掉工蜂的价格的。气矿尤其明显。</li>
+<li>但因此，取消正在建造的建筑，返还的是 1 只工蜂外加差价的 75%，因此虫族取消建造的成本比其它两族更低。以气矿为例，其它两族取消建造返还 58 矿，损失 27 矿。而虫族则是反还工蜂+19 矿，只损失 6 矿。</li>
+<li>这使得虫族退气矿成为一种战术和技巧。在初期偷人口赚一个农民（如果偷出的时间比采集一次的时间长就是赚的）、通过在对方家里造气矿，取消再造持续干扰对方运营发展等。</li>
+<li>孵化场默认提供半径 12.5 的菌毯，由于自身是 5×5 的占位，所以实际到边缘是 10 格。可以造 5 个 2×2 建筑。在画面质量较低时，菌毯边缘会更明显。</li>
+<li>取消建造的孵化场会残留一个 3×3 的菌毯，手速快的话可以放一个其它建筑。取消孵化场会损失 75 矿，同时新建筑会持续性的掉血。</li>
+<li>虫族建筑因故失去菌毯滋润后，会以每秒 3 点的速度损失血量，再加上自身回血，最后加成损血速度为每秒 2.73 点。无论是在建的或者已经建完的都一样，孵化场和萃取房除外。处于行走状态的孢子爬虫和脊针爬虫也不受影响。</li>
+<li>所有虫族的菌毯是共用的，即使是敌人的也可以，所以 zvz 可以在一开始就造个血池然后跑对方矿区造脊针爬虫。</li>
+<li>人类的建筑附件也是共用的，即使是敌人的也可以，不过通常没人会跑对方家里打掉主建筑然后抢对方的附件用……(￣ △ ￣；)。如果是队友之间可能存在某种战术。</li>
+<li>抢附件也可以成为“消灭所有建筑”的胜利条件。也就是敌方只剩下一个附件了，你飘个重工厂过去，一落地，胜利……</li>
+<li>除了自动机炮，任何人类或者星灵建筑都不可以建造&#x2F;降落在菌毯上。已经建成的建筑被菌毯蔓延包围不影响既有功能。这些建筑被摧毁后，原地空洞同样已经被菌毯覆盖，不需要再花时间生长补满。</li>
+<li>眼虫的污染只能冻结出兵和研发升级，不能冻结建筑的建造和修理，包括人类指挥中心的升级。不能限制水晶塔能量场和光子炮台的活动。也不能限制建筑的瞬发技能，比如扫描和空投矿骡。</li>
+<li>污染不能限制星灵的星空加速，不能限制菌毯肿瘤对菌毯的扩展，但却可以限制菌毯肿瘤的分裂。</li>
+<li>菌毯永远不覆盖瓦斯气泉。</li>
+<li>菌毯的生长计算另述。</li>
+</ol>
+<p>部分翻译自 <a target="_blank" rel="noopener" href="http://wiki.teamliquid.net/starcraft2/Repair">http://wiki.teamliquid.net/starcraft2/Repair</a></p>
+<p>* 该文写铁鸦两个召唤物的修理时间为 60 秒，根据我 50% 和 40% 血量的多次实验，认为实际上是 50 秒。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BF%AE%E7%90%86/" rel="tag"># 修理</a>
+              <a href="/tags/%E5%BB%BA%E9%80%A0/" rel="tag"># 建造</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE/" rel="tag"># 数据</a>
+              <a href="/tags/%E6%97%B6%E9%97%B4/" rel="tag"># 时间</a>
+              <a href="/tags/%E6%98%9F%E9%99%85%E4%BA%89%E9%9C%B82/" rel="tag"># 星际争霸2</a>
+              <a href="/tags/Starcraft-II/" rel="tag"># Starcraft II</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97/" rel="tag"># 计算</a>
+              <a href="/tags/%E8%B4%B9%E7%94%A8/" rel="tag"># 费用</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/parent-and-computer-stories/" rel="prev" title="故纸堆：[你说我说] 我的父亲/母亲/长辈与电脑">
+                  <i class="fa fa-angle-left"></i> 故纸堆：[你说我说] 我的父亲/母亲/长辈与电脑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/cos-jiang-optimize-plan/" rel="next" title="Cos交易酱搜索优化计划">
+                  Cos交易酱搜索优化计划 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

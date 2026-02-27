@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content=".red{color:red}      .s1{font-size:12px}      .s2{font-size:10px}      .s3{font-size:8px}      .s4{font-size:6px}      .s5{font-size:4px}    今天是 3.14，写写圆周率怎么算。 割圆术一开始的思路很简单，既然是『圆周』的比值，那就寻找一个方法计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="圆周率：从割圆法到级数展开">
+<meta property="og:url" content="https://www.kaikai.men/calcaulate-the-pi/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content=".red{color:red}      .s1{font-size:12px}      .s2{font-size:10px}      .s3{font-size:8px}      .s4{font-size:6px}      .s5{font-size:4px}    今天是 3.14，写写圆周率怎么算。 割圆术一开始的思路很简单，既然是『圆周』的比值，那就寻找一个方法计算">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/03/cc1.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/03/cc2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/03/cc3.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/03/cc4.png">
+<meta property="article:published_time" content="2025-03-14T22:53:46.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="圆周率">
+<meta property="article:tag" content="割圆">
+<meta property="article:tag" content="无穷级数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2025/03/cc1.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/calcaulate-the-pi/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/calcaulate-the-pi/","path":"/calcaulate-the-pi/","title":"圆周率：从割圆法到级数展开"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>圆周率：从割圆法到级数展开 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E5%9C%86%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">割圆术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">无穷级数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E8%B1%86%E7%9F%A5%E8%AF%86"><span class="nav-number">3.</span> <span class="nav-text">一些豆知识</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/calcaulate-the-pi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="圆周率：从割圆法到级数展开 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          圆周率：从割圆法到级数展开
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-14 22:53:46" itemprop="dateCreated datePublished" datetime="2025-03-14T22:53:46Z">2025-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><style>
+     .red{color:red}
+     .s1{font-size:12px}
+     .s2{font-size:10px}
+     .s3{font-size:8px}
+     .s4{font-size:6px}
+     .s5{font-size:4px}
+ </style>
+
+<p>今天是 3.14，写写圆周率怎么算。</p>
+<h3 id="割圆术"><a href="#割圆术" class="headerlink" title="割圆术"></a>割圆术</h3><p>一开始的思路很简单，既然是『圆周』的比值，那就寻找一个方法计算圆周的长度就完事了。</p>
+<ol>
+<li><p>首先准备一个圆内接正六边形，每边长是 r，周长是 6r，如果把六边形周长当作圆周长，圆周率就是 $\pi&#x3D;\frac{6r}{2r} &#x3D; 3$。别笑，历史上确实有以 3 当作圆周率的，『周三径一』曾在多处典籍出现。</p>
+<p> <img src="/../attach/2025/03/cc1.png" loading="lazy"></p>
+</li>
+<li><p>以正六边形的边作中垂线，构造一个正 12 边形，则正 12 边形的边长即 $x&#x3D;L_{\overline{A_2A_8}}$。</p>
+<p> <img src="/../attach/2025/03/cc2.png" loading="lazy"></p>
+<p> $\overline{A_2A_8}$是直角三角形 $\triangle A_2A_8C$ 的斜边，$\overline{A_2C} &#x3D; \frac{r}{2}$，$\overline{A_8C} &#x3D; r - \overline{OC}$。而$\overline{OC}$又是直角三角形$\triangle A_2OC$的直角边。因此应用两次勾股定理，容易得到：</p>
+<p> $$x &#x3D; \sqrt{\left(\frac{r}{2}\right)^2+\left(r-\sqrt{r^2-(\frac{r}{2})^2}\right)^2}$$</p>
+</li>
+<li><p>进一步在正 12 边形基础上继续作中垂线变为 24 边形、48 边形……类推。</p>
+<p> <img src="/../attach/2025/03/cc3.png" loading="lazy"></p>
+<p> 局部放大：</p>
+<p> <img src="/../attach/2025/03/cc4.png" loading="lazy"></p>
+<p> 在 n 次迭代操作后，可以得到圆的内接正 $6\cdot2^n$ 边形，其边长为可由$6\cdot2^{n-1}$ 边长递推而来：</p>
+<p> $$l_n &#x3D; \sqrt{\left(\frac{l_{n-1}}{2}\right)^2+\left(1-\sqrt{1-(\frac{l_{n-1}}{2})^2}\right)^2}$$</p>
+<p> 根号内的平方展开，公式化简后得到：$l_n&#x3D;\sqrt{2-\sqrt{4-l^2_{n-1} } }$。所以：$\pi\approx3\cdot2^n\cdot l_n$</p>
+<blockquote>
+<p>尽管可以将 $\pi_n&#x3D;6\cdot2^n\cdot l_n$，$\pi_{n-1}&#x3D;6\cdot2^n\cdot\frac{l_{n-1}}{2}$ 代入得到 $\pi_n$ 的直接递推式，但结果反而会增加计算难度，没有意义。</p>
+</blockquote>
+<p> 编程验证一下割圆法的递推公式：</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> decimal <span class="keyword">import</span> Decimal, getcontext</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_pi_iterations_csv</span>(<span class="params">n_iterations, precision=<span class="number">50</span></span>):</span><br><span class="line"></span><br><span class="line">    getcontext().prec = precision + <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    r,k,s = Decimal(<span class="number">1</span>),Decimal(<span class="number">6</span>),Decimal(<span class="number">1</span>)</span><br><span class="line">    pi_approx = (k * s) / (<span class="number">2</span> * r)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;0,<span class="subst">&#123;s:.&#123;precision&#125;</span>f&#125;,<span class="subst">&#123;<span class="built_in">int</span>(k)&#125;</span>,<span class="subst">&#123;pi_approx:.&#123;precision&#125;</span>f&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_iterations + <span class="number">1</span>):</span><br><span class="line">        s = (Decimal(<span class="number">2</span>) - (Decimal(<span class="number">4</span>) - s**<span class="number">2</span>).sqrt()).sqrt()</span><br><span class="line">        k *= <span class="number">2</span></span><br><span class="line">        pi_approx = (k * s) / (<span class="number">2</span> * r)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;n&#125;</span>,<span class="subst">&#123;s:.&#123;precision&#125;</span>f&#125;,<span class="subst">&#123;<span class="built_in">int</span>(k)&#125;</span>,<span class="subst">&#123;pi_approx:.&#123;precision&#125;</span>f&#125;&quot;</span>)</span><br><span class="line"></span><br><span class="line">print_pi_iterations_csv(n_iterations=<span class="number">100</span>, precision=<span class="number">200</span>)</span><br></pre></td></tr></table></figure>
+
+<p> 计算结果：</p>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>$\pi$ （红色开始为误差项）</th>
+<th>边数</th>
+<th>边长</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>3</td>
+<td>6</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3.1<span class='red'>06</span></td>
+<td><span class='s1'>12 </span></td>
+<td><span class='s1'>0.517638090205041524697797675248096656698137802639861027628006414630</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>3.1<span class='red'>33</span></td>
+<td><span class='s1'>24 </span></td>
+<td><span class='s2'>0.2610523844401031830968124557909780203874814096234645037812338966702656504596472</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3.1<span class='red'>39</span></td>
+<td><span class='s1'>48 </span></td>
+<td><span class='s3'>0.1308062584602861336306311175503508828812646078901080356639753014926938148927779305724160345230399815</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>3.141<span class='red'>03</span></td>
+<td><span class='s1'>96 </span></td>
+<td><span class='s4'>0.0654381656435522841273198526345762522299252545033923937561917675146374704265347854596049670897283379849162629786820274103417801265169</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>3.141<span class='red'>45</span></td>
+<td><span class='s1'>192 </span></td>
+<td><span class='s5'>0.03272346325297356328594384696834610047132981567239244974814148723774665964804514057084743346984975274224223378392101609252042560186228338473297730652077981634239188734083635448788894004614630671707971</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>3.1415<span class='red'>58</span></td>
+<td><span class='s1'>384 </span></td>
+<td><span class='s5'>0.01636227920787425857039824658921801844533529416452341952057948786939579165064652866066255648348084605099544845686188429947694545964114075255218686278984440383734161800789305756187065766408033033714294</span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>3.1415<span class='red'>84</span></td>
+<td><span class='s1'>768 </span></td>
+<td><span class='s5'>0.00818120805246957918924210834302383685031261696817992854723965236122383489144687206840513659491152519677943407736541665751720319595526819838604319161259091076464007027427841057546918033121536463776576</span></td>
+</tr>
+<tr>
+<td>8</td>
+<td>3.14159<span class='red'>05</span></td>
+<td><span class='s1'>1536 </span></td>
+<td><span class='s5'>0.00409061258232819022882611784626426005671130508942161074227241896916750309821831955224474466566072674889796524473684900214896944666772227172928706453876775835266189348091823621540235396623950175141037</span></td>
+</tr>
+<tr>
+<td>9</td>
+<td>3.141592<span class='red'>11</span></td>
+<td><span class='s1'>3072 </span></td>
+<td><span class='s5'>0.00204530736067660908238592229206387848510904769203534158371388824527333132200776714283048062007265192348301163404334423074239806419254304223189361723602246795475702449971333535955495781000908587365137</span></td>
+</tr>
+<tr>
+<td>10</td>
+<td>3.141592<span class='red'>52</span></td>
+<td><span class='s1'>6144 </span></td>
+<td><span class='s5'>0.00102265381402739500247163869946902080272386682694276940575245689833248716463240037650358826374003409375522080937566141783691027096707879199337571242973168314629930390958384129075647765179770735929993</span></td>
+</tr>
+<tr>
+<td>11</td>
+<td>3.1415926<span class='red'>19</span></td>
+<td><span class='s1'>12288 </span></td>
+<td><span class='s5'>0.00051132692372483462812329904167729802119501834726478547125933748209551655293273596409563162021982192636730703620007115215205194042178721769005805718824184735509920188172391787369176696970438736673964</span></td>
+</tr>
+<tr>
+<td>12</td>
+<td>3.1415926<span class='red'>45</span></td>
+<td><span class='s1'>24576 </span></td>
+<td><span class='s5'>0.00025566346395130948052344901602532864686870304453467621730677964075264727555486053435606907311636775837244640506715770965493389536029465573114161194846506354894597613066543370721104363861111432890423</span></td>
+</tr>
+<tr>
+<td>13</td>
+<td>3.14159265<span class='red'>15</span></td>
+<td><span class='s1'>49152 </span></td>
+<td><span class='s5'>0.00012783173223676626186947646649138260988152781056255781673371926384916560262546013047471577662181934711832084928074633138426333635453646621891256820530408464072964170436390615844992513167973181884419</span></td>
+</tr>
+<tr>
+<td>14</td>
+<td>3.141592653<span class='red'>06</span></td>
+<td><span class='s1'>98304 </span></td>
+<td><span class='s5'>0.00006391586615102207116070807251821846928420566418226833293283142812113254271150192259083632846234511443992999462757190341371764220822115850525439907961017619817497180269701854339121002598869952981899</span></td>
+</tr>
+<tr>
+<td>15</td>
+<td>3.141592653<span class='red'>46</span></td>
+<td><span class='s1'>196608 </span></td>
+<td><span class='s5'>0.00003195793307959090310938154255793333263503358446685194730153233192952836577298952906771466453949596139067707595400480370347309422927398029140060759615402672879750656729406381857083342148916810946482</span></td>
+</tr>
+<tr>
+<td>16</td>
+<td>3.1415926535<span class='red'>56</span></td>
+<td><span class='s1'>393216 </span></td>
+<td><span class='s5'>0.00001597896654030543499584362445350196006406104280692607674654698067095823491466166283932166777919474862554088504872494049081442239324689977187654126144557724034900570345338497245798640501861199132473</span></td>
+</tr>
+<tr>
+<td>17</td>
+<td>3.14159265358<span class='red'>14</span></td>
+<td><span class='s1'>786432 </span></td>
+<td><span class='s5'>0.00000798948327021646542806668183879235631019681169477246348191864536472108682476590250406902878002067011109537606200591443120881102952774587693884967039607068647393920042977032508672304529703548793507</span></td>
+</tr>
+<tr>
+<td>18</td>
+<td>3.14159265358<span class='red'>77</span></td>
+<td><span class='s1'>1572864 </span></td>
+<td><span class='s5'>0.00000399474163511620120530147346356461485004455676682492653080263097961031568786521018546178449577827905058028155793726100684082116620490208586760128562326052355254999492341178495600442520229714214498</span></td>
+</tr>
+<tr>
+<td>19</td>
+<td>3.141592653589<span class='red'>27</span></td>
+<td><span class='s1'>3145728 </span></td>
+<td><span class='s5'>0.00000199737081755909666405925404488658903363571572547377195911130767842215943514172624435772225406061136635761994565450768012986355225672804758813211799003989963368820258474934638028323690684853391208</span></td>
+</tr>
+<tr>
+<td>20</td>
+<td>3.141592653589<span class='red'>66</span></td>
+<td><span class='s1'>6291456 </span></td>
+<td><span class='s5'>0.00000099868540877967283970569170986518056233278254800139575240199441413157386950268773547426918651144098773169103279081732332903382750784965462242767295874351578603227570190990894498209480288483175579</span></td>
+</tr>
+<tr>
+<td>21</td>
+<td>3.1415926535897<span class='red'>61</span></td>
+<td><span class='s1'>12582912 </span></td>
+<td><span class='s5'>0.00000049934270438985198331235394158794637574452005163238561622949160536438778783833013780076841949385532244297830798431363949646238115306391824299463536681672767037675392104288262525145523660499757185</span></td>
+</tr>
+<tr>
+<td>22</td>
+<td>3.1415926535897<span class='red'>85</span></td>
+<td><span class='s1'>25165824 </span></td>
+<td><span class='s5'>0.00000024967135219492793708861548164863083528480050429414620649761964010850031010937136302482094374335613839348636992034690138588360189467559359010796462784072115098350334154845172067404838766858926926</span></td>
+</tr>
+<tr>
+<td>23</td>
+<td>3.14159265358979<span class='red'>12</span></td>
+<td><span class='s1'>50331648 </span></td>
+<td><span class='s5'>0.00000012483567609746421172336255468185819030616389052416717182657674416467433744424882377430722467888793107943167913990376778051086967167245591527296295705271015718603906188572436811955215249723929612</span></td>
+</tr>
+<tr>
+<td>24</td>
+<td>3.14159265358979<span class='red'>27</span></td>
+<td><span class='s1'>100663296 </span></td>
+<td><span class='s5'>0.00000006241783804873213625906312907314414694658977754689172890296684927941714902639547605794720789562158704287228431191826831833465509516927936598151213605097619366385055651234305254691020971269767748</span></td>
+</tr>
+<tr>
+<td>25</td>
+<td>3.141592653589793<span class='red'>11</span></td>
+<td><span class='s1'>201326592 </span></td>
+<td><span class='s5'>0.00000003120891902436607192920429600309964886031266085579006387133906218733474982304042661535174860729942309322597890450240486561656308496161043473084985788277410293815655336611240206071283718092142279</span></td>
+</tr>
+<tr>
+<td>26</td>
+<td><span class='s1'>3.1415926535897932<span class='red'>07</span> </span></td>
+<td><span class='s2'>402653184 </span></td>
+<td><span class='s5'>0.00000001560445951218303643956123943486579303830946734590076137071151382758546729017465867897056956871062577565687205469967325499101603554656770693413534572719717163479597830054400212066111172965038686</span></td>
+</tr>
+<tr>
+<td>27</td>
+<td><span class='s1'>3.14159265358979323<span class='red'>05</span> </span></td>
+<td><span class='s2'>805306368 </span></td>
+<td><span class='s5'>0.00000000780222975609151827915050614659739327282312314419213435000540384209982803362747958675796558062042982475357489548994098448825732511259496703453493157075790296236194140478050246191004140967384875</span></td>
+</tr>
+<tr>
+<td>28</td>
+<td><span class='s1'>3.14159265358979323<span class='red'>65</span> </span></td>
+<td><span class='s2'>1610612736 </span></td>
+<td><span class='s5'>0.00000000390111487804575914699648887694425875179664923589163142535332766643652227643640373038294224713031271130104996335321398963832881871591336387327721771031647629833578335173087223319866660377209223</span></td>
+</tr>
+<tr>
+<td>29</td>
+<td><span class='s1'>3.14159265358979323<span class='red'>80</span> </span></td>
+<td><span class='s2'>3221225472 </span></td>
+<td><span class='s5'>0.00000000195055743902287957442589891392782464098322741904183452748558916604225809692973822374008478147095680240506129083134376023950655446505210288531412793791591047020932205873679944497150982204577829</span></td>
+</tr>
+<tr>
+<td>30</td>
+<td><span class='s1'>3.141592653589793238<span class='red'>34</span> </span></td>
+<td><span class='s2'>6442450944 </span></td>
+<td><span class='s5'>0.00000000097527871951143978732890626639587422864790677350546878071113342307743900198686359140290355881550128722580828503965413131817775505376202266065797748836863198053672189794374120960822078454085167</span></td>
+</tr>
+<tr>
+<td>31</td>
+<td><span class='s1'>3.1415926535897932384<span class='red'>32</span> </span></td>
+<td><span class='s2'>12884901888 </span></td>
+<td><span class='s5'>0.00000000048763935975571989367894773437693235284413627643353924138657991875227166863658134592478609629063235498679155112391032958494770696135492336364934405252910218154894519718632749329296292232873980</span></td>
+</tr>
+<tr>
+<td>32</td>
+<td><span class='s1'>3.1415926535897932384<span class='red'>55</span> </span></td>
+<td><span class='s2'>25769803776 </span></td>
+<td><span class='s5'>0.00000000024381967987785994684128569233584058123711119494820572430372864962831541128412896710085186107246109239553239175349774989214200004231103228126374017973510217647145205395451425934862543903141874</span></td>
+</tr>
+<tr>
+<td>33</td>
+<td><span class='s1'>3.14159265358979323846<span class='red'>07</span> </span></td>
+<td><span class='s2'>51539607552 </span></td>
+<td><span class='s5'>0.00000000012190983993892997342086932431134209122043661067557410939165547834271901397817958184287679899746954872366931517378432756277219608864154084676071873439013814578810008899659458297578644652102792</span></td>
+</tr>
+<tr>
+<td>34</td>
+<td><span class='s1'>3.141592653589793238462<span class='red'>16</span> </span></td>
+<td><span class='s2'>103079215104 </span></td>
+<td><span class='s5'>0.00000000006095491996946498671046297192359877068545345171015976479731683080387882390963230448827617887470480541069715613284937281391527142769874265021378174567842463712478657447014329047907537025078812</span></td>
+</tr>
+<tr>
+<td>35</td>
+<td><span class='s1'>3.141592653589793238462<span class='red'>52</span> </span></td>
+<td><span class='s2'>206158430208 </span></td>
+<td><span class='s5'>0.00000000003047745998473249335523502468279035097713111976794487129248565177626429377675630894324491318143281681108283621034037740658494844040637391634904185368756479826080968237471660797772242533971580</span></td>
+</tr>
+<tr>
+<td>36</td>
+<td><span class='s1'>3.1415926535897932384626<span class='red'>13</span> </span></td>
+<td><span class='s2'>412316860416 </span></td>
+<td><span class='s5'>0.00000000001523872999236624667761795468151904619286610914234050926206938980743255828792757021971394828021509269854954204203807365348514101443729223110438242704353620510969922222720558589696914162834932</span></td>
+</tr>
+<tr>
+<td>37</td>
+<td><span class='s1'>3.1415926535897932384626<span class='red'>36</span> </span></td>
+<td><span class='s2'>824633720832 </span></td>
+<td><span class='s5'>0.00000000000761936499618312333880903263327500693447062322906813727064108287401977495862480364165191892572722821805378076342708109786024478510267128305685288129822216150408530005053668788474754596314193</span></td>
+</tr>
+<tr>
+<td>38</td>
+<td><span class='s1'>3.14159265358979323846264<span class='red'>15</span> </span></td>
+<td><span class='s2'>1649267441664 </span></td>
+<td><span class='s5'>0.00000000000380968249809156166940452322820193894699000769679011251019721704206004157069165212410810544026360243081562173175012380943710784819833158848148454305274178869725472055344941764738359510503432</span></td>
+</tr>
+<tr>
+<td>39</td>
+<td><span class='s1'>3.14159265358979323846264<span class='red'>29</span> </span></td>
+<td><span class='s2'>3298534883328 </span></td>
+<td><span class='s5'>0.00000000000190484124904578083470226247804652390846434085867764950648712663131010933239756397504390127793843615009932381929180666667653837973866688861742752372542199845768295329289064647703956013271496</span></td>
+</tr>
+<tr>
+<td>40</td>
+<td><span class='s1'>3.141592653589793238462643<span class='red'>26</span> </span></td>
+<td><span class='s2'>6597069766656 </span></td>
+<td><span class='s5'>0.00000000000095242062452289041735113134701645625860333755562416727738678225630409133726241388412271419693280728455731432240919779384123153580275368398924018623402760598689881472309873103129157256079637</span></td>
+</tr>
+<tr>
+<td>41</td>
+<td><span class='s1'>3.1415926535897932384626433<span class='red'>54</span> </span></td>
+<td><span class='s2'>13194139533312 </span></td>
+<td><span class='s5'>0.00000000000047621031226144520867556568700737741734806466859775202820253268876017605259802738752786993037186448547714104069276714403847492681351960293481403671057123207625030082320476025045525187921347</span></td>
+</tr>
+<tr>
+<td>42</td>
+<td><span class='s1'>3.1415926535897932384626433<span class='red'>76</span> </span></td>
+<td><span class='s2'>26388279066624 </span></td>
+<td><span class='s5'>0.00000000000023810515613072260433778284519108236967983182064708458072713526423819809929748745762233445722522915255220218907083199050851571707542444274694226267953634788865545023196916578383333271638065</span></td>
+</tr>
+<tr>
+<td>43</td>
+<td><span class='s1'>3.14159265358979323846264338<span class='red'>14</span> </span></td>
+<td><span class='s2'>52776558133248 </span></td>
+<td><span class='s5'>0.00000000000011905257806536130216889142280646539246564084611706836175233956662580323924238486502823822095273623016740503242823293473322752826943406712212347816633161124743887015182230112651127795772707</span></td>
+</tr>
+<tr>
+<td>44</td>
+<td><span class='s1'>3.14159265358979323846264338<span class='red'>28</span> </span></td>
+<td><span class='s2'>105553116266496 </span></td>
+<td><span class='s5'>0.00000000000005952628903268065108444571142959822218603604003272493981728309761137840677254857193124035843137902790456916465278946093378200973737232257810799457850600559768648334606507173483923226798148</span></td>
+</tr>
+<tr>
+<td>45</td>
+<td><span class='s1'>3.141592653589793238462643383<span class='red'>16</span> </span></td>
+<td><span class='s2'>211106232532992 </span></td>
+<td><span class='s5'>0.00000000000002976314451634032554222285571809480183716997213813631477682811379565938813807352206137928266371922361967513628494303350752813837220533755077556277267010508481067708258272280581697116368445</span></td>
+</tr>
+<tr>
+<td>46</td>
+<td><span class='s1'>3.1415926535897932384626433832<span class='red'>51</span> </span></td>
+<td><span class='s2'>422212465065984 </span></td>
+<td><span class='s5'>0.00000000000001488157225817016277111142785945936226160398008428988799695448379353411048669540675105529201156255393239241815105795960193162958466509541845372039556076088358306744001667409563608755116413</span></td>
+</tr>
+<tr>
+<td>47</td>
+<td><span class='s1'>3.14159265358979323846264338327<span class='red'>23</span> </span></td>
+<td><span class='s2'>844424930131968 </span></td>
+<td><span class='s5'>0.00000000000000744078612908508138555571392978117629867936429404766032454532982972879927442015100333573102539703125512303180592336739443426803028897653497323464198804132243445293300830649524734564338552</span></td>
+</tr>
+<tr>
+<td>48</td>
+<td><span class='s1'>3.14159265358979323846264338327<span class='red'>77</span> </span></td>
+<td><span class='s2'>1688849860263936 </span></td>
+<td><span class='s5'>0.00000000000000372039306454254069277785696489702504532435392851166970303119261182832676543366635866770056075491914594374169492690139868978298367458617935594850996354453930203928999116673294818087014542</span></td>
+</tr>
+<tr>
+<td>49</td>
+<td><span class='s1'>3.141592653589793238462643383279<span class='red'>05</span> </span></td>
+<td><span class='s2'>3377699720527872 </span></td>
+<td><span class='s5'>0.00000000000000186019653227127034638892848244931713466026093694181479411041279007664518388039250219394917520581289134362666072356238423046393393267507079270873999818256870264565851827569558246606719889</span></td>
+</tr>
+<tr>
+<td>50</td>
+<td><span class='s1'>3.141592653589793238462643383279<span class='red'>39</span> </span></td>
+<td><span class='s2'>6755399441055744 </span></td>
+<td><span class='s5'>0.00000000000000093009826613563517319446424122475914382989096505665488987955847187244503302737899350870943426865862471134189914127942916634993896055484923272330147659367044182796913164438902451505300070</span></td>
+</tr>
+<tr>
+<td>51</td>
+<td><span class='s2'>3.141592653589793238462643383279<span class='red'>47</span> </span></td>
+<td><span class='s3'>13510798882111488 </span></td>
+<td><span class='s5'>0.00000000000000046504913306781758659723212061239214397741554460154588154282324605029445339776664665126602561797118126889216645671298658718824327096087054775868599403253919720208550301571372348300608040</span></td>
+</tr>
+<tr>
+<td>52</td>
+<td><span class='s2'>3.141592653589793238462643383279<span class='red'>50</span> </span></td>
+<td><span class='s3'>27021597764222976 </span></td>
+<td><span class='s5'>0.00000000000000023252456653390879329861606030619764349651653005992524534679212430533767605152357040947956551476686121907768168532165192866105014965558860008759203488559386437922131721340234005270487190</span></td>
+</tr>
+<tr>
+<td>53</td>
+<td><span class='s2'>3.14159265358979323846264338327950<span class='red'>11</span> </span></td>
+<td><span class='s3'>54043195528445952 </span></td>
+<td><span class='s5'>0.00000000000000011626228326695439664930803015309901818673435974985666074531862481319050223365839744480599681889753061151021039333721394536374942994115768269838484630595034485522996445808917007449174018</span></td>
+</tr>
+<tr>
+<td>54</td>
+<td><span class='s2'>3.141592653589793238462643383279502<span class='red'>44</span> </span></td>
+<td><span class='s3'>108086391056891904 </span></td>
+<td><span class='s5'>0.00000000000000005813114163347719832465401507654953364817669171491508513164963273917601720652929341974206876005338536255726570022549748804281781239796629797911615377845161799814839230123476900245597338</span></td>
+</tr>
+<tr>
+<td>55</td>
+<td><span class='s2'>3.141592653589793238462643383279502<span class='red'>77</span> </span></td>
+<td><span class='s3'>216172782113783808 </span></td>
+<td><span class='s5'>0.00000000000000002906557081673859916232700753827476989343953483745588691069860641116109055396819036476750547363087511217529594767943500465379157613992458109310350412218037800653716796508005520240576783</span></td>
+</tr>
+<tr>
+<td>56</td>
+<td><span class='s2'>3.1415926535897932384626433832795028<span class='red'>57</span> </span></td>
+<td><span class='s3'>432345564227567616 </span></td>
+<td><span class='s5'>0.00000000000000001453278540836929958116350376913738533038866604122773649845852696077719571424363288354984560163404176381957147290806540633568741458332329570497135696625855744102793092493269403397306521</span></td>
+</tr>
+<tr>
+<td>57</td>
+<td><span class='s2'>3.1415926535897932384626433832795028<span class='red'>77</span> </span></td>
+<td><span class='s3'>864691128455135232 </span></td>
+<td><span class='s5'>0.00000000000000000726639270418464979058175188456869271315294534842634237961791644978817963657368349018018547073553645174721809397062791589612692380420980430418549727383863300796950010128713119835412810</span></td>
+</tr>
+<tr>
+<td>58</td>
+<td><span class='s2'>3.14159265358979323846264338327950288<span class='red'>25</span> </span></td>
+<td><span class='s3'>1729382256910270464 </span></td>
+<td><span class='s5'>0.00000000000000000363319635209232489529087594228434636257129921518973045610753984606903755555565090225823497728933861097425510012445275500660856570420314377959077737522021138499361073229058057856525305</span></td>
+</tr>
+<tr>
+<td>59</td>
+<td><span class='s2'>3.14159265358979323846264338327950288<span class='red'>38</span> </span></td>
+<td><span class='s3'>3458764513820540928 </span></td>
+<td><span class='s5'>0.00000000000000000181659817604616244764543797114217318203500292521693513634109262568138724540009302627880665664054547671442602629245985300233979583099822160020500500483475659543003887476852580099590637</span></td>
+</tr>
+<tr>
+<td>60</td>
+<td><span class='s2'>3.141592653589793238462643383279502884<span class='red'>09</span> </span></td>
+<td><span class='s3'>6917529027641081856 </span></td>
+<td><span class='s5'>0.00000000000000000090829908802308122382271898557108659111117062731122630670646165067155218116731953598635420518712225579467900141661189798523079951316477341015481355037440868192797508134947832305112068</span></td>
+</tr>
+<tr>
+<td>61</td>
+<td><span class='s2'>3.1415926535897932384626433832795028841<span class='red'>70</span> </span></td>
+<td><span class='s3'>13835058055282163712 </span></td>
+<td><span class='s5'>0.00000000000000000045414954401154061191135949278554329556729395924345799567022024256463341039252169509758470379152247370308692670281380402226420303760039400738209142733170889955014305024957720733537028</span></td>
+</tr>
+<tr>
+<td>62</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419<span class='red'>04</span> </span></td>
+<td><span class='s3'>27670116110564327424 </span></td>
+<td><span class='s5'>0.00000000000000000022707477200577030595567974639277164778511056032020960312473379843592387017238273841336013772018156620620139714636784838886552346958522729508544287095924157656559328774743942058403501</span></td>
+</tr>
+<tr>
+<td>63</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419<span class='red'>55</span> </span></td>
+<td><span class='s3'>55340232221128654848 </span></td>
+<td><span class='s5'>0.00000000000000000011353738600288515297783987319638582389273822774741487722356985886216283070820704775151719320297692305771229984585552789478670272471592185318112305923135816186725549723401189399465139</span></td>
+</tr>
+<tr>
+<td>64</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419<span class='red'>67</span> </span></td>
+<td><span class='s3'>110680464442257309696 </span></td>
+<td><span class='s5'>0.00000000000000000005676869300144257648891993659819291194639198232212119806943529938660652730685549751219967936668777898522258006789613584548518548947517399518980753460579735453010148010561666852518465</span></td>
+</tr>
+<tr>
+<td>65</td>
+<td><span class='s2'>3.141592653589793238462643383279502884197<span class='red'>06</span> </span></td>
+<td><span class='s3'>221360928884514619392 </span></td>
+<td><span class='s5'>0.00000000000000000002838434650072128824445996829909645597319884971711231896692394593774390264752174589247798884844188386097084317662800257999539949531820854021372973920212589123057484043038413386480875</span></td>
+</tr>
+<tr>
+<td>66</td>
+<td><span class='s2'>3.1415926535897932384626433832795028841971<span class='red'>43</span> </span></td>
+<td><span class='s3'>442721857769029238784 </span></td>
+<td><span class='s5'>0.00000000000000000001419217325036064412222998414954822798659978217806262447498775999942703119802262260178073225171594371672767039910395837746754883514554387355534428542490502843047419903699298900650460</span></td>
+</tr>
+<tr>
+<td>67</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716<span class='red'>28</span> </span></td>
+<td><span class='s3'>885443715538058477568 </span></td>
+<td><span class='s5'>0.00000000000000000000709608662518032206111499207477411399329993575396962036143460337853290058329403000825478551622790184696278207177431648889605252409000436176691963484486508085164556906087635528463600</span></td>
+</tr>
+<tr>
+<td>68</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716<span class='red'>78</span> </span></td>
+<td><span class='s3'>1770887431076116955136 </span></td>
+<td><span class='s5'>0.00000000000000000000354804331259016103055749603738705699664997346010209869620989211161887341468235484256112337447060013347246770025475017772545318040100499719527221982164346924474197203014536962384233</span></td>
+</tr>
+<tr>
+<td>69</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716<span class='red'>90</span> </span></td>
+<td><span class='s3'>3541774862152233910272 </span></td>
+<td><span class='s5'>0.00000000000000000000177402165629508051527874801869352849832498742794071041254151985860348959772059490108518983279739396677937494271519282335856564782606593038161921464824045057141901255243934791698939</span></td>
+</tr>
+<tr>
+<td>70</td>
+<td><span class='s2'>3.141592653589793238462643383279502884197169<span class='red'>30</span> </span></td>
+<td><span class='s3'>7083549724304467820544 </span></td>
+<td><span class='s5'>0.00000000000000000000088701082814754025763937400934676424916249380120656283932533165465100141015772463551818630392263099429490062385425702670489272777099615392845908043683470262540481687443753631387209</span></td>
+</tr>
+<tr>
+<td>71</td>
+<td><span class='s2'>3.1415926535897932384626433832795028841971693<span class='red'>74</span> </span></td>
+<td><span class='s3'>14167099448608935641088 </span></td>
+<td><span class='s5'>0.00000000000000000000044350541407377012881968700467338212458124691150780737379448729299415778149104071588104247756832825705434634711181057142482354004448463241253905615654192091803661550138349834925883</span></td>
+</tr>
+<tr>
+<td>72</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716939<span class='red'>29</span> </span></td>
+<td><span class='s3'>28334198897217871282176 </span></td>
+<td><span class='s5'>0.00000000000000000000022175270703688506440984350233669106229062345711696943116372132970566102529704265770576491705274450503252719017657177675877691511013902854190096207806219192633888747260021845335379</span></td>
+</tr>
+<tr>
+<td>73</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716939<span class='red'>78</span> </span></td>
+<td><span class='s3'>56668397794435742564352 </span></td>
+<td><span class='s5'>0.00000000000000000000011087635351844253220492175116834553114531172872886793361517037525390327946746161632353791870268554275183884754782486331603778813068233615174199226884022215799223710907726838045600</span></td>
+</tr>
+<tr>
+<td>74</td>
+<td><span class='s2'>3.14159265358979323846264338327950288419716939<span class='red'>90</span> </span></td>
+<td><span class='s3'>113336795588871485128704 </span></td>
+<td><span class='s5'>0.00000000000000000000005543817675922126610246087558417276557265586438573186906174890142708573558609834409560089188565508087950401784329091801122048811978107497632868024621903259103783240092289033277638</span></td>
+</tr>
+<tr>
+<td>75</td>
+<td><span class='s2'>3.141592653589793238462643383279502884197169399<span class='red'>27</span> </span></td>
+<td><span class='s3'>226673591177742970257408 </span></td>
+<td><span class='s5'>0.00000000000000000000002771908837961063305123043779208638278632793219552817231264491493855962977459511403952943751000011500970438591506577337745170668333578535599951979023667877352456919294462872091966</span></td>
+</tr>
+<tr>
+<td>76</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993<span class='red'>50</span> </span></td>
+<td><span class='s4'>453347182355485940514816 </span></td>
+<td><span class='s5'>0.00000000000000000000001385954418980531652561521889604319139316396609809686587904376549740691013499079976873084270090861482240887454217130109700888814980605677101995723614993166563461344604800739186474</span></td>
+</tr>
+<tr>
+<td>77</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993<span class='red'>69</span> </span></td>
+<td><span class='s4'>906694364710971881029632 </span></td>
+<td><span class='s5'>0.00000000000000000000000692977209490265826280760944802159569658198304909003040486204625221934197345705522798618684369325162265879229605485469678366255030178352556066002693178577047232466989525115469101</span></td>
+</tr>
+<tr>
+<td>78</td>
+<td><span class='s3'>3.14159265358979323846264338327950288419716939937<span class='red'>35</span> </span></td>
+<td><span class='s4'>1813388729421943762059264 </span></td>
+<td><span class='s5'>0.00000000000000000000000346488604745132913140380472401079784829099152455021488559854356404915684997373453194568910850150554234743333323887169027810355721265754992488889043086125818785113193573919393452</span></td>
+</tr>
+<tr>
+<td>79</td>
+<td><span class='s3'>3.14159265358979323846264338327950288419716939937<span class='red'>47</span> </span></td>
+<td><span class='s4'>3626777458843887524118528 </span></td>
+<td><span class='s5'>0.00000000000000000000000173244302372566456570190236200539892414549576227575740319521183676701415789251813071691901508261310331929140249243806985456612550895329193795879589953572603154100824544871464065</span></td>
+</tr>
+<tr>
+<td>80</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375<span class='red'>01</span> </span></td>
+<td><span class='s4'>7253554917687775048237056 </span></td>
+<td><span class='s5'>0.00000000000000000000000086622151186283228285095118100269946207274788113795994664709842522631154555946542345146881514528910460810254597164342807858892835620795414037008213423109321081194546364822645740</span></td>
+</tr>
+<tr>
+<td>81</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375<span class='red'>09</span> </span></td>
+<td><span class='s4'>14507109835375550096474112 </span></td>
+<td><span class='s5'>0.00000000000000000000000043311075593141614142547559050134973103637394056899012895473577596850633110638350648736057102314237177980400366216536052889102776078611695252923253860326700438854434523571599969</span></td>
+</tr>
+<tr>
+<td>82</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375<span class='red'>10</span> </span></td>
+<td><span class='s4'>29014219670751100192948224 </span></td>
+<td><span class='s5'>0.00000000000000000000000021655537796570807071273779525067486551818697028449633393126620840367198534402310258888355594288341333553345644955268599269768840268037991033640132662622651219876868571667511013</span></td>
+</tr>
+<tr>
+<td>83</td>
+<td><span class='s3'>3.14159265358979323846264338327950288419716939937510<span class='red'>43</span> </span></td>
+<td><span class='s4'>58028439341502200385896448 </span></td>
+<td><span class='s5'>0.00000000000000000000000010827768898285403535636889762533743275909348514224832564737039425426334514586546996259218677535573509881948390470781402228825989395273182032651008058458132368741640505896617496</span></td>
+</tr>
+<tr>
+<td>84</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105<span class='red'>44</span> </span></td>
+<td><span class='s4'>116056878683004400771792896 </span></td>
+<td><span class='s5'>0.00000000000000000000000005413884449142701767818444881266871637954674257112418265890235838368509163216447481481489448816712110330223715773980089907117859221939072724239797636078782671271242814072375971</span></td>
+</tr>
+<tr>
+<td>85</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105<span class='red'>73</span> </span></td>
+<td><span class='s4'>232113757366008801543585792 </span></td>
+<td><span class='s5'>0.00000000000000000000000002706942224571350883909222440633435818977337128556209380885332434891172319848620488659729738164471724588802112783671406082911480437965024962904042577987603085039013447608945929</span></td>
+</tr>
+<tr>
+<td>86</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105<span class='red'>80</span> </span></td>
+<td><span class='s4'>464227514732017603087171584 </span></td>
+<td><span class='s5'>0.00000000000000000000000001353471112285675441954611220316717909488668564278104721435193031908950877204359837819737995801750320972363402779838300917945572908652501006153003542085374325991604412869361661</span></td>
+</tr>
+<tr>
+<td>87</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058<span class='red'>15</span> </span></td>
+<td><span class='s4'>928455029464035206174343168 </span></td>
+<td><span class='s5'>0.00000000000000000000000000676735556142837720977305610158358954744334282139052364591662367762396028262186118096103138740814467820927027954854394810262789410419235082714217186525080075111982148174778001</span></td>
+</tr>
+<tr>
+<td>88</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058<span class='red'>19</span> </span></td>
+<td><span class='s4'>1856910058928070412348686336 </span></td>
+<td><span class='s5'>0.00000000000000000000000000338367778071418860488652805079179477372167141069526182780089415357188087838593833946330836975399647327306680837620194187065419258155122989250888415010712734684797608033073625</span></td>
+</tr>
+<tr>
+<td>89</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105820<span class='red'>60</span> </span></td>
+<td><span class='s4'>3713820117856140824697372672 </span></td>
+<td><span class='s5'>0.00000000000000000000000000169183889035709430244326402539589738686083570534763091450576986613092803132734513835450326938323875340758736308820974542462674391428058499844637478820265381488838988104029032</span></td>
+</tr>
+<tr>
+<td>90</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105820<span class='red'>88</span> </span></td>
+<td><span class='s4'>7427640235712281649394745344 </span></td>
+<td><span class='s5'>0.00000000000000000000000000084591944517854715122163201269794869343041785267381545732855028173358746468046956525510777025489944130017542641677057978947214406421351026331982610650978815836832879531168973</span></td>
+</tr>
+<tr>
+<td>91</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058209<span class='red'>52</span> </span></td>
+<td><span class='s4'>14855280471424563298789490688 </span></td>
+<td><span class='s5'>0.00000000000000000000000000042295972258927357561081600634897434671520892633690772867373330945030916346733440713728590207285972872463543131778575672519330342530762911803363811511058158186027795432290378</span></td>
+</tr>
+<tr>
+<td>92</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058209<span class='red'>69</span> </span></td>
+<td><span class='s4'>29710560942849126597578981376 </span></td>
+<td><span class='s5'>0.00000000000000000000000000021147986129463678780540800317448717335760446316845386433804892579809401062455465663235945315460611537163618042257785088658544266429819636249671110253420808746597446520573378</span></td>
+</tr>
+<tr>
+<td>93</td>
+<td><span class='s3'>3.14159265358979323846264338327950288419716939937510582097<span class='red'>35</span> </span></td>
+<td><span class='s4'>59421121885698253195157962752 </span></td>
+<td><span class='s5'>0.00000000000000000000000000010573993064731839390270400158724358667880223158422693216917224678316443392363825994914428934207508906198289830674985682660949635821384192403281631922844526642413278832413310</span></td>
+</tr>
+<tr>
+<td>94</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105820974<span class='red'>58</span> </span></td>
+<td><span class='s4'>118842243771396506390315925504 </span></td>
+<td><span class='s5'>0.00000000000000000000000000005286996532365919695135200079362179333940111579211346608460459637709689553823924642869271501663404845301205016530755451802616306227467630540663683104068369613595989640792411</span></td>
+</tr>
+<tr>
+<td>95</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105820974<span class='red'>85</span> </span></td>
+<td><span class='s4'>237684487542793012780631851008 </span></td>
+<td><span class='s5'>0.00000000000000000000000000002643498266182959847567600039681089666970055789605673304230460731173778259117213777111142880151658721675860020914535582465972145418673451986278984778163602362579726077072294</span></td>
+</tr>
+<tr>
+<td>96</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058209749<span class='red'>22</span> </span></td>
+<td><span class='s4'>475368975085586025561263702016 </span></td>
+<td><span class='s5'>0.00000000000000000000000000001321749133091479923783800019840544833485027894802836652115259229626755814834263320515134831240823898216087199538412524249058018818246139798994424707318178321345945256457982</span></td>
+</tr>
+<tr>
+<td>97</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058209749<span class='red'>39</span> </span></td>
+<td><span class='s4'>950737950171172051122527404032 </span></td>
+<td><span class='s5'>0.00000000000000000000000000000660874566545739961891900009920272416742513947401418326057633222818361243076588714252512839516036266280313248404349353781084532268698995350740374253514900417876053020966349</span></td>
+</tr>
+<tr>
+<td>98</td>
+<td><span class='s3'>3.14159265358979323846264338327950288419716939937510582097494<span class='red'>32</span> </span></td>
+<td><span class='s4'>1901475900342344102245054808064</span></td>
+<td><span class='s5'>0.00000000000000000000000000000330437283272869980945950004960136208371256973700709163028817062409803538495726488875624597744971172786690330281567563348535035541670308629447817987552336482887802186116224</span></td>
+</tr>
+<tr>
+<td>99</td>
+<td><span class='s3'>3.141592653589793238462643383279502884197169399375105820974944<span class='red'>23</span> </span></td>
+<td><span class='s4'>3802951800684688204490109616128</span></td>
+<td><span class='s5'>0.00000000000000000000000000000165218641636434990472975002480068104185628486850354581514408587579979633867542260906483321120854716349161878400707892481545467979558812567504614518139663047436054484489897</span></td>
+</tr>
+<tr>
+<td>100</td>
+<td><span class='s3'>3.1415926535897932384626433832795028841971693993751058209749445<span class='red'>03</span></span></td>
+<td><span class='s4'>7605903601369376408980219232256</span></td>
+<td><span class='s5'>0.00000000000000000000000000000082609320818217495236487501240034052092814243425177290757204300836874550011231007511825538341473499419058028357844460091683379454395130967959953704622673261060242184507762</span></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>在圆的外切正六边形上不断向内收缩也可以用来计算 $\pi$，与内接多边形的逻辑基本一致，但值是从大往小推的，和内接多边形共同构成了对 $\pi$ 的双向逼近。</p>
+<ul>
+<li>外接六边形的边长由 ${L_0}^2 &#x3D; {\frac{L_0}{2}}^2+r^2$ 得到，即 ${L_0} &#x3D; \frac{2}{\sqrt{3}}$。</li>
+<li>边长递推公式由半角公式推得：<br>$$t_n&#x3D;\frac{2t_{n-1}}{1+\sqrt{1+t^2_n}}$$<br>两者相夹：<br>$$ 3\cdot2^n\cdot l_n \lt \pi \lt 3\cdot2^n\cdot t_n$$</li>
+</ul>
+</li>
+</ol>
+<h3 id="无穷级数"><a href="#无穷级数" class="headerlink" title="无穷级数"></a>无穷级数</h3><p>割圆是个效率很低的算法。当然，最初除了割圆别无他法，自然无所谓效率问题。直到有一天，人们发现了无穷级数：</p>
+<p>$$\frac{\pi}{4} &#x3D; 1 -\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}-\cdots &#x3D; \sum_{n&#x3D;1}^\infty\frac{(-1)^{n-1}}{2n-1}$$</p>
+<p>这个公式称为莱布尼茨级数，最早由印度数学家马德哈瓦发现并应用。</p>
+<blockquote>
+<p>※ 你没看错，真正的先驱往往成为无名的先烈。这个公式据称是莱布尼茨独立重新发现的。</p>
+</blockquote>
+<p>严格来说，莱布尼茨级数的计算效率并不高，甚至比割圆法还低，每增加一位精度需要多计算 10 项。但公式本身启迪了人们，计算 $\pi$ 还有割圆术不断乘方开方以外的其它方法。同时，级数更方便并行计算，不受递推公式约束，每一项的计算也更简单，因此具有重大的历史意义。随后越来越多的 $\pi$ 级数被研究出来：</p>
+<ul>
+<li><p>马德哈瓦级数，每项精度约 1.4 位：</p>
+<p>$$\pi &#x3D; \sqrt{12}\sum_{k&#x3D;0}^\infty\frac{(-1)^k}{3^k(2k+1)}$$</p>
+<blockquote>
+<p>最早实用于级数法计算 $\pi$ 的公式。</p>
+</blockquote>
+</li>
+<li><p>欧拉级数：</p>
+<p>$$\frac{\pi^2}{6} &#x3D; \sum^{\infty}_{k&#x3D;1}\frac{1}{k^2}$$</p>
+<blockquote>
+<p>任何一本高数书里都会有的公式。</p>
+</blockquote>
+</li>
+<li><p>牛顿级数：</p>
+<p>$$\pi&#x3D;24\left(\frac{\sqrt{3}}{8}+\sum^{\infty}_{k&#x3D;0}\frac{(2k)!}{(k!)^2(2k+1)16^{k+1}}\right)$$</p>
+<blockquote>
+<p>牛爵爷是大英帝国的雄狮。</p>
+</blockquote>
+</li>
+<li><p>反正弦函数泰勒展开</p>
+<p>$$\frac{\pi}{2} &#x3D; 1 + \frac{1}{3} + \frac{1}{3}\frac{2}{5}+\frac{1}{3}\frac{2}{5}\frac{3}{7}+\cdots &#x3D; \sum_{k&#x3D;0}^{\infty}\frac{2^k(k!)^2}{(2k+1)!}$$</p>
+</li>
+<li><p>Machin 公式：</p>
+<p>\begin{equation*}<br>\begin{cases}<br>\frac{\pi}{4}&#x3D;4arctan\left(\frac{1}{5}\right)-arctan\left(\frac{1}{239}\right) \\<br>arctan(x)&#x3D;\sum^{\infty}_{k&#x3D;0}\frac{(-1)^kx^{2k+1}}{2k+1}<br>\end{cases}<br>\end{equation*}</p>
+</li>
+<li><p>高斯-勒让德算法：</p>
+<p>\begin{equation*}<br>\begin{cases}<br>\pi \approx \frac{(a_n+b_n)^2}{4(1-\sum_{k&#x3D;0}^{\infty}2^k(a_k-b_k)^2)} \\<br>a_{n+1}&#x3D;\frac{a_n+b_n}{2} \\<br>b_{n+1}&#x3D;\sqrt{a_nb_n}<br>\end{cases}<br>\end{equation*}</p>
+<blockquote>
+<p>计算机出现前夜的成果。</p>
+</blockquote>
+</li>
+<li><p>拉马努金级数：</p>
+<p>$$\frac{1}{\pi}&#x3D;\frac{2\sqrt{2}}{99^2}\sum^{\infty}_{k&#x3D;0}\frac{(4k)!(1103+26390k)}{(k!)^4\cdot396^{4k}}$$</p>
+<blockquote>
+<p>来自娜玛卡尔女神梦中的启示。</p>
+</blockquote>
+</li>
+<li><p>Chudnovsky 级数：<br>$$\frac{1}{\pi}&#x3D;\frac{12}{640320^3}\sum^{\infty}_{k&#x3D;0}\frac{(-1)^k(6k)!}{(k!)^3(3k)!}\cdot\frac{13591409k+545140134}{640320^{3k}}$$</p>
+<blockquote>
+<p>目前最高效的级数，每项可以推进 14 位精度。</p>
+</blockquote>
+</li>
+<li><p>BBP 级数：</p>
+<p>$$\pi&#x3D;\sum^{\infty}_{k&#x3D;0}\frac{1}{16^k}\left(\frac{4}{8k+1}-\frac{2}{8k+4}-\frac{1}{8k+5}-\frac{1}{8k+6}\right)$$</p>
+<blockquote>
+<p>这个级数具有革命性的意义：可以直接计算圆周率 16 进制（或 2 进制）下任意一位的值，而不需要从头开始逐项推进。因此尤其适合于分布式。</p>
+</blockquote>
+</li>
+</ul>
+<p>随着计算机的应用，单项是否易计算不出错已经不再是问题，计算效率变为了各类公式中最重要的考核标准。目前应用得最多的就是 Chudnovsky 级数和 BBP 级数。</p>
+<h3 id="一些豆知识"><a href="#一些豆知识" class="headerlink" title="一些豆知识"></a>一些豆知识</h3><ul>
+<li><p>祖冲之与刘徽</p>
+<p>虽然课本里多提到祖冲之，但实际上割圆法是魏晋时期刘徽提出的。祖冲之据推测应该是在计算方法上有技术创新，同时明确提出了疏率 22&#x2F;7 和密率 355&#x2F;113。</p>
+</li>
+<li><p>东西方割圆</p>
+<p>前文演示的是通过内接圆和外切圆逼近 $\pi$ 的方法，但实际上刘徽的割圆术是使用内接多边形的面积来计算的，因为他先证明了 $圆面积 S &#x3D; \frac{圆周 R}{2}\times半径 r$，面积计算有助于减少迭代时的计算量。纯靠线长计算是阿基米德干的。</p>
+</li>
+<li><p>割圆术&#x2F;法的效率：</p>
+<p>$$k\approx2nlog_{10}2+log_{10}36\approx0.6n+1.56$$</p>
+</li>
+<li><p>椭圆周长公式为：</p>
+<p>$$C&#x3D;4a\int_{0}^{\pi&#x2F;2}\sqrt{1-{(1-\frac{b^2}{a^2})}sin^2\theta}\ d\theta$$</p>
+<p>$C$ 与其长轴 $a$ 短轴 $b$ 有关，但并不存在固定的比值。该积分没有简化形式，需要通过数值方法计算。但拉马努金提出了两个近似公式可以简化计算：</p>
+<p>$$(1), C \approx \pi\left[3(a+b)-\sqrt{(3a+b)(a+3b)}\right]$$</p>
+<p>$$(2), C \approx \pi(a+b)\left[1+\frac{3h}{10+\sqrt{4-3h}}\right], h &#x3D; \frac{(a-b)^2}{(a+b)^2}$$</p>
+<p>前者最大误差 0.05%，后者最大误差 0.01%。</p>
+</li>
+<li><p>椭圆面积公式为：</p>
+<p>$$S&#x3D;\pi ab$$</p>
+<p>面积与周长不同，面积是二维度量，在几何变换下的缩放是线性的，对形状的局部变形不敏感，因此公式就是如此简单直接。</p>
+<p>而周长是一维弧长的积分，依赖曲线每一点的曲率变化，因此需要专门的椭圆积分计算。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9C%86%E5%91%A8%E7%8E%87/" rel="tag"># 圆周率</a>
+              <a href="/tags/%E5%89%B2%E5%9C%86/" rel="tag"># 割圆</a>
+              <a href="/tags/%E6%97%A0%E7%A9%B7%E7%BA%A7%E6%95%B0/" rel="tag"># 无穷级数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/1-over-n-and-n-1-recurring%20decimal/" rel="prev" title="1/n 与 n-1 位循环节">
+                  <i class="fa fa-angle-left"></i> 1/n 与 n-1 位循环节
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/lonely-primes-define-and-algo/" rel="next" title="『孤独素数』的定义与搜索算法">
+                  『孤独素数』的定义与搜索算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

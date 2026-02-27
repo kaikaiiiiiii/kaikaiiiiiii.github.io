@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="PT 站大多使用了 nexusPHP 的方案，因此其 Seeding Bonus，通常称为魔力点数，基本也使用了相同的公式进行计算： \begin{align*}&amp;A &#x3D; \sum_i\left( 1-10^{ -\frac{T_i}{T_0} } \right) \cdot S_i \cdot \left( 1+\sqrt2 \cdot 10^{ -\frac{N_i-1}{N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PT 站中的做种公式（魔力值计算）分析">
+<meta property="og:url" content="https://www.kaikai.men/formula-seeding-pt/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="PT 站大多使用了 nexusPHP 的方案，因此其 Seeding Bonus，通常称为魔力点数，基本也使用了相同的公式进行计算： \begin{align*}&amp;A &#x3D; \sum_i\left( 1-10^{ -\frac{T_i}{T_0} } \right) \cdot S_i \cdot \left( 1+\sqrt2 \cdot 10^{ -\frac{N_i-1}{N">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/GeoGebra_arctan_curve.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/GeoGebra_time_factor.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/GeoGebra_seed_factor.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/GeoGebra_total_seed_bonus.png">
+<meta property="article:published_time" content="2024-02-19T15:35:40.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="PT">
+<meta property="article:tag" content="魔力值公式">
+<meta property="article:tag" content="Seeding Bonus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2024/02/GeoGebra_arctan_curve.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/formula-seeding-pt/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/formula-seeding-pt/","path":"/formula-seeding-pt/","title":"PT 站中的做种公式（魔力值计算）分析"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PT 站中的做种公式（魔力值计算）分析 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/formula-seeding-pt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PT 站中的做种公式（魔力值计算）分析 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PT 站中的做种公式（魔力值计算）分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-19 15:35:40" itemprop="dateCreated datePublished" datetime="2024-02-19T15:35:40Z">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>PT 站大多使用了 nexusPHP 的方案，因此其 Seeding Bonus，通常称为魔力点数，基本也使用了相同的公式进行计算：</p>
+<p>\begin{align*}<br>&amp;A &#x3D; \sum_i\left( 1-10^{ -\frac{T_i}{T_0} } \right) \cdot S_i \cdot \left( 1+\sqrt2 \cdot 10^{ -\frac{N_i-1}{N_0-1} } \right) \\<br>&amp;B &#x3D; B_0 \cdot \frac{2}{\pi}arctan\left( \frac{A}{L} \right) \\<br>\end{align*}</p>
+<p>其中：</p>
+<ul>
+<li>积分每小时计算并发放一次，后文不再赘述。</li>
+<li>$S_i$ 为第 i 个种子的大小，单位是 GB</li>
+<li>$T_i$ 为第 i 个种子发布起到现在经过的时间，单位为周，$T_0$ 为参数，$T_0 &#x3D; 4$</li>
+<li>$N_i$ 为第 i 个种子当前的做种人数，$N_0$ 为参数，$N_0 &#x3D; 7$</li>
+<li>$L$ 为参数，$L &#x3D; 300$，$B_0$ 为参数，$B_0 &#x3D; 50$，不同站点有时会在 $B_0$ 和 $L$ 上有所调整。</li>
+<li>$B$ 为每小时用户获得的点数，由于 $arctan$ 函数值有上限，因此 $B$ 恒小于 $B_0$</li>
+</ul>
+<p>可以看到，对于 A，实质上是对每个种子的体积进行了加权求和，两个系数分别与时间和做种人数有关，实质上还是某种『有效做种体积』。因此先分析第二段公式，使用 Geogebra 绘制函数 $\frac{2}{\pi} \cdot arctan\left( \frac{A}{L} \right)$ 图像并取若干个样点：</p>
+<p><img src="/../attach/2024/02/GeoGebra_arctan_curve.png" loading="lazy"></p>
+<p>函数图像是个有上限、增幅递减的增函数，在有效做种体积为 200GB 时，可以得到 $0.37B_0$ 的魔力值，在 1000GB 时为 $0.81B_0$。以下列举一些计算结果：</p>
+<table>
+<thead>
+<tr>
+<th align="right">加权体积</th>
+<th>上限比</th>
+<th align="right">加权体积</th>
+<th>上限比</th>
+<th align="right">加权体积</th>
+<th>上限比</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">10 GB</td>
+<td>0.0212 $B_0$</td>
+<td align="right">1 TB</td>
+<td>0.8186 $B_0$</td>
+<td align="right">15 TB</td>
+<td>0.9876 $B_0$</td>
+</tr>
+<tr>
+<td align="right">25 GB</td>
+<td>0.0529 $B_0$</td>
+<td align="right">1.5 TB</td>
+<td>0.8772 $B_0$</td>
+<td align="right">20 TB</td>
+<td>0.9907 $B_0$</td>
+</tr>
+<tr>
+<td align="right">50 GB</td>
+<td>0.1051 $B_0$</td>
+<td align="right">2 TB</td>
+<td>0.9074 $B_0$</td>
+<td align="right">25 TB</td>
+<td>0.9925 $B_0$</td>
+</tr>
+<tr>
+<td align="right">75 GB</td>
+<td>0.1560 $B_0$</td>
+<td align="right">2.5 TB</td>
+<td>0.9257 $B_0$</td>
+<td align="right">30 TB</td>
+<td>0.9938 $B_0$</td>
+</tr>
+<tr>
+<td align="right">100 GB</td>
+<td>0.2048 $B_0$</td>
+<td align="right">3 TB</td>
+<td>0.9380 $B_0$</td>
+<td align="right">35 TB</td>
+<td>0.9947 $B_0$</td>
+</tr>
+<tr>
+<td align="right">200 GB</td>
+<td>0.3743 $B_0$</td>
+<td align="right">3.5 TB</td>
+<td>0.9468 $B_0$</td>
+<td align="right">40 TB</td>
+<td>0.9953 $B_0$</td>
+</tr>
+<tr>
+<td align="right">300 GB</td>
+<td>0.5 $B_0$</td>
+<td align="right">4 TB</td>
+<td>0.9535 $B_0$</td>
+<td align="right">45 TB</td>
+<td>0.9959 $B_0$</td>
+</tr>
+<tr>
+<td align="right">400 GB</td>
+<td>0.5903 $B_0$</td>
+<td align="right">4.5 TB</td>
+<td>0.9586 $B_0$</td>
+<td align="right">50 TB</td>
+<td>0.9963 $B_0$</td>
+</tr>
+<tr>
+<td align="right">500 GB</td>
+<td>0.6560 $B_0$</td>
+<td align="right">5 TB</td>
+<td>0.9627 $B_0$</td>
+<td align="right">55 TB</td>
+<td>0.9966 $B_0$</td>
+</tr>
+<tr>
+<td align="right">600 GB</td>
+<td>0.7048 $B_0$</td>
+<td align="right">6 TB</td>
+<td>0.9689 $B_0$</td>
+<td align="right">60 TB</td>
+<td>0.9969 $B_0$</td>
+</tr>
+<tr>
+<td align="right">700 GB</td>
+<td>0.7422 $B_0$</td>
+<td align="right">7 TB</td>
+<td>0.9734 $B_0$</td>
+<td align="right">70 TB</td>
+<td>0.9973 $B_0$</td>
+</tr>
+<tr>
+<td align="right">800 GB</td>
+<td>0.7716 $B_0$</td>
+<td align="right">8 TB</td>
+<td>0.9767 $B_0$</td>
+<td align="right">80 TB</td>
+<td>0.9977 $B_0$</td>
+</tr>
+<tr>
+<td align="right">900 GB</td>
+<td>0.7952 $B_0$</td>
+<td align="right">9 TB</td>
+<td>0.9793 $B_0$</td>
+<td align="right">90 TB</td>
+<td>0.9979 $B_0$</td>
+</tr>
+<tr>
+<td align="right">1000 GB</td>
+<td>0.8145 $B_0$</td>
+<td align="right">10 TB</td>
+<td>0.9814 $B_0$</td>
+<td align="right">100 TB</td>
+<td>0.9981 $B_0$</td>
+</tr>
+</tbody></table>
+<p>如果要达到特定的目标上限比，几个档位如下：</p>
+<table>
+<thead>
+<tr>
+<th align="right">上限比</th>
+<th>加权体积</th>
+<th align="right">上限比</th>
+<th>加权体积</th>
+<th>上限比</th>
+<th>加权体积</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">0.1 $B_0$</td>
+<td>48 GB</td>
+<td align="right">0.91 $B_0$</td>
+<td>2108 GB (2.06 TB)</td>
+<td>0.991 $B_0$</td>
+<td>21220 GB (20.72 TB)</td>
+</tr>
+<tr>
+<td align="right">0.2 $B_0$</td>
+<td>98 GB</td>
+<td align="right">0.92 $B_0$</td>
+<td>2375 GB (2.32 TB)</td>
+<td>0.992 $B_0$</td>
+<td>23872 GB (23.31 TB)</td>
+</tr>
+<tr>
+<td align="right">0.3 $B_0$</td>
+<td>153 GB</td>
+<td align="right">0.93 $B_0$</td>
+<td>2718 GB (2.65 TB)</td>
+<td>0.993 $B_0$</td>
+<td>27283 GB (26.64 TB)</td>
+</tr>
+<tr>
+<td align="right">0.4 $B_0$</td>
+<td>218 GB</td>
+<td align="right">0.94 $B_0$</td>
+<td>3174 GB (3.10 TB)</td>
+<td>0.994 $B_0$</td>
+<td>31831 GB (31.08 TB)</td>
+</tr>
+<tr>
+<td align="right">0.5 $B_0$</td>
+<td>300 GB</td>
+<td align="right">0.95 $B_0$</td>
+<td>3812 GB (3.72 TB)</td>
+<td>0.995 $B_0$</td>
+<td>38197 GB (37.30 TB)</td>
+</tr>
+<tr>
+<td align="right">0.6 $B_0$</td>
+<td>413 GB</td>
+<td align="right">0.96 $B_0$</td>
+<td>4769 GB (4.66 TB)</td>
+<td>0.996 $B_0$</td>
+<td>47746 GB (46.63 TB)</td>
+</tr>
+<tr>
+<td align="right">0.7 $B_0$</td>
+<td>589 GB</td>
+<td align="right">0.97 $B_0$</td>
+<td>6362 GB (6.21 TB)</td>
+<td>0.997 $B_0$</td>
+<td>63662 GB (62.17 TB)</td>
+</tr>
+<tr>
+<td align="right">0.8 $B_0$</td>
+<td>924 GB</td>
+<td align="right">0.98 $B_0$</td>
+<td>9547 GB (9.32 TB)</td>
+<td>0.998 $B_0$</td>
+<td>95493 GB (93.25 TB)</td>
+</tr>
+<tr>
+<td align="right">0.9 $B_0$</td>
+<td>1895 GB</td>
+<td align="right">0.99 $B_0$</td>
+<td>19098 GB (18.65 TB)</td>
+<td>0.999 $B_0$</td>
+<td>190986 GB (186.51 TB)</td>
+</tr>
+</tbody></table>
+<p>200 GB 以下大致可视为线性增长，2 TB 时可以达到 90% 上限分数，更高的分值需要极大的硬盘空间，逐渐不甚合理了。$L$ 参数的变化会<strong>等比例地</strong>影响上表中的加权体积数值。</p>
+<hr>
+<p>下面来研究两个系数的影响，这两个系数实现了『实际做种体积』$\rightarrow$『有效做种体积』之间的换算。首先是时间系数，$f(T_i) &#x3D; \left(1-10^{ -\frac{T_i}{T_0}}\right)$，由于 nexusPHP 本身对该分值是基于小数的，且『周』的展示不甚直观，这里直接改用『天』作为单位，换算 $T_0 &#x3D; 28$，其图像为：</p>
+<p><img src="/../attach/2024/02/GeoGebra_time_factor.png" loading="lazy"></p>
+<p>显然这也是和 arctan 一样的有上限、增幅递减的增函数，但增幅比 arctan 要大得多，靠近上限十分容易，也就是说到达 0.999 或更高值是个可行的目标。以下列举一些计算结果：</p>
+<table>
+<thead>
+<tr>
+<th align="right">时间</th>
+<th>系数</th>
+<th align="right">时间</th>
+<th>系数</th>
+<th align="right">时间</th>
+<th>系数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1 小时</td>
+<td>0.0034</td>
+<td align="right">2 天</td>
+<td>0.1517</td>
+<td align="right">9 天</td>
+<td>0.5229</td>
+</tr>
+<tr>
+<td align="right">2 小时</td>
+<td>0.0068</td>
+<td align="right">3 天</td>
+<td>0.2186</td>
+<td align="right">15 天</td>
+<td>0.7087</td>
+</tr>
+<tr>
+<td align="right">3 小时</td>
+<td>0.0102</td>
+<td align="right">4 天</td>
+<td>0.2803</td>
+<td align="right">28 天（4 周）</td>
+<td>0.9</td>
+</tr>
+<tr>
+<td align="right">6 小时</td>
+<td>0.0203</td>
+<td align="right">5 天</td>
+<td>0.3371</td>
+<td align="right">56 天（8 周）</td>
+<td>0.99</td>
+</tr>
+<tr>
+<td align="right">12 小时</td>
+<td>0.0403</td>
+<td align="right">6 天</td>
+<td>0.3895</td>
+<td align="right">84 天（12 周）</td>
+<td>0.999</td>
+</tr>
+<tr>
+<td align="right">24 小时</td>
+<td>0.0789</td>
+<td align="right">7 天</td>
+<td>0.4377</td>
+<td align="right">112 天（16 周）</td>
+<td>0.9999</td>
+</tr>
+</tbody></table>
+<p>因为是 10 的幂运算，计算分段明显。每 28 天小数点后多一位 9，在寻找 free 种子攒积分时，选时间大于三个月 (&gt;0.999) 的就行，『实际做种体积』与『有效做种体积』几乎一致。</p>
+<p>最后是做种人数系数，$f(N_i) &#x3D; \left(1+\sqrt2 \cdot 10^{ -\frac{N_i-1}{N_0-1}}\right)$，在其定义域内这是个有上下限的减函数，其图像为：</p>
+<p><img src="/../attach/2024/02/GeoGebra_seed_factor.png" loading="lazy"></p>
+<p>与前两个系数不同，$N_i$ 做种人数只能取正整数，因此其图像是离散的。以下列举一些计算结果：</p>
+<table>
+<thead>
+<tr>
+<th align="right">做种人数</th>
+<th>系数</th>
+<th align="right">做种人数</th>
+<th>系数</th>
+<th align="right">做种人数</th>
+<th>系数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>2.4142</td>
+<td align="right">6</td>
+<td>1.2076</td>
+<td align="right">12</td>
+<td>1.0208</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>1.9635</td>
+<td align="right">7</td>
+<td>1.1414</td>
+<td align="right">14</td>
+<td>1.0100</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>1.6564</td>
+<td align="right">8</td>
+<td>1.0963</td>
+<td align="right">20</td>
+<td>1.0010</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>1.4472</td>
+<td align="right">9</td>
+<td>1.0656</td>
+<td align="right">26</td>
+<td>1.0001</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>1.3047</td>
+<td align="right">10</td>
+<td>1.0447</td>
+<td align="right">28</td>
+<td>1.0000</td>
+</tr>
+</tbody></table>
+<p>可以看到，只有 8 人以下的种子才有可能达到 &gt;1.1 的系数，而 20 人以上的种子，该系数的增益已经完全可以忽略了。由于做种人数是不可控的，因此可以简单划为两类，20 人以下有加成， 20 人以上无。又因为人数会变动，因此若要从这个系数上获得稳定收益，必须考虑 $N_i&lt;8$ 的种子，以容许一些浮动范围。</p>
+<p>通过以上两个系数的分析，可以得到一个结论，我称为『三八原则』：</p>
+<blockquote>
+<p>三八原则：在 PT 站做种赚取积分时，选择时间大于三个月，做种人数小于 8 人的种子。</p>
+</blockquote>
+<p>原则展开如下：</p>
+<ul>
+<li>做种人数足够少，可以使实际 1GB 的硬盘空间达成 2.4GB 的做种效果，但条件苛刻。</li>
+<li>但再多的做种人数也不过是系数为 1，没有奖励，但不会有折损。</li>
+<li>三个月以前的种子，做种效果几乎 1:1 且容易达成。而一个月以内则折损可观，不是没得选尽量避免保新种。</li>
+<li>积分有上限，有效做种体积 1-2 TB 已经可以达到 80%-90% 的上限了。再增长 10% 到 99% 则需要近 20TB 有效保种，即使都是长寿孤种也需要 8TB，意义不大。</li>
+<li>形势所迫必须新种，则放置一周有 44% 的有效做种体积，准备 4TB 硬盘也就够了。</li>
+<li>孤种才有奖励，新种只有折损。</li>
+</ul>
+<p>这样可以最大化体积系数，从而用相同的硬盘空间获取更大的做种收益。当然，既然是赚取积分，肯定是要选择 free 种子。种子时间可以挑选，但做种人数加成八成是不必指望了。</p>
+<hr>
+<p>其它一些 Bonus：</p>
+<p>各站点会根据自己的实际调整参数，或添加其它的奖励机制，例如：</p>
+<ol>
+<li><p>每个种子 0.7 基本分，最多 14 个。</p>
+<p> 该数值上限 9.8，是直接作为基础值的，因此该站的积分上限为 $9.8+B_0$。这个条件几乎不存在代价，保种 1-2 TB 通常来说都会超过 14 个种子。</p>
+</li>
+<li><p>用户等级奖励，每升一级 1% 的比例奖励。</p>
+<p> 这个奖励是在基础值之外的奖励，计算公式为 $(1+1\%\times Level) * (9.8+B_0)$</p>
+<p> 用户等级奖励其实存在很大的隐性的代价。PT 站往往要求上传量远大于下载量才能升级，而 1% 的奖励却聊胜于无。这就像在银行存一百万拿 2% 的利息，银行要求你再存一千万升 VIP，而 VIP 的待遇仅仅是利息多 1%，并不是 $2\%\rightarrow 3\%$ 的 1%，而是 $2\%\rightarrow 2.02\%$ 的 1%。如果上传本有余裕，自然升级也就罢了，刻意去为 1% 奖励而花大力气冲没什么意义。</p>
+</li>
+<li><p>为官方种子做种的额外奖励，上限为 25%。</p>
+<p> 百分比类型奖励都是平行的，也就是 $(1+1\%\times Level + 25\%) * (9.8+B_0)$。<br> 注：该站点程序有 bug，多个官种奖励叠加反而会导致总 bonus 下降，因此只保一个 +25% 官种即可。</p>
+</li>
+<li><p>每 100 个种子做种 24 小时以上开始 5% 的比例奖励，无上限，每个种子需要大于 5MB。</p>
+<p> $$(1+1\%\times Level + 25\% + \mathop{SeedsQuantity}\limits_{\substack{seedsize&gt;5\text{MB} \\ seedinghour&gt;24}} &#x2F; 100 \times 5\%) * (9.8+B_0)$$</p>
+<p> 该规则鼓励大量小体积种子做种，理论上来说，以 2TB 的目标计算，若全部靠 5MB 的种子达成，至多可以使用 40 万个种子，单这项 bonus 就能达到 $200B_0$，这是一个巨大的增益。客观上受限于种子总量有限及大小各异，不可能达到这个数量，但成为一个万种大佬还是有可能的。此时的 bonus 为 $$(1+25\%+\frac{10000}{100}*5\%) \times (9.8+0.9\times B_0) &#x3D; 6.25 \times (9.8+0.9\times B_0)$$ 若 $B_0&#x3D;50$，则值为 $342.5$。在该规则下，保种策略是尽量地将大种子更替为小种子，在总量有限而不变的情况下，提升种子数量。</p>
+<p> 但是我们需要进一步讨论。更替小种虽有额外收益但通常也会产生额外的下载流量，需要靠魔力值兑换上传量来冲抵。一个种子的小时增益为 $5\% &#x2F; 100 \times (9.8 + 0.9B_0) &#x3D; 0.0274$，每天可以通过魔力值兑换的上传流量为 $0.0274 \times 24 \; &#x2F; \; 425 \times 1024 &#x3D;  1.5844$ MB，一个 5MB 的种子在 3.15 天回本，因为是独立计算，一百个 5MB 的种子也是 3.15 天回本。回本时间不受种子数量的影响，但与种子体积成正比，当种子体积到 50MB 时回本时间就超过一个月了。</p>
+<p> 另一需要考虑的软性限制是 PT 与站点服务器的通讯。当做种数量足够多时，PT 客户端的 tracker update 操作变得十分频繁，甚至变相成为一种对服务器的 DOS 攻击。这也是热门大站往往 tracker update interval 很长的原因。大量种子对保种用户本身也是存在风险的，对同一地址的短时间频繁请求，在客户端到服务器的整条网络传输路径上的任何一个环节都有可能触发限制。服务器收不到 update 信息，用户就反而无法获得积分。</p>
+</li>
+<li><p>使用 $250\times B_0$ 的价格购买 5% 比例的奖励徽章，可购买多个。</p>
+<p> 同样是某种需要考虑投入产出的增益。该站点没有其它基础值奖励，以每小时 $0.9B_0$ 计算，购买后的增益为 $0.045B_0$，回本时间为 $250B_0 &#x2F;0.045B_0 &#x2F; 24 &#x3D; 231.49$ 天。该站 50G 上传量为 $50B_0$，一个徽章相当于 250 GB 的上传量。从无穷长远来看，一切本金不会湮灭且无通胀环境下的投入都是值得的，算来第 232 天开始可就是净收益了。但是在合理的生命周期内，这个投入产出比是十分低的。因此这个徽章是一个『炫耀』的物品，而不是一个『赚钱』的物品。</p>
+<p> PT 站的生命周期是客观存在的，对于用户方，如果生活中发生了某些变化，帐号有时就冷落消失了。对于站点方，也有可能因为各种原因关闭跑路。长周期的收益更多只是在纸面上的。</p>
+<blockquote>
+<p><em>相聚离开都有时候，没有什么会永垂不朽。</em></p>
+</blockquote>
+</li>
+<li><p>后宫加成，每个下线 5%。</p>
+<p> 这个奖励的 ROI 计算更为复杂，暂不清楚是否有复利加成，即我后宫的后宫是不是我的后宫。单从实践经验来看，$50B_0$ 兑换邀请和赠与新人 $62.5B_0$ 启动资金，换得的是下线的 5% 增益。如果下线足够给力，则可以得到和徽章奖励一致的 $0.045B_0$。回本周期为 105 天。考虑到下线需要积累一段时间才能达到 $0.9B_0$，实际周期在 150 天左右。比起奖章仍合算一些。如果不提供启动资金，回本周期为 47 天，但新人启动时间会长不少，相当于额外再增加一个 0-50G 的启动时间。</p>
+<p> 如果考虑风险因素，ROI 就不好说了。下线的行为是不可控的，且会影响到自己的账号。$112.5B_0$ 的本金浪费是一方面，其它权利影响是则另一方面。除非有站点相关数据作为支撑，否则这些风险很难量化。</p>
+</li>
+<li><p>从奖池中抽道具，部分道具增加 10% 基础魔力值奖励，每次抽取动作消耗 $2.5B_0$。</p>
+<p> 从 n 个道具中抽取特定的 k 个道具，假设无重复时，全部抽齐的期望次数为 $\frac{k(n+1)}{k+1}$，则成本为 $\frac{k(n+1)}{k+1} \times 2.5B_0$，收益为 $k \times 10\% \times 0.9B_0$，回本周期为 $1.1574 \cdot \frac{n+1}{k+1}$ 天，取决于奖池 n 和 k 的比例。事实上哪怕是 1&#x2F;100 的比例，也比上一条后宫加成更合算。</p>
+<p> 进一步考虑，第一个道具在抽出后开始生效，其成本为 $\frac{n+1}{k+1}\times 2.5B_0$，收益为 $10\% \times 0.9B_0$，回本周期同样为 $1.1574 \cdot \frac{n+1}{k+1}$ 天。也就是说，在整个过程中，每个道具的奖励比例一致，则回本周期也都是一致的。</p>
+<p> 当有重复时，情况则有不同，第一个的期望成本为 $n&#x2F;k\times 2.5B_0$，回本周期为 $1.1574 n&#x2F;k$ 天。所有奖品抽到的期望次数为 $n\cdot H_k$，其中 $H_k&#x3D;\sum_{i&#x3D;1}^n\frac{1}{i}$ 为调和级数。越往后面，即使奖励相同，但抽取成本变大也会导致回本周期变长。最后一个的成本是 $n\times 2.5B_0$，回本周期对应为 $1.1574 n$ 天。</p>
+<p> 如果除 k 外的其它道具也有一定的奖励，或者总数 n 难以计算，则 ROI 的计算只能通过少量抽样下的贝叶斯推断来进行了。</p>
+</li>
+<li><p>上传流量的奖励，每 1GB 上传流量奖励 0.1 魔力值。</p>
+<p> PT 站本身上传量就是货币，这个其实属于某种重复奖励，且没有可优化或者可选择的余地。不讨论。</p>
+</li>
+</ol>
+<hr>
+<p>末尾一些啰嗦：</p>
+<p>$f(A) &#x3D; B_0 \cdot \frac{2}{\pi} \cdot arctan\left( \frac{A}{L} \right)$ 的导数为 $f^{&#39;}(A) &#x3D; \frac{2B_0}{\pi L} \cdot \frac{1}{1+\left( \frac{A}{L} \right)^2}$，为 $\frac{1}{1+x^2}$ 的缩放。当前每增加 1GB 的有效做种体积对应多少魔力值增量，可以通过导数来计算。</p>
+<p>通过计算 $Total\_Bonus &#x3D; N_i \cdot \left(\sqrt2 \cdot 10^{ -\frac{N_i-1}{N_0-1}}\right)$ 发现，在 3 人及以下做种时，PT 站额外奖励了更多的体积系数分到所有的人，而人数更多时 Bonus 总增益开始下降，奖励总量反而逐渐减少。算法并非是将固定的 Bonus 分发给所有人，而确实是针对孤种的单独加成：</p>
+<p><img src="/../attach/2024/02/GeoGebra_total_seed_bonus.png" loading="lazy"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PT/" rel="tag"># PT</a>
+              <a href="/tags/%E9%AD%94%E5%8A%9B%E5%80%BC%E5%85%AC%E5%BC%8F/" rel="tag"># 魔力值公式</a>
+              <a href="/tags/Seeding-Bonus/" rel="tag"># Seeding Bonus</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/jubeat-game-data/" rel="prev" title="jubeat 游戏数据">
+                  <i class="fa fa-angle-left"></i> jubeat 游戏数据
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/deck-drawing-expectations/" rel="next" title="几种奖池抽取期望计算">
+                  几种奖池抽取期望计算 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

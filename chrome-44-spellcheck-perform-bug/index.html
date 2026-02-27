@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="Chrome 在更新到 44.0.2403.125 m 后，存在一个由拼写检查导致的性能低下 bug，该 bug 只在 win 版 Chrome 下呈现，同时影响 32 位和 64 位版本。 就是这货 具体表现1234567891011121314151617181920&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;	&lt;meta charset&#x3D;&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome 44 拼写检查的浏览器性能 bug">
+<meta property="og:url" content="https://www.kaikai.men/chrome-44-spellcheck-perform-bug/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="Chrome 在更新到 44.0.2403.125 m 后，存在一个由拼写检查导致的性能低下 bug，该 bug 只在 win 版 Chrome 下呈现，同时影响 32 位和 64 位版本。 就是这货 具体表现1234567891011121314151617181920&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;	&lt;meta charset&#x3D;&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/chrome-44-about.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/10000linta.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/08/10000lindiv.png">
+<meta property="article:published_time" content="2015-08-03T20:33:28.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.137Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="Chrome 44">
+<meta property="article:tag" content="lag">
+<meta property="article:tag" content="solution">
+<meta property="article:tag" content="spellcheck">
+<meta property="article:tag" content="textarea">
+<meta property="article:tag" content="拼写检查">
+<meta property="article:tag" content="卡顿">
+<meta property="article:tag" content="解决办法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2015/08/chrome-44-about.jpg">
+
+
+<link rel="canonical" href="https://www.kaikai.men/chrome-44-spellcheck-perform-bug/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/chrome-44-spellcheck-perform-bug/","path":"/chrome-44-spellcheck-perform-bug/","title":"Chrome 44 拼写检查的浏览器性能 bug"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Chrome 44 拼写检查的浏览器性能 bug | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E8%A1%A8%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">具体表现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-MAC-%E7%89%88-Chrome%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">关于 MAC 版 Chrome：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/chrome-44-spellcheck-perform-bug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Chrome 44 拼写检查的浏览器性能 bug | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chrome 44 拼写检查的浏览器性能 bug
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-08-03 20:33:28" itemprop="dateCreated datePublished" datetime="2015-08-03T20:33:28Z">2015-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%96%B0%E6%89%8B%E8%8F%A9%E8%90%A8%E4%BF%9D%E4%BD%91/" itemprop="url" rel="index"><span itemprop="name">前端新手菩萨保佑</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Chrome 在更新到 44.0.2403.125 m 后，存在一个由拼写检查导致的性能低下 bug，该 bug 只在 win 版 Chrome 下呈现，同时影响 32 位和 64 位版本。</p>
+<p><img src="/../attach/2015/08/chrome-44-about.jpg" alt="chrome-44-about" loading="lazy">就是这货</p>
+<h5 id="具体表现"><a href="#具体表现" class="headerlink" title="具体表现"></a>具体表现</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">	&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">		p &#123;margin: 20px;font-weight: bold;text-align: center;width: 33%&#125;</span><br><span class="line">		.input &#123;display: block;width: 33%;margin: 20px;border: 2px solid #999;&#125;</span><br><span class="line">		.editor &#123;display: block;width: 33%;border-radius: 4px;margin:20px;overflow: scroll;padding: 8px;min-height: 100px;max-height: 400px;&#125;</span><br><span class="line">		.area &#123;border: 2px solid #fa0;&#125;</span><br><span class="line">		.div &#123;border: 2px solid #0af;&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;input type=&quot;text&quot; class=&quot;input&quot;&gt;</span><br><span class="line">	&lt;p&gt;Textarea&lt;/p&gt;</span><br><span class="line">	&lt;textarea class=&quot;editor area&quot;&gt;&lt;/textarea&gt;</span><br><span class="line">	&lt;p&gt;Contenteditable DIV&lt;/p&gt;</span><br><span class="line">	&lt;div class=&quot;editor div&quot; contenteditable=&#x27;true&#x27; role=&#x27;textbox&#x27;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将上面这段代码另存为 html 网页，在 Chrome 44 (win) 版本下打开。</p>
+<p>用文本编辑器制造 10000 行会被触发单词拼写识别的文本，比如使用 Excel 连续生成 10000 行『AKB0048』。复制粘贴到橙色 Textarea 框中，然后用鼠标点击灰色 Input 框……</p>
+<p>你会发现，非常的卡，光标在三个输入框中切换，每次切换都需要花费很长时间，对于性能不佳的电脑，和彻底进入死循环没区别了。</p>
+<p>刷新页面重置数据后，再将这 10000 行粘贴到 Contenteditable DIV 的蓝色框里，第一次粘贴也略有卡顿，毕竟数据量比较大。但等卡顿过后，鼠标再在三个框中反复切换，就非常顺畅毫无迟滞感了。</p>
+<p><img src="/../attach/2015/08/10000linta.png" alt="10000linta" loading="lazy"></p>
+<p>这就是这个 bug 的真身了：</p>
+<p><strong>在 Textarea 有大量会触发拼写检查的内容时，Chrome 44 的 Spellcheck 功能会极大消耗计算机资源，使得整台电脑近乎死机。</strong></p>
+<h5 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h5><p>由于这是浏览器 bug，前端程序员对此几乎无能为力，只能绕过这个 bug。</p>
+<p>通常来说，HTML5 已经提出了 Textarea 的一些标准属性，比如 spellcheck&#x3D;”false” 可以强制浏览器不检查内容，webkit 内核支持这一属性。正常来说，这似乎是很容易解决的一个兼容性问题。</p>
+<p>但偏偏 Chrome 却强制忽略了这一设置，就像它强制忽略 font-size &lt; 10 时那样。禁用拼写检查只在用户手动输入时有效，而对于 Ctrl+V 进来的内容，拼写检查依然正常运行，搞死你机。</p>
+<p>即使你把相关属性全部列全：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea class=&quot;editor area&quot; spellcheck=&quot;false&quot; autocapitalize=&quot;off&quot; autocomplete=&quot;off&quot; autocorrect=&quot;off&quot;&gt;&lt;/textarea&gt;</span><br></pre></td></tr></table></figure>
+
+<p>也是然并卵，在别的浏览器一切正常，而 Chrome 下依然故我。并没有解决问题。</p>
+<p><strong>解决方法一：</strong></p>
+<p>你可以通过 JS 检查当前浏览器是否是 Chrome，在需要粘贴大量内容的 textarea 上提示用户去关闭 SpellCheck 功能，具体位置为：</p>
+<p><code>Chrome 菜单 → 设置 → （最下方）显示高级设置 → 语言和输入设置 → 启用拼写检查。</code></p>
+<p>但这并不是一个好方法，尤其是需要用户主动去对 Chrome 进行设置。</p>
+<p><strong>解决方法二：</strong></p>
+<p>使用 JS，将一次的粘贴行为，模拟为连续字符添加的行为。比如当用户 Paste 后得到 Text 值，立刻删除该 Textarea 元素再重建一个。然后根据 text.length 使用 JQuery 插件 Jquery.Caret 不断循环插入字符。</p>
+<p>这一方法缺点更多，首先是作为 walkaround 的方案，引入了太多并非用户参与的互动。其次，这一 bug 本来就是在大文本量 paste 下才会出现，如果再使用额外的一重循环，并不会使得体验有太多改善。最后，假如 Chrome 的再次升级把 JS 插入字符也纳入拼写检查的话，就会导致页面更 n 倍重的卡顿，到时候大概是再高性能的电脑都扛不住了。</p>
+<p><strong>解决方法三：</strong></p>
+<p>使用带 contenteditable&#x3D;’true’ 属性的 DIV 元素代替 Textarea，并使用 innerText 或者 $.text() 来获取用户填写的文本内容。</p>
+<p><img src="/../attach/2015/08/10000lindiv.png" alt="10000lintv" loading="lazy"></p>
+<p>这也是这篇博客所写的内容，这样的方法是最合法且绕过 Chrome 44 拼写检查 Bug 的方法。完全相当于是『有两种实现方法选择了另一种』。contenteditable &#x3D; ‘true’ 属性的 DIV 往往也是很多 JS 版所见即所得编辑器的常用办法。比如 WordPress。这一方法不需要用户操作，也只需要少量 JS 代码。最后，即使这个 BUG 的影响范围继续蔓延，也不过是和现有的情况一样，不会更坏。</p>
+<h5 id="关于-MAC-版-Chrome："><a href="#关于-MAC-版-Chrome：" class="headerlink" title="关于 MAC 版 Chrome："></a>关于 MAC 版 Chrome：</h5><p>Mac 下无此 bug，是因为暂时还没有拼写检查功能。</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D; edit &#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>现在 Mac 下也有了。</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D; edit &#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>现在修正了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Chrome-44/" rel="tag"># Chrome 44</a>
+              <a href="/tags/lag/" rel="tag"># lag</a>
+              <a href="/tags/solution/" rel="tag"># solution</a>
+              <a href="/tags/spellcheck/" rel="tag"># spellcheck</a>
+              <a href="/tags/textarea/" rel="tag"># textarea</a>
+              <a href="/tags/%E6%8B%BC%E5%86%99%E6%A3%80%E6%9F%A5/" rel="tag"># 拼写检查</a>
+              <a href="/tags/%E5%8D%A1%E9%A1%BF/" rel="tag"># 卡顿</a>
+              <a href="/tags/%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="tag"># 解决办法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/js-time-format/" rel="prev" title="Javascript 的时间格式问题">
+                  <i class="fa fa-angle-left"></i> Javascript 的时间格式问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/excel-prints-print-number/" rel="next" title="Excel 自动打印表格份数/序号">
+                  Excel 自动打印表格份数/序号 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

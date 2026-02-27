@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="安娜站姿：  现在安娜站得更直一些了。  摔杯为号(生物手雷被动)  生物手雷技能添加了一个被动效果：摔杯为号。其技能音效可以被大范围的队友听到，并短暂地让队友可以穿墙看到自己。  设计师评论：  安娜一直都是最出色的守望先锋战士之一，但毕竟是老太太了，蹲马步太久实在太累了。  设计师从从削弱生物手雷遭到的巨大争议中获得启发，安娜迫切需要防绕后能力，而最好的办法就是呼叫队友。   死神幽灵形态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.1 守望先锋平衡性补丁更新（伪）">
+<meta property="og:url" content="https://www.kaikai.men/4-1-overwatch-update-notes/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="安娜站姿：  现在安娜站得更直一些了。  摔杯为号(生物手雷被动)  生物手雷技能添加了一个被动效果：摔杯为号。其技能音效可以被大范围的队友听到，并短暂地让队友可以穿墙看到自己。  设计师评论：  安娜一直都是最出色的守望先锋战士之一，但毕竟是老太太了，蹲马步太久实在太累了。  设计师从从削弱生物手雷遭到的巨大争议中获得启发，安娜迫切需要防绕后能力，而最好的办法就是呼叫队友。   死神幽灵形态">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-31T17:01:19.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.139Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="守望先锋">
+<meta property="article:tag" content="Overwatch">
+<meta property="article:tag" content="平衡补丁">
+<meta property="article:tag" content="愚人节">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/4-1-overwatch-update-notes/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/4-1-overwatch-update-notes/","path":"/4-1-overwatch-update-notes/","title":"4.1 守望先锋平衡性补丁更新（伪）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>4.1 守望先锋平衡性补丁更新（伪） | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%A8%9C"><span class="nav-number">1.</span> <span class="nav-text">安娜</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%BB%E7%A5%9E"><span class="nav-number">2.</span> <span class="nav-text">死神</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E7%99%BE%E5%90%88"><span class="nav-number">3.</span> <span class="nav-text">黑百合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E6%B0%8F"><span class="nav-number">4.</span> <span class="nav-text">源氏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B8%A9%E6%96%AF%E9%A1%BF"><span class="nav-number">5.</span> <span class="nav-text">温斯顿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BA%A6%E5%85%8B%E9%9B%B7"><span class="nav-number">6.</span> <span class="nav-text">麦克雷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A3%AB%E5%85%B5%EF%BC%9A76"><span class="nav-number">7.</span> <span class="nav-text">士兵：76</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%95%E8%80%81%E4%B9%8B%E9%B9%B0"><span class="nav-number">8.</span> <span class="nav-text">法老之鹰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%A1%E5%9E%92"><span class="nav-number">9.</span> <span class="nav-text">堡垒</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B1%E5%9B%A0%E5%93%88%E7%89%B9"><span class="nav-number">10.</span> <span class="nav-text">莱因哈特</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8C%8E%E7%A9%BA"><span class="nav-number">11.</span> <span class="nav-text">猎空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-Va"><span class="nav-number">12.</span> <span class="nav-text">D.Va</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E5%BD%B1"><span class="nav-number">13.</span> <span class="nav-text">黑影</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/4-1-overwatch-update-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="4.1 守望先锋平衡性补丁更新（伪） | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          4.1 守望先锋平衡性补丁更新（伪）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-03-31 17:01:19" itemprop="dateCreated datePublished" datetime="2017-03-31T17:01:19Z">2017-03-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">游戏中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="安娜"><a href="#安娜" class="headerlink" title="安娜"></a><span style="color: #3366ff;">安娜</span></h4><p><strong>站姿：</strong></p>
+<ul>
+<li>现在安娜站得更直一些了。</li>
+</ul>
+<p><strong>摔杯为号(生物手雷被动)</strong></p>
+<ul>
+<li>生物手雷技能添加了一个被动效果：摔杯为号。其技能音效可以被大范围的队友听到，并短暂地让队友可以穿墙看到自己。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li><p>安娜一直都是最出色的守望先锋战士之一，但毕竟是老太太了，蹲马步太久实在太累了。</p>
+</li>
+<li><p>设计师从从削弱生物手雷遭到的巨大争议中获得启发，安娜迫切需要防绕后能力，而最好的办法就是呼叫队友。</p>
+</li>
+</ul>
+<h4 id="死神"><a href="#死神" class="headerlink" title="死神"></a><span style="color: #3366ff;">死神</span></h4><p><strong>幽灵形态</strong></p>
+<ul>
+<li>幽灵形态添加了新的台词：”死神走了”。</li>
+</ul>
+<p><strong>换弹</strong></p>
+<ul>
+<li>现在死神扔在地上的枪可以对踩在上面的敌人造成 5 点伤害并轻微地减速敌人一秒。</li>
+</ul>
+<p><strong>死亡绽放</strong></p>
+<ul>
+<li>死亡绽放现在除原有伤害外同时还会扔下若干把枪，这些枪落地后，同样可以对踩中的敌人造成 5 点伤害并轻微地减速敌人一秒。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li><p>死神的暗影步伴随有台词”死神来了”，使得这个技能的收益伴随风险。我们觉得高风险高收益很 Cool。所以给幽灵形态也添加了台词。</p>
+</li>
+<li><p>死神特殊的换弹技巧给我们提升死神上场率提供了新的思路。</p>
+</li>
+</ul>
+<h4 id="黑百合"><a href="#黑百合" class="headerlink" title="黑百合"></a><span style="color: #3366ff;">黑百合</span></h4><p><strong>卧倒</strong></p>
+<ul>
+<li><p>黑百合新增了一个卧倒状态，你可以在设置界面为其绑定额外的按键，或者打开蹲下一秒后自动卧倒的选项。</p>
+</li>
+<li><p>卧倒时的移动速度极其缓慢，并有专门的匍匐移动动作。</p>
+</li>
+<li><p>卧倒时的受弹面积大幅减小，但被暴头率因形体原因自然增大到几乎 100%。</p>
+</li>
+<li><p>卧倒时，黑百合视野会受到一定限制。转身若超过 90 度，继续往该方向的转身速度将有一个上限，不能随鼠标实时地移动到目的方向。</p>
+</li>
+<li><p>卧倒时黑百合的换弹速度减慢 50%，但开镜及充能速度不变。</p>
+</li>
+<li><p>卧倒时黑百合还会随机地翘起小腿，此动作不受黑百合玩家控制。</p>
+</li>
+</ul>
+<p><strong>剧毒诡雷</strong>(感谢 SamBool 回帖)</p>
+<ul>
+<li>为了和动画逻辑一致，剧毒诡雷现在将会造成摔倒效果。</li>
+</ul>
+<p><strong>组队</strong></p>
+<ul>
+<li>现在黑影、死神无法与黑百合同处一队，以确保黑百合的胜率。已选此二英雄的玩家会自动回到英雄选择界面。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li><p>我们认为玩家对重建帝国组合的抱怨本质上来源于自己的愉悦感不够，因此希望通过让队友及敌人更好地观赏黑百合的屁股获得愉悦，以此减少玩家对重建帝国组合的反感。毕竟半藏已裸左胸，应当会获得一些朋友的亲睐。</p>
+</li>
+<li><p>考虑到黑爪组织迄今的战绩，我们认为让黑百合单飞，胜率会有所提高，这也能提升队友的愉悦感。</p>
+</li>
+</ul>
+<h4 id="源氏"><a href="#源氏" class="headerlink" title="源氏"></a><span style="color: #3366ff;">源氏</span></h4><p><strong>自责</strong></p>
+<ul>
+<li><p>源氏添加了新的被动技能：自责。</p>
+</li>
+<li><p>每当源氏说出台词：Ahoga 后，机械心脏会在血液内注入微量毒素，5 秒内降低源氏 50% 移动速度并持续造成每秒 10 点伤害。</p>
+</li>
+</ul>
+<p><strong>闪</strong></p>
+<ul>
+<li>现在闪无法反弹坦克模式堡垒的攻击和莱因哈特的火箭重锤和烈焰打击，但可以通过闪亮的刀刃反射查莉娅的粒子枪了。但源鬼等刀刃黑色的特定皮肤除外。</li>
+</ul>
+<p><strong>影、二段跳</strong></p>
+<ul>
+<li>现在源氏使用影、二段跳等技能在空中改变位移状态时，会有明显的喷气声，该音效有助于敌人更好的应对源氏，同时也使源氏的技能更逻辑自洽。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>天使小姐姐多次在战场上被源氏切来切去后，趁着某次维护时给源氏添加了该功能。”既然他师傅没法教他礼貌，那就我来教吧。”天使纯真无邪地微笑着说道。设计师不<del class="gray"> 敢 </del>予更多点评。</li>
+</ul>
+<h4 id="温斯顿"><a href="#温斯顿" class="headerlink" title="温斯顿"></a><span style="color: #3366ff;">温斯顿</span></h4><p><strong>特斯拉炮</strong></p>
+<ul>
+<li>现在特斯拉炮对源氏、半藏、黑百合造成的伤害会被计作治疗量。</li>
+</ul>
+<p><strong>屏障发生器</strong></p>
+<ul>
+<li>为与动画保持一致，现在屏障发生器会在屏障碎裂或消失后爆炸，对死神造成 50 点伤害，对其它英雄无影响。</li>
+</ul>
+<p><strong>原始暴怒</strong></p>
+<ul>
+<li>现在温斯顿的眼镜拥有了独立的命中判定，命中眼镜不会对温斯顿造成双倍伤害，但直接触发原始暴怒技能。眼镜不会被范围性攻击技能命中。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>温斯顿的特斯拉炮并非杀伤性武器，他是希望通过科学让世界更美好的守望先锋一员。尽管如此，可不要惹怒它！</li>
+</ul>
+<h4 id="麦克雷"><a href="#麦克雷" class="headerlink" title="麦克雷"></a><span style="color: #3366ff;">麦克雷</span></h4><p><strong>被动音效</strong></p>
+<ul>
+<li>由于长期抽烟，麦克雷现在有很大的喘息声以及不时的咳嗽声，周围 15 码内的友方和敌方均可听到该声音。</li>
+</ul>
+<p><strong>战术翻滚</strong></p>
+<ul>
+<li>由于长期抽烟，麦克雷现在在战术翻滚后需要双手撑膝大口喘气三秒，期间无法移动和攻击。</li>
+</ul>
+<p><strong>午时已到</strong></p>
+<ul>
+<li>由于长期抽烟，麦克雷现在喊完午时以到后会咳嗽不止，且无法击中任何目标。</li>
+</ul>
+<p><strong>皮肤</strong></p>
+<ul>
+<li>现在麦克雷的所有皮肤中的香烟均改成了棒棒糖。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>我们添加该功能是为了保护地球环境和大家的身心健康，正如我们一直以来都规定大家应该怎么玩一样，这很 Cool，不是么。</li>
+</ul>
+<h4 id="士兵：76"><a href="#士兵：76" class="headerlink" title="士兵：76"></a><span style="color: #3366ff;">士兵：76</span></h4><p><strong>表情</strong></p>
+<ul>
+<li>现在士兵：76 在发你好表情时，有机率触发战术目镜，如果战术目镜已经准备就绪则直接激活，如果尚未充能完毕，则损失所有已经积攒的能量。</li>
+</ul>
+<p>设计师评论：**</p>
+<ul>
+<li>现在我们都是 Hello 了。</li>
+</ul>
+<h4 id="法老之鹰"><a href="#法老之鹰" class="headerlink" title="法老之鹰"></a><span style="color: #3366ff;">法老之鹰</span></h4><p><strong>推进背包</strong></p>
+<ul>
+<li>现在法老之鹰在遭受爆炸伤害，例如火箭发射器(法老之鹰)、粒子炮(查莉雅)、坦克模式(堡垒)、螺旋飞弹(士兵：76)等时，会额外削减一部分推进背包能量。</li>
+<li>现在法老之鹰在使用推进背包后的上升阶段接触天花板后会遭受少量伤害。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>我们之前忘了漏油这个设计了，现在补上。这对平衡性几乎没有影响，毕竟其它英雄几乎没有对空中目标的爆炸伤害能力，但会让法老之鹰的内战更具戏剧性。</li>
+</ul>
+<h4 id="堡垒"><a href="#堡垒" class="headerlink" title="堡垒"></a><span style="color: #3366ff;">堡垒</span></h4><p><strong>被动减伤</strong></p>
+<ul>
+<li>现在哨卫模式下和坦克模式下的血条添加了一个护盾边框，以明确地表现其减伤特性。</li>
+</ul>
+<p><strong>哨卫模式</strong></p>
+<ul>
+<li>如果堡垒在户外保持哨卫模式超过 10 秒没有任何动作，妮妮将会从天空飞下来停在堡垒的头或肩上，在堡垒有任何动作或周围有任何敌人发出的声音时飞走。</li>
+</ul>
+<p><strong>侦查模式</strong></p>
+<ul>
+<li><p>现在堡垒在原地转身时，仅通过腰部转身，双腿不会再移动了。</p>
+</li>
+<li><p>在堡垒攻击某个目标时，妮妮会同时不断盘旋在该目标眼前，并啄击该目标，造成 1 点伤害。妮妮不可被击中。</p>
+</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>堡垒没有语言能力，缺乏和其它英雄的互动，因此我们添加了更多和妮妮的互动。</li>
+</ul>
+<h4 id="莱因哈特"><a href="#莱因哈特" class="headerlink" title="莱因哈特"></a><span style="color: #3366ff;">莱因哈特</span></h4><p><strong>冲锋</strong></p>
+<ul>
+<li><p>如果冲锋未能撞到敌人而直接冲撞到墙壁等障碍物，则莱因哈特将获得头晕效果，在玩家的鼠标正常移动基础上，会随机加入若干左右方向的飘移。其效果类似于魔兽世界角色在醉酒时的鼠标效果，但幅度更大。持续 3 秒。</p>
+</li>
+<li><p>如果被冲锋撞飞的敌人再次碰到墙壁，则会另外受到 30 点伤害并根据方向原地转一圈，操作该敌人的玩家屏幕上也会表现该效果。若击飞的敌人碰到天花板则受到 60 点伤害。</p>
+</li>
+</ul>
+<p><strong>烈焰打击</strong></p>
+<ul>
+<li><p>烈焰打击不能再被源氏反弹。</p>
+</li>
+<li><p>烈焰打击对小美的冰墙造成 100% 的额外伤害。另外还可以解除队友的被冰冻状态(小美的冰霜冲击枪和暴雪技能效果)，但不造成伤害也无法获得充能。</p>
+</li>
+</ul>
+<p><strong>火箭重锤</strong></p>
+<ul>
+<li>火箭重锤在撞到墙壁后会立刻结束此次挥动，且不改变下一次挥动的前摇时间。这使得在小巷、通道等狭窄地形中，莱茵哈特可以获得更快的挥锤频率，提高伤害，但同时也限制了范围。</li>
+</ul>
+<p><strong>裂地猛击</strong></p>
+<ul>
+<li>现在裂地猛击的伤害降低为 30 点，但猛击后的地面会持续对倒地或站立于上面的敌人造成每秒 5 点的伤害，持续 5 秒。对方英雄可以通过跳跃取消该伤害，站立状态的禅雅塔、托比昂不受此效果影响，温斯顿受到该效果双倍伤害。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>莱因哈特现在更重视地形因素对战斗造成的影响，作为终级碾压机器，莱因哈特必需要有相应的优势。另外，通过解冻队友，我们给莱因哈特玩家提供了更多的战斗策略供选择。</li>
+</ul>
+<h4 id="猎空"><a href="#猎空" class="headerlink" title="猎空"></a><span style="color: #3366ff;">猎空</span></h4><p><strong>闪现</strong></p>
+<ul>
+<li><p>如果猎空的闪现因为地形因素没有完整地移动 7 码距离，即撞到墙、电线杆等地形物，则猎空会短暂地眩晕 0.5 秒。在玩家的鼠标正常移动基础上，会随机加入若干左右方向的飘移。</p>
+</li>
+<li><p>如果猎空的在眩晕状态下再次闪现撞墙，则眩晕状态会延长 2 秒，该状态可叠加。</p>
+</li>
+<li><p>猎空使用闪现经过向上斜坡，会使猎空的闪现也变为向上移动，角度与斜坡一致，这使得猎空有机会更丰富地利用地形因素。</p>
+</li>
+<li><p>猎空在闪现经过敌人时会撞上敌人而非穿过，同时对敌人造成 30 点伤害。</p>
+</li>
+</ul>
+<p><strong>闪回</strong></p>
+<ul>
+<li>现在使用闪回会严格地回复到 3 秒前的状态，包括位置、动量、生命值、子弹数量与增减益。但时空稳定器的能量依然会被消耗，因此闪现和闪回不会恢复。</li>
+</ul>
+<p><strong>英雄难度评级</strong></p>
+<ul>
+<li>现在猎空的英雄难度改为三颗星。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>你上你也晕。</li>
+</ul>
+<h4 id="D-Va"><a href="#D-Va" class="headerlink" title="D.Va"></a><span style="color: #3366ff;">D.Va</span></h4><p><strong>近战攻击</strong></p>
+<ul>
+<li>现在 Meka 机甲的近战攻击统一造成 50 点伤害，而宋哈娜的近战攻击则造成 10 点伤害。如果对方有黄甲，则额外对哈娜自己造成 10 点伤害。</li>
+</ul>
+<p><strong>推进器</strong></p>
+<ul>
+<li>现在 Meka 机甲在使用推进器的同时可以使用聚变机炮。</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>有感于鱼塘双飞太强，同时为了增加 D.Va 上场率，继让 D.Va 能用右键保被路霸钩走的队友后，我们又给 D.Va 增加了一项新的华而不实的英雄反制设计：D.Va 可以对抗双飞！D.Va 更加万能了，这很 Cool，不是么？</li>
+</ul>
+<h4 id="黑影"><a href="#黑影" class="headerlink" title="黑影"></a><span style="color: #3366ff;">黑影</span></h4><p><strong>黑客入侵、电磁脉冲</strong></p>
+<ul>
+<li>现在路霸、安娜、死神的所有技能都不会被黑客入侵和电磁脉冲打断制或禁用。尽管如此，视觉上的红色效果依然保留。</li>
+</ul>
+<p><strong>黑客入侵</strong></p>
+<ul>
+<li><p>猎空玩家在被黑客入侵后会回到英雄选择界面，猎空直接在你和你所有队友的英雄选择界面上消失。</p>
+</li>
+<li><p>士兵 76 的战术目镜现在会被黑客入侵打断或禁用，如果被打断时士兵：76正在释放战术目镜，则黑影获得剩余的战术目镜技能与持续时间，此时间内黑影的自动手枪带有自动瞄准功能。</p>
+</li>
+<li><p>堡垒、禅雅塔被黑客入侵后会开始随机做一系列表情，持续 3 秒，即使你尚未购买该表情。由于 Meka 的一部分功能是通过机械传动的 <del class="gray">宋哈娜在机甲里拼命踩脚蹬子 </del>类内燃机结构，因此不会自动做表情，但此时 D.Va 玩不了《失落的维京》飞机游戏。</p>
+</li>
+<li><p>美被黑客入侵后，其小机器人会开始随机堆雪人，持续 5 秒，其间小美无法释放暴雪技能，但其它技能不受影响。</p>
+</li>
+<li><p>以下技能将不会再被黑客入侵打断、限制或禁用。尽管如此，视觉上的红色效果依然保留。 </p>
+<ul>
+<li><p>狂鼠的捕兽夹和炸弹轮胎。</p>
+</li>
+<li><p>黑百合的抓钩。</p>
+</li>
+<li><p>士兵：76 的疾跑。</p>
+</li>
+<li><p>半藏的竜。</p>
+</li>
+<li><p>温斯顿的原始暴怒。</p>
+</li>
+<li><p>D.Va 的机甲自毁。</p>
+</li>
+</ul>
+</li>
+<li><p>黑客入侵现在可以直接打开部分地图的大门并控制其开关。例如观测站：直布罗陀AB点、多拉多B点、66号公路AB点、国王大道A点车库门等。</p>
+</li>
+</ul>
+<p><strong>电磁脉冲</strong></p>
+<ul>
+<li><p>士兵 76 的战术目镜现在会被电磁脉冲打断或禁用。</p>
+</li>
+<li><p>堡垒、禅雅塔被电磁脉冲击中后会瘫痪 3 秒，禅雅塔的所有护盾将会消失。由于 Meka 的一部分功能是通过机械传动的 <del class="gray">宋哈娜在机甲里拼命踩脚蹬子 </del>类内燃机结构，因此不会瘫痪，但此时 D.Va 玩不了《失落的维京》飞机游戏。</p>
+</li>
+<li><p>美被被电磁脉冲击中后，无法释放暴雪技能，但其它技能不受影响。</p>
+</li>
+<li><p>以下技能将不会再被电磁脉冲打断、限制或禁用。尽管如此，视觉上的红色效果依然保留。 </p>
+<ul>
+<li><p>狂鼠的捕兽夹和炸弹轮胎。</p>
+</li>
+<li><p>黑百合的抓钩。</p>
+</li>
+<li><p>士兵：76 的疾跑。</p>
+</li>
+<li><p>半藏的竜。</p>
+</li>
+<li><p>温斯顿的原始暴怒。</p>
+</li>
+<li><p>D.Va 的机甲自毁。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>设计师评论：</strong></p>
+<ul>
+<li>我们重做了整个黑影，现在她的技能更符合逻辑了，同时也会成为影响双方阵容的重要角色。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%88%E6%9C%9B%E5%85%88%E9%94%8B/" rel="tag"># 守望先锋</a>
+              <a href="/tags/Overwatch/" rel="tag"># Overwatch</a>
+              <a href="/tags/%E5%B9%B3%E8%A1%A1%E8%A1%A5%E4%B8%81/" rel="tag"># 平衡补丁</a>
+              <a href="/tags/%E6%84%9A%E4%BA%BA%E8%8A%82/" rel="tag"># 愚人节</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/useful-command-cleaning-winsxs-from-microsoft/" rel="prev" title="Windows 10 下清理 WinSxS 很有用的一条命令">
+                  <i class="fa fa-angle-left"></i> Windows 10 下清理 WinSxS 很有用的一条命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/wechat-cancel-ios-public-writer-appreciation-function/" rel="next" title="微信取消 iOS 打赏功能一二三">
+                  微信取消 iOS 打赏功能一二三 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

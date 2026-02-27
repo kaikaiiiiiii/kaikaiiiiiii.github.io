@@ -1,0 +1,2544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content=".warn {         color: #F76516;     }     .tip{       color: #118Cf3;     }     .char img{       display:inline-block;       height: 1.1em;       width: 1.1em;       padding:0;       margin:0;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日语输入法使用">
+<meta property="og:url" content="https://www.kaikai.men/japanese-ime-issues/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content=".warn {         color: #F76516;     }     .tip{       color: #118Cf3;     }     .char img{       display:inline-block;       height: 1.1em;       width: 1.1em;       padding:0;       margin:0;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/jpime-romaji-keyboard.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/jpime-kana-keyboard.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/jis-keyboard.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/KB_Japanese.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/win-add-jp-lang.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/win-add-jp-ime.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/mac-keyboard-ime.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/mac-keyboard-ime-jp.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/google-trans-jp-ime.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/ime-selection.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/Control-1-selection.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/input-droplist.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b006.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b120.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b001.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b121.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b11f.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b122.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/Code_vu.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b11f.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b122.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b006.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b120.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b001.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/u1b121.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/IterationMarks600.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/WINWORD_shot.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/U31578.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/Hiragana_koto.svg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/masu_pic.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/LSI-ADM3A-full-keyboard.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2023/07/kigou_selection.png">
+<meta property="article:published_time" content="2023-07-28T02:58:23.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.140Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Japanese">
+<meta property="article:tag" content="Input Method">
+<meta property="article:tag" content="How to use">
+<meta property="article:tag" content="Issues">
+<meta property="article:tag" content="Bean Knowledge">
+<meta property="article:tag" content="MacOS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2023/07/jpime-romaji-keyboard.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/japanese-ime-issues/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/japanese-ime-issues/","path":"/japanese-ime-issues/","title":"日语输入法使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>日语输入法使用 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E8%AF%AD%E8%BE%93%E5%85%A5%E6%B3%95%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">日语输入法概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Windows-%E5%92%8C-MacOS%EF%BC%8C%E4%BB%A5%E5%8F%8A%E7%BD%91%E9%A1%B5%E7%89%88%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">输入法的安装（Windows 和 MacOS，以及网页版）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">输入法的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%E7%83%AD%E9%94%AE%EF%BC%88Windows%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">输入法热键（Windows）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%E7%83%AD%E9%94%AE%EF%BC%88MacOS%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">输入法热键（MacOS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%B3%95%E9%80%89%E5%AD%97%E8%8F%9C%E5%8D%95"><span class="nav-number">3.3.</span> <span class="nav-text">输入法选字菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E6%B5%8A%E9%9F%B3%E8%A1%A8"><span class="nav-number">3.4.</span> <span class="nav-text">清浊音表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84%E6%8B%97%E9%9F%B3%E8%A1%A8"><span class="nav-number">3.5.</span> <span class="nav-text">常规拗音表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%8B%97%E9%9F%B3%E8%A1%A8"><span class="nav-number">3.6.</span> <span class="nav-text">合拗音表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E8%BE%93%E5%85%A5"><span class="nav-number">3.7.</span> <span class="nav-text">特殊输入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E5%86%99%E5%81%87%E5%90%8D%E5%8F%8A%E8%BE%93%E5%85%A5"><span class="nav-number">3.7.1.</span> <span class="nav-text">小写假名及输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%81%87%E5%90%8D%E5%8F%8A%E8%BE%93%E5%85%A5"><span class="nav-number">3.7.2.</span> <span class="nav-text">特殊假名及输入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%81%A3%E3%83%83-%E3%80%8F"><span class="nav-number">3.7.2.1.</span> <span class="nav-text">&gt;&gt;『 っッ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%83%BC-%E3%80%8F"><span class="nav-number">3.7.2.2.</span> <span class="nav-text">&gt;&gt;『 ー 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%82%A0-%E3%80%8F"><span class="nav-number">3.7.2.3.</span> <span class="nav-text">&gt;&gt;『 ゠ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%83%BB-%E3%80%8F"><span class="nav-number">3.7.2.4.</span> <span class="nav-text">&gt;&gt;『 ・ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E%E3%82%9B%E3%82%9C%E3%80%8F%E4%BB%A5%E5%8F%8A-%E3%80%8E%E7%BB%84%E5%90%88%E7%94%A8-x3099-x309A-%E3%80%8F"><span class="nav-number">3.7.2.5.</span> <span class="nav-text">&gt;&gt;『゛゜』以及&gt;&gt;『组合用゙゚』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%80%85-%E3%82%9D%E3%82%9E%E3%83%BD%E3%83%BE-%E3%80%83-%E3%80%B1%E3%80%B2%E3%80%B3%E3%80%B4%E3%80%B5-%E3%80%8F"><span class="nav-number">3.7.2.6.</span> <span class="nav-text">&gt;&gt;『 々　ゝゞヽヾ　〃　〱〲〳〴〵 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%82%9F-%E3%80%8F"><span class="nav-number">3.7.2.7.</span> <span class="nav-text">&gt;&gt;『 ゟ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%83%BF-%E3%80%8F"><span class="nav-number">3.7.2.8.</span> <span class="nav-text">&gt;&gt;『 ヿ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%80%86-%E4%B9%84-%E3%80%8F"><span class="nav-number">3.7.2.9.</span> <span class="nav-text">&gt;&gt;『 〆 乄 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E3%80%BC-%E3%80%8F"><span class="nav-number">3.7.2.10.</span> <span class="nav-text">&gt;&gt;『 〼 』</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E4%B8%8E%E5%85%B6%E8%BE%93%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">3.7.3.</span> <span class="nav-text">符号与其输入方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E2%86%90-%E2%86%91-%E2%86%92-%E2%86%93-%E3%80%8F"><span class="nav-number">3.7.3.1.</span> <span class="nav-text">&gt;&gt;『 ← ↑ → ↓ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-%E2%97%8B%C3%97%E2%96%B3%E2%96%A1-%E3%80%8F"><span class="nav-number">3.7.3.2.</span> <span class="nav-text">&gt;&gt;『 ○×△□ 』</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E3%80%8E-a-i-u-e-o-%E3%80%8F"><span class="nav-number">3.7.3.3.</span> <span class="nav-text">&gt;&gt;『 ā ī ū ē ō 』</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/japanese-ime-issues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="日语输入法使用 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          日语输入法使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-07-28 02:58:23" itemprop="dateCreated datePublished" datetime="2023-07-28T02:58:23Z">2023-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><style>
+    .warn {
+        color: #F76516;
+    }
+    .tip{
+      color: #118Cf3;
+    }
+    .char img{
+      display:inline-block;
+      height: 1.1em;
+      width: 1.1em;
+      padding:0;
+      margin:0;
+      vertical-align: -0.2em;
+    }
+    .monospace{
+      font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+      text-decoration-line: underline;
+      font-size:0.8em;
+      text-underline-offset:5px;
+    }
+    .del{
+      text-decoration-line: line-through;
+      color: #aaa;
+    }
+    .caption {
+        text-align: center;
+        font-size: 0.8em;
+        position: relative;
+        top: -1.5em;
+    }
+
+</style>
+
+<h2 id="日语输入法概述"><a href="#日语输入法概述" class="headerlink" title="日语输入法概述"></a>日语输入法概述</h2><p>日语常用的有罗马音输入法和假名输入法两种，前者类似于中文的拼音，后者则直接把按键映射为具体的假名。假名键位整体上输入速度会更快，多数情况可以一键一假名，<span class="del">还能减少 aiueo 五个键的磨损</span>，但需要专门去记忆排布位置。罗马音键位则基本沿循了假名的音标注音，键位排布就是英语键盘也不需要重新学习。初步了解一下输入法软件的使用方法就可以上手打字了。</p>
+<p>罗马音输入法的整体逻辑为：</p>
+<ul>
+<li>键入英文字符 -&gt; 根据码表转假名</li>
+<li>根据假名选字 -&gt; 进一步选择平假名、片假名，或展开列表择选汉字。</li>
+<li>回车或数字键确认选项 -&gt; 上屏</li>
+</ul>
+<p>而假名输入法相当于只是跳过了罗马音输入法的 <strong>西文字符-&gt;假名</strong> 这一步的转换，但后续的 <strong>决定平片假 -&gt; 选字 -&gt; 输出上屏</strong> 这几步一样。</p>
+<p>所以对于初学者，使用系统自带的罗马音输入法就够了。</p>
+<div class='collapse'>
+      <div class='collapse-ctrl collapse-cardtitle' onclick='collapseToggle(this)'><div class='collapse-hint-ico'>&gt</div><span class='collapse-hint-show'>点击展开：罗马音键位、假名键位与&nbsp;JIS&nbsp;键盘</span><span class='collapse-hint-hide'>收起</span></div>
+      <div class='collapse-content'><div class='content-flex collapse-cardborder'><div style='width:100%'>
+          <p><img src="/../attach/2023/07/jpime-romaji-keyboard.png" alt="截图" loading="lazy"></p>
+<p class="caption">罗马音键位 - 就是普通的英语键盘键位</p>
+
+<p><img src="/../attach/2023/07/jpime-kana-keyboard.png" alt="截图" loading="lazy"></p>
+<p class="caption">假名键位 - 非 JIS 键盘通常不会在键帽上印假名，需要心里默记</p>
+
+<p>另外还有单独的 JIS 键盘布局和对应的键盘。以假名键位为基础，键盘上有单独的「半角&#x2F;全角」、「片假&#x2F;平假」、「变换&#x2F;无变换」（用以选择输出汉字）等功能键。普通英语键盘则需要通过组合键实现这些功能。JIS 键盘在纯日语环境下会方便一些。</p>
+<p><img src="/../attach/2023/07/jis-keyboard.jpg" alt="截图" loading="lazy"><img src="/../attach/2023/07/KB_Japanese.png" alt="截图" loading="lazy"></p>
+<p class="caption">JIS 键盘与键位表</p></div></div>
+      </div>
+  </div>
+<p></p>
+
+<blockquote>
+<p><a href="../attach/2023/07/%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%E5%88%97%E8%A1%A8.pdf">扩展阅读 - 五花八门的中文输入法 [维基百科]</a></p>
+</blockquote>
+<h2 id="输入法的安装（Windows-和-MacOS，以及网页版）"><a href="#输入法的安装（Windows-和-MacOS，以及网页版）" class="headerlink" title="输入法的安装（Windows 和 MacOS，以及网页版）"></a>输入法的安装（Windows 和 MacOS，以及网页版）</h2><blockquote>
+<p>手机端有另外的输入法和输入方式，另文再述。</p>
+</blockquote>
+<p>Windows 和 MacOS 下都有系统自带的输入法。同时还有一些站点提供了在线方案，比如 Google Translate 的日语模块自带的输入法（需翻墙），不方便安装时可以考虑。</p>
+<div class='collapse'>
+      <div class='collapse-ctrl collapse-cardtitle' onclick='collapseToggle(this)'><div class='collapse-hint-ico'>&gt</div><span class='collapse-hint-show'>点击展开：安装过程详述</span><span class='collapse-hint-hide'>收起</span></div>
+      <div class='collapse-content'><div class='content-flex collapse-cardborder'><div style='width:100%'>
+          <p>在 Windows 下需要在系统中先添加日语语言，再在语言下添加日语输入法。这里输入法的名字也叫「微软输入法」，和中文的同名，实际用的是罗马音输入方式，可以在输入法选项里进一步配置。</p>
+<p>在 Windows 的系统设置中，先添加日语语言：<br><img src="/../attach/2023/07/win-add-jp-lang.png" loading="lazy"></p>
+<p>在日语语言选项中，添加日语输入法，顺便按需添加手写包和语音包，以防学习时遇到不会念的字导致无法输入：<br><img src="/../attach/2023/07/win-add-jp-ime.png" loading="lazy"></p>
+<p>在 MacOS 下，在设置内查找 键盘 -&gt; 输入法，然后添加日文 - 罗马字输入法。MacOS 有几项设置比较重要，见<a href="#extra">文末补充</a>：</p>
+<p>键盘 - 输入法<br><img src="/../attach/2023/07/mac-keyboard-ime.png" loading="lazy"></p>
+<p>添加日文 - 罗马字输入法<br><img src="/../attach/2023/07/mac-keyboard-ime-jp.png" loading="lazy"></p>
+<p>如果两者都不想安装，也可以使用网页版的输入法，比如 Google Translate 的日语模块自带的输入法（需翻墙）。Google 翻译本身还能在学习过程中提供很多其它的帮助。</p>
+<p><a target="_blank" rel="noopener" href="https://translate.google.com/?sl=ja&tl=zh-CN">Google Translate</a><br><img src="/../attach/2023/07/google-trans-jp-ime.png" loading="lazy"></p>
+</div></div>
+      </div>
+  </div>
+
+<h2 id="输入法的使用"><a href="#输入法的使用" class="headerlink" title="输入法的使用"></a>输入法的使用</h2><p>输入法的使用包括：</p>
+<ul>
+<li>输入法的热键，输入状态的切换，以及平台间差异</li>
+<li>输入、选择模式与详细的罗马音码表</li>
+<li>一些特殊字符的输入方法</li>
+</ul>
+<h3 id="输入法热键（Windows）"><a href="#输入法热键（Windows）" class="headerlink" title="输入法热键（Windows）"></a>输入法热键（Windows）</h3><p>对于日文输入法而言，存在三种状态分别为平假名、片假名、英文。在英文状态下相当于普通的英文输入法，输入英文字符直接上屏。热键也针对这三种情况有相应的配置。</p>
+<table>
+<thead>
+<tr>
+<th align="center">输入法状态快捷键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Win+Space<br />左 Alt+Shift</td>
+<td align="left">切换输入语言及该语言下的输入法。<br />Win+Space 会在屏幕上展示列表，而左 Alt+Shift 不会</td>
+</tr>
+<tr>
+<td align="center">Alt+&#96;(数字 1 左边的键)</td>
+<td align="left">在假名和英文输入状态间切换，当从英文切回假名状态时，会恢复到上次切换为英文前的假名状态。平假名还是平假名，片假名还是片假名。</td>
+</tr>
+<tr>
+<td align="center">Ctrl+CapsLock</td>
+<td align="left">切换到平假名输入状态</td>
+</tr>
+<tr>
+<td align="center">Alt+CapsLock</td>
+<td align="left">切换到片假名输入状态</td>
+</tr>
+<tr>
+<td align="center">Shift+CapsLock</td>
+<td align="left">切换到全角英文输入状态。这状态下输入的英文字符都是全角的，同时仍然保留了择字功能，通过 Tab 而不是平常的 Space 可以选择列表项。</td>
+</tr>
+<tr>
+<td align="center">Win+.</td>
+<td align="left">打开 emoji 菜单</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">上屏菜单快捷键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">F6</td>
+<td align="left">当前输入内容转为平假名</td>
+</tr>
+<tr>
+<td align="center">F7</td>
+<td align="left">当前输入内容转为片假名</td>
+</tr>
+<tr>
+<td align="center">F8</td>
+<td align="left">当前输入内容转为半宽片假名</td>
+</tr>
+<tr>
+<td align="center">F9</td>
+<td align="left">当前输入内容转为全角英文</td>
+</tr>
+<tr>
+<td align="center">F10</td>
+<td align="left">当前输入内容转为半角英文</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="left">F6 F7 F10 较为常用</td>
+</tr>
+<tr>
+<td align="center">Space（空格）</td>
+<td align="left">第一次拍击直接选择选字列表第一项，连续第二次拍击使光标进入选字列表，并逐个选择列表项</td>
+</tr>
+<tr>
+<td align="center">方向键</td>
+<td align="left">已经展开的选字列表里，定位选择列表项</td>
+</tr>
+<tr>
+<td align="center">Tab</td>
+<td align="left">如果没有拍空格而直接按 Tab，则光标进入选字列表，并逐个选择列表项。此时 Space 与 Tab 作用完全相同。<br />如果由 Space 启动的选字，则按 Tab 会使选字菜单横向展开成多列，方便使用方向键选字</td>
+</tr>
+<tr>
+<td align="center">Enter（回车）</td>
+<td align="left">确认当前光标位置的选字上屏</td>
+</tr>
+<tr>
+<td align="center">Ctrl-B</td>
+<td align="left">打开浏览器使用搜索引擎搜索当前输入内容（给浏览器引流）</td>
+</tr>
+</tbody></table>
+<h3 id="输入法热键（MacOS）"><a href="#输入法热键（MacOS）" class="headerlink" title="输入法热键（MacOS）"></a>输入法热键（MacOS）</h3><p>MacOS 的热键与 Windows 有所不同，但基本功能相同。主要区别在于，在 Windows 下，输入法的状态切换是在输入法内部切换的，而在 MacOS 下，平假名 &#x2F; 片假名直接作为两种输入法条目与 ABC（英文）并列，由系统输入法切换快捷键（通常是 Control+Space）统一切换。在输入法选项中可以设置只激活平假名输入，仍然可以通过 F7、择字等方式输入片假名和中文，不影响。<br><img src="/../attach/2023/07/ime-selection.png" loading="lazy"></p>
+<table>
+<thead>
+<tr>
+<th align="center">输入法状态快捷键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Control-Shift-R</td>
+<td align="left">在当前光标处输入上一次确认的短句并重新择字</td>
+</tr>
+<tr>
+<td align="center">Control-3</td>
+<td align="left">直接在当前光标处打开颜文字选字列表</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">&lt;以下快捷键需要先拖动光标使若干字处于文本选中状态&gt;</td>
+</tr>
+<tr>
+<td align="center">Control-1</td>
+<td align="left">将选中文本转换为相关字符，通常就是选择假名使其在清浊音之转，也可以使漢字在不同书写形式之间转。例如，选择「汉」然后 Control-1 就会出菜单。类似的还有「假」与「仮」等<img src="/../attach/2023/07/Control-1-selection.png" loading="lazy"></td>
+</tr>
+<tr>
+<td align="center">Control-2</td>
+<td align="left">根据选中文本搜索相似汉字，似乎是基于偏旁相似的，例如「假」与「葭暇瑕」等</td>
+</tr>
+<tr>
+<td align="center">Control-Shift-R</td>
+<td align="left">将选中文本先反转为读音，然后根据读音重新打开选字列表，用于同音不同字的勘误</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">上屏菜单快捷键</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Control-J &#x2F; F6</td>
+<td align="left">当前输入内容转为平假名</td>
+</tr>
+<tr>
+<td align="center">Control-J &#x2F; F7</td>
+<td align="left">当前输入内容转为片假名</td>
+</tr>
+<tr>
+<td align="center">Control-L &#x2F; F9</td>
+<td align="left">当前输入内容转为全角英文</td>
+</tr>
+<tr>
+<td align="center">Control-; &#x2F; F10</td>
+<td align="left">当前输入内容转为半角英文</td>
+</tr>
+<tr>
+<td align="center">Space（空格）</td>
+<td align="left">MacOS 选字菜单是自动出现的，拍击使标进入选字列表，并逐个选择列表项。列表会自动展开</td>
+</tr>
+<tr>
+<td align="center">方向键</td>
+<td align="left">已经展开的选字列表里，定位选择列表项</td>
+</tr>
+<tr>
+<td align="center">Tab</td>
+<td align="left">MacOS 选字菜单下方有分类列表，Tab 键切换</td>
+</tr>
+<tr>
+<td align="center">Enter（回车）</td>
+<td align="left">确认当前光标位置的选字上屏</td>
+</tr>
+</tbody></table>
+<h3 id="输入法选字菜单"><a href="#输入法选字菜单" class="headerlink" title="输入法选字菜单"></a>输入法选字菜单</h3><p>罗马字输入法的输入方式类似于拼音，键入英文字符，输入法弹出选词框，默认一般为平假名。用户用空格或数字键选择相同发音下的各种不同写法，择字确定后按回车上屏。初学者背完五十音图就不会有障碍。</p>
+<blockquote>
+<p><em>示例：输入 shinjitsu 后按空格逐项选择想要的词组（含翻页），回车确定。也可用数字键直接择字。由于输入有明确意义，因此输入法第一建议是汉字的「真実」，第二选项才是平假名的「しんじつ」。</em> &gt; <img src="/../attach/2023/07/input-droplist.png" loading="lazy"></p>
+</blockquote>
+<p>日语实际有的发音不止 50 音，以下是字符输入的全表。其中有部分音的输入码存在多种方式。输出结果是一样的，哪个音码习惯就用哪个。</p>
+<blockquote>
+<h3 id="清浊音表"><a href="#清浊音表" class="headerlink" title="清浊音表"></a>清浊音表</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">あ</th>
+<th align="center">い</th>
+<th align="center">う</th>
+<th align="center">え</th>
+<th align="center">お</th>
+<th align="center"></th>
+<th align="center">あ&#x3099;</th>
+<th align="center">い&#x3099;</th>
+<th align="center">う&#x3099;</th>
+<th align="center">え&#x3099;</th>
+<th align="center">お&#x3099;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">あア</td>
+<td align="center">いイ</td>
+<td align="center">うウ</td>
+<td align="center">えエ</td>
+<td align="center">おオ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ゔヴ</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td align="center"><span class="tip">i&#x2F;yi</span></td>
+<td align="center">u</td>
+<td align="center">e</td>
+<td align="center">o</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">vu</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">かカ</td>
+<td align="center">きキ</td>
+<td align="center">くク</td>
+<td align="center">けケ</td>
+<td align="center">こコ</td>
+<td align="center"></td>
+<td align="center">がガ</td>
+<td align="center">ぎギ</td>
+<td align="center">ぐグ</td>
+<td align="center">げゲ</td>
+<td align="center">ごゴ</td>
+</tr>
+<tr>
+<td align="center">ka</td>
+<td align="center">ki</td>
+<td align="center"><span class="tip">ku&#x2F;qu</span></td>
+<td align="center">ke</td>
+<td align="center">ko</td>
+<td align="center"></td>
+<td align="center">ga</td>
+<td align="center">gi</td>
+<td align="center">gu</td>
+<td align="center">ge</td>
+<td align="center">go</td>
+</tr>
+<tr>
+<td align="center">さサ</td>
+<td align="center">しシ</td>
+<td align="center">すス</td>
+<td align="center">せセ</td>
+<td align="center">そソ</td>
+<td align="center"></td>
+<td align="center">ざザ</td>
+<td align="center">じジ</td>
+<td align="center">ずズ</td>
+<td align="center">ぜゼ</td>
+<td align="center">ぞゾ</td>
+</tr>
+<tr>
+<td align="center">sa</td>
+<td align="center"><span class="tip">shi&#x2F;si</span></td>
+<td align="center">su</td>
+<td align="center">se</td>
+<td align="center">so</td>
+<td align="center"></td>
+<td align="center">za</td>
+<td align="center"><span class="tip">ji&#x2F;zi</span></td>
+<td align="center">zu</td>
+<td align="center">ze</td>
+<td align="center">zo</td>
+</tr>
+<tr>
+<td align="center">たタ</td>
+<td align="center">ちチ</td>
+<td align="center">つツ</td>
+<td align="center">てテ</td>
+<td align="center">とト</td>
+<td align="center"></td>
+<td align="center">だダ</td>
+<td align="center">ぢヂ</td>
+<td align="center">づヅ</td>
+<td align="center">でデ</td>
+<td align="center">どド</td>
+</tr>
+<tr>
+<td align="center">ta</td>
+<td align="center"><span class="tip">chi&#x2F;ti</span></td>
+<td align="center"><span class="tip">tsu&#x2F;tu</span></td>
+<td align="center">te</td>
+<td align="center">to</td>
+<td align="center"></td>
+<td align="center">da</td>
+<td align="center"><span class="warn">di</span></td>
+<td align="center"><span class="warn">du</span></td>
+<td align="center">de</td>
+<td align="center">do</td>
+</tr>
+<tr>
+<td align="center">なナ</td>
+<td align="center">にニ</td>
+<td align="center">ぬヌ</td>
+<td align="center">ねネ</td>
+<td align="center">のノ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">na</td>
+<td align="center">ni</td>
+<td align="center">nu</td>
+<td align="center">ne</td>
+<td align="center">no</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">はハ</td>
+<td align="center">ひヒ</td>
+<td align="center">ふフ</td>
+<td align="center">へヘ</td>
+<td align="center">ほホ</td>
+<td align="center"></td>
+<td align="center">ばバ</td>
+<td align="center">びビ</td>
+<td align="center">ぶブ</td>
+<td align="center">べベ</td>
+<td align="center">ぼボ</td>
+</tr>
+<tr>
+<td align="center">ha</td>
+<td align="center">hi</td>
+<td align="center"><span class="tip">fu&#x2F;hu</span></td>
+<td align="center">he</td>
+<td align="center">ho</td>
+<td align="center"></td>
+<td align="center">ba</td>
+<td align="center">bi</td>
+<td align="center">bu</td>
+<td align="center">be</td>
+<td align="center">bo</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ぱパ</td>
+<td align="center">ぴピ</td>
+<td align="center">ぷプ</td>
+<td align="center">ぺペ</td>
+<td align="center">ぽポ</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">pa</td>
+<td align="center">pi</td>
+<td align="center">pu</td>
+<td align="center">pe</td>
+<td align="center">po</td>
+</tr>
+<tr>
+<td align="center">まマ</td>
+<td align="center">みミ</td>
+<td align="center">むム</td>
+<td align="center">めメ</td>
+<td align="center">もモ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ma</td>
+<td align="center">mi</td>
+<td align="center">mu</td>
+<td align="center">me</td>
+<td align="center">mo</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">やヤ</td>
+<td align="center"><span class="char"><img src="/../attach/2023/07/u1b006.svg" loading="lazy"><img src="/../attach/2023/07/u1b120.svg" loading="lazy"></span></td>
+<td align="center">ゆユ</td>
+<td align="center"><span class="char"><img src="/../attach/2023/07/u1b001.svg" loading="lazy"><img src="/../attach/2023/07/u1b121.svg" loading="lazy"></span></td>
+<td align="center">よヨ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ya</td>
+<td align="center"></td>
+<td align="center">yu</td>
+<td align="center"></td>
+<td align="center">yo</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">らラ</td>
+<td align="center">りリ</td>
+<td align="center">るル</td>
+<td align="center">れレ</td>
+<td align="center">ろロ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ra</td>
+<td align="center">ri</td>
+<td align="center">ru</td>
+<td align="center">re</td>
+<td align="center">ro</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">わワ</td>
+<td align="center">ゐヰ</td>
+<td align="center"><span class="char"><img src="/../attach/2023/07/u1b11f.svg" loading="lazy"><img src="/../attach/2023/07/u1b122.svg" loading="lazy"></span></td>
+<td align="center">ゑヱ</td>
+<td align="center">をヲ</td>
+<td align="center"></td>
+<td align="center">ヷ</td>
+<td align="center">ヸ</td>
+<td align="center"></td>
+<td align="center">ヹ</td>
+<td align="center">ヺ</td>
+</tr>
+<tr>
+<td align="center">wa</td>
+<td align="center"><span class="warn">wyi</span></td>
+<td align="center"></td>
+<td align="center"><span class="warn">wye</span></td>
+<td align="center">wo</td>
+<td align="center"></td>
+<td align="center">kyuukana</td>
+<td align="center">kyuukana</td>
+<td align="center"></td>
+<td align="center">kyuukana</td>
+<td align="center">kyuukana</td>
+</tr>
+<tr>
+<td align="center">んン</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><sup class="warn">nn</sup></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>じジ 与 ぢヂ、ずズ 与 づヅ 的读音是相同的，但在码表上则有区别，前者为 ji&#x2F;zi zu 后者为 di du 以便于输入时区分。</p>
+</li>
+<li><p>ふフ 读作 fu，但输入法一般 fu 和 hu 都支持。</p>
+</li>
+<li><p>ヴ 是因外来语而补充的新假名，读作 vu，类似于英语里的 [v] 音。例如ヴァイオリン（Violin 小提琴）。在日常应用中，也可以以浊音 ブ 来标记。所以ブァイオリン也是对的。但发音上此处的 ブ 最好仍读作 [v]。</p>
+</li>
+<li><p>由于 ヴ 本来就是新造词用于外来语表音，而日语中对音译词统一采用片假名表示，因此实际没有 ゔ 应用的场景。在微软输入法里无法通过 F6 或 Ctrl+CapsLock 切换到 ゔ，但可以通过空格下拉菜单实现。<img src="/../attach/2023/07/Code_vu.png" alt="图例" loading="lazy">在 MacOS 下则直接展示 ゔ 并正常切换。</p>
+</li>
+<li><p>ゐヰ 和 ゑヱ 在现代日语中已经不再使用，只存在于古文和歌词中，例如《いるは歌》（伊吕波歌）。但在输入法上仍然保留，为避免与 いえ 重码，两者的音码调整为 wyi 和 wye。</p>
+</li>
+<li><p>根据 <a href="../attach/2023/07/wu-of-line-wa.pdf">维基百科</a>，江户到明治期间，有过若干种 wu，即 わ行う（<span class="char"><img src="/../attach/2023/07/u1b11f.svg" loading="lazy"><img src="/../attach/2023/07/u1b122.svg" loading="lazy"></span>）的独立假名写法出现在不同的文献中，但未有正式规范。字体文件和输入法也都不支持，既不能正常键入，也不能正常显示。や行い（<span class="char"><img src="/../attach/2023/07/u1b006.svg" loading="lazy"><img src="/../attach/2023/07/u1b120.svg" loading="lazy"></span>） 和 や行え（<span class="char"><img src="/../attach/2023/07/u1b001.svg" loading="lazy"><img src="/../attach/2023/07/u1b121.svg" loading="lazy"></span>）也有相同情况。</p>
+</li>
+<li><p>用「kyuukana（旧仮名）」也可以输入旧时代的假名，比如「ゐ」、「ゑ」、「ゔ」等。这种输入方式属于以意定字，后面会有更多类似的例子。</p>
+</li>
+<li><p>这三个音节的对应字符目前 <a target="_blank" rel="noopener" href="https://symbl.cc/jp/unicode/blocks/kana-extended-a/">在 Unicode 扩展词表中有定义</a>，统归为「変体仮名」，使用定制的字体可以显示。本文采纳 Unicode 的写法，但使用 svg 图片代替显示。</p>
+</li>
+<li><p>在实际的输入中，由于句子往往是片段或整句输入的，有些假名有两种输入方法（表中蓝字标部分），有些在输入时可以有一定程度的简略。类似于中文拼音里的容错、模糊音、联想功能。</p>
+</li>
+<li><p>比如 ん，如果需要独立输入，需要按两次 n。但在实际整句输入中，会自动判断是否需要独立输入，经常只需要输入一次 n。比如「山田さんわ日本人です（山田先生是日本人）」这句，实际输入是：</p>
+<table>
+<thead>
+<tr>
+<th>山田</th>
+<th>さん</th>
+<th>わ</th>
+<th>日本</th>
+<th>人</th>
+<th>です</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>yamada</td>
+<td>sa<span class="warn">n</span></td>
+<td>wa</td>
+<td>nihon</td>
+<td>jin</td>
+<td>desu</td>
+</tr>
+</tbody></table>
+<p>这里さん（先生）的 ん 就只输入了一个 n，因为在日语中，ん 后面不会跟元音。因此在后续接 wa 时。输入法会自动把 n 转换成 ん。这里的 ん 确实可以输入 nn，但没必要。但若后续跟随的是元音时，为了区分就需要输入两次 n。比如 tanni（たんい，単位），若错输为 tani，就变成了たに（谷）。</p>
+</li>
+</ul>
+<blockquote>
+<h3 id="常规拗音表"><a href="#常规拗音表" class="headerlink" title="常规拗音表"></a>常规拗音表</h3></blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">ゃ</th>
+<th align="center"></th>
+<th align="center">ゅ</th>
+<th align="center"></th>
+<th align="center">ょ</th>
+<th></th>
+<th align="center"><sub>や&#x3099;</sub></th>
+<th align="center"></th>
+<th align="center"><sub>ゆ&#x3099;</sub></th>
+<th align="center"></th>
+<th align="center"><sub>よ&#x3099;</sub></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">きゃ</td>
+<td align="center"></td>
+<td align="center">きゅ</td>
+<td align="center"></td>
+<td align="center">きょ</td>
+<td></td>
+<td align="center">ぎゃ</td>
+<td align="center"></td>
+<td align="center">ぎゅ</td>
+<td align="center"></td>
+<td align="center">ぎょ</td>
+</tr>
+<tr>
+<td align="center">kya</td>
+<td align="center"></td>
+<td align="center">kyu</td>
+<td align="center"></td>
+<td align="center">kyo</td>
+<td></td>
+<td align="center">gya</td>
+<td align="center"></td>
+<td align="center">gyu</td>
+<td align="center"></td>
+<td align="center">gyo</td>
+</tr>
+<tr>
+<td align="center">しゃ</td>
+<td align="center"></td>
+<td align="center">しゅ</td>
+<td align="center"></td>
+<td align="center">しょ</td>
+<td></td>
+<td align="center">じゃ</td>
+<td align="center"></td>
+<td align="center">じゅ</td>
+<td align="center"></td>
+<td align="center">じょ</td>
+</tr>
+<tr>
+<td align="center">sya&#x2F;sha</td>
+<td align="center"></td>
+<td align="center">syu&#x2F;shu</td>
+<td align="center"></td>
+<td align="center">syo&#x2F;sho</td>
+<td></td>
+<td align="center">ja&#x2F;jya</td>
+<td align="center"></td>
+<td align="center">ju&#x2F;jyu</td>
+<td align="center"></td>
+<td align="center">jo&#x2F;jyo</td>
+</tr>
+<tr>
+<td align="center">ちゃ</td>
+<td align="center"></td>
+<td align="center">ちゅ</td>
+<td align="center"></td>
+<td align="center">ちょ</td>
+<td></td>
+<td align="center">ぢゃ</td>
+<td align="center"></td>
+<td align="center">ぢゅ</td>
+<td align="center"></td>
+<td align="center">ぢょ</td>
+</tr>
+<tr>
+<td align="center">cha&#x2F;cya&#x2F;tya</td>
+<td align="center"></td>
+<td align="center">chu&#x2F;cyu&#x2F;tyu</td>
+<td align="center"></td>
+<td align="center">cho&#x2F;cyo&#x2F;tyo</td>
+<td></td>
+<td align="center">dya</td>
+<td align="center"></td>
+<td align="center">dyu</td>
+<td align="center"></td>
+<td align="center">dyo</td>
+</tr>
+<tr>
+<td align="center">にゃ</td>
+<td align="center"></td>
+<td align="center">にゅ</td>
+<td align="center"></td>
+<td align="center">にょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">nya</td>
+<td align="center"></td>
+<td align="center">nyu</td>
+<td align="center"></td>
+<td align="center">nyo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ひゃ</td>
+<td align="center"></td>
+<td align="center">ひゅ</td>
+<td align="center"></td>
+<td align="center">ひょ</td>
+<td></td>
+<td align="center">びゃ</td>
+<td align="center"></td>
+<td align="center">びゅ</td>
+<td align="center"></td>
+<td align="center">びょ</td>
+</tr>
+<tr>
+<td align="center">hya</td>
+<td align="center"></td>
+<td align="center">hyu</td>
+<td align="center"></td>
+<td align="center">hyo</td>
+<td></td>
+<td align="center">bya</td>
+<td align="center"></td>
+<td align="center">byu</td>
+<td align="center"></td>
+<td align="center">byo</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td align="center">ぴゃ</td>
+<td align="center"></td>
+<td align="center">ぴゅ</td>
+<td align="center"></td>
+<td align="center">ぴょ</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td align="center">pya</td>
+<td align="center"></td>
+<td align="center">pyu</td>
+<td align="center"></td>
+<td align="center">pyo</td>
+</tr>
+<tr>
+<td align="center">みゃ</td>
+<td align="center"></td>
+<td align="center">みゅ</td>
+<td align="center"></td>
+<td align="center">みょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">mya</td>
+<td align="center"></td>
+<td align="center">myu</td>
+<td align="center"></td>
+<td align="center">myo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">りゃ</td>
+<td align="center"></td>
+<td align="center">りゅ</td>
+<td align="center"></td>
+<td align="center">りょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rya</td>
+<td align="center"></td>
+<td align="center">ryu</td>
+<td align="center"></td>
+<td align="center">ryo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>常规拗音（通常直接称为拗音）只有 ゃゅょ 三列。它们和清浊表中 い 列的各个假名，组成一类转腔调的音。</li>
+<li>拗音当然也有片假名写法，表格空间有限，只写了平假名以作示意。</li>
+<li>虽然拗音表只有 36 个，但实际上输入法的码表中通常可以输出大量不在上表的可能的发音组合，用于表达各类外来语的发音，这些非常规的组合称为 <strong>合拗音</strong>。</li>
+<li>其实，即使是在各种教材中作为标准音表存在的常规拗音，本身也是用于外来词音译发音的，只不过这个外来语是汉语。由于历史原因，常规拗音被视作日语本语言发音的一份，成为五十音图的增表了。</li>
+</ul>
+<blockquote>
+<h3 id="合拗音表"><a href="#合拗音表" class="headerlink" title="合拗音表"></a>合拗音表</h3></blockquote>
+<div style="font-size:14px">
+
+<table>
+<thead>
+<tr>
+<th align="center">あ</th>
+<th align="center">い</th>
+<th align="center">う</th>
+<th align="center">え</th>
+<th align="center">お</th>
+<th></th>
+<th align="center">あ&#x3099;</th>
+<th align="center">い&#x3099;</th>
+<th align="center">う&#x3099;</th>
+<th align="center">え&#x3099;</th>
+<th align="center">お&#x3099;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">うぁ</td>
+<td align="center">うぃ</td>
+<td align="center"></td>
+<td align="center">うぇ</td>
+<td align="center">うぉ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">いぇ</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">wha</td>
+<td align="center">whi&#x2F;wi</td>
+<td align="center"></td>
+<td align="center">whe</td>
+<td align="center">who</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ye</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">きゃ</td>
+<td align="center">きぃ</td>
+<td align="center">きゅ</td>
+<td align="center">きぇ</td>
+<td align="center">きょ</td>
+<td></td>
+<td align="center">ぎゃ</td>
+<td align="center">ぎぃ</td>
+<td align="center">ぎゅ</td>
+<td align="center">ぎぇ</td>
+<td align="center">ぎょ</td>
+</tr>
+<tr>
+<td align="center">kya</td>
+<td align="center">kyi</td>
+<td align="center">kyu</td>
+<td align="center">kye</td>
+<td align="center">kyo</td>
+<td></td>
+<td align="center">gya</td>
+<td align="center">gyi</td>
+<td align="center">gyu</td>
+<td align="center">gye</td>
+<td align="center">gyo</td>
+</tr>
+<tr>
+<td align="center"><span class="tip">くゃ · くぁ</span></td>
+<td align="center">くぃ</td>
+<td align="center"><span class="tip">くゅ · くぅ</span></td>
+<td align="center">くぇ</td>
+<td align="center"><span class="tip">くょ · くぉ</span></td>
+<td></td>
+<td align="center">ぐぁ</td>
+<td align="center">ぐぃ</td>
+<td align="center">ぐぅ</td>
+<td align="center">ぐぇ</td>
+<td align="center">ぐぉ</td>
+</tr>
+<tr>
+<td align="center"><span class="tip">qya · kwa&#x2F;qa&#x2F;qwa</span></td>
+<td align="center">qyi&#x2F;qi&#x2F;qwi</td>
+<td align="center"><span class="tip">qyu · qwu</span></td>
+<td align="center">qye&#x2F;qe&#x2F;qwe</td>
+<td align="center"><span class="tip">qyo qo&#x2F;qwo</span></td>
+<td></td>
+<td align="center">gwa</td>
+<td align="center">gwi</td>
+<td align="center">gwu</td>
+<td align="center">gwe</td>
+<td align="center">gwo</td>
+</tr>
+<tr>
+<td align="center">しゃ</td>
+<td align="center">しぃ</td>
+<td align="center">しゅ</td>
+<td align="center">しぇ</td>
+<td align="center">しょ</td>
+<td></td>
+<td align="center">じゃ</td>
+<td align="center">じぃ</td>
+<td align="center">じゅ</td>
+<td align="center">じぇ</td>
+<td align="center">じょ</td>
+</tr>
+<tr>
+<td align="center">sya&#x2F;sha</td>
+<td align="center">syi</td>
+<td align="center">syu&#x2F;shu</td>
+<td align="center">sye&#x2F;she</td>
+<td align="center">syo&#x2F;sho</td>
+<td></td>
+<td align="center">jya&#x2F;zya&#x2F;ja</td>
+<td align="center">jyi&#x2F;zyi</td>
+<td align="center">jyu&#x2F;zyu&#x2F;ju</td>
+<td align="center">jye&#x2F;zye&#x2F;je</td>
+<td align="center">jyo&#x2F;zyo&#x2F;jo</td>
+</tr>
+<tr>
+<td align="center">すぁ</td>
+<td align="center">すぃ</td>
+<td align="center">すぅ</td>
+<td align="center">すぇ</td>
+<td align="center">すぉ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">swa</td>
+<td align="center">swi</td>
+<td align="center">swu</td>
+<td align="center">swe</td>
+<td align="center">swo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ちゃ</td>
+<td align="center">ちぃ</td>
+<td align="center">ちゅ</td>
+<td align="center">ちぇ</td>
+<td align="center">ちょ</td>
+<td></td>
+<td align="center">ぢゃ</td>
+<td align="center">ぢぃ</td>
+<td align="center">ぢゅ</td>
+<td align="center">ぢぇ</td>
+<td align="center">ぢょ</td>
+</tr>
+<tr>
+<td align="center">cha&#x2F;cya&#x2F;tya</td>
+<td align="center">cyi&#x2F;tyi</td>
+<td align="center">chu&#x2F;cyu&#x2F;tyu</td>
+<td align="center">cye&#x2F;che</td>
+<td align="center">cho&#x2F;cyo&#x2F;tyo</td>
+<td></td>
+<td align="center">dya</td>
+<td align="center">dyi</td>
+<td align="center">dyu</td>
+<td align="center">dye</td>
+<td align="center">dyo</td>
+</tr>
+<tr>
+<td align="center">つぁ</td>
+<td align="center">つぃ</td>
+<td align="center"><span class="del">つ</span></td>
+<td align="center">つぇ</td>
+<td align="center">つぉ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">tsa</td>
+<td align="center">tsi</td>
+<td align="center"><span class="del">tsu</span></td>
+<td align="center">tse</td>
+<td align="center">tso</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">てゃ</td>
+<td align="center">てぃ</td>
+<td align="center">てゅ</td>
+<td align="center">てぇ</td>
+<td align="center">てょ</td>
+<td></td>
+<td align="center">でゃ</td>
+<td align="center">でぃ</td>
+<td align="center">でゅ</td>
+<td align="center">でぇ</td>
+<td align="center">でょ</td>
+</tr>
+<tr>
+<td align="center">tha</td>
+<td align="center">thi</td>
+<td align="center">thu</td>
+<td align="center">the</td>
+<td align="center">tho</td>
+<td></td>
+<td align="center">dha</td>
+<td align="center">dhi</td>
+<td align="center">dhu</td>
+<td align="center">dhe</td>
+<td align="center">dho</td>
+</tr>
+<tr>
+<td align="center">とぁ</td>
+<td align="center">とぃ</td>
+<td align="center">とぅ</td>
+<td align="center">とぇ</td>
+<td align="center">とぉ</td>
+<td></td>
+<td align="center">どぁ</td>
+<td align="center">どぃ</td>
+<td align="center">どぅ</td>
+<td align="center">どぇ</td>
+<td align="center">どぉ</td>
+</tr>
+<tr>
+<td align="center">twa</td>
+<td align="center">twi</td>
+<td align="center">twu</td>
+<td align="center">twe</td>
+<td align="center">two</td>
+<td></td>
+<td align="center">dwa</td>
+<td align="center">dwi</td>
+<td align="center">dwu</td>
+<td align="center">dwe</td>
+<td align="center">dwo</td>
+</tr>
+<tr>
+<td align="center">にゃ</td>
+<td align="center">にぃ</td>
+<td align="center">にゅ</td>
+<td align="center">にぇ</td>
+<td align="center">にょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">nya</td>
+<td align="center">nyi</td>
+<td align="center">nyu</td>
+<td align="center">nye</td>
+<td align="center">nyo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ひゃ</td>
+<td align="center">ひぃ</td>
+<td align="center">ひゅ</td>
+<td align="center">ひぇ</td>
+<td align="center">ひょ</td>
+<td></td>
+<td align="center">びゃ</td>
+<td align="center">びぃ</td>
+<td align="center">びゅ</td>
+<td align="center">びぇ</td>
+<td align="center">びょ</td>
+</tr>
+<tr>
+<td align="center">hya</td>
+<td align="center">hyi</td>
+<td align="center">hyu</td>
+<td align="center">hye</td>
+<td align="center">hyo</td>
+<td></td>
+<td align="center">bya</td>
+<td align="center">byi</td>
+<td align="center">byu</td>
+<td align="center">bye</td>
+<td align="center">byo</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td align="center">ぴゃ</td>
+<td align="center">ぴぃ</td>
+<td align="center">ぴゅ</td>
+<td align="center">ぴぇ</td>
+<td align="center">ぴょ</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td></td>
+<td align="center">pya</td>
+<td align="center">pyi</td>
+<td align="center">pyu</td>
+<td align="center">pye</td>
+<td align="center">pyo</td>
+</tr>
+<tr>
+<td align="center"><span class="tip">ふゃ · ふぁ</span></td>
+<td align="center">ふぃ</td>
+<td align="center"><span class="tip">ふゅ · ふぅ</span></td>
+<td align="center">ふぇ</td>
+<td align="center"><span class="tip">ふょ · ふぉ</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><span class="tip">fya · fwa&#x2F;fa</span></td>
+<td align="center">fyi&#x2F;fwi&#x2F;fi</td>
+<td align="center"><span class="tip">fyu · fwu</span></td>
+<td align="center">fye&#x2F;fwe&#x2F;fe</td>
+<td align="center"><span class="tip">fyo · fwo&#x2F;fo</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">みゃ</td>
+<td align="center">みぃ</td>
+<td align="center">みゅ</td>
+<td align="center">みぇ</td>
+<td align="center">みょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">mya</td>
+<td align="center">myi</td>
+<td align="center">myu</td>
+<td align="center">mye</td>
+<td align="center">myo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">りゃ</td>
+<td align="center">りぃ</td>
+<td align="center">りゅ</td>
+<td align="center">りぇ</td>
+<td align="center">りょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rya</td>
+<td align="center">ryi</td>
+<td align="center">ryu</td>
+<td align="center">rye</td>
+<td align="center">ryo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">りゃ</td>
+<td align="center">りぃ</td>
+<td align="center">りゅ</td>
+<td align="center">りぇ</td>
+<td align="center">りょ</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">rya</td>
+<td align="center">ryi</td>
+<td align="center">ryu</td>
+<td align="center">rye</td>
+<td align="center">ryo</td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><span class="tip">ヴゃ · ヴぁ</span></td>
+<td align="center">ヴぃ</td>
+<td align="center">ヴゅ</td>
+<td align="center">ヴぇ</td>
+<td align="center"><span class="tip">ヴょ · ヴぉ</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><span class="tip">vya · va</span></td>
+<td align="center"><span class="warn">vyi</span>&#x2F;vi</td>
+<td align="center">vyu</td>
+<td align="center"><span class="warn">vye</span>&#x2F;ve</td>
+<td align="center"><span class="tip">vyo · vo</span></td>
+<td></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</div>
+
+<ul>
+<li>合拗音表里标注蓝色的单元格写了两个拗音，因为码表里同时存在形如 くゃ 和 くぁ 两种拗音码，考虑到表格空间写在一起。两者是不同的码，不同的输出结果。</li>
+<li>同样，合拗音有片假名形式，表格写不下。或者说因为表外来语，合拗音主要是用片假名形式。</li>
+<li>ヴ 行在 Windows 和 MacOS 下有不同表现。Windows 下默认输出形式为片假名 ヴ 搭配平假名拗尾，而 MacOS 下则直接输出片假名拗尾。另外 MacOS 下没有 vyi 和 vye 这两个码，只有 vi 和 ve。</li>
+<li><strong>长拗音</strong>，例如「きょう（今日）」，是个发音的概念，但在输入法上正常写作 kyou，即常规拗音 きょ 接普通平假名 う 即可。这个词在罗马音注音上可能会写作 kyō，ō 即是拼音的第一声的符号。</li>
+</ul>
+<blockquote>
+<h3 id="特殊输入"><a href="#特殊输入" class="headerlink" title="特殊输入"></a>特殊输入</h3></blockquote>
+<p>日语里还有一些特殊的假名或符号，有些常用有些罕用，但整体都是被输入法支持的。这些特殊规则需要固定记忆：</p>
+<h4 id="小写假名及输入"><a href="#小写假名及输入" class="headerlink" title="小写假名及输入"></a>小写假名及输入</h4><p>输入小写假名需要使用 x 或 l 为前缀后正常输入音码，两个都可以，分别用左右手无名指击键，习惯哪个用哪个。小写假名大部分出现在拗音、外来语发音、特殊停顿等场景。</p>
+<table>
+<thead>
+<tr>
+<th align="center">a</th>
+<th align="center">i</th>
+<th align="center">u</th>
+<th align="center">e</th>
+<th align="center">o</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ぁァ</td>
+<td align="center">ぃィ</td>
+<td align="center">ぅゥ</td>
+<td align="center">ぇェ</td>
+<td align="center">ぉォ</td>
+</tr>
+<tr>
+<td align="center">la&#x2F;xa</td>
+<td align="center">li&#x2F;xi</td>
+<td align="center">lu&#x2F;xu</td>
+<td align="center">le&#x2F;xe</td>
+<td align="center">lo&#x2F;xo</td>
+</tr>
+<tr>
+<td align="center">ゕヵ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ゖヶ</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">lka&#x2F;xka</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">lke&#x2F;xke</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">っッ</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">ltsu&#x2F;ltu&#x2F;xtsu&#x2F;xtu</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">ゃャ</td>
+<td align="center"></td>
+<td align="center">ゅュ</td>
+<td align="center"></td>
+<td align="center">ょョ</td>
+</tr>
+<tr>
+<td align="center">lya&#x2F;xya</td>
+<td align="center"></td>
+<td align="center">lyu&#x2F;xyu</td>
+<td align="center"></td>
+<td align="center">lyo&#x2F;xyo</td>
+</tr>
+<tr>
+<td align="center">ゎヮ</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">lwa&#x2F;xwa</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>可以看到，所有的拗音、合拗音中的第二个小写假名都可以简单地直接输入，所以拗音码表主要也是为了输入简化、更易配合发音习惯，并不需要特别记忆。</li>
+<li>ゕゖ 与 ゔ 类似，可以通过空格下拉选项输入，但无法通过快捷键切换得到。这三者都是因为其片假名形式用于外来语，而额外添加的对应平假名。</li>
+<li>ヵ一般只在量词中出现，「一ヵ月」。ヶ 也是，「三ヶ国」。这两个基本是同义的，源头其实就是中文的「箇（个）」。</li>
+<li>ゎ 用于古拗音，比如 くゎんおん（观音）。按码表规律 くゎ 和 ぐゎ 两个拗音本应写作 kwa 和 gwa，但这两音码已经被 くぁ 和 ぐぁ 占了位置，所以只能输入 kuxwa。</li>
+<li>っッ 在每个课程中都会讲到，表句中停顿，不详述。</li>
+</ul>
+<h4 id="特殊假名及输入"><a href="#特殊假名及输入" class="headerlink" title="特殊假名及输入"></a>特殊假名及输入</h4><h5 id="『-っッ-』"><a href="#『-っッ-』" class="headerlink" title="&gt;&gt;『 っッ 』"></a><strong>&gt;&gt;『 っッ 』</strong></h5><ul>
+<li>表发音短促停顿的符号，除了 ltsu&#x2F;ltu&#x2F;xtsu&#x2F;xtu 等以「小写つ」的形式输入外，还可以通过 <strong>复写下一个假名的首字母</strong> 的方式来输入。比如がっき（学期）→ga<span class="warn">k</span>ki，にっぽん(日本)→ni<span class="warn">p<span>pon。</li>
+<li>所以除了 nn 得ん以外，连写任意两个辅音字母都会出来「っ」，甚至「xxa」也能得到「っぁ」。这属于っ的单独输入逻辑。</li>
+</ul>
+<h5 id="『-ー-』"><a href="#『-ー-』" class="headerlink" title="&gt;&gt;『 ー 』"></a><strong>&gt;&gt;『 ー 』</strong></h5><ul>
+<li>在日语输入法中，直接按「-」键得到的就是「ー」。这个符号在日语中表示长音，主要用于片假名外来词，比如ケ一キ（蛋糕），偶尔也用在平假名中，比如おーいしい（美味しい）。</li>
+<li>相对的，若要输入英语半角减号「-」，需要按「-」然后空格下拉择字，或者快捷键切换到英文输入状态再按「-」。</li>
+</ul>
+<h5 id="『-゠-』"><a href="#『-゠-』" class="headerlink" title="&gt;&gt;『 ゠ 』"></a><strong>&gt;&gt;『 ゠ 』</strong></h5><ul>
+<li>「゠」名叫「二分二重双罫」，与等号相似但为独立字符。</li>
+<li>本意上表示外国人名、地区名转为假名时，两个单词间的隔断。比如ホー゠チ゠ミン（胡志明）。可以同时用于平片假名。</li>
+<li>这个符号实际上已经被抛弃，只在个别文章中还可以看见。现在一般用「・」来表示。大概是゠太容易和 &#x3D;（等号）混淆了。</li>
+<li>输入法无法直接输入「゠」，甚至用 &#x3D;（等号）空格择字都没有该字符。需要通过 Unicode 码表输入（&amp;#x30A0;）。</li>
+<li>「゠」设计上还有一个「・」没有的作用，即对标英语的单词断行连接符「-」，用于外来词在行尾写不完转行时的标记。在英语中，当一个单词过长需要截断时，会在合适的音节处加「-」（减号）后回车换行，例如：  <div class="monospace">Today is a big day, you got your first light<span class="warn">-</span><br />
+  saber. Now you must go to Jedi Temple immedi<span class="warn">-</span><br />
+  ately get your Jedi Knight certificate. May&nbsp;<br />
+  the Force be with you.</div>
+  但在日文写作中「゠」的实际作用可有可无。和中文类似，日文换行也只需要直接另起即可，不需要专门标注单词连接。因而逐渐被彻底抛弃甚至不纳入输入法。</li>
+<li>考据来源：<a target="_blank" rel="noopener" href="https://ja.wiktionary.org/wiki/%E3%82%A0">https://ja.wiktionary.org/wiki/%E3%82%A0</a></li>
+</ul>
+<blockquote>
+<p>我觉得这就是黑船来航后全面西化时用力过猛的遗留。</p>
+</blockquote>
+<h5 id="『-・-』"><a href="#『-・-』" class="headerlink" title="&gt;&gt;『 ・ 』"></a><strong>&gt;&gt;『 ・ 』</strong></h5><ul>
+<li>在日文输入法状态下直接按「&#x2F;」（与问号同键）即可输入。</li>
+<li>和 ゠ 一样，表示外国人名、地区名转为片假名时，两个单词间的隔断。目前仍是常用符号。</li>
+</ul>
+<h5 id="『゛゜』以及-『组合用-x3099-x309A-』"><a href="#『゛゜』以及-『组合用-x3099-x309A-』" class="headerlink" title="&gt;&gt;『゛゜』以及&gt;&gt;『组合用&#x3099;&#x309A;』"></a>&gt;&gt;『゛゜』以及&gt;&gt;『组合用&#x3099;&#x309A;』</h5><ul>
+<li>「゛」读作 dakuten（濁点），「゜」读作 handakuten（半濁点），分别表示清音、浊音假名的变化标记。输入也是这个拼写，在空格下拉列表中择字。</li>
+<li>这两个是独立的符号，不是附加在假名上的。正常输入浊音最好还是用浊音的音码。濁点主要用于特殊场合，比如本文说明部分，或者拼凑「い゛」之类时用到。</li>
+<li>因为是独立符号，所以在特殊场景下要考虑换行问题。比如「い゛」，如果在行尾，那么换行时濁点容易被带到下一行。</li>
+<li>「&#x3099;&nbsp;&nbsp;&#x309A;&nbsp;&nbsp;」 是组合用浊点和半浊点符号。无法直接输入，只能通过复制粘贴或用 Unicode 码表输入「&amp;#x3099;」和「&amp;#x309A;」。相对的，普通「゛゜」的 Unicode 码则是「&amp;#x309B;」和「&amp;#x309C;」。两者码位不同，是不同的字符。</li>
+<li>「组合用」的意思是，利用了 Unicode 的偏移量特性，这两个符号会自动往左靠到前一个字符上。比如「い&#x3099;い&#x309A;」。</li>
+<li>组合用「&#x3099;&nbsp;&nbsp;&#x309A;&nbsp;&nbsp;&nbsp;」输入麻烦，但其它好处较多。在很多操作中，い&#x3099; 会完全地被当作一个字符，移动光标、选择复制或调整格式时都很方便。如果是「い゛」，在行尾换行时濁点容易被带到下一行。而 い&#x3099; 则不会。</li>
+<li>在删除时，如果按 delete 删除光标右方的字，那么整个 い&#x3099; 会被删除。如果按 BackSpace 删除光标左方的字，那么只会删除&#x3099;&nbsp;&nbsp;&nbsp;，い 不会被删除。</li>
+<li>在统计字数时，い&#x3099; 会被当作两个字符。但在移动光标时会当作一个字符。在程序化编辑或 RPA 控制时需要单独处理。</li>
+<li>Office 软件中插入符号功能可以比较方便地输入组合用　&#x3099;　&#x309A;&nbsp;&nbsp;&nbsp;。</li>
+</ul>
+<h5 id="『-々-ゝゞヽヾ-〃-〱〲〳〴〵-』"><a href="#『-々-ゝゞヽヾ-〃-〱〲〳〴〵-』" class="headerlink" title="&gt;&gt;『 々　ゝゞヽヾ　〃　〱〲〳〴〵 』"></a><strong>&gt;&gt;『 々　ゝゞヽヾ　〃　〱〲〳〴〵 』</strong></h5><ul>
+<li>々表示连续两个相同汉字的第二个汉字的简写，比如「人々，ひとびと（人们）」，「先々月，せんせんげつ（上上月）」。</li>
+<li>在普通输入时，输入可以表示为两个相同汉字的音节时，输入法会将々自动作为候选词之一。</li>
+<li>当要单独输入时，输入 onaji（おなじ，同じ），意为「相同的」，然后在候选词中择字。思路类似于中文输入中的以词定字，或者说以意寻字。</li>
+<li>々 有一个 Windows 和 MacOS 都不支持，但 Google Translate 在线输入法支持的输入是「noma」下拉择字。思路是ノマ两字拼起来像是々。可谓以形寻字。</li>
+<li>基于「以意寻字」的逻辑，若输入 dou（どう，同）也可以择得这些字符，只是杂项会更多一些。Windows 还额外可以用 kurikaeshi（くりかえし，繰り返し）择得这些字符。</li>
+<li>MacOS 可择字符比 Windows 少一些。</li>
+<li>当输入 おなじ 开始选词时，你会发现一连串的类似符号。<ul>
+<li>ゝゞ 分别表示清音、浊音平假名的重复，ヽヾ 表示清、浊片假名的重复</li>
+<li>〃 称为 <a target="_blank" rel="noopener" href="https://ja.wikipedia.org/wiki/%E3%80%83">ノノ字点（ののじてん）</a> ，代表「与上方或前方对应位置的内容重复」。比如：<table>
+<thead>
+<tr>
+<th>站点</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>京东</td>
+<td>购物网站</td>
+</tr>
+<tr>
+<td>淘宝</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>拼多多</td>
+<td>〃</td>
+</tr>
+<tr>
+<td>4399</td>
+<td>游戏网站</td>
+</tr>
+</tbody></table>
+</li>
+<li>〱〲 这两个就厉害了。它俩不是 くぐ，而是「竖排文本时表示前面两到四个假名的重复」，分别表示清音或浊音。并且在竖排文本书写印刷时，要占据两格长。<br><img src="/../attach/2023/07/IterationMarks600.jpg" loading="lazy"></li>
+<li>〳〴〵这三个就更厉害了。因为上面两个符号要占据两格长，而通常来说哪怕是 Word 这种专业排版软件都很难让一个字符拉长占两个位置，所以发明了这三个字符，以便在竖写时可以拼成〱〲 。上半部分分清浊有两个，下半部分就只有一个。我试着在 Word 里拼了一下，在特定字体下的效果还不错。<br><img src="/../attach/2023/07/WINWORD_shot.png" loading="lazy"></li>
+</ul>
+</li>
+<li>考据来源：<a target="_blank" rel="noopener" href="https://en.wiktionary.org/wiki/%E3%80%B1">https://en.wiktionary.org/wiki/%E3%80%B1</a></li>
+</ul>
+<blockquote>
+<p>果然是黑船来航后用力过猛了。</p>
+</blockquote>
+<h5 id="『-ゟ-』"><a href="#『-ゟ-』" class="headerlink" title="&gt;&gt;『 ゟ 』"></a><strong>&gt;&gt;『 ゟ 』</strong></h5><ul>
+<li>读作 yori，输入也是 yori 后择字。用于在书面中表示书信的发件人，类似于中文里的「谨缄」「呈」，或路途的起点，类似于「始」「发」。这类字称为<a target="_blank" rel="noopener" href="https://ja.wikipedia.org/wiki/%E5%90%88%E7%95%A5%E4%BB%AE%E5%90%8D">「合略仮名」(维基百科)</a>。</li>
+<li>日语中因为存在汉字训读，所以一个字符读两个音并不奇怪。这个字在明治以前经常使用，现在也还在看板招牌等处偶尔出现。</li>
+<li>中文曾有段时间也出现过合字的现象，最知名的是「瓩」，读作 Qīanwǎ，意思就是千瓦，电力功率单位，因为被收入字典而一度引发关注。多音节汉字大部分产生自外来语计量单位翻译，有兞兣兙兡兛兝嗧等若干字。</li>
+<li>但也有如「圕」这样，由文化名人自行创造的多音节汉字。「圕」最初被图书馆学家杜定友用于代替笔画繁多书写不便的繁体「圖書館」三字，一开始直接念作 túshūguǎn，即图书馆，后渐渐演化为 tuān，回归为单音节字。但在简化字方案中，「書」简化为「书」，「圕」则成为历史并未被简化字方案收录。理论上对应简化后的「<span class="char"><img src="/../attach/2023/07/U31578.svg" loading="lazy"></span>」则作为一个扩展字符收入 Unicode - U+31578; 点位。</li>
+<li>合略假名页面中还列举了其它一些合略字，有不少暂时还没有被 Unicode 收录。</li>
+</ul>
+<h5 id="『-ヿ-』"><a href="#『-ヿ-』" class="headerlink" title="&gt;&gt;『 ヿ 』"></a><strong>&gt;&gt;『 ヿ 』</strong></h5><ul>
+<li>koto。MacOS 自带日文输入法无此字，Windows 可以择得。</li>
+<li>字典的解释直接就是「事」の略体。ヿ 相关的短语包括ことにする、ことになっている等常用短语。但这个字本身很少用到，只有在书面语中才会出现。</li>
+<li>被定义为片假名，还有对应平假名形式的<span class="char"><img src="/../attach/2023/07/Hiragana_koto.svg" loading="lazy"></span>，但尚未在 Unicode 中收录，也无法输入。</li>
+</ul>
+<h5 id="『-〆-乄-』"><a href="#『-〆-乄-』" class="headerlink" title="&gt;&gt;『 〆 乄 』"></a><strong>&gt;&gt;『 〆 乄 』</strong></h5><ul>
+<li>shime。两者是同一个字，历史原因两者在字库中有独立的位置。MacOS 只能输入前者，而 Windows 两者都可以择得。Windows 下还可以用 shite 输入两个字符。</li>
+<li>主要用法是用密封的信封向对方寄送信件等时，以及强调信封已「封闭」牢固时。此外，它有时也有「收紧」、「扼杀」和「占领」的意思。</li>
+<li>组词包括「〆切（締切）」、「昆布〆（昆布締め）」、「尺〆（尺貫法の木材の体積の単位）」，「林方立木尺〆法（江户法律）」等。</li>
+</ul>
+<h5 id="『-〼-』"><a href="#『-〼-』" class="headerlink" title="&gt;&gt;『 〼 』"></a><strong>&gt;&gt;『 〼 』</strong></h5><ul>
+<li>masu。各输入法都可以正常输入。</li>
+<li>这个字可厉害了，浪费了我一个小时。我一直以为它是某个字符不能正常显示时，替代出现的那种方框。但实际上它是一个独立的字符，并且还是个象形字。甚至在简体中文里我都从未见过如此象形的字。</li>
+<li>来，欣赏一下：<img src="/../attach/2023/07/masu_pic.jpg" alt="枡" title="欣赏一下" loading="lazy"></li>
+<li>释意一：是「枡」的替代字。用于表示「盛」、「量」、「桶」等容量单位，比如「一〼の酒」、「一〼の米」。「枡」就是上图这样的容器。</li>
+<li>释意二：ます 的简写，語尾「〜あり〼」，单纯用其发音。</li>
+<li>释意三：「益々（ますます）」的替代字，比如「〼〼のご発展を」。其实也是 ます 的替代简写。</li>
+</ul>
+<h4 id="符号与其输入方式"><a href="#符号与其输入方式" class="headerlink" title="符号与其输入方式"></a>符号与其输入方式</h4><h5 id="『-←-↑-→-↓-』"><a href="#『-←-↑-→-↓-』" class="headerlink" title="&gt;&gt;『 ← ↑ → ↓ 』"></a><strong>&gt;&gt;『 ← ↑ → ↓ 』</strong></h5><ul>
+<li>用于表示方向，这个是符号，但和假名一样有专门的输入码。←(zh) ↑(zj) →(zk) ↓(zl)。</li>
+<li>熟悉 Vim 的知道这是 Vim 移动光标的键位。再往前考据则会涉及到 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19599579">VI 的一段轶事</a>。</li>
+<li>一图胜千言：<img src="/../attach/2023/07/LSI-ADM3A-full-keyboard.jpg" alt="VimArrowKey" loading="lazy"></li>
+</ul>
+<h5 id="『-○×△□-』"><a href="#『-○×△□-』" class="headerlink" title="&gt;&gt;『 ○×△□ 』"></a><strong>&gt;&gt;『 ○×△□ 』</strong></h5><ul>
+<li>从这里开始就是符号了，输入法均使用以意定字的方式。列个列表方便看，表太长了放下面。</li>
+<li>除下表外，有个<span class="warn">「kigou（記号）」</span>可谓终极大法，可以选择输入法码表内的几乎所有符号。逐个翻阅吧。<img src="/../attach/2023/07/kigou_selection.png" alt="selection" loading="lazy"></li>
+<li>顔文字与絵文字是不同的，它俩的出现有先后，发展有联系。但单纯从字符角度来说，前者是用符号拼出来的，后者则是单独的字符。</li>
+<li>不同输入法支持的码、具体可选的符号数量有较大区别，下表在 MacOS 有很多不能输入。该表也不是全覆盖。</li>
+<li>有些码意义不大，比如「ando&#x3D;&amp;」不如 Shift+7 方便。但有些还是有用的，比如「kiroguramu&#x3D;㎏」。要从符号堆里择出 ㎏ 很麻烦，直接输入哪怕多打几个字都可以。</li>
+<li>输入符号再按空格，也可以选择同类下形似的其它符号。比如输入「＞」再按空格可以 择得「≫」。</li>
+<li>可以看到这些符号有些音类似于中文，有些音类似于西文。对照一下中文，像电力单位瓦、中文也是音译。但对于「公斤」，中文采用意译，而日文则直接音译。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">意義</th>
+<th align="center">Romaji</th>
+<th align="center">記号例</th>
+<th></th>
+<th align="center">意義</th>
+<th align="center">Romaji</th>
+<th align="center">記号例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">矢印</td>
+<td align="center">yajirushi</td>
+<td align="center">⏩→▷⇨👉⇄</td>
+<td></td>
+<td align="center">数字</td>
+<td align="center">suuji</td>
+<td align="center">0️⃣1️⃣2️⃣3️⃣</td>
+</tr>
+<tr>
+<td align="center">上</td>
+<td align="center">ue</td>
+<td align="center">↑ ￣㊤ ↜↗↖⇑⇈↻↺☝</td>
+<td></td>
+<td align="center">上矢</td>
+<td align="center">ueya</td>
+<td align="center">↑↗⇡⇧⇑⇈➚</td>
+</tr>
+<tr>
+<td align="center">下</td>
+<td align="center">shita</td>
+<td align="center">↓＿㊦ ↷↘⇂☟↧➷</td>
+<td></td>
+<td align="center">下矢</td>
+<td align="center">shitaya</td>
+<td align="center">↓↯↶⇩↡</td>
+</tr>
+<tr>
+<td align="center">左</td>
+<td align="center">hidari</td>
+<td align="center">㊧ ←↙↫⇠⇤↰⇦☚↩⇚⇇↸↜☜↚</td>
+<td></td>
+<td align="center">左矢</td>
+<td align="center">hidariya</td>
+<td align="center">←↢⇙⇦↖</td>
+</tr>
+<tr>
+<td align="center">右</td>
+<td align="center">migi</td>
+<td align="center">㊨ →⇒↛↱☞➳➔➴☛➢➠➪➫➤➥➲➺⇏➟➼</td>
+<td></td>
+<td align="center">右矢</td>
+<td align="center">migiya</td>
+<td align="center">→⇒↗↝↛➭➬⇛➤➜➧</td>
+</tr>
+<tr>
+<td align="center">上</td>
+<td align="center">jou</td>
+<td align="center">㊤</td>
+<td></td>
+<td align="center">下</td>
+<td align="center">ge</td>
+<td align="center">㊦</td>
+</tr>
+<tr>
+<td align="center">点</td>
+<td align="center">ten</td>
+<td align="center">゜゛；：．，、´.・｀ ¨…‥∵･:;ﾞﾟ ∴</td>
+<td></td>
+<td align="center">括弧</td>
+<td align="center">kakko</td>
+<td align="center">「」「」（）【】“”</td>
+</tr>
+<tr>
+<td align="center">三角</td>
+<td align="center">sankaku</td>
+<td align="center">▾△▲▽▼∵∴◁</td>
+<td></td>
+<td align="center">四角</td>
+<td align="center">shikaku</td>
+<td align="center">■□◆◇▪▫▨▩❑❖▣◩</td>
+</tr>
+<tr>
+<td align="center">演算</td>
+<td align="center">keisan</td>
+<td align="center">≧÷±－× ＋＝ ≠ ＜ ≦ ＞</td>
+<td></td>
+<td align="center">近似</td>
+<td align="center">kinji</td>
+<td align="center">≒</td>
+</tr>
+<tr>
+<td align="center">恒等</td>
+<td align="center">goudou</td>
+<td align="center">≡≅≢</td>
+<td></td>
+<td align="center">不等号</td>
+<td align="center">futougou</td>
+<td align="center">≠≧⋝≳⋧≱≥≯≹</td>
+</tr>
+<tr>
+<td align="center">plus minus</td>
+<td align="center">purasumainasu</td>
+<td align="center">±∓</td>
+<td></td>
+<td align="center">root</td>
+<td align="center">ru-to</td>
+<td align="center">√∜∛</td>
+</tr>
+<tr>
+<td align="center">乘号</td>
+<td align="center">kakeru</td>
+<td align="center">×⋇⊠⊗</td>
+<td></td>
+<td align="center">割</td>
+<td align="center">waru</td>
+<td align="center">÷⊘⋇∤</td>
+</tr>
+<tr>
+<td align="center">Percent</td>
+<td align="center">pa-sento</td>
+<td align="center">%</td>
+<td></td>
+<td align="center">Permillage</td>
+<td align="center">pa-miru</td>
+<td align="center">‰</td>
+</tr>
+<tr>
+<td align="center">何故ならば</td>
+<td align="center">nazenaraba</td>
+<td align="center">∵</td>
+<td></td>
+<td align="center">故に</td>
+<td align="center">yueni</td>
+<td align="center">∴</td>
+</tr>
+<tr>
+<td align="center">斜線</td>
+<td align="center">shasen</td>
+<td align="center">／＼</td>
+<td></td>
+<td align="center">垂直</td>
+<td align="center">suichoku</td>
+<td align="center">⊥</td>
+</tr>
+<tr>
+<td align="center">角</td>
+<td align="center">kaku</td>
+<td align="center">∠⊥∟⊾∢∡</td>
+<td></td>
+<td align="center">直角</td>
+<td align="center">choltsukaku</td>
+<td align="center">∟</td>
+</tr>
+<tr>
+<td align="center">Integral</td>
+<td align="center">integuraru</td>
+<td align="center">∫∬∰∱∳∭⌠⌡</td>
+<td></td>
+<td align="center">Phi</td>
+<td align="center">fulai</td>
+<td align="center">φΦ∮</td>
+</tr>
+<tr>
+<td align="center">無限大</td>
+<td align="center">mugendai</td>
+<td align="center">∞</td>
+<td></td>
+<td align="center">丸数字</td>
+<td align="center">marusuuji</td>
+<td align="center">①②③⑳❶❷❸</td>
+</tr>
+<tr>
+<td align="center">括号数字</td>
+<td align="center">kakkosuuji</td>
+<td align="center">⑴⑵⑶⒇</td>
+<td></td>
+<td align="center">罗马数字</td>
+<td align="center">ro-masuuji</td>
+<td align="center">ⅠⅡⅢⅫ</td>
+</tr>
+<tr>
+<td align="center">図形</td>
+<td align="center">zukei</td>
+<td align="center">★○▼▽▲△■□◆◇◎●☆</td>
+<td></td>
+<td align="center"><span class="tip">単位</span></td>
+<td align="center"><span>tanni</span></td>
+<td align="center"><span class="tip">°′″℃ ￥＄ € ￠￡％Å ㍗‰㎜㍳℧℥℔ℓ㎯₪₦㏒</span></td>
+</tr>
+<tr>
+<td align="center">米</td>
+<td align="center">kome</td>
+<td align="center">※</td>
+<td></td>
+<td align="center">ヴィ</td>
+<td align="center">bui</td>
+<td align="center">✌</td>
+</tr>
+<tr>
+<td align="center">星</td>
+<td align="center">hoshi</td>
+<td align="center">☆✨💫🌟</td>
+<td></td>
+<td align="center">星座</td>
+<td align="center">seiza</td>
+<td align="center">♈️♉️♊️♋️</td>
+</tr>
+<tr>
+<td align="center">天気</td>
+<td align="center">tenki</td>
+<td align="center">🌞🌤☁️☔️✨</td>
+<td></td>
+<td align="center">顔</td>
+<td align="center">kao</td>
+<td align="center">😃😂😇😍</td>
+</tr>
+<tr>
+<td align="center">雄</td>
+<td align="center">osu</td>
+<td align="center">♂</td>
+<td></td>
+<td align="center">雌</td>
+<td align="center">mesu</td>
+<td align="center">♀</td>
+</tr>
+<tr>
+<td align="center">音楽</td>
+<td align="center">ongaku</td>
+<td align="center">🎵🎼🎷🪕</td>
+<td></td>
+<td align="center">音符</td>
+<td align="center">onpu</td>
+<td align="center">♪♬♫♩</td>
+</tr>
+<tr>
+<td align="center">Flat</td>
+<td align="center">furatto</td>
+<td align="center">♭</td>
+<td></td>
+<td align="center">AND</td>
+<td align="center">ando</td>
+<td align="center">∩＆∧⋀⋏</td>
+</tr>
+<tr>
+<td align="center">株式会社</td>
+<td align="center">kabushikikaisha</td>
+<td align="center">㈱㊑会社㍿</td>
+<td></td>
+<td align="center">有限会社</td>
+<td align="center">yuugengaisha</td>
+<td align="center">(有)㈲㊒</td>
+</tr>
+<tr>
+<td align="center">代表</td>
+<td align="center">daihyou</td>
+<td align="center">(代)㈹</td>
+<td></td>
+<td align="center">土&#x2F;度</td>
+<td align="center">do</td>
+<td align="center">℃°℉ ㊏㈯</td>
+</tr>
+<tr>
+<td align="center">丸</td>
+<td align="center">maru</td>
+<td align="center">●○◎◉⚫︎⚪️⭕️💮</td>
+<td></td>
+<td align="center">バツ</td>
+<td align="center">batsu</td>
+<td align="center">×❌❎✖️</td>
+</tr>
+<tr>
+<td align="center">二重丸</td>
+<td align="center">nijuumaru</td>
+<td align="center">◎</td>
+<td></td>
+<td align="center">菱</td>
+<td align="center">hishi</td>
+<td align="center">◆◇❖</td>
+</tr>
+<tr>
+<td align="center">黒星</td>
+<td align="center">kuroboshi</td>
+<td align="center">★</td>
+<td></td>
+<td align="center">黒丸</td>
+<td align="center">kuromaru</td>
+<td align="center">●</td>
+</tr>
+<tr>
+<td align="center">白星</td>
+<td align="center">shiroboshi</td>
+<td align="center">☆</td>
+<td></td>
+<td align="center">白丸</td>
+<td align="center">shiromaru</td>
+<td align="center">○</td>
+</tr>
+<tr>
+<td align="center">手</td>
+<td align="center">te</td>
+<td align="center">👉✊🙏👌</td>
+<td></td>
+<td align="center">郵便</td>
+<td align="center">yuubin</td>
+<td align="center">〒 📮🏧📦</td>
+</tr>
+<tr>
+<td align="center">チェス</td>
+<td align="center">chesu</td>
+<td align="center">♟️</td>
+<td></td>
+<td align="center">トランプ</td>
+<td align="center">toranpu</td>
+<td align="center">♤♡♧♢🃏</td>
+</tr>
+<tr>
+<td align="center">電話</td>
+<td align="center">denwa</td>
+<td align="center">℡✆☏☎</td>
+<td></td>
+<td align="center">Number</td>
+<td align="center">nanba-</td>
+<td align="center">№＃</td>
+</tr>
+<tr>
+<td align="center">円</td>
+<td align="center">en</td>
+<td align="center">￥</td>
+<td></td>
+<td align="center">cent</td>
+<td align="center">sento</td>
+<td align="center">㌣￠ ¢</td>
+</tr>
+<tr>
+<td align="center">Pond</td>
+<td align="center">pondo</td>
+<td align="center">£</td>
+<td></td>
+<td align="center">Dollar</td>
+<td align="center">doru</td>
+<td align="center">＄$</td>
+</tr>
+<tr>
+<td align="center">摂氏</td>
+<td align="center">seltsushi</td>
+<td align="center">℃</td>
+<td></td>
+<td align="center">JIS</td>
+<td align="center">jisu</td>
+<td align="center">〄</td>
+</tr>
+<tr>
+<td align="center">centi</td>
+<td align="center">senchi</td>
+<td align="center">㎝ ㌢</td>
+<td></td>
+<td align="center">千米</td>
+<td align="center">kirome-toru</td>
+<td align="center">㎞</td>
+</tr>
+<tr>
+<td align="center">平米</td>
+<td align="center">heibei</td>
+<td align="center">㎡</td>
+<td></td>
+<td align="center">立方 Meter</td>
+<td align="center">rippoumi-teru</td>
+<td align="center">㎥</td>
+</tr>
+<tr>
+<td align="center">千克</td>
+<td align="center">kiro&#x2F;kiroguramu</td>
+<td align="center">㎏</td>
+<td></td>
+<td align="center">Litre</td>
+<td align="center">rittoru</td>
+<td align="center">ｌ lℓ</td>
+</tr>
+<tr>
+<td align="center">milli</td>
+<td align="center">miri</td>
+<td align="center">㎜ ㍉</td>
+<td></td>
+<td align="center">milligram</td>
+<td align="center">miriguramu</td>
+<td align="center">㎎</td>
+</tr>
+<tr>
+<td align="center">昭和</td>
+<td align="center">shouwa</td>
+<td align="center">㍼</td>
+<td></td>
+<td align="center">平成</td>
+<td align="center">heisei</td>
+<td align="center">㍻</td>
+</tr>
+<tr>
+<td align="center">大正</td>
+<td align="center">taishou</td>
+<td align="center">㍽</td>
+<td></td>
+<td align="center">明治</td>
+<td align="center">meiji</td>
+<td align="center">㍾</td>
+</tr>
+<tr>
+<td align="center">Section</td>
+<td align="center">sekushon</td>
+<td align="center">§</td>
+<td></td>
+<td align="center">注</td>
+<td align="center">chuu</td>
+<td align="center">㊥㊟</td>
+</tr>
+<tr>
+<td align="center">左上</td>
+<td align="center">hidariue</td>
+<td align="center">┏┌╒╓┎╭╔┍</td>
+<td></td>
+<td align="center">左下</td>
+<td align="center">hidarishita</td>
+<td align="center">┗└╘╙┖╰╚┕</td>
+</tr>
+<tr>
+<td align="center">右上</td>
+<td align="center">migiue</td>
+<td align="center">┐┓╕╖┒╮╗┑</td>
+<td></td>
+<td align="center">右下</td>
+<td align="center">migishita</td>
+<td align="center">┘┛╛╜┚╯╝┙</td>
+</tr>
+<tr>
+<td align="center">縦</td>
+<td align="center">tate</td>
+<td align="center">│┃ ｜￤ ∥╵║¦❚┆❙</td>
+<td></td>
+<td align="center">横</td>
+<td align="center">yoko</td>
+<td align="center">━─┈╌┄┉╍═</td>
+</tr>
+<tr>
+<td align="center">太枠</td>
+<td align="center">futowaku</td>
+<td align="center">┗┻━┛┏┳━┓</td>
+<td></td>
+<td align="center">細枠</td>
+<td align="center">hosowaku</td>
+<td align="center">└┴─┘┌┬─┐</td>
+</tr>
+<tr>
+<td align="center">满中</td>
+<td align="center">mannnaka</td>
+<td align="center">┼╂╋┿╃╁╳╬╪╫</td>
+<td></td>
+<td align="center">罫線</td>
+<td align="center">keisen</td>
+<td align="center">&lt;上全部及更多&gt;</td>
+</tr>
+<tr>
+<td align="center">汗</td>
+<td align="center">ase</td>
+<td align="center">(・・;)(^_^;)</td>
+<td></td>
+<td align="center">疼</td>
+<td align="center">itai</td>
+<td align="center">(&gt;_&lt;)</td>
+</tr>
+<tr>
+<td align="center">居眠</td>
+<td align="center">inemuri</td>
+<td align="center">(-_-)zzz</td>
+<td></td>
+<td align="center">御茶</td>
+<td align="center">ocha</td>
+<td align="center">( ^^) *U~~　( ^^) *旦~~</td>
+</tr>
+<tr>
+<td align="center">Wink</td>
+<td align="center">ulinku</td>
+<td align="center">(^_-)-☆</td>
+<td></td>
+<td align="center">嗯——</td>
+<td align="center">u-n</td>
+<td align="center">(゜-゜) (゜.゜) (゜レ゜)</td>
+</tr>
+<tr>
+<td align="center">奥特曼</td>
+<td align="center">urutoraman</td>
+<td align="center">(o|o)</td>
+<td></td>
+<td align="center">えっへん</td>
+<td align="center">ehhen</td>
+<td align="center">&lt;(｀^´)&gt;</td>
+</tr>
+<tr>
+<td align="center">跪拜&#x2F;抱歉</td>
+<td align="center">ojigi&#x2F;gomen</td>
+<td align="center">_(._.)_ &lt;(_ _)&gt;</td>
+<td></td>
+<td align="center">徹夜</td>
+<td align="center">tetsuya</td>
+<td align="center">(&#x3D;_&#x3D;)</td>
+</tr>
+<tr>
+<td align="center">闪亮</td>
+<td align="center">kirakira</td>
+<td align="center">☆ ミ ☆ 彡</td>
+<td></td>
+<td align="center">ごぼごぼ</td>
+<td align="center">gobogobo</td>
+<td align="center">.。o○ ○o。.</td>
+</tr>
+<tr>
+<td align="center">じと</td>
+<td align="center">jito</td>
+<td align="center">(-.-) (-<em>-) (ー</em>ー)!!</td>
+<td></td>
+<td align="center">じろ</td>
+<td align="center">jiro</td>
+<td align="center">( 一一)　(；一_一)</td>
+</tr>
+<tr>
+<td align="center">一服&#x2F;烟</td>
+<td align="center">ippuku&#x2F;tabako</td>
+<td align="center">(-。-)y-゜゜゜<br />(^。^)y-.。o○</td>
+<td></td>
+<td align="center">あわ</td>
+<td align="center">awa</td>
+<td align="center">.。o○ 　 ○o。.</td>
+</tr>
+<tr>
+<td align="center">動物</td>
+<td align="center">doubutsu</td>
+<td align="center">(&#x3D;^・^&#x3D;)　&lt;*))&gt;&#x3D;&lt;　Ｃ:。ミ</td>
+<td></td>
+<td align="center">猫</td>
+<td align="center">neko</td>
+<td align="center">(&#x3D;^・^&#x3D;)　&#x3D;^_^&#x3D;</td>
+</tr>
+<tr>
+<td align="center">哈依</td>
+<td align="center">ha-i</td>
+<td align="center">(^O^)／</td>
+<td></td>
+<td align="center">何故&#x2F;謎</td>
+<td align="center">naze&#x2F;nazo</td>
+<td align="center">(?_?)　(・・?</td>
+</tr>
+<tr>
+<td align="center">吃驚</td>
+<td align="center">bikkuri</td>
+<td align="center">( ﾟ Д ﾟ)</td>
+<td></td>
+<td align="center">无语</td>
+<td align="center">muka</td>
+<td align="center">(-&quot;-)(ーー゛)(-_-メ)</td>
+</tr>
+<tr>
+<td align="center">顔文字</td>
+<td align="center">kaomoji</td>
+<td align="center">&lt;以上全部及更多&gt;</td>
+<td></td>
+<td align="center">絵文字</td>
+<td align="center">emoji</td>
+<td align="center">😱😓</td>
+</tr>
+</tbody></table>
+<h5 id="『-a-i-u-e-o-』"><a href="#『-a-i-u-e-o-』" class="headerlink" title="&gt;&gt;『 ā ī ū ē ō 』"></a>&gt;&gt;『 ā ī ū ē ō 』</h5><ul>
+<li>这是用于在罗马音注音中表示长音的符号。比如「おかあさん ok<span class="warn">ā</span>san 妈妈」，「おにいさん on<span class="warn">ī</span>san 哥哥」，「じゅうにがつ jy<span class="warn">ū</span>niketsu 十二月」，「おねえさん on<span class="warn">ē</span>san 姐姐」，「おとうさん ot<span class="warn">ō</span>san 爸爸」。</li>
+<li>尽管如此，日文输入法却无法输入这五个字符，没有对应的码表，也没有以意寻字的方法。在きごう下择字也同样找不到这几个。</li>
+<li>对于中文用户，输入这几个字符最方便的办法是直接切换到中文输入法，然后调出软键盘等符号功能，然后在拼音符号中择字输入。</li>
+<li>其次的方法是在 Word 等软件中，使用插入符号功能，找到对应字符输入。或在相关功能的网页上复制粘贴。</li>
+<li>如果要经常使用，可以在输入法的用户自定义词典里添加，并分配对应的输入码。</li>
+<li>一般不需要担心输入问题，通常会使用 ā&#x3D;aa ī&#x3D;ii ū&#x3D;uu ē&#x3D;ee ō&#x3D;ou 代替。随着发音变迁，ē 有时也会写作 ei。<a target="_blank" rel="noopener" href="https://www.japan-guide.com/forum/quereadisplay.html?0+130884">[参考]</a>。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/Japanese/" rel="tag"># Japanese</a>
+              <a href="/tags/Input-Method/" rel="tag"># Input Method</a>
+              <a href="/tags/How-to-use/" rel="tag"># How to use</a>
+              <a href="/tags/Issues/" rel="tag"># Issues</a>
+              <a href="/tags/Bean-Knowledge/" rel="tag"># Bean Knowledge</a>
+              <a href="/tags/MacOS/" rel="tag"># MacOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/decrease-vmware-guest-disk-size-not-shrink/" rel="prev" title="减小 vmware 虚拟机的硬盘容量，不是压缩">
+                  <i class="fa fa-angle-left"></i> 减小 vmware 虚拟机的硬盘容量，不是压缩
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/guidelines-for-re-employment/" rel="next" title="科技公司下岗再就业指导">
+                  科技公司下岗再就业指导 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

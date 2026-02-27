@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="不同等级的歌曲在获得对应评价时获得的经验值：   Score Rating Lv.1 Lv.2 Lv.3 Lv.4 Lv.5 Lv.6 Lv.7 Lv.8 Lv.9 Lv.10    1000000 Exc 88 104 120 136 152 168 184 200 216 232   980000-999999 SSS 82 97 112 127 142 157 172 187 202 217">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jubeat 游戏数据">
+<meta property="og:url" content="https://www.kaikai.men/jubeat-game-data/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="不同等级的歌曲在获得对应评价时获得的经验值：   Score Rating Lv.1 Lv.2 Lv.3 Lv.4 Lv.5 Lv.6 Lv.7 Lv.8 Lv.9 Lv.10    1000000 Exc 88 104 120 136 152 168 184 200 216 232   980000-999999 SSS 82 97 112 127 142 157 172 187 202 217">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-02T19:08:11.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="jubeat">
+<meta property="article:tag" content="游戏数据">
+<meta property="article:tag" content="game data">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/jubeat-game-data/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/jubeat-game-data/","path":"/jubeat-game-data/","title":"jubeat 游戏数据"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>jubeat 游戏数据 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%AD%89%E7%BA%A7%E7%9A%84%E6%AD%8C%E6%9B%B2%E5%9C%A8%E8%8E%B7%E5%BE%97%E5%AF%B9%E5%BA%94%E8%AF%84%E4%BB%B7%E6%97%B6%E8%8E%B7%E5%BE%97%E7%9A%84%E7%BB%8F%E9%AA%8C%E5%80%BC%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">不同等级的歌曲在获得对应评价时获得的经验值：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%A9%E5%AE%B6%E5%90%84%E7%AD%89%E7%BA%A7%E5%8D%87%E7%BA%A7%E7%BB%8F%E9%AA%8C%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">玩家各等级升级经验：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%A9%E5%AE%B6%E7%AD%89%E7%BA%A7%E4%B8%8E%E4%BD%93%E5%8A%9B%E5%80%BC%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">玩家等级与体力值：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BD%E5%BF%AB%E5%8D%87%E7%BA%A7"><span class="nav-number">4.</span> <span class="nav-text">尽快升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E3%82%B3%E3%82%A4%E3%83%B3-Coin"><span class="nav-number">5.</span> <span class="nav-text">コイン (Coin)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/jubeat-game-data/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="jubeat 游戏数据 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jubeat 游戏数据
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-02 19:08:11" itemprop="dateCreated datePublished" datetime="2024-02-02T19:08:11Z">2024-02-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">游戏中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="不同等级的歌曲在获得对应评价时获得的经验值："><a href="#不同等级的歌曲在获得对应评价时获得的经验值：" class="headerlink" title="不同等级的歌曲在获得对应评价时获得的经验值："></a>不同等级的歌曲在获得对应评价时获得的经验值：</h4><table>
+<thead>
+<tr>
+<th align="right">Score</th>
+<th align="center">Rating</th>
+<th>Lv.1</th>
+<th>Lv.2</th>
+<th>Lv.3</th>
+<th>Lv.4</th>
+<th>Lv.5</th>
+<th>Lv.6</th>
+<th>Lv.7</th>
+<th>Lv.8</th>
+<th>Lv.9</th>
+<th>Lv.10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1000000</td>
+<td align="center">Exc</td>
+<td>88</td>
+<td>104</td>
+<td>120</td>
+<td>136</td>
+<td>152</td>
+<td>168</td>
+<td>184</td>
+<td>200</td>
+<td>216</td>
+<td>232</td>
+</tr>
+<tr>
+<td align="right">980000-999999</td>
+<td align="center">SSS</td>
+<td>82</td>
+<td>97</td>
+<td>112</td>
+<td>127</td>
+<td>142</td>
+<td>157</td>
+<td>172</td>
+<td>187</td>
+<td>202</td>
+<td>217</td>
+</tr>
+<tr>
+<td align="right">950000-979999</td>
+<td align="center">SS</td>
+<td>77</td>
+<td>91</td>
+<td>105</td>
+<td>119</td>
+<td>133</td>
+<td>147</td>
+<td>161</td>
+<td>175</td>
+<td>189</td>
+<td>203</td>
+</tr>
+<tr>
+<td align="right">900000-949999</td>
+<td align="center">S</td>
+<td>71</td>
+<td>84</td>
+<td>97</td>
+<td>110</td>
+<td>123</td>
+<td>136</td>
+<td>149</td>
+<td>162</td>
+<td>175</td>
+<td>188</td>
+</tr>
+<tr>
+<td align="right">850000-899999</td>
+<td align="center">A</td>
+<td>66</td>
+<td>78</td>
+<td>90</td>
+<td>102</td>
+<td>114</td>
+<td>126</td>
+<td>138</td>
+<td>150</td>
+<td>162</td>
+<td>174</td>
+</tr>
+<tr>
+<td align="right">800000-849999</td>
+<td align="center">B</td>
+<td>60</td>
+<td>71</td>
+<td>82</td>
+<td>93</td>
+<td>104</td>
+<td>115</td>
+<td>126</td>
+<td>137</td>
+<td>148</td>
+<td>159</td>
+</tr>
+<tr>
+<td align="right">700000-799999</td>
+<td align="center">C</td>
+<td>55</td>
+<td>65</td>
+<td>75</td>
+<td>85</td>
+<td>95</td>
+<td>105</td>
+<td>115</td>
+<td>125</td>
+<td>135</td>
+<td>145</td>
+</tr>
+<tr>
+<td align="right">500000-699999</td>
+<td align="center">D</td>
+<td>49</td>
+<td>58</td>
+<td>67</td>
+<td>76</td>
+<td>85</td>
+<td>94</td>
+<td>103</td>
+<td>112</td>
+<td>121</td>
+<td>130</td>
+</tr>
+<tr>
+<td align="right">0-499999</td>
+<td align="center">E</td>
+<td>44</td>
+<td>52</td>
+<td>60</td>
+<td>68</td>
+<td>76</td>
+<td>84</td>
+<td>92</td>
+<td>100</td>
+<td>108</td>
+<td>116</td>
+</tr>
+</tbody></table>
+<ul>
+<li>同评价下不同等级的歌曲获得的经验值为等差增长数列；</li>
+<li>同等级下不同评价的歌曲获得的经验值为交替增长数列；</li>
+<li>各等级歌曲 Exc 的经验总是 E 的两倍，细分的小数点等级以取整计。</li>
+</ul>
+<h4 id="玩家各等级升级经验："><a href="#玩家各等级升级经验：" class="headerlink" title="玩家各等级升级经验："></a>玩家各等级升级经验：</h4><table>
+<thead>
+<tr>
+<th align="right">Lvl</th>
+<th align="left">Exp</th>
+<th align="right">Lvl</th>
+<th align="left">Exp</th>
+<th align="right">Lvl</th>
+<th align="left">Exp</th>
+<th align="right">Lvl</th>
+<th align="left">Exp</th>
+<th align="right">Lvl</th>
+<th align="left">Exp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td align="left">44</td>
+<td align="right">21</td>
+<td align="left">2505</td>
+<td align="right">41</td>
+<td align="left">7597</td>
+<td align="right">61</td>
+<td align="left">15329</td>
+<td align="right">81</td>
+<td align="left">25701</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td align="left">113</td>
+<td align="right">22</td>
+<td align="left">2697</td>
+<td align="right">42</td>
+<td align="left">7921</td>
+<td align="right">62</td>
+<td align="left">15785</td>
+<td align="right">82</td>
+<td align="left">26289</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td align="left">179</td>
+<td align="right">23</td>
+<td align="left">2895</td>
+<td align="right">43</td>
+<td align="left">8251</td>
+<td align="right">63</td>
+<td align="left">16247</td>
+<td align="right">83</td>
+<td align="left">26883</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td align="left">252</td>
+<td align="right">24</td>
+<td align="left">3100</td>
+<td align="right">44</td>
+<td align="left">8588</td>
+<td align="right">64</td>
+<td align="left">16716</td>
+<td align="right">84</td>
+<td align="left">27484</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td align="left">332</td>
+<td align="right">25</td>
+<td align="left">3312</td>
+<td align="right">45</td>
+<td align="left">8932</td>
+<td align="right">65</td>
+<td align="left">17192</td>
+<td align="right">85</td>
+<td align="left">28092</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td align="left">418</td>
+<td align="right">26</td>
+<td align="left">3530</td>
+<td align="right">46</td>
+<td align="left">9282</td>
+<td align="right">66</td>
+<td align="left">17674</td>
+<td align="right">86</td>
+<td align="left">28706</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td align="left">511</td>
+<td align="right">27</td>
+<td align="left">3755</td>
+<td align="right">47</td>
+<td align="left">9639</td>
+<td align="right">67</td>
+<td align="left">18163</td>
+<td align="right">87</td>
+<td align="left">29327</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td align="left">611</td>
+<td align="right">28</td>
+<td align="left">3987</td>
+<td align="right">48</td>
+<td align="left">10003</td>
+<td align="right">68</td>
+<td align="left">18659</td>
+<td align="right">88</td>
+<td align="left">29955</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td align="left">717</td>
+<td align="right">29</td>
+<td align="left">4225</td>
+<td align="right">49</td>
+<td align="left">10373</td>
+<td align="right">69</td>
+<td align="left">19161</td>
+<td align="right">89</td>
+<td align="left">30589</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="left">830</td>
+<td align="right">30</td>
+<td align="left">4470</td>
+<td align="right">50</td>
+<td align="left">10750</td>
+<td align="right">70</td>
+<td align="left">19670</td>
+<td align="right">90</td>
+<td align="left">31230</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td align="left">949</td>
+<td align="right">31</td>
+<td align="left">4721</td>
+<td align="right">51</td>
+<td align="left">11133</td>
+<td align="right">71</td>
+<td align="left">20185</td>
+<td align="right">91</td>
+<td align="left">31877</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td align="left">1075</td>
+<td align="right">32</td>
+<td align="left">4979</td>
+<td align="right">52</td>
+<td align="left">11523</td>
+<td align="right">72</td>
+<td align="left">20707</td>
+<td align="right">92</td>
+<td align="left">32531</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td align="left">1207</td>
+<td align="right">33</td>
+<td align="left">5243</td>
+<td align="right">53</td>
+<td align="left">11919</td>
+<td align="right">73</td>
+<td align="left">21235</td>
+<td align="right">93</td>
+<td align="left">33191</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td align="left">1346</td>
+<td align="right">34</td>
+<td align="left">5514</td>
+<td align="right">54</td>
+<td align="left">12322</td>
+<td align="right">74</td>
+<td align="left">21770</td>
+<td align="right">94</td>
+<td align="left">33858</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td align="left">1492</td>
+<td align="right">35</td>
+<td align="left">5792</td>
+<td align="right">55</td>
+<td align="left">12732</td>
+<td align="right">75</td>
+<td align="left">22312</td>
+<td align="right">95</td>
+<td align="left">34532</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td align="left">1644</td>
+<td align="right">36</td>
+<td align="left">6076</td>
+<td align="right">56</td>
+<td align="left">13148</td>
+<td align="right">76</td>
+<td align="left">22860</td>
+<td align="right">96</td>
+<td align="left">35212</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td align="left">1803</td>
+<td align="right">37</td>
+<td align="left">6367</td>
+<td align="right">57</td>
+<td align="left">13571</td>
+<td align="right">77</td>
+<td align="left">23415</td>
+<td align="right">97</td>
+<td align="left">35899</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td align="left">1969</td>
+<td align="right">38</td>
+<td align="left">6665</td>
+<td align="right">58</td>
+<td align="left">14001</td>
+<td align="right">78</td>
+<td align="left">23977</td>
+<td align="right">98</td>
+<td align="left">36593</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td align="left">2141</td>
+<td align="right">39</td>
+<td align="left">6969</td>
+<td align="right">59</td>
+<td align="left">14437</td>
+<td align="right">79</td>
+<td align="left">24545</td>
+<td align="right">99</td>
+<td align="left">37293</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td align="left">2320</td>
+<td align="right">40</td>
+<td align="left">7280</td>
+<td align="right">60</td>
+<td align="left">14880</td>
+<td align="right">80</td>
+<td align="left">25120</td>
+<td align="right">100</td>
+<td align="left">38000</td>
+</tr>
+</tbody></table>
+<ul>
+<li>两等级间的经验差额 D<sub>n</sub>&#x3D;Exp<sub>n+1</sub>-Exp<sub>n</sub> 在 n≥2 时符合间隔为 7,7,6,7,7,6,7,6,7,6 的递增序列。</li>
+<li>即 Exp<sub>n+10</sub>-Exp<sub>n</sub>&#x3D;830+66n, n≥2。E<sub>2</sub>~E<sub>11</sub> 为基准值。</li>
+<li>可以进一步推测，Exp<sub>1</sub> 原本应为 53，但为了确保任何一个新玩家哪怕是最初级的玩家也能立刻体验到升级效果，单独修正为 44。</li>
+</ul>
+<h4 id="玩家等级与体力值："><a href="#玩家等级与体力值：" class="headerlink" title="玩家等级与体力值："></a>玩家等级与体力值：</h4><p>スタミナ &#x3D; プレーヤーレベル + 49，即 Stamina 体力 &#x3D; Player Level 玩家等级 + 49，初始 1 级 50 点体力。</p>
+<ul>
+<li><p>1-3 级歌曲，每次游玩消耗 20 点体力</p>
+</li>
+<li><p>4-6 级歌曲，每次游玩消耗 25 点体力</p>
+</li>
+<li><p>7-10 级歌曲，每次游玩消耗 30 点体力</p>
+</li>
+<li><p>每 3 分钟恢复 1 点体力，直到达到体力上限；</p>
+</li>
+<li><p>当用户升级时，会恢复体力上限等额的体力，此时可用体力会超过上限；</p>
+</li>
+<li><p>当前体力不足以游玩指定歌曲时，系统会提示用户观看广告获得 50 点体力，当上限小于 79 时，可用体力可能会超过上限；</p>
+</li>
+<li><p>观看广告获得 50 体力，这一行为本身有 1 小时的 CD，不影响其它情况下观看广告获得加成。</p>
+</li>
+<li><p>使用 1 个可乐道具，或 50 个 jBlock 道具可以换取 50 点体力，无 CD，道具通过各类任务获得，也可以直接付费购买；</p>
+</li>
+<li><p>使用 jBlock 在 plus 模式下购买的曲包可以无限次游玩，不消耗体力，但也不会获得经验值；</p>
+</li>
+<li><p>使用 Skip 券可以跳过指定谱面的实际游玩过程，直接按该谱面的历史最高分结算奖励，也会消耗体力。该谱面必须之前有过演奏记录。节约时间用。</p>
+</li>
+</ul>
+<h4 id="尽快升级"><a href="#尽快升级" class="headerlink" title="尽快升级"></a>尽快升级</h4><ul>
+<li>由于体力上限与等级成正比，因此在游戏初期，尽快升级是提高游戏体验的要素之一。</li>
+<li>由于歌曲难度等级对应体力消耗不同，且歌曲难度对 Rating 有影响，因此同体力最多 Exp 的升级路线要根据个人能力调整。</li>
+<li>例如，都为 E 级，Lv.6 的 84&#x2F;25 &#x3D; 3.36 就大于 Lv.8 的 100&#x2F;30 &#x3D; 3.33。</li>
+<li>如果所有歌都能打相同 Rating，优势顺序为 10 9 6 8 7 5 3 4 2 1。如果不是，就需要按下表排列：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">档位</th>
+<th align="left">效率比例与等级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">≥ 7</td>
+<td align="left"><strong>10Exc</strong> (7.73) <strong>10SSS</strong> (7.23) <strong>9Exc</strong> (7.2)</td>
+</tr>
+<tr>
+<td align="center">≥ 6.5</td>
+<td align="left"><strong>10SS</strong> (6.77) <strong>9SSS</strong> (6.73) <strong>6Exc</strong> (6.72) <strong>8Exc</strong> (6.67)</td>
+</tr>
+<tr>
+<td align="center">≥ 6</td>
+<td align="left"><strong>9SS</strong> (6.3) <strong>6SSS</strong> (6.28) <strong>10S</strong> (6.27) <strong>8SSS</strong> (6.23) <strong>7Exc</strong> (6.13) <strong>5Exc</strong> (6.08) <strong>3Exc</strong> (6)</td>
+</tr>
+<tr>
+<td align="center">≥ 5.5</td>
+<td align="left"><strong>6SS</strong> (5.88) <strong>8SS</strong> (5.83) <strong>9S</strong> (5.83) <strong>10A</strong> (5.8) <strong>7SSS</strong> (5.73) <strong>5SSS</strong> (5.68) <strong>3SSS</strong> (5.6)</td>
+</tr>
+<tr>
+<td align="center">≥ 5</td>
+<td align="left"><strong>6S</strong> (5.44) <strong>4Exc</strong> (5.44) <strong>8S</strong> (5.4) <strong>9A</strong> (5.4) <strong>7SS</strong> (5.37) <strong>5SS</strong> (5.32) <strong>10B</strong> (5.3) <strong>3SS</strong> (5.25) <strong>2Exc</strong> (5.2) <strong>4SSS</strong> (5.08) <strong>6A</strong> (5.04) <strong>8A</strong> (5)</td>
+</tr>
+<tr>
+<td align="center">≥ 4.5</td>
+<td align="left"><strong>7S</strong> (4.97) <strong>9B</strong> (4.93) <strong>5S</strong> (4.92) <strong>3S</strong> (4.85) <strong>2SSS</strong> (4.85) <strong>10C</strong> (4.83) <strong>4SS</strong> (4.76) <strong>6B</strong> (4.6) <strong>7A</strong> (4.6) <strong>8B</strong> (4.57) <strong>5A</strong> (4.56) <strong>2SS</strong> (4.55) <strong>3A</strong> (4.5) <strong>9C</strong> (4.5)</td>
+</tr>
+<tr>
+<td align="center">≥ 4</td>
+<td align="left"><strong>1Exc</strong> (4.4) <strong>4S</strong> (4.4) <strong>10D</strong> (4.33) <strong>6C</strong> (4.2) <strong>2S</strong> (4.2) <strong>7B</strong> (4.2) <strong>8C</strong> (4.17) <strong>5B</strong> (4.16) <strong>1SSS</strong> (4.1) <strong>3B</strong> (4.1) <strong>4A</strong> (4.08) <strong>9D</strong> (4.03)</td>
+</tr>
+<tr>
+<td align="center">≥ 3.5</td>
+<td align="left"><strong>2A</strong> (3.9) <span style="color:red"><strong>10E</strong></span> (3.87) 1SS (3.85) 7C (3.83) 5C (3.8) 6D (3.76) 3C (3.75) 8D (3.73) 4B (3.72) 9E (3.6) 1S (3.55) 2B (3.55)</td>
+</tr>
+<tr>
+<td align="center">≥ 3</td>
+<td align="left">7D (3.43) 5D (3.4) 4C (3.4) 6E (3.36) 3D (3.35) 8E (3.33) 1A (3.3) 2C (3.25) 7E (3.07) 5E (3.04) 4D (3.04) 1B (3) 3E (3)</td>
+</tr>
+<tr>
+<td align="center">≥ 2</td>
+<td align="left">2D (2.9)1C (2.75)4E (2.72)2E (2.6)1D (2.45)1E (2.2)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>这里有个重要的点位是 10E(3.87)。E 是最低评价，摆烂也能拿。也就是说，对于效率升级的目标，即以相同体力获得最多经验经验值来说，即使你 1 级歌能打 SS，都不如开 10 级歌放那里不动等 0 分结算快。</p>
+</blockquote>
+<h4 id="コイン-Coin"><a href="#コイン-Coin" class="headerlink" title="コイン (Coin)"></a>コイン (Coin)</h4><ul>
+<li>1-3 级歌曲，每次游玩后奖励 3 个宝箱</li>
+<li>4-6 级歌曲，每次游玩后奖励 4 个宝箱，其中 1 个为劣质宝箱</li>
+<li>7-10 级歌曲，每次游玩后奖励 5 个宝箱，其中 2 个为劣质宝箱</li>
+<li>宝箱可能开出 20, 30, 50, 100, 200, 1000, 10000 等数额的金币。</li>
+<li>根据 Rating 不同，宝箱开出的金币数目不同，且有一定的随机性。</li>
+<li>在 Rating &#x3D; E 的情况下，宝箱开出的金币绝大部分为 20, 30 两种。</li>
+<li>完成任务和日常签到也会获得金币、jBlock 和道具奖励，数额不等。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jubeat/" rel="tag"># jubeat</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E6%95%B0%E6%8D%AE/" rel="tag"># 游戏数据</a>
+              <a href="/tags/game-data/" rel="tag"># game data</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/latex-syntax-mathjax/" rel="prev" title="Latex 语法简单总结">
+                  <i class="fa fa-angle-left"></i> Latex 语法简单总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/formula-seeding-pt/" rel="next" title="PT 站中的做种公式（魔力值计算）分析">
+                  PT 站中的做种公式（魔力值计算）分析 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

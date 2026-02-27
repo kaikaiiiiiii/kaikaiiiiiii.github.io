@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="今天，我学会了如何用 &lt;div&gt; 配合 &lt;iframe&gt; 剽窃别人网站上的内容并且只显示所需，隐藏掉不需要的内容&#x3D;。&#x3D;   引用方法更新，请到 &lt;这里&gt; 查看。  对于提供了引用代码的网站来说，无论想把所需的内容引用到微博、校内甚至自己博客上都是非常容易的。之前写的 Warcraft 历代视频那篇博客也作了尝试，非常简单。 但对于没有提供这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吉原哀歌 外一篇（ WordPress 引用 Bilibili.tv 视频方法）">
+<meta property="og:url" content="https://www.kaikai.men/quote-content-on-other-website/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="今天，我学会了如何用 &lt;div&gt; 配合 &lt;iframe&gt; 剽窃别人网站上的内容并且只显示所需，隐藏掉不需要的内容&#x3D;。&#x3D;   引用方法更新，请到 &lt;这里&gt; 查看。  对于提供了引用代码的网站来说，无论想把所需的内容引用到微博、校内甚至自己博客上都是非常容易的。之前写的 Warcraft 历代视频那篇博客也作了尝试，非常简单。 但对于没有提供这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2012/11/%E6%9C%AA%E6%A0%87%E9%A2%98-2.png">
+<meta property="article:published_time" content="2012-11-04T10:14:29.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.134Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="bilibili">
+<meta property="article:tag" content="iframe">
+<meta property="article:tag" content="wordpress">
+<meta property="article:tag" content="引用">
+<meta property="article:tag" content="页面内容">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2012/11/%E6%9C%AA%E6%A0%87%E9%A2%98-2.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/quote-content-on-other-website/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/quote-content-on-other-website/","path":"/quote-content-on-other-website/","title":"吉原哀歌 外一篇（ WordPress 引用 Bilibili.tv 视频方法）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>吉原哀歌 外一篇（ WordPress 引用 Bilibili.tv 视频方法） | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q%EF%BC%9A-%E5%A6%82%E4%BD%95%E6%8A%8A-Bilibili-tv-%E7%9A%84%E8%A7%86%E9%A2%91%E5%BC%95%E7%94%A8%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%B8%8A%EF%BC%8C%E4%B8%94%E4%BF%9D%E6%8C%81%E5%BC%B9%E5%B9%95%E7%89%B9%E8%89%B2%E5%AE%8C%E6%95%B4%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Q： 如何把 Bilibili.tv 的视频引用到自己的博客上，且保持弹幕特色完整？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/quote-content-on-other-website/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="吉原哀歌 外一篇（ WordPress 引用 Bilibili.tv 视频方法） | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          吉原哀歌 外一篇（ WordPress 引用 Bilibili.tv 视频方法）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2012-11-04 10:14:29" itemprop="dateCreated datePublished" datetime="2012-11-04T10:14:29Z">2012-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E8%84%9A%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">代码脚本</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>今天，我学会了如何用 &lt;div&gt; 配合 &lt;iframe&gt; 剽窃别人网站上的内容并且只显示所需，隐藏掉不需要的内容&#x3D;。&#x3D;</p>
+</blockquote>
+<blockquote>
+<p>引用方法更新，请到 &lt;<a href="/bilibili-quote/">这里</a>&gt; 查看。</p>
+</blockquote>
+<p>对于提供了引用代码的网站来说，无论想把所需的内容引用到微博、校内甚至自己博客上都是非常容易的。之前写的 Warcraft 历代视频那篇博客也作了尝试，非常简单。</p>
+<p>但对于没有提供这一功能，且页面功能比一般视听类网站复杂些的网站内容来说，要想引用就显得有点困难了。比如 Bilibili.tv。</p>
+<h3 id="Q：-如何把-Bilibili-tv-的视频引用到自己的博客上，且保持弹幕特色完整？"><a href="#Q：-如何把-Bilibili-tv-的视频引用到自己的博客上，且保持弹幕特色完整？" class="headerlink" title="Q： 如何把 Bilibili.tv 的视频引用到自己的博客上，且保持弹幕特色完整？"></a><span style="color: #0000ff;">Q： 如何把 Bilibili.tv 的视频引用到自己的博客上，且保持弹幕特色完整？</span></h3><p>尝试一：显然是找站点自身的对外分享功能了，结果似乎证明他们的 PM 就是不想提供这样的功能……</p>
+<p>尝试二：通过关键词找到 KnH 曾经做过一个 KnDanmakuWP v1.0-BETA 的 WP 插件，兴冲冲地下载安装完按说明，在文章中插入吉原哀歌视频的引用代码，结果……失败。再仔细一看，发现该插件自 2011 年 8 月 5 日出道以后就再没有更新过，估计是 bilibili 网站的代码已经更新而插件没有跟上。</p>
+<p>尝试三：考虑到插件还有另外一种方式，即引用 B 站弹幕功能同时引用新浪视频，即文字内容和视频内容分开引用的方式。这一方式要求用户自行解析出 B 站视频源的真实地址，于是问题又化归到查看 B 站网页端源代码上了。经搜索后……又失败了。网页代码中标示视频的 cid 无法还原成真实 id，网上有的老教程也都只解释了针对 bid、uid、ykid 等的反演算。显然，B 站为了保持自己的竞争特色（弹幕字幕评论系统），走了一条与通常视听类网站相反的方式，并不追求共享，反而力图通过加密等方式把用户聚到自己的网站下，绝不为他人做嫁衣装。</p>
+<p>尝试四：直接 Copy B 站网页源代码。定位播放器代码段以后，把整个 &lt;div&gt;……&lt;&#x2F;div&gt; 内的所有内容直接复制到了博客文章的源代码下。结果……还是失败。原因任何一个前端工程师甚至只要对代码有点理解的小朋友可能都很明白，但以我的这点知识，真的不知道为啥。</p>
+<p>尝试五：于是祭出大杀器 —— &lt;iframe&gt;</p>
+<p>部分引用不行，那我就把整个网页都搬过来就行了！思路是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe style=&quot;width: 569px; height: 440px;&quot; scrolling=&quot;no&quot; src=&quot;http://www.bilibili.tv/video/av337840/&quot; position = x: 460 px; y : 0 px&gt;</span><br></pre></td></tr></table></figure>
+
+<p>—— iframe 引用整个页面，设置成指定大小，并定位到所需的位置。 当然最后一段 position 那个是假的，因为第五次失败的原因就出在这里。iframe 是没有办法定义内部引用页面的显示位置的。不过到这里，离胜利已经很接近了，因为思路是正确的。</p>
+<p>尝试六：（内事问百度，外事翻墙也要问 Google）果然在 Google 上找到了答案。代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;width: 569px; height: 440px; overflow: hidden; position: relative;&quot;&gt;&lt;iframe style=&quot;position: absolute; top: -460px; left: 0px;&quot; src=&quot;http://www.bilibili.tv/video/av337840/&quot; scrolling=&quot;no&quot; width = &quot;1000 px&quot; height = &quot;1000 px&quot;&gt;&lt;/iframe&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简单地说，既然 iframe 无法定位内部位置，就让它全部展现（我设置了 1000*1000 px），然后再在外面套上一个指定长宽的 &lt;div&gt;，然后设置遮盖方式，最后再调整 iframe 与 div 之间的相对位置，使得需要显示的部分恰好位于 &lt;div&gt; 之下，如图。当然，中间还涉及一些像素级的长宽位置调整，有个像素尺软件会好很多。</p>
+<p><img src="/../attach/2012/11/%E6%9C%AA%E6%A0%87%E9%A2%98-2.png" loading="lazy"></p>
+<p>至此，剽窃成功，大功告成回家吃饭。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/bilibili/" rel="tag"># bilibili</a>
+              <a href="/tags/iframe/" rel="tag"># iframe</a>
+              <a href="/tags/wordpress/" rel="tag"># wordpress</a>
+              <a href="/tags/%E5%BC%95%E7%94%A8/" rel="tag"># 引用</a>
+              <a href="/tags/%E9%A1%B5%E9%9D%A2%E5%86%85%E5%AE%B9/" rel="tag"># 页面内容</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/yosihara/" rel="prev" title="吉原哀歌（吉原ラメント）">
+                  <i class="fa fa-angle-left"></i> 吉原哀歌（吉原ラメント）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/how-to-zen-coding/" rel="next" title="Zen Coding 简易教程（六分钟学 Zen Coding）">
+                  Zen Coding 简易教程（六分钟学 Zen Coding） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

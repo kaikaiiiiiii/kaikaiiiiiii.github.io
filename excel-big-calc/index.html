@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="Excel 很多时候可以当作一个简易的数学计算程序，代替 Mathematica 或者 Matlab 之类的专业软件进行一些不算太复杂的数值运算。但 Excel 的数据处理存在很多弱项，在遇到时需要相应作一些处理。 问题一：有效位数大约只有 15-16 位，更多的位数只会用 0 填充了。  精确计算的 2n 的尾数不会是 0，始终是 2→4→8→6→2…… 的循环，但从截图上可以看到，Excel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Excel 计算缺陷与大数计算">
+<meta property="og:url" content="https://www.kaikai.men/excel-big-calc/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="Excel 很多时候可以当作一个简易的数学计算程序，代替 Mathematica 或者 Matlab 之类的专业软件进行一些不算太复杂的数值运算。但 Excel 的数据处理存在很多弱项，在遇到时需要相应作一些处理。 问题一：有效位数大约只有 15-16 位，更多的位数只会用 0 填充了。  精确计算的 2n 的尾数不会是 0，始终是 2→4→8→6→2…… 的循环，但从截图上可以看到，Excel">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/11/1.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/03/I9N46D5M6UE@8IXWXS8CU.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2015/11/2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2016/03/EXWLKE6X5_2I4BLENE5.png">
+<meta property="article:published_time" content="2016-03-14T23:33:05.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.138Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="excel">
+<meta property="article:tag" content="大数计算">
+<meta property="article:tag" content="精度上限">
+<meta property="article:tag" content="阶乘">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2015/11/1.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/excel-big-calc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/excel-big-calc/","path":"/excel-big-calc/","title":"Excel 计算缺陷与大数计算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Excel 计算缺陷与大数计算 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E9%97%AE%E9%A2%98%E4%B8%80%E7%9A%84%E5%BA%94%E5%AF%B9%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">关于问题一的应对：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E9%97%AE%E9%A2%98%E4%BA%8C%E7%9A%84%E5%BA%94%E5%AF%B9%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">关于问题二的应对：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/excel-big-calc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Excel 计算缺陷与大数计算 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Excel 计算缺陷与大数计算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-14 23:33:05" itemprop="dateCreated datePublished" datetime="2016-03-14T23:33:05Z">2016-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Excel 很多时候可以当作一个简易的数学计算程序，代替 Mathematica 或者 Matlab 之类的专业软件进行一些不算太复杂的数值运算。但 Excel 的数据处理存在很多弱项，在遇到时需要相应作一些处理。</p>
+<p><strong>问题一：</strong>有效位数大约只有 15-16 位，更多的位数只会用 0 填充了。</p>
+<p><img src="/../attach/2015/11/1.png" alt="1" loading="lazy"></p>
+<p>精确计算的 2<sup>n</sup> 的尾数不会是 0，始终是 2→4→8→6→2…… 的循环，但从截图上可以看到，Excel 在计算 2<sup>50</sup> 时，就遇到了有效位数问题，使得末尾出现了数字 0。</p>
+<h5 id="关于问题一的应对："><a href="#关于问题一的应对：" class="headerlink" title="关于问题一的应对："></a>关于问题一的应对：</h5><p>从例子中可以看到，Excel 提供了 15 位的精度，这意味在在『千万亿』这个级别上 Excel 依然可以进行精确的计算。相当于以小数点后 4 位精度，即 0.0001 元 &#x3D; 0.01 分 的精度下，处理九千亿人民币以下的财务数据。处理全国 GDP 的数据也可以精确到分，以米为精度可以让光跑一个月，以毫秒为精度覆盖三万多年。</p>
+<p>但是如果你真觉得不够，就需要自己用公式实现进位，使用多个单元格作为『数字段』，来确保每个单元格内的数字长度不超过 15 位。</p>
+<p>以 2<sup>n </sup>为例，其计算由两部分组成：</p>
+<p>最右一列公式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Z1=2</span><br><span class="line">Z2=TEXT(RIGHT(Z1*2,12),&quot;000000000000&quot;)</span><br><span class="line">Z3=TEXT(RIGHT(Z2*2,12),&quot;000000000000&quot;)</span><br><span class="line">Z4=TEXT(RIGHT(Z3*2,12),&quot;000000000000&quot;)</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p>其中，Right 函数保证每个单元格只取结果的最右 12 位，让精度始终符合 15 位上限的要求。而 Text() 函数则保证当截取 12 位数字时，不会将原来在中间位置的 0 因为截取而成为首位 0 消失掉。例如，2<sup>63</sup> &#x3D; 461,1686,0092,1369,3952，当截取 12 位时，会获得 0092,1369,3952，如果不通过 Text() 函数保存首位的 0，则最后合并回去时就会产生错误。</p>
+<p>左边每一列的公式均为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X2=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Y1*2,LEN(Y1*2)-12)),0),12),&quot;000000000000&quot;); Y2=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Z1*2,LEN(Z1*2)-12)),0),12),&quot;000000000000&quot;)</span><br><span class="line">X3=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Y2*2,LEN(Y2*2)-12)),0),12),&quot;000000000000&quot;); Y3=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Z2*2,LEN(Z2*2)-12)),0),12),&quot;000000000000&quot;)</span><br><span class="line">X4=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Y3*2,LEN(Y3*2)-12)),0),12),&quot;000000000000&quot;); Y4=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Z3*2,LEN(Z3*2)-12)),0),12),&quot;000000000000&quot;)</span><br><span class="line">                                                                              ……;                                                                               ……</span><br></pre></td></tr></table></figure>
+
+<p>这个公式同时适用于左边任意多列，使得只要电脑性能过关，尽可用尽 Excel 的所有列（一共 16384 列）。</p>
+<p>公式略复杂，以 Y2 为例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Y2=TEXT(RIGHT(Y1*2+IFERROR(VALUE(LEFT(Z1*2,LEN(Z1*2)-12)),0),12),&quot;000000000000&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>最外层 Text() 依然是为了保留首位 0。Value(Left()) 用于提取右边列的进位数字，即当前列的右侧列如果出现超过 12 位的数字时，则截取头部进到本列。Iferror() 用于检测是否进位。将进位数字和本列上一行数据乘二的结果相加后，再检测是否本列也多于 12 位，如果多则截取。公式引用关系如下：</p>
+<p><img src="/../attach/2016/03/I9N46D5M6UE@8IXWXS8CU.png" alt="I9N46D5M6%U}E@8IXWXS8CU" loading="lazy"></p>
+<p>使用类似思想，可以精确进行一次数值变化不超过 10<sup>14</sup> 的大部分大数计算。需要注意的是，假如一次数值变化较大，则每单元格所能保留的位数就相应变小，不一定是 12 位了。</p>
+<p>应对问题一的要点有二， 一是自行实行截取与进位，二是利用 Text() 公式特性，保留截断后的首位 0 不丢失。我通常把这种处理办法称为『大数多列化处理』。</p>
+<p><strong>问题二：</strong>数值上限大约在 2<sup>1024</sup>-1，由于有效位数限制，实际上限更小一点，大约在 2<sup>1023</sup>+2<sup>1022</sup>+……+2<sup>971</sup> ≈ 1.7977e308 左右。</p>
+<p><img src="/../attach/2015/11/2.png" alt="2" loading="lazy"></p>
+<p>这与问题一不同点在于，这个问题不关注精确展开，而更关注公式计算过程中的上限值。当然，使用问题一中的办法也能解决本问题中的部分情况，但对于更大的数字，例如用尽 Excel 所有列（16384 列）也写不下的数字，大约 10<sup>16384*14</sup> &#x3D; 10<sup>229376</sup>，问题一中精确展开的解法就无能为力了。况且在实际展开中，在装满 Excel 前就早早会遇到内存和 CPU 瓶颈了。问题二的解法注重于在有限的计算资源下计算尽可能大的数字。</p>
+<p>我们以计算 361 的阶乘为例，如果使用 Excel 公式直接输入 &#x3D;Fact(361) 则只会得到一个 #NUM! 的结果。意即该计算的值或者计算过程中已经出现了超过 Excel 单元格所能容纳的最大值。</p>
+<h5 id="关于问题二的应对："><a href="#关于问题二的应对：" class="headerlink" title="关于问题二的应对："></a>关于问题二的应对：</h5><p>我们在 Excel 中准备三列数字，A 列为从 1-361 的展开。C1 公式为 &#x3D;FLOOR.MATH(LOG10(A1))，B1 公式为 &#x3D;A1&#x2F;10^C1。</p>
+<p>从 C2 起公式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C2=FLOOR.MATH(LOG10(B1*A2))</span><br><span class="line">C3=FLOOR.MATH(LOG10(B2*A3))</span><br><span class="line">C4=FLOOR.MATH(LOG10(B3*A4))</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p>从 B2 起公式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">B2=B1*A2/10^C2</span><br><span class="line">B3=B2*A3/10^C3</span><br><span class="line">B4=B3*A4/10^C4</span><br></pre></td></tr></table></figure>
+
+<p>于是形成如下形式：</p>
+<p>![1~P8Q1T0%@[@S4J1CS4Y&#96;U9](..&#x2F;attach&#x2F;2016&#x2F;03&#x2F;1P8Q1T0@@S4J1CS4YU9.png)</p>
+<p>即 B C 两列形成了类似科学计数法的 b × 10 <sup>c</sup> 的数列。但不同之处在于，C 列的所有值全部相加，才是整个计算过程的最终解，如图：</p>
+<p><img src="/../attach/2016/03/EXWLKE6X5_2I4BLENE5.png" alt="EXWL~KE6X(5_2I4BLEN}%E5" loading="lazy"></p>
+<p>即：361! &#x3D; B361 × 10 <sup>SUM(C1:C361)</sup> &#x3D; 1.43792325888489 × 10<sup>768</sup>，和上一篇博客对照一下，结果还是很精确的。</p>
+<p>仔细观察 B、C 两列数值，其实原理就是每当一个新的 A 乘进来，都对结果作一次科学计数法处理，形成 b × 10 <sup>c</sup> 结构，确保每一次都有 1&lt;b&lt;10，然后把乘方 c 扔在一边最后再相加。</p>
+<p>这一解法的关键在于在计算的每一步都即时处理，避免单元格数字过大而『爆掉』。通过这种方法，Excel 的可计算数域范围从大约 10<sup>308</sup> 变大到了大约 10<sup>1,0000,0000,0000,0000</sup>，更大的数字则会产生 10 ~1000 倍甚至更大的误差。但如果对 C 列的数字再作问题一解法中的多列化处理，则可计算数上限大约会变成 10<sup>10<sup>229348</sup></sup> ，这里被迫用了幂的幂。这个数字相当大，并且实际不可能用到。早在这个极限之前，你的电脑内存估计就会挂掉。</p>
+<p>当然，因为有 VBA，Excel 理论上也可以做复杂大数字计算，但考虑到学习成本和应用场景，不如学习 Mathematica 来得方便了。一般使用 Excel 做计算，都仅限于操作单元格和自带公式可以解决的问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/excel/" rel="tag"># excel</a>
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97/" rel="tag"># 大数计算</a>
+              <a href="/tags/%E7%B2%BE%E5%BA%A6%E4%B8%8A%E9%99%90/" rel="tag"># 精度上限</a>
+              <a href="/tags/%E9%98%B6%E4%B9%98/" rel="tag"># 阶乘</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/count-zeroes-and-carry/" rel="prev" title="……数零与进位">
+                  <i class="fa fa-angle-left"></i> ……数零与进位
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/comma-3-comma-4/" rel="next" title="3 逗还是 4 逗？">
+                  3 逗还是 4 逗？ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="http:&#x2F;&#x2F;cosjiaoyi.com 是个针对 cosplay 交易信息的搜索引擎，目前基本完成了对新浪微博特定信息的采集和入库，以及基于拼接 mysql 查询语句的搜索功能。 接下来还有很多要做的事情，包括扩展采集来源、改善垃圾信息过滤、优化前端等工作。不过今天先来讲一下打算做的自制分词算法。 对于动漫这一特定领域，很多常规的分词算法没有多大意义了。因为动漫圈存在大量的仅仅因为“好玩”而产生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="COS 交易酱的简易分词算法">
+<meta property="og:url" content="https://www.kaikai.men/alpha-word-segmentation-algorithm-for-cosjiang/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="http:&#x2F;&#x2F;cosjiaoyi.com 是个针对 cosplay 交易信息的搜索引擎，目前基本完成了对新浪微博特定信息的采集和入库，以及基于拼接 mysql 查询语句的搜索功能。 接下来还有很多要做的事情，包括扩展采集来源、改善垃圾信息过滤、优化前端等工作。不过今天先来讲一下打算做的自制分词算法。 对于动漫这一特定领域，很多常规的分词算法没有多大意义了。因为动漫圈存在大量的仅仅因为“好玩”而产生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2014/09/wordsegment.png">
+<meta property="article:published_time" content="2014-09-17T09:41:45.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.136Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="cos交易酱">
+<meta property="article:tag" content="基于业务">
+<meta property="article:tag" content="简易分词">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2014/09/wordsegment.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/alpha-word-segmentation-algorithm-for-cosjiang/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/alpha-word-segmentation-algorithm-for-cosjiang/","path":"/alpha-word-segmentation-algorithm-for-cosjiang/","title":"COS 交易酱的简易分词算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>COS 交易酱的简易分词算法 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/alpha-word-segmentation-algorithm-for-cosjiang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="COS 交易酱的简易分词算法 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          COS 交易酱的简易分词算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-17 09:41:45" itemprop="dateCreated datePublished" datetime="2014-09-17T09:41:45Z">2014-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%A8%E6%BC%AB%E8%BE%B9%E7%BC%98/" itemprop="url" rel="index"><span itemprop="name">动漫边缘</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="http://cosjiaoyi.com/">http://cosjiaoyi.com</a> 是个针对 cosplay 交易信息的搜索引擎，目前基本完成了对新浪微博特定信息的采集和入库，以及基于拼接 mysql 查询语句的搜索功能。</p>
+<p>接下来还有很多要做的事情，包括扩展采集来源、改善垃圾信息过滤、优化前端等工作。不过今天先来讲一下打算做的自制分词算法。</p>
+<p>对于动漫这一特定领域，很多常规的分词算法没有多大意义了。因为动漫圈存在大量的仅仅因为“好玩”而产生的各种昵称、诡称、简称。比如 “身陷” 指的是衣服的尺码，包括身高、三围等数据；比如 “穹妹” 指的是动画《缘之空》中的女主角兼主角他妹；比如 “面交” 当然是指当面交易的简称；比如 “炮萝” “秀萝” “叽萝” “咩萝” “丐萝” 都是网游剑网三里的职业人物角色的简称，哦，剑三又别称 “基三”，等等等等……还有一大现象是中英文数字合并成为一个词汇，比如 “PO 主”。另外，又因为拼音输入法的原因，会出现“身限”&#x3D;“身陷” 等现象。由于本来这些词汇也就是圈子生造词，也难以适用词汇纠错的方法。</p>
+<p><img src="/../attach/2014/09/wordsegment.png" alt="wordsegment" loading="lazy">普通分词算法结果</p>
+<p>对于业务场景而言，这里面的很多词汇都是没有多大意义的。而“黑猫”、“弹丸”、“小天使”之类的词能成为高频词，也仅仅是因为它们更接近于“普通词汇”，可以被常规的分词算法认出来。而剑三当中的 “X 萝” 系列，甚至剑三这个词汇本身，都因为被分词算法切分，而没有进入这个图表中。</p>
+<p>当然，技术上来说，只要有合理的分词词库，辅以相应的参数调整，还是可以做出一套适用于动漫分词的，但考虑到分词算法往往有几百个核心词汇、几千个附加词汇，每个词汇还都有词性标注，想想就算了……</p>
+<p>在之前没考虑过这个问题，一是因为没有实际的业务数据积累，其实也没有考虑到这个问题，经过一段时间的推广和数据积累，现在可以研究了。二是因为对于 mySQL 的 like %…% 语法，尽管效率不高，但在目前的场景下，也没有遭受到多少压力。三是因为，呃，忙，呃，之前没时间做，呃，之后其实也不一定有时间做……</p>
+<p>那简易分词打算怎么做呢？</p>
+<p>现阶段的核心目的，还是在尽可能减少时间的前提下，能正确理解用户输入的“穹妹旗袍” 是指 “穹妹”+“旗袍”，这两个词汇不一定需要放在一起，只要在同一条微博中出现即可。</p>
+<ol>
+<li>只考虑对 QueryRequest 的 wordstring 进行处理，而不考虑入库数据。内部查询在没有遇到性能问题前，依然使用 like %…%。目的仅仅是为了正确理解用户输入的查询，不至于因为用户输入“剑三的炮萝” 因为无法整串匹配到而搜不到结果，这种情况下应当可以正确处理为“剑三”+“炮萝”</li>
+<li>只分析已经记录在服务器的 SearchQuery 表，不考虑对正文文本的分析。</li>
+<li>和普通分词一样，还是基于词汇表，以及替代词汇表。先考虑分词，再考虑戳憋字。</li>
+<li>基于业务，其实有大量的词汇是不需要的，比如“小天使”、“帮扩”等。对于用户而言，进入到本网站，场景就是搜索需要的东西，因而都是以具像物名词为主。没人会在搜索框里填 “小天使”、“随便” 这类词汇。甚至 “二手” 这个词都基本不会出现。</li>
+</ol>
+<p>所以简易规则如下，可以覆盖 99% 的实际需求，计算量很小。</p>
+<ol>
+<li>先对 querystring 根据 devide-word-list 进行切分，devide-word-list 包括 “ ”（半角空格）、“ ”（全角空格）、“的”，可能还会添加。但注意，没有“和”。因为在动漫中，“和”字会经常作为成词字或者人物姓名字出现，不能定义为分隔符。“日和” “和服” 等。由于并不是真的基于语义的分词，所以无法判断是成词字还是分隔字，根据历史搜索统计，只有 4% 的“和”是分隔词，交给用户自己调整没有问题。由于 devide-word-list 的数据量非常少，添加也很谨慎，所以可以直接写进代码里。</li>
+<li>对结果的 querystring[] 根据 known-word-list，切分为 <strong>已知词块</strong> 和 <strong>未知词块</strong> 的数组。known-word-list 的生成办法下述。</li>
+<li>对于未知词块，根据词块长度，反复循环，进行简单切分，直到最细：<ul>
+<li>词块中有英文串的，当英文串字母小于等于两个时，视为一个汉字，不切分。</li>
+<li>当英文串大于两个汉字的，视为一个词，对其前后切分，分为三段。</li>
+<li>当有数字现出时，视为一个词，对其前后切分，分为三段。</li>
+<li>对大于等于四字的词块，直接按两个字一词进行切分。（注意之前把 1&#x2F;2 个英文字母视作一个汉字，这里和中文等同视之）。</li>
+</ul>
+</li>
+<li>将结果的 querystring[] 数组，按每词之间 and 关系，对数据库进行查询。</li>
+</ol>
+<p>比如：求黑子的篮球的火神大我红毛 私信 po 我。</p>
+<ol>
+<li>变为 [求黑子,篮球,火神大我红毛,私信 po 我] （“的”和“空格”为分隔词）</li>
+<li>变为 [求,黑子,篮球,火神大我红,毛,私信 po 我]（“求”和“毛”为定义的已知词。</li>
+<li>变为 [求,黑子,篮球,火神,大我,红,毛,私信,po 我]（“po”视为一个汉字）</li>
+<li>实际 Search Request 即 求+黑子+篮球+火神+大我+红+毛+私信+po 我</li>
+</ol>
+<p>当然，通常没有这么长的需求，更多的是如下的：</p>
+<p>剑三定国炮萝 160 包邮</p>
+<ol>
+<li>还是 [剑三定国炮萝 160 包邮]，因为没有分隔。</li>
+<li>[剑三,定国炮萝 160,包邮]，剑三和包邮应该会加作已知词。</li>
+<li>[剑三,定国炮萝,160,包邮]，160 是数字单独成词。</li>
+<li>[剑三,定国,炮萝,160,包邮]，“定国炮萝” 四字切分为两字两字。这就是最后的搜索请求词组了。</li>
+</ol>
+<p>当然，在这种规则下，“雪露女武神”，会变成 “雪露”、“女武”、“神”，但又有什么关系呢，如果一个词汇真的必须是三字词，我使用两字“女武”+一字“神”，依然可以搜到库中的正确结果，这就足够了。</p>
+<p>接下来说说怎么做已知词汇表。</p>
+<ol>
+<li>人工整理，优先满足历史搜索词汇表。</li>
+<li>暴力分词法：<ol>
+<li>直接把采集数据的正文部分全部提取。</li>
+<li>把空格串、数字串、大于两字的英文串、符号串、链接地址、转发标志、“的” 等都视为分隔符替换掉，形成最初的文本块。</li>
+<li>暴力地把所有文本块全部循环切分成两字一组，然后统计相同词汇并排序。注意是循环切分，比如“小天使”块应当切分成“小天”和“天使” 两部分。</li>
+<li>再暴力地把所有文本块全部切分成三字一组，然后统计相同词汇并排序。</li>
+<li>人工筛选排序最前的 1000 组词汇，足够了。</li>
+</ol>
+</li>
+</ol>
+<p>这个当然也有缺点，但在具体的场景下也已经够用了。动漫词汇尽管创意繁多，但基于交流之用，最常用的词汇还是排名比较靠前的。再通过人工筛选过滤掉通用但无用的词汇，就可以获得有效的 know-word-list 了。这种暴力切分法并不是我第一个用，<a target="_blank" rel="noopener" href="http://www.guokr.com/blog/76814/">http://www.guokr.com/blog/76814/</a> 这篇文章就讲到了用暴力切分法去切分古文词汇。其实还是挺实用的，毕竟我这里最后有个人工筛选过程。</p>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;下面是严肃的分割线&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>其实中文分语无非两个部分：</p>
+<ol>
+<li>句子匹配已登录词时，多种匹配方式如何选取最优？</li>
+<li>未登录词如何鉴别词性？这中间又细分为如何通过大量文本收录未登录词，转为已登录词；以及在某段文本中确切出现的未登录词，如何进行处理两种情况。</li>
+</ol>
+<p>而以上方案，按分词原则来看，其实都有些反其道而行：</p>
+<ul>
+<li>故意适当缩小已登录词，相对扩大未登录词范围。——这个是由业务实际情况经取舍后决定的。确实业务中只需要登录掉大部分 “专属通用词” 即可达到需要的效果。</li>
+<li>未登录词一律视为双字词。——这个是实际统计结果后决定的。</li>
+<li>把输入的正确性，以及由此导致的结果的正确性，责任全部交给用户自己去解决。——也是业务实际，以及以上两项得到的。</li>
+</ul>
+<p>这些简化的前提，最重要的一点在于，Cos 交易酱并不需要真的去处理分词以后的结果，只需要确保分词结果能正确地，范围合适地在库中搜索到用户需要的数据即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cos%E4%BA%A4%E6%98%93%E9%85%B1/" rel="tag"># cos交易酱</a>
+              <a href="/tags/%E5%9F%BA%E4%BA%8E%E4%B8%9A%E5%8A%A1/" rel="tag"># 基于业务</a>
+              <a href="/tags/%E7%AE%80%E6%98%93%E5%88%86%E8%AF%8D/" rel="tag"># 简易分词</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/cos-jiang-optimize-plan/" rel="prev" title="Cos交易酱搜索优化计划">
+                  <i class="fa fa-angle-left"></i> Cos交易酱搜索优化计划
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/love-monmon-the-godzilla/" rel="next" title="很是喜欢这个微信表情包：小哥斯拉么么">
+                  很是喜欢这个微信表情包：小哥斯拉么么 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="简述直接用浏览器打开 VMWare 的 CDS 地址： https:&#x2F;&#x2F;softwareupdate.vmware.com&#x2F;cds&#x2F;vmw-desktop&#x2F; 其中 fusion 目录是 MacOS 下的 VM Fusion，x86 和 M1 的 MacOS 都能用。ws 目录是 VM Workstation。有 Windows 和 Linux 版。 一路点进去，选完版本号编译号系统版本后就可以下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMWare 17 免费了，但下载链接不好找">
+<meta property="og:url" content="https://www.kaikai.men/vmware-download-link/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="简述直接用浏览器打开 VMWare 的 CDS 地址： https:&#x2F;&#x2F;softwareupdate.vmware.com&#x2F;cds&#x2F;vmw-desktop&#x2F; 其中 fusion 目录是 MacOS 下的 VM Fusion，x86 和 M1 的 MacOS 都能用。ws 目录是 VM Workstation。有 Windows 和 Linux 版。 一路点进去，选完版本号编译号系统版本后就可以下载">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-28T12:28:52.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="vmware">
+<meta property="article:tag" content="download">
+<meta property="article:tag" content="下载链接">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/vmware-download-link/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/vmware-download-link/","path":"/vmware-download-link/","title":"VMWare 17 免费了，但下载链接不好找"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>VMWare 17 免费了，但下载链接不好找 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0"><span class="nav-number">2.</span> <span class="nav-text">记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%B0-II"><span class="nav-number">3.</span> <span class="nav-text">记 II</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/vmware-download-link/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="VMWare 17 免费了，但下载链接不好找 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VMWare 17 免费了，但下载链接不好找
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-28 12:28:52" itemprop="dateCreated datePublished" datetime="2024-07-28T12:28:52Z">2024-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>直接用浏览器打开 VMWare 的 CDS 地址：</p>
+<p><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/">https://softwareupdate.vmware.com/cds/vmw-desktop/</a></p>
+<p>其中</p>
+<p><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/">fusion</a> 目录是 MacOS 下的 VM Fusion，x86 和 M1 的 MacOS 都能用。<br><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player">ws</a> 目录是 VM Workstation。有 Windows 和 Linux 版。</p>
+<p>一路点进去，选完版本号编译号系统版本后就可以下载 tar 包。用 7zip 等软件可以解压出 VMWare 的安装包。</p>
+<p>比如发文时 ws 的最新版本号是 17.5.2，下载链接就是<br><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/windows/core/VMware-workstation-17.5.2-23775571.exe.tar">https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/windows/core/VMware-workstation-17.5.2-23775571.exe.tar</a></p>
+<h2 id="记"><a href="#记" class="headerlink" title="记"></a>记</h2><p>自从被博通收购以后，VMWare 对个人用户免费了。虽然以前满地都是序列号，个人用户实质也是随便用的，但现在毕竟有官方直接授权了。但博通的帮助系统是真难用，找了半天找不到下载链接。然后想起 vmware 自带的更新是走一个 cds 的，尝试搜索了一下还在，这比在帮助系统里找方便多了。</p>
+<p>记录一下。</p>
+<h2 id="记-II"><a href="#记-II" class="headerlink" title="记 II"></a>记 II</h2><p>遇到了 VMWare 17.5.1 跑 Windows XP 黑屏的 bug，搜索得知 VMWare 一直在不断地删减功能，未来甚至要把底层技术换成 KVM&#x2F;HyperV，自己只做套皮。</p>
+<p>又一个新版本不如老版本的软件。所以挖了一下把 CDS 上现有的老版本下载链接都提了出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -r -np -nd -e robots=off \</span><br><span class="line">    --spider --wait=1 -l inf \</span><br><span class="line">    https://softwareupdate.vmware.com/cds/vmw-desktop/ \</span><br><span class="line">    2&gt;&amp;1 | grep -E &#x27;^--&#x27;  \</span><br><span class="line">    | awk &#x27;&#123; print $3 &#125;&#x27; &gt;&gt; links.txt</span><br></pre></td></tr></table></figure>
+
+<p>整理结果：</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Workstation</th>
+<th>Player</th>
+<th>Version</th>
+<th>Fusion</th>
+<th>VMRC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td>e.x.p</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/e.x.p/19431034/x86/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>3.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/3.0.2/232708/core/com.vmware.fusion.pkg.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.0.0/2985596/windows/core/VMware-workstation-12.0.0-2985596.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.0.0/2985596/linux/core/VMware-Workstation-12.0.0-2985596.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.0.0/2985596/windows/core/VMware-player-12.0.0-2985596.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.0.0/2985596/linux/core/VMware-Player-12.0.0-2985596.x86_64.bundle.tar">Linux</a></td>
+<td>8.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.0.0/2985594/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.0.1/3160714/windows/core/VMware-workstation-12.0.1-3160714.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.0.1/3160714/linux/core/VMware-Workstation-12.0.1-3160714.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.0.1/3160714/windows/core/VMware-player-12.0.1-3160714.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.0.1/3160714/linux/core/VMware-Player-12.0.1-3160714.x86_64.bundle.tar">Linux</a></td>
+<td>8.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.0.1/3094680/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>8.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.0.2/3164312/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.1.0/3272444/windows/core/VMware-workstation-12.1.0-3272444.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.1.0/3272444/linux/core/VMware-Workstation-12.1.0-3272444.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.1.0/3272444/windows/core/VMware-player-12.1.0-3272444.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.1.0/3272444/linux/core/VMware-Player-12.1.0-3272444.x86_64.bundle.tar">Linux</a></td>
+<td>8.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.1.0/3272237/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.1.1/3770994/windows/core/VMware-workstation-12.1.1-3770994.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.1.1/3770994/linux/core/VMware-Workstation-12.1.1-3770994.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.1.1/3770994/windows/core/VMware-player-12.1.1-3770994.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.1.1/3770994/linux/core/VMware-Player-12.1.1-3770994.x86_64.bundle.tar">Linux</a></td>
+<td>8.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.1.1/3771013/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.0/4352439/windows/core/VMware-workstation-12.5.0-4352439.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.0/4352439/linux/core/VMware-Workstation-12.5.0-4352439.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.0/4352439/windows/core/VMware-player-12.5.0-4352439.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.0/4352439/linux/core/VMware-Player-12.5.0-4352439.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.0/4352717/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.1/4542065/windows/core/VMware-workstation-12.5.1-4542065.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.1/4542065/linux/core/VMware-Workstation-12.5.1-4542065.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.1/4542065/windows/core/VMware-player-12.5.1-4542065.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.1/4542065/linux/core/VMware-Player-12.5.1-4542065.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.1/4543325/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.2/4638234/windows/core/VMware-workstation-12.5.2-4638234.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.2/4638234/linux/core/VMware-Workstation-12.5.2-4638234.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.2/4638234/windows/core/VMware-player-12.5.2-4638234.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.2/4638234/linux/core/VMware-Player-12.5.2-4638234.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.2/4635224/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.3/5115892/windows/core/VMware-workstation-12.5.3-5115892.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.3/5115892/linux/core/VMware-Workstation-12.5.3-5115892.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.3/5115892/windows/core/VMware-player-12.5.3-5115892.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.3/5115892/linux/core/VMware-Player-12.5.3-5115892.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.3/4696910/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.4/5192485/windows/core/VMware-workstation-12.5.4-5192485.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.4/5192485/linux/core/VMware-Workstation-12.5.4-5192485.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.4/5192485/windows/core/VMware-player-12.5.4-5192485.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.4/5192485/linux/core/VMware-Player-12.5.4-5192485.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.4/5115894/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.5/5234757/windows/core/VMware-workstation-12.5.5-5234757.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.5/5234757/linux/core/VMware-Workstation-12.5.5-5234757.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.5/5234757/windows/core/VMware-player-12.5.5-5234757.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.5/5234757/linux/core/VMware-Player-12.5.5-5234757.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.5/5192483/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.6/5528349/windows/core/VMware-workstation-12.5.6-5528349.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.6/5528349/linux/core/VMware-Workstation-12.5.6-5528349.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.6/5528349/windows/core/VMware-player-12.5.6-5528349.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.6/5528349/linux/core/VMware-Player-12.5.6-5528349.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.6/5234762/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.7</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.7/5813279/windows/core/VMware-workstation-12.5.7-5813279.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.7/5813279/linux/core/VMware-Workstation-12.5.7-5813279.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.7/5813279/windows/core/VMware-player-12.5.7-5813279.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.7/5813279/linux/core/VMware-Player-12.5.7-5813279.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.7</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.7/5528452/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.8</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.8/7098237/windows/core/VMware-workstation-12.5.8-7098237.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.8/7098237/linux/core/VMware-Workstation-12.5.8-7098237.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.8/7098237/windows/core/VMware-player-12.5.8-7098237.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.8/7098237/linux/core/VMware-Player-12.5.8-7098237.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.8</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.8/5824040/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>12.5.9</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.9/7535481/windows/core/VMware-workstation-12.5.9-7535481.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/12.5.9/7535481/linux/core/VMware-Workstation-12.5.9-7535481.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.9/7535481/windows/core/VMware-player-12.5.9-7535481.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/12.5.9/7535481/linux/core/VMware-Player-12.5.9-7535481.x86_64.bundle.tar">Linux</a></td>
+<td>8.5.9</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.9/7098239/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>8.5.10</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/8.5.10/7527438/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.0.0/6661328/windows/core/VMware-workstation-14.0.0-6661328.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.0.0/6661328/linux/core/VMware-Workstation-14.0.0-6661328.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.0.0/6661328/windows/core/VMware-player-14.0.0-6661328.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.0.0/6661328/linux/core/VMware-Player-14.0.0-6661328.x86_64.bundle.tar">Linux</a></td>
+<td>10.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.0.0/6665085/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>10.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.0.1/6754183/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.0/7370693/windows/core/VMware-workstation-14.1.0-7370693.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.0/7370693/linux/core/VMware-Workstation-14.1.0-7370693.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.0/7370693/windows/core/VMware-player-14.1.0-7370693.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.0/7370693/linux/core/VMware-Player-14.1.0-7370693.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.0/7370838/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.1/7528167/windows/core/VMware-workstation-14.1.1-7528167.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.1/7528167/linux/core/VMware-Workstation-14.1.1-7528167.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.1/7528167/windows/core/VMware-player-14.1.1-7528167.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.1/7528167/linux/core/VMware-Player-14.1.1-7528167.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.1/7520154/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.2/8497320/windows/core/VMware-workstation-14.1.2-8497320.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.2/8497320/linux/core/VMware-Workstation-14.1.2-8497320.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.2/8497320/windows/core/VMware-player-14.1.2-8497320.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.2/8497320/linux/core/VMware-Player-14.1.2-8497320.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.2/8502123/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.3/9474260/windows/core/VMware-workstation-14.1.3-9474260.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.3/9474260/linux/core/VMware-Workstation-14.1.3-9474260.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.3/9474260/windows/core/VMware-player-14.1.3-9474260.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.3/9474260/linux/core/VMware-Player-14.1.3-9474260.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.3/9472307/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.4/10722678/windows/core/VMware-workstation-14.1.4-10722678.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.4/10722678/linux/core/VMware-Workstation-14.1.4-10722678.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.4/10722678/windows/core/VMware-player-14.1.4-10722678.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.4/10722678/linux/core/VMware-Player-14.1.4-10722678.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.4/10700604/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.5/10950780/windows/core/VMware-workstation-14.1.5-10950780.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.5/10950780/linux/core/VMware-Workstation-14.1.5-10950780.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.5/10950780/windows/core/VMware-player-14.1.5-10950780.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.5/10950780/linux/core/VMware-Player-14.1.5-10950780.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.5/10950653/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.6/12368378/windows/core/VMware-workstation-14.1.6-12368378.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.6/12368378/linux/core/VMware-Workstation-14.1.6-12368378.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.6/12368378/windows/core/VMware-player-14.1.6-12368378.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.6/12368378/linux/core/VMware-Player-14.1.6-12368378.x86_64.bundle.tar">Linux</a></td>
+<td>10.1.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/10.1.6/12989998/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.7</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.7/12989993/windows/core/VMware-workstation-14.1.7-12989993.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.7/12989993/linux/core/VMware-Workstation-14.1.7-12989993.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.7/12989993/windows/core/VMware-player-14.1.7-12989993.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.7/12989993/linux/core/VMware-Player-14.1.7-12989993.x86_64.bundle.tar">Linux</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>14.1.8</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/14.1.8/14921873/windows/core/VMware-workstation-14.1.8-14921873.exe.tar">Windows</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/14.1.8/14921873/windows/core/VMware-player-14.1.8-14921873.exe.tar">Windows</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.0/10134415/windows/core/VMware-workstation-15.0.0-10134415.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.0/10134415/linux/core/VMware-Workstation-15.0.0-10134415.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.0/10134415/windows/core/VMware-player-15.0.0-10134415.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.0/10134415/linux/core/VMware-Player-15.0.0-10134415.x86_64.bundle.tar">Linux</a></td>
+<td>11.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.0.0/10120384/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.1/10737736/windows/core/VMware-workstation-15.0.1-10737736.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.1/10737736/linux/core/VMware-Workstation-15.0.1-10737736.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.1/10737736/windows/core/VMware-player-15.0.1-10737736.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.1/10737736/linux/core/VMware-Player-15.0.1-10737736.x86_64.bundle.tar">Linux</a></td>
+<td>11.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.0.1/10738065/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.2/10952284/windows/core/VMware-workstation-15.0.2-10952284.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.2/10952284/linux/core/VMware-Workstation-15.0.2-10952284.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.2/10952284/windows/core/VMware-player-15.0.2-10952284.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.2/10952284/linux/core/VMware-Player-15.0.2-10952284.x86_64.bundle.tar">Linux</a></td>
+<td>11.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.0.2/10952296/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.0.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.3/12422535/windows/core/VMware-workstation-15.0.3-12422535.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.3/12422535/linux/core/VMware-Workstation-15.0.3-12422535.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.3/12422535/windows/core/VMware-player-15.0.3-12422535.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.3/12422535/linux/core/VMware-Player-15.0.3-12422535.x86_64.bundle.tar">Linux</a></td>
+<td>11.0.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.0.3/12992109/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.0.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.4/12990004/windows/core/VMware-workstation-15.0.4-12990004.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.0.4/12990004/linux/core/VMware-Workstation-15.0.4-12990004.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.4/12990004/windows/core/VMware-player-15.0.4-12990004.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.0.4/12990004/linux/core/VMware-Player-15.0.4-12990004.x86_64.bundle.tar">Linux</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.1.0/13591040/windows/core/VMware-workstation-15.1.0-13591040.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.1.0/13591040/linux/core/VMware-Workstation-15.1.0-13591040.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.1.0/13591040/windows/core/VMware-player-15.1.0-13591040.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.1.0/13591040/linux/core/VMware-Player-15.1.0-13591040.x86_64.bundle.tar">Linux</a></td>
+<td>11.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.1.0/13668589/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.0/14665864/windows/core/VMware-workstation-15.5.0-14665864.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.0/14665864/linux/core/VMware-Workstation-15.5.0-14665864.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.0/14665864/windows/core/VMware-player-15.5.0-14665864.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.0/14665864/linux/core/VMware-Player-15.5.0-14665864.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.0/14634996/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.1/15018445/windows/core/VMware-workstation-15.5.1-15018445.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.1/15018445/linux/core/VMware-Workstation-15.5.1-15018445.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.1/15018445/windows/core/VMware-player-15.5.1-15018445.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.1/15018445/linux/core/VMware-Player-15.5.1-15018445.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.1/15018442/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.2/15785246/windows/core/VMware-workstation-15.5.2-15785246.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.2/15785246/linux/core/VMware-Workstation-15.5.2-15785246.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.2/15785246/windows/core/VMware-player-15.5.2-15785246.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.2/15785246/linux/core/VMware-Player-15.5.2-15785246.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.2/15794494/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>11.5.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.3/15870345/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.5/16285975/windows/core/VMware-workstation-15.5.5-16285975.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.5/16285975/linux/core/VMware-Workstation-15.5.5-16285975.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.5/16285975/windows/core/VMware-player-15.5.5-16285975.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.5/16285975/linux/core/VMware-Player-15.5.5-16285975.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.5/16269456/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.6/16341506/windows/core/VMware-workstation-15.5.6-16341506.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.6/16341506/linux/core/VMware-Workstation-15.5.6-16341506.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.6/16341506/windows/core/VMware-player-15.5.6-16341506.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.6/16341506/linux/core/VMware-Player-15.5.6-16341506.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.6</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.6/16696540/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>15.5.7</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.7/17171714/windows/core/VMware-workstation-15.5.7-17171714.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/15.5.7/17171714/linux/core/VMware-Workstation-15.5.7-17171714.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.7/17171714/windows/core/VMware-player-15.5.7-17171714.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/15.5.7/17171714/linux/core/VMware-Player-15.5.7-17171714.x86_64.bundle.tar">Linux</a></td>
+<td>11.5.7</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/11.5.7/17130923/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.0.0/16894299/windows/core/VMware-workstation-16.0.0-16894299.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.0.0/16894299/linux/core/VMware-Workstation-16.0.0-16894299.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.0.0/16894299/windows/core/VMware-player-16.0.0-16894299.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.0.0/16894299/linux/core/VMware-Player-16.0.0-16894299.x86_64.bundle.tar">Linux</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>12.0.1</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.1/18113358/windows/vmrc-windows.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.1/18113358/linux/VMware-VMRC.tar">Linux</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>12.0.2</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.2/19968993/windows/vmrc-windows.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.2/19968993/linux/VMware-VMRC.tar">Linux</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.2/19968993/macos/com.vmware.vmrc.zip.tar">MacOS</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>12.0.3</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.3/21263813/windows/vmrc-windows.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.3/21263813/linux/VMware-VMRC.tar">Linux</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.3/21263813/macos/com.vmware.vmrc.zip.tar">MacOS</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>12.0.4</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.4/21740317/windows/vmrc-windows.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.4/21740317/linux/VMware-VMRC.tar">Linux</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.4/21740317/macos/com.vmware.vmrc.zip.tar">MacOS</a></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>12.0.5</td>
+<td></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.5/22744838/windows/vmrc-windows.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.5/22744838/linux/VMware-VMRC.tar">Linux</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/vmrc/12.0.5/22744838/macos/com.vmware.vmrc.zip.tar">MacOS</a></td>
+</tr>
+<tr>
+<td>16.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.0/17198959/windows/core/VMware-workstation-16.1.0-17198959.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.0/17198959/linux/core/VMware-Workstation-16.1.0-17198959.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.0/17198959/windows/core/VMware-player-16.1.0-17198959.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.0/17198959/linux/core/VMware-Player-16.1.0-17198959.x86_64.bundle.tar">Linux</a></td>
+<td>12.1.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.1.0/17195230/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.1/17801498/windows/core/VMware-workstation-16.1.1-17801498.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.1/17801498/linux/core/VMware-Workstation-16.1.1-17801498.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.1/17801498/windows/core/VMware-player-16.1.1-17801498.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.1/17801498/linux/core/VMware-Player-16.1.1-17801498.x86_64.bundle.tar">Linux</a></td>
+<td>12.1.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.1.1/17801503/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.1.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.2/17966106/windows/core/VMware-workstation-16.1.2-17966106.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.1.2/17966106/linux/core/VMware-Workstation-16.1.2-17966106.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.2/17966106/windows/core/VMware-player-16.1.2-17966106.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.1.2/17966106/linux/core/VMware-Player-16.1.2-17966106.x86_64.bundle.tar">Linux</a></td>
+<td>12.1.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.1.2/17964953/core/com.vmware.fusion.zip.tar">x86</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.0/18760230/windows/core/VMware-workstation-16.2.0-18760230.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.0/18760230/linux/core/VMware-Workstation-16.2.0-18760230.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.0/18760230/windows/core/VMware-player-16.2.0-18760230.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.0/18760230/linux/core/VMware-Player-16.2.0-18760230.x86_64.bundle.tar">Linux</a></td>
+<td>12.2.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.0/18760249/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.0/18760249/arm64/core/com.vmware.fusion.zip.tar">arm64</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.1/18811642/windows/core/VMware-workstation-16.2.1-18811642.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.1/18811642/linux/core/VMware-Workstation-16.2.1-18811642.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.1/18811642/windows/core/VMware-player-16.2.1-18811642.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.1/18811642/linux/core/VMware-Player-16.2.1-18811642.x86_64.bundle.tar">Linux</a></td>
+<td>12.2.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.1/18811640/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.1/18811640/arm64/core/com.vmware.fusion.zip.tar">arm64</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.2/19200509/windows/core/VMware-workstation-16.2.2-19200509.exe.tar">Windows</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.2/19200509/windows/core/VMware-player-16.2.2-19200509.exe.tar">Windows</a></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.3/19376536/windows/core/VMware-workstation-16.2.3-19376536.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.3/19376536/linux/core/VMware-Workstation-16.2.3-19376536.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.3/19376536/windows/core/VMware-player-16.2.3-19376536.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.3/19376536/linux/core/VMware-Player-16.2.3-19376536.x86_64.bundle.tar">Linux</a></td>
+<td>12.2.3</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.3/19436697/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.3/19436697/arm64/core/com.vmware.fusion.zip.tar">arm64</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.4/20089737/windows/core/VMware-workstation-16.2.4-20089737.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.4/20089737/linux/core/VMware-Workstation-16.2.4-20089737.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.4/20089737/windows/core/VMware-player-16.2.4-20089737.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.4/20089737/linux/core/VMware-Player-16.2.4-20089737.x86_64.bundle.tar">Linux</a></td>
+<td>12.2.4</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.4/20071091/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.4/20071091/arm64/core/com.vmware.fusion.zip.tar">arm64</a></td>
+<td></td>
+</tr>
+<tr>
+<td>16.2.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.5/20904516/windows/core/VMware-workstation-16.2.5-20904516.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/16.2.5/20904516/linux/core/VMware-Workstation-16.2.5-20904516.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.5/20904516/windows/core/VMware-player-16.2.5-20904516.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/16.2.5/20904516/linux/core/VMware-Player-16.2.5-20904516.x86_64.bundle.tar">Linux</a></td>
+<td>12.2.5</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.5/20904517/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/12.2.5/20904517/arm64/core/com.vmware.fusion.zip.tar">arm64</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.0/20800274/windows/core/VMware-workstation-17.0.0-20800274.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.0/20800274/linux/core/VMware-Workstation-17.0.0-20800274.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.0/20800274/windows/core/VMware-player-17.0.0-20800274.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.0/20800274/linux/core/VMware-Player-17.0.0-20800274.x86_64.bundle.tar">Linux</a></td>
+<td>13.0.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.0.0/20802013/x86/core/com.vmware.fusion.zip.tar">x86</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.0.0/20802013/arm64/core/com.vmware.fusion.zip.tar">arm64</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.0.0/20802013/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.1/21139696/windows/core/VMware-workstation-17.0.1-21139696.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.1/21139696/linux/core/VMware-Workstation-17.0.1-21139696.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.1/21139696/windows/core/VMware-player-17.0.1-21139696.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.1/21139696/linux/core/VMware-Player-17.0.1-21139696.x86_64.bundle.tar">Linux</a></td>
+<td>13.0.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.0.1/21139760/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.2/21581411/windows/core/VMware-workstation-17.0.2-21581411.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.0.2/21581411/linux/core/VMware-Workstation-17.0.2-21581411.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.2/21581411/windows/core/VMware-player-17.0.2-21581411.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.0.2/21581411/linux/core/VMware-Player-17.0.2-21581411.x86_64.bundle.tar">Linux</a></td>
+<td>13.0.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.0.2/21581413/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.0/22583795/windows/core/VMware-workstation-17.5.0-22583795.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.0/22583795/linux/core/VMware-Workstation-17.5.0-22583795.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.0/22583795/windows/core/VMware-player-17.5.0-22583795.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.0/22583795/linux/core/VMware-Player-17.5.0-22583795.x86_64.bundle.tar">Linux</a></td>
+<td>13.5.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.5.0/22583790/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.1/23298084/windows/core/VMware-workstation-17.5.1-23298084.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.1/23298084/linux/core/VMware-Workstation-17.5.1-23298084.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.1/23298084/windows/core/VMware-player-17.5.1-23298084.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.1/23298084/linux/core/VMware-Player-17.5.1-23298084.x86_64.bundle.tar">Linux</a></td>
+<td>13.5.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.5.1/23298085/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/windows/core/VMware-workstation-17.5.2-23775571.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/core/VMware-Workstation-17.5.2-23775571.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.2/23775571/windows/core/VMware-player-17.5.2-23775571.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.5.2/23775571/linux/core/VMware-Player-17.5.2-23775571.x86_64.bundle.tar">Linux</a></td>
+<td>13.5.2</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.5.2/23775688/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.6.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.0/24238078/windows/core/VMware-workstation-17.6.0-24238078.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.0/24238078/linux/core/VMware-Workstation-17.6.0-24238078.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.6.0/24238078/windows/core/VMware-player-17.6.0-24238078.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.6.0/24238078/linux/core/VMware-Player-17.6.0-24238078.x86_64.bundle.tar">Linux</a></td>
+<td>13.6.0</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.6.0/24238079/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17.6.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.1/24319023/windows/core/VMware-workstation-17.6.1-24319023.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.1/24319023/linux/core/VMware-Workstation-17.6.1-24319023.x86_64.bundle.tar">Linux</a></td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.6.1/24319023/windows/core/VMware-player-17.6.1-24319023.exe.tar">Windows</a> <a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/player/17.6.1/24319023/linux/core/VMware-Player-17.6.1-24319023.x86_64.bundle.tar">Linux</a></td>
+<td>13.6.1</td>
+<td><a target="_blank" rel="noopener" href="https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/13.6.1/24319021/universal/core/com.vmware.fusion.zip.tar">universal</a></td>
+<td></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vmware/" rel="tag"># vmware</a>
+              <a href="/tags/download/" rel="tag"># download</a>
+              <a href="/tags/%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5/" rel="tag"># 下载链接</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/primes-algorith-with-sugar/" rel="prev" title="素数算法，外加点糖">
+                  <i class="fa fa-angle-left"></i> 素数算法，外加点糖
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/pipeable-compress-methods-compare/" rel="next" title="zstd xz 7z lz4 管道压缩效率比较">
+                  zstd xz 7z lz4 管道压缩效率比较 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

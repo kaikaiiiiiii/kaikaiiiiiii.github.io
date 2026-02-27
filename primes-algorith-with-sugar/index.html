@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="质数，也叫素数，是对 Prime Number 的不同翻译。素数的叫法大概率来自日语，素在日语里引申出了根本，源头以及不可再分割的意思，这一点古汉语里是没有的。因此诞生出了一大批和制词汇，比如元素，素材，要素等等。而 Prime Number 正好符合这个特性，叫素数再合适不过了。现代汉语由于引入了上面这些和制词汇，所以素也开始有了上述意思。至于港台地区保留了这个叫法也是因为延袭了民国时期的翻译习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="素数算法，外加点糖">
+<meta property="og:url" content="https://www.kaikai.men/primes-algorith-with-sugar/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="质数，也叫素数，是对 Prime Number 的不同翻译。素数的叫法大概率来自日语，素在日语里引申出了根本，源头以及不可再分割的意思，这一点古汉语里是没有的。因此诞生出了一大批和制词汇，比如元素，素材，要素等等。而 Prime Number 正好符合这个特性，叫素数再合适不过了。现代汉语由于引入了上面这些和制词汇，所以素也开始有了上述意思。至于港台地区保留了这个叫法也是因为延袭了民国时期的翻译习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/04/primes_count_1e8.png">
+<meta property="article:published_time" content="2024-04-05T00:21:03.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="素数">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="程序优化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2024/04/primes_count_1e8.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/primes-algorith-with-sugar/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/primes-algorith-with-sugar/","path":"/primes-algorith-with-sugar/","title":"素数算法，外加点糖"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>素数算法，外加点糖 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">基础实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">简单优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">更多优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%9B%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">筛法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">5.</span> <span class="nav-text">位运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E7%AD%9B%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">分段筛法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E7%AD%9B%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">欧拉筛法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A0%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-number">8.</span> <span class="nav-text">素数的分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%85%E6%A3%AE%E7%B4%A0%E6%95%B0%E4%B8%8E-Lucas-Lehmer-%E6%A3%80%E9%AA%8C%E3%80%82"><span class="nav-number">9.</span> <span class="nav-text">梅森素数与 Lucas-Lehmer 检验。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%A8%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="nav-number">10.</span> <span class="nav-text">质性检验</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/primes-algorith-with-sugar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="素数算法，外加点糖 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          素数算法，外加点糖
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-05 00:21:03" itemprop="dateCreated datePublished" datetime="2024-04-05T00:21:03Z">2024-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>质数，也叫素数，是对 Prime Number 的不同翻译。素数的叫法大概率来自日语，素在日语里引申出了根本，源头以及不可再分割的意思，这一点古汉语里是没有的。因此诞生出了一大批和制词汇，比如元素，素材，要素等等。而 Prime Number 正好符合这个特性，叫素数再合适不过了。现代汉语由于引入了上面这些和制词汇，所以素也开始有了上述意思。至于港台地区保留了这个叫法也是因为延袭了民国时期的翻译习惯，没有做变更而已。</p>
+<blockquote>
+<p><em>《为什么叫素数》 来源：Spenser Sheng<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/22456389/answer/967574484">https://www.zhihu.com/question/22456389/answer/967574484</a><br>至此，质数这个名词就在中国成了官方认可的科学术语，并一直没用至今。但是，素数这个说法并没有因此退出历史舞台。同时代的秀多著作，还是用了这个名词，比如华罗庚先生于 1940 年出版的《堆垒素数论》等。这直接影响了后来更多数学家在著书立说时没用素数这个名词（可能因为要考虑与他人表述的统一性），如陈景润研究“哥德巴赫猜想”也是讲素数。……在中小学教材上，目前是统一使用质数这个名词，但是标明了“质数，又叫素数”《梳理源流，叩问本质——对质数、合数名词的考证与思考》顾志能 <a target="_blank" rel="noopener" href="https://www.doc88.com/p-1478574668277.html">https://www.doc88.com/p-1478574668277.html</a></em></p>
+</blockquote>
+<hr>
+<p>如何计算 N 以内的素数，或者判断 p 为素数，在编程领域是孪生的两个问题，也是很多编程语言的入门题目。这个题目优点在于有相当多的解法和优化空间，尤其适合用来练习算法和程序优化。这里我们就来逐步优化一个素数计算程序。</p>
+<h4 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h4><p>我们从最简单的开始，先写一个函数 isPrime(n) 判断 n 是否为素数，这个判断函数严格按素数的定义实现：</p>
+<blockquote>
+<p><strong>除了 1 和 n 之外，没有其他整数能整除 n</strong></p>
+</blockquote>
+<p>也就是说，将 2 ~ n-1 之间的每个整数都试一遍，看看是否能整除 n。再用 isPrime(n) 逐个找出 &lt; N 的所有素数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isPrime</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="comment">// 判断 n 是否为素数</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="comment">// 找出 &lt;N 的所有素数</span></span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><em>※ 本文演示代码为 JavaScript，方便在浏览器控制台内测试。但考虑到与正文内容保持一致，并未使用 JavaScript 内置的 .map(), .forEach(), .filter() 等遍历函数，而只用普通的 for loop if else 等代码。</em></p>
+</blockquote>
+<h4 id="简单优化"><a href="#简单优化" class="headerlink" title="简单优化"></a>简单优化</h4><p>显然上面的代码是有很多无效的计算的，一些简单的数学知识就可以大幅地优化计算效率：</p>
+<ol>
+<li>所有的偶数都不是素数，除了 2。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [<span class="number">2</span>]; <span class="comment">// for 循环从 3 开始，因此直接把特例 2 加入</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">3</span>; i &lt;= n; i = i + <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 从 i++ 优化为 i=i+2</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>同上，所有 3 的倍数都不是素数，除了 3。因此，我们可以只检查 6k ± 1 的数。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [<span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">6</span>; i &lt;= n; i = i + <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="comment">// 计算 6k</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i - <span class="number">1</span>)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i - <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="comment">// 判断 6k-1</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i + <span class="number">1</span>)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="comment">// 判断 6k+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><em>※ 理论上我们可以继续讨论 5 的倍数，但这会使 for 循环需要处理 30k ± a，且 a 有 1,7,13 等多个值。代码变得复杂，而优化效果一般。过于复杂的代码会让你不幸福。</em></p>
+</blockquote>
+<ol start="3">
+<li>判断素数时，只需要检查到 sqrt(n) 即可。如果 n 有一个大于 sqrt(n) 的因子，必然对应一个小于 sqrt(n) 的因子，则之前的循环中已经判断过了。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isPrime</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i * i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 从 i &lt; n 优化为 i*i &lt;= n</span></span><br><span class="line">        <span class="keyword">if</span> (n % i === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="更多优化"><a href="#更多优化" class="headerlink" title="更多优化"></a>更多优化</h4><p>进一步思考 isPrime 函数，我们发现，不必让所有小于 sqrt(n) 的数都试一遍，只需要用之前已经计算出来的素数尝试即可。但我们需要整体调整代码，使 isPrime() 函数可以调用 primes 数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [<span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isPrime</span>(<span class="params">n</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; primes[i] ** <span class="number">2</span> &lt; n; i++) &#123;</span><br><span class="line">            <span class="comment">// 在 isPrime 函数中可以直接使用 primes 数组</span></span><br><span class="line">            <span class="keyword">if</span> (n % primes[i] === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">6</span>; i &lt;= n; i = i + <span class="number">6</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i - <span class="number">1</span>)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isPrime</span>(i + <span class="number">1</span>)) &#123;</span><br><span class="line">            prime.<span class="title function_">push</span>(i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h4><p>以上的方法都是用较小的数字去尝试整除 N 以判断 N 是否为素数，这种方法称为试除法。从直观考虑，每个 N 都会被 2,3,5 ... 等数字都除一遍，比如 49 和 77 都会在 2, 3, 5 上各浪费三次计算。如果可以绕过无效除法，只用 7 去尝试 49，而 2,3,5 则不去浪费时间，耗时会大幅会降低。事实上这种方法是存在的，并且非常简单，称为『筛法』。</p>
+<p>简单到解释起来只需要两句话：</p>
+<ul>
+<li>从 2 开始，将所有 2 的倍数都划掉；从 3 开始，将所有 3 的倍数都划掉；从 5 开始，将所有 5 的倍数都划掉；</li>
+<li>以此类推。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> numboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i); <span class="comment">// 将素数加入 primes 数组</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i * <span class="number">2</span>; j &lt; n; j += i) &#123;</span><br><span class="line">                <span class="comment">// 将 i 的倍数都划掉</span></span><br><span class="line">                numboard[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<p>这个筛法也被称为埃拉托斯特尼筛法，是为了纪念古希腊数学家埃拉托斯特尼而命名的。这个方法看似很简单，实际也确实很简单，是一种朴素的空间换时间方案。算法改除法为乘法，同时避免互质两数相遇，避免了很多无效运算。虽然当 N 非常大时，numboard 数组会占用很多内存，但时间优势更为明显。</p>
+<blockquote>
+<p><em>※ 由于这个方法如此简单，普通人也能想到，不值得特地冠名。我猜测这个名字只是为了纪念历史名人，不能说明是他最早发明了这个方法。</em></p>
+</blockquote>
+<p>同样，上述代码也有一些优化空间，比如：</p>
+<ul>
+<li>划掉倍数时，可以从 j &#x3D; i*i 开始，因为 2i, 3i ... (i-1)i 在对应的 2, 3 ... i-1(或其因数)那一轮时已经被划掉了。</li>
+<li>当划到 i &gt; sqrt(N) 时，则剩余未标记数也都是素数。假设有任意合数 m 满足 sqrt(N) &lt; m &lt; N，则 m 的素因数 p1,p2 ... 中最小的一个 p 也必然小于 sqrt(N)。而我们已经找到所有小时 sqrt(N) 的素数，并划掉其倍数了，所以找到 p 时必定已经划掉 m。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> numboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">let</span> sqrt_n = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numboard[i]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; sqrt_n) <span class="keyword">break</span>; <span class="comment">// 根据上文证明，剩余未标记数也都是素数</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i * i; j &lt; n; j += i) &#123;</span><br><span class="line">                <span class="comment">// j = i * 2 -&gt; j = i * i</span></span><br><span class="line">                numboard[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">2</span>; j &lt;= n; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (numboard[j]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(j);</span><br><span class="line">        &#125; <span class="comment">// 清点未标记数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<p>在算法进入筛法层次后，isPrime() 函数与 calcPrimes() 函数的功能区别也就不再明显。为了判断 N 是否为素数，需要至少计算到 sqrt(N) 的素数，而上文又证明剩余的未标记数也都是素数。差别只是最后判断一下 N 是否在 primes 数组中而已。</p>
+<p>另外，在埃氏筛法中，6k ± 1 等手段不再有优化作用。构造一个『只有奇数的筛盘』是可以的，但后续的划除操作需要大量的脚标奇偶运算，反而会增加计算量。</p>
+<h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><p>在埃氏筛法中，内存占用是一个问题，尤其在筛法本身就是为了计算大 N 而生的。在实际应用中，有时也需要在有限的内存空间内尽量优化。注意到 numboard 数组只是用来标记是否为素数，只需要 0,1 两个状态，因此可以用位运算来减少内存占用。这使得内存的占用降为原来的 1&#x2F;8。但此时算法的实现与编程语言也开始耦合，不是每种编程语言都支持直接的位运算，例如 JavaScript 的位运算就只是某种『模拟』，效率并不高。Javascript 也不支持直接修改某个 bit 位，而要经过多次字节操作来实现。尽管如此，我们仍可以编写一个 setBitFalse() 函数来模拟这个操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setBitFalse</span>(<span class="params">arr, i</span>) &#123;</span><br><span class="line">    arr[i &gt;&gt; <span class="number">5</span>] &amp;= ~(<span class="number">1</span> &lt;&lt; (i &amp; <span class="number">31</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码解释：</p>
+<ul>
+<li>JavaScript 里数值默认 32 位，通过 i &gt;&gt; 5 相当于 i&#x2F;32 取整，可以得到对应的数组下标，即具体操作哪个元素。</li>
+<li>i &amp; 31 将 i 与 31 (00001111) 进行按位与操作，相当于对 32 取余，得到具体操作该元素的第几个 bit 位。</li>
+<li>1 &lt;&lt; (i &amp; 31) 将 1 左移 i &amp; 31 位，得到一个只有第 i &amp; 31 位为 1 的数，即只有指定 bit 位是 1 其它都是 0 的掩码。</li>
+<li>~( ... ) 按位取反以后就得到了 1111....0...111 的反掩码，只有指定 bit 位为 0。</li>
+<li>&amp;&#x3D; 是按位与且赋值，将数组指定元素与反掩码进行按位与运算，其它位与 1 后值不变，指定 bit 位则变为 0。目标达成。</li>
+</ul>
+<p>然后，我们需要写一个 isBitTrue() 函数来判断某个位是否为 1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isBitTrue</span>(<span class="params">arr, i</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (arr[i &gt;&gt; <span class="number">5</span>] &amp; (<span class="number">1</span> &lt;&lt; (i &amp; <span class="number">31</span>))) !== <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似地，函数计算数组下标和 bit 位置，生成一个只有指定 bit 位是 1 的掩码，将其与数组元素进行按位与操作。因为按位与操作遇 0 必 0，所以其它位都会被掩码数值置为 0。如果结果不为 0，则说明数组元素与掩码在该 bit 位上都是 1。</p>
+<p>最后，我们还需要写一个 bitsToNums() 函数，将位运算后的结果数组转换为素数数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">bitsToNums</span>(<span class="params">arr,n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">32</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &amp; (<span class="number">1</span> &lt;&lt; j)) &#123;</span><br><span class="line">                primes.<span class="title function_">push</span>(i * <span class="number">32</span> + j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> real_primes = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">2</span>; j &lt;= n; j++) &#123;</span><br><span class="line">        real_primes.<span class="title function_">push</span>(primes[j])</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 因为是字节位长的整倍数，位运算可能会多一些数字，因此要二次筛选一下</span></span><br><span class="line">    <span class="keyword">let</span> real_primes = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">2</span>; j &lt;= n; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (primes[j] &lt;= n) real_primes.<span class="title function_">push</span>(primes[j]) <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> real_primes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将几个函数代入原程序中的对应位置，我们可以得到一个位运算版本的埃拉托斯特尼筛选算法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> bitboard = <span class="keyword">new</span> <span class="title class_">Array</span>((n &gt;&gt; <span class="number">5</span>) + <span class="number">1</span>).<span class="title function_">fill</span>(-<span class="number">1</span>); <span class="comment">// 位运算数组</span></span><br><span class="line">    <span class="keyword">let</span> sqrt_n = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">isBitTrue</span>(bitboard, i)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; sqrt_n) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = i * i; j &lt;= n; j += i) &#123;</span><br><span class="line">                <span class="title function_">setBitFalse</span>(bitboard, j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">bitsToNums</span>(bitboard);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，位运算版本的代码更为复杂，原本只是根据下标取数组元素并判断 true&#x2F;false 的操作，现在需要生成掩码，计算偏移量，转换位数等多次计算。只有在 N 极大，以至于必须减少内存占用的情况下，才需要使用位运算。在一般情况下并不值得作此妥协。</p>
+<p>同时，对于 JavaScript &#x2F; Python &#x2F; java 等高级语言，位运算的效率并不高。即使实际情况确实拮据，也必须先考虑更换编程语言。比如在 C++ 中，<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/utility/bitset">std::bitset</a> 这种数据结构，就特别适合于埃氏筛法结合位运算计算素数表。</p>
+<h4 id="分段筛法"><a href="#分段筛法" class="headerlink" title="分段筛法"></a>分段筛法</h4><p>说到内存不足，很容易就能想到另一种解决方案：分段筛法。在筛选过程中，我们把素数放进了单独的 primes 数组，而 numboard 数组则只是用来筛除合数。当 primes 找到大小为 p 的素数，就意味着 p*p 之前的 numboard 数据已经没有用了，如果我们能把这部分内存释放掉，就能大幅减少内存占用。</p>
+<p>因此从逻辑上讲，当求 N 以内的素数时，我们只需要保留 sqrt(N) 以内的素数，并将整个 N 范围划为若干块，对每一块使用 primes 数组进行筛选。如果不考虑分块本身的内存分配回收时间，单只考虑数值与操作量的话，分段筛法的时间复杂度与原始筛法是相同的。对于每一个被筛选的元素，都会被其每一个独特的素因数筛选一次，无论是在全局 numboard 中，还是在局部 numboard_i 中，都一样。</p>
+<p>基于前文的铺垫，似乎分块大小设置为 sqrt(N) 是直觉上合理的方案。但实践中，分块大小更多与内存大小有关。比如 nodejs 的默认内存上限为 2GB，尽管可以通过 <code>--max-old-space-size</code> 参数调整，但在个人电脑环境下再提升其实也并不会有什么质变。只要确保 primes 数组空间的前提下仍有足够的内存，就是合理的块大小。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JavaScript 数值默认 4Byte，1GB 内存可以存储 2^28 个数值。约 2.68 * 10^8 个。</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">BOARD_SIZE</span> = <span class="number">10</span>; <span class="comment">// 分块大小，基于演示目的设置为 10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">cleanBoard</span>(<span class="params">s, e</span>) &#123;</span><br><span class="line">        <span class="comment">// 分块筛选区间 [s, e] 素数的子函数</span></span><br><span class="line">        <span class="keyword">let</span> board = <span class="keyword">new</span> <span class="title class_">Array</span>(e - s + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">let</span> sqrt_e = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(e);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; primes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 用先前得到的素数筛选本区间</span></span><br><span class="line">            <span class="keyword">let</span> p = primes[i];</span><br><span class="line">            <span class="keyword">let</span> start = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(s / p) * p;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j = start; j &lt;= e; j += p) &#123;</span><br><span class="line">                board[j - s] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; board.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 本区间埃筛</span></span><br><span class="line">            <span class="keyword">if</span> (board[i]) &#123;</span><br><span class="line">                <span class="keyword">let</span> p = i + s;</span><br><span class="line">                <span class="keyword">if</span> (p &gt; sqrt_e) <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> j = p * p; j &lt;= e; j += p) &#123;</span><br><span class="line">                    board[j - s] = <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; board.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 清点本区间的素数</span></span><br><span class="line">            <span class="keyword">if</span> (board[i]) &#123;</span><br><span class="line">                primes.<span class="title function_">push</span>(i + s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">cleanBoard</span>(<span class="number">2</span>, <span class="title class_">Math</span>.<span class="title function_">min</span>(<span class="variable constant_">BOARD_SIZE</span> - <span class="number">1</span>, n)); <span class="comment">// 第一个区间特殊处理，去掉 0 和 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="title class_">Math</span>.<span class="title function_">ceil</span>(n / <span class="variable constant_">BOARD_SIZE</span>); i++) &#123;</span><br><span class="line">        <span class="title function_">cleanBoard</span>(i * <span class="variable constant_">BOARD_SIZE</span>, <span class="title class_">Math</span>.<span class="title function_">min</span>((i + <span class="number">1</span>) * <span class="variable constant_">BOARD_SIZE</span> - <span class="number">1</span>, n));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="欧拉筛法"><a href="#欧拉筛法" class="headerlink" title="欧拉筛法"></a>欧拉筛法</h4><p>在埃氏筛法中，我们注意到，数字 6 会被 2, 3 划掉两次，30 会被 2, 3, 5 划掉三次。所有合数都会被其不同的素因数重复操作若干次，浪费还是有不少。但我们并不能去判断筛盘上某个具体的数是否已经划掉，因为『读取与判断』的时间本身可能比直接划掉时间还长。</p>
+<p>进一步用力注意到，筛法的本质是从『验证素数』变成了『排除合数』，而且是有规律的排除合数。考察一个合数 6 &#x3D; 2 x 3，我们希望在算法中，2 x 3 只发生一次，而不是在 2 与 3 的循环中各发生一次。对于 12 也一样，尽管它有 2 x 2 x 3, 4 x 3, 6 x 2 这三种分解方式，但我们希望只有其中一种发生，其它的被跳过。</p>
+<p>仿佛一头雾水但哪里又有一些灵感，这好像是可能的，只要足够聪明合理地安排合数生成，好像可以做到？</p>
+<p>事实确实如此。欧拉筛法就是为了解决这个问题而生的。具体操作是这样的：</p>
+<ol>
+<li>有一个自增的数字 i，从 2 开始。</li>
+<li>有一个数组 primes，存放已经找到的素数。</li>
+<li>如果筛板上 i 还没被划掉，则 i 是素数，将其加入 primes 数组。</li>
+<li>用每一个 i 乘以当前所有 primes 中的素数，得到的数都是合数，在筛板将它们标记为 false 划掉。</li>
+<li>如果 i 是 primes 中某个素数的倍数，那么 i * p 这个数会被标记 false，但后续直接跳过，进到 i+1 轮。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">calcPrimes</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>; <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> primes;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">calcPrimes</span>(<span class="number">100</span>));</span><br><span class="line"><span class="comment">// [ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 ]</span></span><br></pre></td></tr></table></figure>
+
+<p>在欧拉筛中，我们通过 i * primes[j] 的方式来筛除合数，且当 i 本身为 primes[j] 的倍数时，跳过 i 与后续素数的计算环节。例如：</p>
+<ul>
+<li>当 i &#x3D; 4 时，本应划掉 4 * 2 与 4 * 3，但可以跳过 4 * 3，因为它会被后续的 6 * 2 划掉。</li>
+<li>当 i &#x3D; 35 时，会先划掉 35 * 5，而 35 * 7 会被跳过，因为它将在 i &#x3D; 49 时被 5 划掉。</li>
+</ul>
+<p>一般来说，如果 i &#x3D; k * primes[j]，则接下来要划掉的 <code>s = i * primes[j+1] = k * primes[j] * primes[j+1]</code> 会在 <code>i&#39; = k * primes[j+1]</code> 轮次时会被 <code>primes[j]</code> 划掉（因为 primes[j] 是 i&#39; 的最小素因子），所以此时可以先跳过。</p>
+<p>可以看到，在欧拉筛法中，由于 primes 是从小到大排列的，因此每个合数只在其最小素因数 m 对应的 i &#x3D; n &#x2F; m 轮次时，才会被划掉。</p>
+<p>在这个算法中，合数的分解是唯一且有序的，因此欧拉筛与埃筛内存占用一样，但算法复杂度优化到了大约 O(n)。——严格来说，因为一些必须的额外判断，实际是 $O(nlog_2log_2n)$。</p>
+<blockquote>
+<p><em>※ 数学先师的伟业至今仍被人传颂，有一个算法以他的名字命名。纵然身为一个 18 世纪数学家，那个时代还远未出现计算机。</em></p>
+</blockquote>
+<hr>
+<h4 id="素数的分布"><a href="#素数的分布" class="headerlink" title="素数的分布"></a>素数的分布</h4><p>有了高效的素数筛选算法，我们可以开始搜索大范围的素数了。计算 1 亿以内的素数，并每 10 万分为一组，统计每组的数量。可以看到，虽然有波动，但整体是逐渐减少的，并且这个图好像有点眼熟？</p>
+<p><img src="/../attach/2024/04/primes_count_1e8.png" alt="素数频率" loading="lazy"></p>
+<p>事实上，确实有一个 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%B4%A0%E6%95%B0%E5%AE%9A%E7%90%86/1972457">素数渐近分布定理</a>，大致描述了素数的分布规律：</p>
+<blockquote>
+<p><strong>设不大于 n 的所有素数的个数为 π(n)，则 π(n) ≈ n &#x2F; ln(n)</strong></p>
+</blockquote>
+<p>具体举例来说，当 n &#x3D; 1 亿时，使用前文的程序计算出素数具体有 5761455 个，而 $n&#x2F;ln(n)\approx 5428681$，两者比例为 1.061，较为近似。而当 n→∞ 时，值趋近于 1。</p>
+<p>另外也可以得到一个推论，在 n 附近随机取一个数字，它是素数的概率是 $P(n)\approx 1&#x2F;ln(n)$。函数下降不算快，就算 n &#x3D; 1 亿，概率也有 1&#x2F;18.42，5.43%。</p>
+<p>这个定理已经被证明，但这个值本身只是一个渐近值。也就是说，虽然 $\lim\limits_{x \rightarrow 0}\frac{\pi(n)}{ n &#x2F; ln(n)} &#x3D; 1$，但 $\lim\limits_{x \rightarrow 0} [\pi(n) - n &#x2F; ln(n)]$ 却是越来越大的。从函数图像上而言，两者只是越来越接近于平行，但距离却越来越远。</p>
+<p>素数的分布规律是数论的一个重要研究方向。后来数学家又提出了几个更精确的估算公式，这一方向的顶点便是著名的黎曼猜想。</p>
+<h4 id="梅森素数与-Lucas-Lehmer-检验。"><a href="#梅森素数与-Lucas-Lehmer-检验。" class="headerlink" title="梅森素数与 Lucas-Lehmer 检验。"></a>梅森素数与 Lucas-Lehmer 检验。</h4><p>在了解素数的大致分布，并回顾欧拉筛法以后，我们发现即使是 O(n) 的算法也仍然有很大的局限性。内存限制是最初的现实问题，但也只是所有问题中最简单的一个，更大的限制仍然是来自于算法本身。我们要筛到至少 sqrt(N)，才能得到 N 是否为素数的结果。在 N 非常非常大时，O(n) 的算法仍然太慢了。</p>
+<p>仔细思考发现，这是因为筛法天然地要求算法结果的素数是连续的，如果跳过某个数，那么后续的合数也可能被认为是素数，整体就会崩盘。那么是否存在『跳过一部分数，快速往更大的素数 N 前进』，以及在不知道小于 sqrt(N) 全部素数的情况下，判断 N 是否为素数的算法呢？</p>
+<p>两者都是存在的，并且有多种方法。典型例子是梅森素数和配套的 Lucas-Lehmer 算法。</p>
+<p>梅森素数是形如 $2^p - 1$ 的素数，并且简单可以证明，当 $2^p - 1$为素数时，p 也是素数。</p>
+<blockquote>
+<p>当 p 是合数时，令 p &#x3D; ab，有：<br>$2^p-1&#x3D; (2^a)^b - 1 \overset{ x&#x3D;2^a}{&#x3D;\!&#x3D;\!&#x3D;} (x - 1)\cdot[x^{b-1}+x^{b-2}+\cdots+x+1]$ 为合数。</p>
+</blockquote>
+<p>尽管反过来并不一定成立，当 p 是素数时，$2^p - 1$ 仍可能是合数，比如 2^11 - 1 &#x3D; 2047 &#x3D; 23 x 89。但即使如此，梅森素数依然有很多优点，比如：</p>
+<ul>
+<li>比普通的序列增长得更快，可以跳过很多中间的数，尽快找到更大的素数。</li>
+<li>$2^p - 1$ 中包含素数的比例比全体自然中要高，因此更容易找到素数。</li>
+<li>否定性验证很容易，只需要验证 p 是否为素数。正向验证难度也比一般的低。</li>
+</ul>
+<p>Lucas-Lehmer 算法是验证梅森素数的一种方法。它构造了一个递推公式：</p>
+<p>\begin{equation*}<br>s_i&#x3D;\begin{cases} 4, &amp; i&#x3D;0 \\ (s_{i-1}^2-2) \mod (2^p-1), &amp; i&gt;0 \end{cases}<br>\end{equation*}</p>
+<p>则当 $s_{p-2} \equiv 0 \pmod{2^p-1}$ 时，$2^p - 1$ 为素数。其算法复杂度为 $O((log\underset{2}{}n)^2)$。</p>
+<blockquote>
+<p><em>※ 在大数环境下的计算需要编程语言和专门的数学包支持，代码就不放了</em></p>
+</blockquote>
+<p>由于梅森素数拥有的诸多优点，目前已知的最大素数都是梅森素数，也有专门的 <a target="_blank" rel="noopener" href="https://www.mersenne.org/">互联网协作项目 GIMPS</a> 来众算更大的梅森素数。该项目前段时间正好确认了 M(57885161) 是一个新发现的素数。</p>
+<h4 id="质性检验"><a href="#质性检验" class="headerlink" title="质性检验"></a>质性检验</h4><p>从梅森素数我们得到启发，在合理添加一些额外的限制条件后，素数的出现概率会提高，检验手段也可以针对性设计而变得简单，这对大素数的搜索非常有帮助。</p>
+<p>在这个层次上，calcPrimes() 基本就不再是人们的目标，而 isPrime() 则不断地发展，成为专门的『质性测试』算法。这些算法的目标是尽可能快地判断一个数是否为素数，而不是找到所有素数。在这个领域，有很多经典的算法，比如：</p>
+<p><strong>Lucas-Lehmer 检验</strong></p>
+<p>上文提到的梅森素数检验算法。仅适用于 $2^p - 1$ 形式的素数。</p>
+<p><strong>Pépin 检验</strong></p>
+<p>验证费马数 $2^{2^n} + 1$ 是否为素数的算法。但由于费马数目前只发现 n&#x3D;0,1,2,3,4 五个，后面都是合数，甚至有猜想认为 n &gt; 4 时皆为合数。因此 Pépin 检验的应用范围有限。而欧拉和卢卡斯接力证明了费马数的素因数皆可表达为 $k^{2n+2} + 1$，为具体的因数分解也提供了不小的方便。</p>
+<blockquote>
+<p><em>※ 感觉 Pépin 被费马坑了。</em></p>
+</blockquote>
+<p><strong>Miller-Rabin 素数测试算法</strong></p>
+<p>一个随机性的否定性算法。当测试结果为 false 则一定是合数，测试结果为 true 可能为素数。算法基于费马小定理和二次探测定理，在进行 n 次测试后，错误概率为 $1&#x2F;4^n$。</p>
+<p><strong>费马小定理</strong>：如果 p 是一个素数，而 a 是任意不是 p 的倍数的整数，则 $a^{p-1} ≡ 1 (mod\ p)$。这意味着对于任意素数 p，选择一个不是 p 的倍数的整数 a，计算 $a^{p-1}\ \% \ p$，如果不等于 1，则 p 一定不是素数；等于 1，则 p 可能是素数 。<br><strong>二次探测定理</strong>：假设 p 是一个素数，我们可以将 p-1 写为 $2^s * d$ 的形式，其中 d 是奇数。则对于任意整数 a，如果存在整数 x 满足：</p>
+<blockquote>
+<ol>
+<li>$a^d ≡ 1 (mod\ p)$</li>
+<li>存在一个 i 满足 0 ≤ i &lt; s，使得 $a^{2^i * d} ≡ -1 (mod\ p)$</li>
+</ol>
+</blockquote>
+<p>以上两个条件之一，则 a 是一个模 p 的非平凡平方根，即 $a^2 ≡ x (mod\ p)$：</p>
+<p>假设我们要测试数字 p &#x3D; 17 是否为素数。</p>
+<ol>
+<li><p>选择不是 p 的倍数的整数 a，假设选择 a &#x3D; 3。计算 $a^{p-1}\ \%\ p &#x3D; 3^{16} \% 17 &#x3D; 1$ 结果等于 1。根据费马小定理，17 可能是素数。</p>
+</li>
+<li><p>根据二次探测定理，当 p &#x3D; 17，有 $p-1&#x3D;16&#x3D;2^4*1$，因此 s &#x3D; 4，d &#x3D; 1。我们需验证任意整数 a，可以满足以下两个条件之一：</p>
+<ul>
+<li>$a^d &#x3D; a ≡ 1 (mod 17)$</li>
+<li>存在一个 i 满足 0 ≤ i &lt; 4，使得 $a^{2^i} ≡ -1 (mod 17)$</li>
+</ul>
+<p> 假若仍然选择 a&#x3D;3，则 $3 \% 17 &#x3D;3 \neq 1$，不满足条件一，继续检验条件二：</p>
+<ul>
+<li>$i&#x3D;0, 3^{2^0}\ \% 17 &#x3D; 3$</li>
+<li>$i&#x3D;1, 3^{2^1}\ \% 17 &#x3D; 9$</li>
+<li>$i&#x3D;2, 3^{2^2}\ \% 17 &#x3D; 13$</li>
+<li>$i&#x3D;3, 3^{2^3}\ \% 17 &#x3D; 16 &#x3D; -1$，满足条件。因此 17 可能是素数。</li>
+</ul>
+</li>
+</ol>
+<p>继续类似地进行多轮测试，如果任意一轮验证失败，则 p 一定是合数，反之随着验证轮次增加，p 为素数的可能性便越来越大。</p>
+<p><strong>AKS 类质性测试</strong></p>
+<p>一个确定性的质性测试算法，复杂度为 $O(log^{6+\epsilon}n)$。AKS 是第一个被发表的一般的、多项式的、确定性的和无依赖的素数判定算法。算法基于一个简单定理：</p>
+<blockquote>
+<p>当 $(x+a)^n\equiv(x^n+a)(\text{mod}\ n)$ 时，n 为素数。</p>
+</blockquote>
+<p>后续 ASK 被不同科学家多次改进，因此有多个版本，统称为 AKS 类算法。AKS 类算法也是目前效率最高的确定性算法，只要算法给出 true 的结果就一定是素数。</p>
+<blockquote>
+<p><em>※ ChatGPT 与 Copilot 对本文亦有贡献。</em></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%B4%A0%E6%95%B0/" rel="tag"># 素数</a>
+              <a href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag"># 编程</a>
+              <a href="/tags/%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96/" rel="tag"># 程序优化</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/deck-drawing-expectations/" rel="prev" title="几种奖池抽取期望计算">
+                  <i class="fa fa-angle-left"></i> 几种奖池抽取期望计算
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/vmware-download-link/" rel="next" title="VMWare 17 免费了，但下载链接不好找">
+                  VMWare 17 免费了，但下载链接不好找 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

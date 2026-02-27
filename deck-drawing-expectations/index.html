@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="1. 不放回抽取从一套充分洗匀的扑克中不放回地一直抽，直到抽到两张大小王都抽到，一共抽了多少张的期望值？ 先说结论：  一般地，从 $n$ 张牌中不放回地抽取特定 $k$ 张，期望抽取次数是 $Exp &#x3D; k \cdot (n+1)\ &#x2F;\ (k+1)$  然后说证明： 首先，在充分洗匀的情况下，从牌堆顶部抽取和从牌堆中间任意位置抽取是等价的，所以可以假设牌堆是从左到右的展开一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种奖池抽取期望计算">
+<meta property="og:url" content="https://www.kaikai.men/deck-drawing-expectations/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="1. 不放回抽取从一套充分洗匀的扑克中不放回地一直抽，直到抽到两张大小王都抽到，一共抽了多少张的期望值？ 先说结论：  一般地，从 $n$ 张牌中不放回地抽取特定 $k$ 张，期望抽取次数是 $Exp &#x3D; k \cdot (n+1)\ &#x2F;\ (k+1)$  然后说证明： 首先，在充分洗匀的情况下，从牌堆顶部抽取和从牌堆中间任意位置抽取是等价的，所以可以假设牌堆是从左到右的展开一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/k+1.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/02/Q(n)-graph.png">
+<meta property="article:published_time" content="2024-02-23T11:31:22.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="抽奖">
+<meta property="article:tag" content="奖池">
+<meta property="article:tag" content="期望">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2024/02/k+1.jpg">
+
+
+<link rel="canonical" href="https://www.kaikai.men/deck-drawing-expectations/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/deck-drawing-expectations/","path":"/deck-drawing-expectations/","title":"几种奖池抽取期望计算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>几种奖池抽取期望计算 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8D%E6%94%BE%E5%9B%9E%E6%8A%BD%E5%8F%96"><span class="nav-number">1.</span> <span class="nav-text">1. 不放回抽取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%94%BE%E5%9B%9E%E6%8A%BD%E5%8F%96"><span class="nav-number">2.</span> <span class="nav-text">2. 放回抽取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%94%BE%E5%9B%9E%E6%8A%BD%E5%8F%96%EF%BC%8C%E4%B8%8D%E5%90%8C%E6%A6%82%E7%8E%87"><span class="nav-number">3.</span> <span class="nav-text">3. 放回抽取，不同概率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%94%BE%E5%9B%9E%E6%8A%BD%E5%8F%96%EF%BC%8C%E5%8F%8D%E8%BF%98%E6%AF%94%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">4. 放回抽取，反还比例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%94%BE%E5%9B%9E%E6%8A%BD%E5%8F%96%EF%BC%8C%E5%8F%8D%E8%BF%98%E6%AF%94%E4%BE%8B%EF%BC%8C%E5%A4%9A%E4%B8%AA%E5%A5%96%E6%B1%A0"><span class="nav-number">5.</span> <span class="nav-text">5. 放回抽取，反还比例，多个奖池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%A6%82%E7%8E%87%E6%8F%90%E5%8D%87"><span class="nav-number">6.</span> <span class="nav-text">6. 概率提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E4%BF%9D%E5%BA%95"><span class="nav-number">7.</span> <span class="nav-text">7. 保底</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/deck-drawing-expectations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="几种奖池抽取期望计算 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几种奖池抽取期望计算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-23 11:31:22" itemprop="dateCreated datePublished" datetime="2024-02-23T11:31:22Z">2024-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="1-不放回抽取"><a href="#1-不放回抽取" class="headerlink" title="1. 不放回抽取"></a>1. 不放回抽取</h4><p>从一套充分洗匀的扑克中不放回地一直抽，直到抽到两张大小王都抽到，一共抽了多少张的期望值？</p>
+<p>先说结论：</p>
+<blockquote>
+<p>一般地，从 $n$ 张牌中不放回地抽取特定 $k$ 张，期望抽取次数是 $Exp &#x3D; k \cdot (n+1)\ &#x2F;\ (k+1)$</p>
+</blockquote>
+<p>然后说证明：</p>
+<p>首先，在充分洗匀的情况下，从牌堆顶部抽取和从牌堆中间任意位置抽取是等价的，所以可以假设牌堆是从左到右的展开一列，抽取动作等效于从左开始逐张提取卡片，直到所有目标牌都抽取到手里。想像 k 张目标牌已经排成一列，其顺序无关紧要因为最终都会被清空。这 k 张牌相隔包括左右外侧共产生 k+1 个空隙：</p>
+<p><img src="/../attach/2024/02/k+1.jpg" alt="k-divide" loading="lazy"></p>
+<p>然后将 n-k 张非目标牌随机插入这 k+1 个空隙中，每个空隙插入的概率相等，所以期望张数是 $\frac{n-k}{k+1}$。</p>
+<p>最后考察清点过程，显然最右侧外侧可以抛弃，所以需要抽取的期望张数是 $n - \frac{n-k}{k+1} &#x3D; \frac{k \times (n+1)}{k+1}$。得证。</p>
+<p>这类抽奖励在各类游戏中都有，其特点是：</p>
+<ul>
+<li>奖池有限</li>
+<li>不会抽到重复的奖品</li>
+<li>通常玩家心仪的是奖池中的几个特定奖品，其它是无关紧要的</li>
+</ul>
+<p>有些游戏会添加『升星级』的设置，某个抽卡人物 A 多次抽到后，会升级为 A+，A++ 等。这种情况完全可以视为若干个独立的 A 在奖池中，需要全部抽齐，计算时调整 n 与 k 的值即可。</p>
+<blockquote>
+<p>—— 算下来『全部抽齐』确实是成本很高的目标。</p>
+</blockquote>
+<h4 id="2-放回抽取"><a href="#2-放回抽取" class="headerlink" title="2. 放回抽取"></a>2. 放回抽取</h4><blockquote>
+<p>在数量为 n 的奖池中进行抽取，抽取结果是可重复的（抽完放回），抽完所有 n 件奖品的期望抽取次数是多少？</p>
+</blockquote>
+<p>$$Exp&#x3D; n \cdot (1 + 1&#x2F;2 + 1&#x2F;3 + \cdots + 1&#x2F;n)  &#x3D; n \cdot \sum _{i&#x3D;1}^n \frac{1}{i} &#x3D; n \cdot H_n $$</p>
+<p>$H_n$ 就是调和级数。</p>
+<p>证明，从后往前考察抽取过程：</p>
+<ul>
+<li>如果当前只剩最后一件奖品没抽到，则从 n 件奖品中抽取特定一件的几率是 1&#x2F;n，期望抽取次数是 n。</li>
+<li>如果剩最后两件奖品没抽到，只要从 n 件奖励中抽到这两件的任意一件，就会进入上一条的『只剩一件』状态。抽到这两件奖励之一的几率是 2&#x2F;n，期望抽取次数是 n&#x2F;2。</li>
+<li>每抽到一件新的就会进入下一个状态。而在任意某个状态时，当前对应的期望抽取次数是总数 &#x2F; 剩余新奖品数。</li>
+<li>因此，总的期望抽取次数是所有状态的期望抽取次数之和。</li>
+</ul>
+<p>调和级数是发散的，可以用 Excel 等工具计算期望值，也可以用近似公式 $H_n \approx \ln n + C + 1&#x2F;2n$ 算。这里的 $C$ 就是欧拉常数，约为 0.5772156649。</p>
+<p>进一步的，如果不需要抽完，而只是抽取其中的特定 k 件奖品，仍可以从最后一件倒数推算，其期望抽取次数是：</p>
+<p>$$Exp &#x3D; \frac{n}{1} + \frac{n}{2} + \cdots + \frac{n}{k-1} + \frac{n}{k} &#x3D; n \cdot H_k$$</p>
+<h4 id="3-放回抽取，不同概率"><a href="#3-放回抽取，不同概率" class="headerlink" title="3. 放回抽取，不同概率"></a>3. 放回抽取，不同概率</h4><p>在各类游戏中，奖励物品往往有不同的『品质』等级，以及不同的出现概率。可以简单理解为</p>
+<blockquote>
+<p>奖池分为 $m$ 个小奖池，每个小奖池进入概率分别为 $p_1, p_2, \cdots, p_m$，奖品数量分别为 $n_1, n_2, \cdots, n_m$。获得整个奖池全部奖励的期望抽取次数 $N$ 是多少？</p>
+</blockquote>
+<p>对于每个小奖池，期望抽取次数是 $n_i \cdot H_{n_i}$，再除以小奖池本身的概率 $p_i$，即得 $N_i&#x3D;n_i\cdot H_{n_i} \ &#x2F;\ p_i$。但对于整个奖池，总期望抽取次数 $N$ 不是所有小奖池的次数之和，而是它们之中的最大值。因为当有 $n_i &#x3D; p_i\cdot N$ 的抽取次数落到 $i$ 号小奖池时，也有对应的 $(1-p_i) N$ 溢出到其它小奖池。最大值保证溢出部分覆盖其它小奖池的期望抽取次数。随意举例如下：</p>
+<table>
+<thead>
+<tr>
+<th>品质</th>
+<th>数量</th>
+<th>概率</th>
+<th>期望有效抽取次数</th>
+<th>对应期望抽取总次数</th>
+<th>溢出次数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>橙色传说</td>
+<td>10</td>
+<td>0.01</td>
+<td>$10\cdot H_{10} \approx 29.29$</td>
+<td>$2928.97$</td>
+<td>$10\cdot H_{10} \ &#x2F;\ 0.01 \cdot 0.99 \approx  2899.68$</td>
+</tr>
+<tr>
+<td>紫色史诗</td>
+<td>20</td>
+<td>0.09</td>
+<td>$20\cdot H_{20} \approx 71.95$</td>
+<td>$799.50$</td>
+<td>$20\cdot H_{20} \ &#x2F;\ 0.09 \cdot 0.91 \approx  727.54$</td>
+</tr>
+<tr>
+<td>蓝色稀有</td>
+<td>50</td>
+<td>0.3</td>
+<td>$50\cdot H_{50} \approx 224.96$</td>
+<td>$749.86$</td>
+<td>$50\cdot H_{50} \ &#x2F;\ 0.3 \cdot 0.7 \approx 524.91 $</td>
+</tr>
+<tr>
+<td>白色普通</td>
+<td>200</td>
+<td>0.6</td>
+<td>$200\cdot H_{200} \approx 1175.6$</td>
+<td>$1959.34$</td>
+<td>$200\cdot H_{200} \ &#x2F;\ 0.6 \cdot 0.4 \approx 783.74$</td>
+</tr>
+</tbody></table>
+<p>总抽取次数 $N$ 会以 $0.01:0.09:0.3:0.6$ 的比例分配到四种品质中。观察表格，橙色传说所需的抽取次数最多，且溢出部分按比例仍可以覆盖其它所有奖池的有效抽取次数，也就是说抽到 2929 次时，期望可以让全部 10 件橙色传说抽取到手里。此时溢出的 2899 次已经完全覆盖了其它三种品质的有效期望抽取次数。所以 $$Exp &#x3D; Max\left(n_i \cdot H_{n_i} \ &#x2F;\ p_i\right)$$</p>
+<p>进一步考虑发现，只要每个小奖池的期望有效抽取次数和设定的小奖池进入概率比例不一致，则一定会有一个小奖池的期望抽取次数最大。如果正好一致，也意味着每个都是最大值。这个结论是普适的。</p>
+<h4 id="4-放回抽取，反还比例"><a href="#4-放回抽取，反还比例" class="headerlink" title="4. 放回抽取，反还比例"></a>4. 放回抽取，反还比例</h4><p>在某些游戏中，抽取到重复奖品时，会通过『碎片』等给予一定的返还比例，若干个碎片可以合成需要的道具。先考虑单个奖池的情况：</p>
+<blockquote>
+<p>假设奖池中有 n 件奖品，抽取概率相同。抽到重复奖品时，返还比例是 r(r&lt;1)，那么抽取次数的期望值是多少？</p>
+</blockquote>
+<p>没有傻逼会去合成已经存在的道具，所以返还可以视为抽取了 r 个新道具。同时由于 r &lt;1，重复的价值仍是小于不重复的，因此在确保碎片可以合成奖池所有剩余奖品前，应当不合成任何奖励减少重复，使得整体收益最大化。再次从后往前考察抽取过程：</p>
+<ul>
+<li>如果只差最后一件奖品没抽到，那么我仍需要从 n 件奖励中抽取，抽到这件奖励的几率是 1&#x2F;n，期望抽取次数是 n。其中 1 次是有效抽取，n-1 次是重复抽取，返还 r(n-1) 碎片。</li>
+<li>如果剩最后两件奖品没抽到，只要从 n 件奖励中抽到这两件的任意一件，就会进入『最后一件』状态，抽到这两件奖励的几率是 2&#x2F;n，期望抽取次数是 n&#x2F;2。其中 1 次是有效抽取，n&#x2F;2-1 次是重复抽取，返还 r(n&#x2F;2-1) 碎片。</li>
+<li>以此类推，在 n 奖池中抽取到 t 个奖品时，对应的总抽取碎片为：</li>
+</ul>
+<p>\begin{align*}<br>R(t) &amp;&#x3D; r\cdot(n-1) + r\cdot(\frac{n}{2}-1) + \cdots + r\cdot(\frac{n}{t-1}-1) +r\cdot(\frac{n}{t}-1) \\<br>&amp;&#x3D; r \cdot \sum_{i&#x3D;1}^t \left( \frac{n}{i} - 1 \right) \\<br>&amp;&#x3D; r \cdot \left( nH_t - t \right) \\<br>\end{align*}</p>
+<p>在某个节点 $t&#x3D;k$ 时，获得的碎片就已经足够合成了所有剩余的奖品，即 $R(k) \geq n-k$。因为 $R$ 单调递增，$k$ 必然存在，此时对应的期望抽取次数即是 $n \cdot H_k$。$k$ 的通式求解超出了我的能力，但使用 Excel 或编程求解在有限的 n 范围内仍是方便的。</p>
+<h4 id="5-放回抽取，反还比例，多个奖池"><a href="#5-放回抽取，反还比例，多个奖池" class="headerlink" title="5. 放回抽取，反还比例，多个奖池"></a>5. 放回抽取，反还比例，多个奖池</h4><blockquote>
+<p>假设还是 $m$ 个分概率的小奖池，但返还的碎片是通用的，那么全部奖品的总抽取次数期望值是多少？</p>
+</blockquote>
+<p>这里需要再添加一个参数，每个奖池的相对价格是不同的，设为 $c_i$。在 r 相同同，高价值奖池重复物品返回的碎片绝对数量更多。需要通过调整各奖池的 $c_i \cdot R(t)$，使各奖池的每抽价值归一化，后续就化为多个小奖池取最大值的已知问题了。即：</p>
+<ul>
+<li>设总抽取次数为 $N$，则对于每个小奖池会分得 $k_i &#x3D; N \cdot p_i$ 次。</li>
+<li>各小奖池 $i$ 各抽取 $k_i$ 次，得到 $t_i$ 个奖品，满足 $n_i \cdot H_{t_i} \leq k_i$，虽然计算期望可以取等号，但调和级数无法依此简化计算。</li>
+<li>此时产生的碎片为 $r\cdot(k_i-t_i)$ 即 $R(t_i)$，剩余未抽取的奖品数量为 $n_i - t_i$。</li>
+<li>当总碎片数量大于等于剩余奖品所须数量时，N 得解。整理得到：</li>
+</ul>
+<p>\begin{array}{l}<br>\left\{<br>\begin{aligned}<br>&amp; k_i &#x3D;N \times p_i, \\<br>&amp;n_i \cdot H_{t_i} \leq k_i, \\<br>&amp;\sum_{i&#x3D;1}^m [R(t_i) \cdot c_i] \geq \sum_{i&#x3D;1}^m [(n_i-t_i)\cdot c_i] \\<br>\end{aligned}<br>\right. \\<br>\\<br>\Rightarrow \large{ N &#x3D; Max\left( k_i &#x2F; p_i \right) }<br>\end{array}</p>
+<ul>
+<li>$c_i$ 为不同奖池间的价值权重，与碎片兑换各级别奖品的相对数量有关，与 $r$ 无关。</li>
+<li>$p_i c_i$ 为定义数据，调和级数只有离散解，每个小奖池计算的全局期望 $N_i$ 仍可能不一致。</li>
+</ul>
+<h4 id="6-概率提升"><a href="#6-概率提升" class="headerlink" title="6. 概率提升"></a>6. 概率提升</h4><blockquote>
+<p>在某些游戏中，当抽取未能获得奖励时，会提升下一次抽取的概率，直到抽取到奖励后重置概率。则真实概率是多少？</p>
+</blockquote>
+<p>先从一个简单例子入手：</p>
+<blockquote>
+<p>事件 A 的发生概率是 1&#x2F;2，事件 B 发生概率为另 1&#x2F;2，当 A 未发生时，下一次发生事件 A 的概率提到 100%。那么在多次重复中，A 事件的真实概率是多少？</p>
+</blockquote>
+<p>直觉可能会认为是 75%。但进一步思考发现，事件 B 的下一轮必定跟随事件 A，而事件 A 的下一轮 A 与 B 各有 50% 几率发生。将多轮过程展开后会发现这是 $A:BA&#x3D;1:1$ 的序列。因此单看事件 A 发生的真实概率为 2&#x2F;3。</p>
+<p>推广到 A 事件 1&#x2F;3 的情况，可以得到：</p>
+<table>
+<thead>
+<tr>
+<th>组合</th>
+<th>概率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>$1&#x2F;3$</td>
+</tr>
+<tr>
+<td>BA</td>
+<td>$2&#x2F;3 \times 2&#x2F;3 &#x3D; 4&#x2F;9$</td>
+</tr>
+<tr>
+<td>BBA</td>
+<td>$2&#x2F;3 \times 1&#x2F;3 \times 1 &#x3D; 2&#x2F;9$</td>
+</tr>
+</tbody></table>
+<p>在足够长的序列中，三者以 $A:BA:BBA&#x3D;\frac{1}{3}:\frac{4}{9}: \frac{2}{9}$ 的比例出现，序列总长度为 $L &#x3D; \frac{1}{3}\cdot n + \frac{4}{9}\cdot 2n+ \frac{2}{9}\cdot 3n$，其中 A 在每个组合中都出现一次，因此 A 的真实概率是 $\frac{n}{L} &#x3D; \frac{9}{17}$。</p>
+<p>由此观察到一般规律，对于初始概率为 $a$，提升步长为 $p$，达到 100% 时的步数为 $k$，即 $a+kp\geq 1 \Rightarrow k\geq(1-a)&#x2F;p$ 时，真实概率 $P(A)$ 是以下式子的解：</p>
+<p>\begin{align*}<br>L &amp;&#x3D; p(A)+2\cdot p(BA)+3\cdot p(BBA)+ \cdots + k \cdot p(\underbrace{BBB \ldots B}_{k-1}A) + (k+1) \cdot p(\underbrace{BBB \ldots B}_{k}A) \\<br>&amp;&#x3D; a + 2(1-a)(a+p) + 3(1-a)^2(a+2p) + \cdots + k(1-a)^{k-1}(a+(k-1)p) +(k+1)(1-a)^k\cdot1 \\<br>&amp;&#x3D; \sum_{i&#x3D;1}^k \left[i\cdot(1-a)^{i-1}(a+(i-1)\cdot p) \right] + (k+1)(1-a)^k \cdot 1 \\<br>P(A) &amp;&#x3D; k&#x2F;L<br>\end{align*}</p>
+<blockquote>
+<p>这其实就是马尔克夫链与状态转移方程。</p>
+</blockquote>
+<p>因为 $k$ 是有限的，所以式子不涉及无穷级数，但是计算仍然不方便，需要借助工具。</p>
+<p>在 $a &#x3D; p &#x3D; 1&#x2F;n$ 的特殊情况下，可以进一步简化为：</p>
+<p>\begin{align*}<br>L &amp;&#x3D; \frac{1}{n} + \frac{n-1}{n}\cdot\frac{2}{n}\cdot2 + \frac{n-1}{n}\cdot\frac{n-2}{n}\cdot\frac{3}{n}\cdot3 + \cdots + \frac{n-1}{n}\cdot\frac{n-2}{n}\cdots\frac{1}{n}\cdot\frac{n}{n}\cdot n \\<br>&amp; &#x3D; \sum_{i&#x3D;1}^n \left[\frac{i^2}{n^i} \cdot \prod_{j&#x3D;1}^{i-1} (n-j) \right] \\<br>Q(n) &amp;&#x3D; 1&#x2F;L \\<br>\end{align*}</p>
+<p>手动计算几个较小值：<br>\begin{align*}<br>Q(2) &amp;&#x3D; \frac{1}{ \frac{1}{2} + \frac{2^2}{2^2}(2-1) } &#x3D; \frac{2}{3} \\<br>Q(3) &amp;&#x3D; \frac{1}{ \frac{1}{3} + \frac{2^2}{3^2}(3-1) + \frac{3^2}{3^3}(3-1)(3-2) } &#x3D; \frac{9}{17} \approx 0.5294 \\<br>Q(4) &amp;&#x3D; \frac{1}{ \frac{1}{4} + \frac{2^2}{4^2}(4-1) + \frac{3^2}{4^3}(4-1)(4-2) + \frac{4^2}{4^4}(4-1)(4-2)(4-3) } &#x3D; 32&#x2F;71\approx 0.4507 \\<br>Q(5) &amp;&#x3D; \frac{1}{ \frac{1}{5} + \frac{2^2}{5^2}\cdot4 + \frac{3^2}{5^3}\cdot4\cdot3 + \frac{4^2}{5^4}\cdot4\cdot3\cdot2 + \frac{5^2}{5^5}\cdot4\cdot3\cdot2\cdot1 } &#x3D; 625&#x2F;1569\approx 0.3983 \\<br>Q(6) &amp;&#x3D; \frac{1}{ \frac{1}{6} + \frac{2^2}{6^2}\cdot5 + \frac{3^2}{6^3}\cdot5\cdot4 + \frac{4^2}{6^4}\cdot5\cdot4\cdot3 + \frac{5^2}{6^5}\cdot5\cdot4\cdot3\cdot2 + \frac{6^2}{6^6}\cdot5\cdot4\cdot3\cdot2\cdot1 } &#x3D; 324&#x2F;899 \approx 0.3604 \\<br>Q(7) &amp;&#x3D; 117649&#x2F;355081 \approx 0.3313, \\<br>Q(8) &amp;&#x3D; 131072&#x2F;425331 \approx 0.3082, \\<br>Q(9) &amp;&#x3D; 4782969&#x2F;16541017 \approx 0.2892, \\<br>Q(10)&amp;&#x3D; 1562500&#x2F;5719087 \approx 0.2732,<br>\end{align*}</p>
+<p>来个大的：</p>
+<p>\begin{align*}<br>Q(100)&amp;&#x3D;\frac{\tiny{10587911840678754238354031258495524525642395019531250000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000}}{\tiny{129277986730885202106151856642773382549665465071825090615034369359178917814747670780594211447306244001059786961886915926297133393516168977984471526892507817}} \\<br>&amp;\approx 0.0819<br>\end{align*}</p>
+<p>再来个图：</p>
+<p><img src="/../attach/2024/02/Q(n)-graph.png" alt="Q(n)" loading="lazy"></p>
+<h4 id="7-保底"><a href="#7-保底" class="headerlink" title="7. 保底"></a>7. 保底</h4><blockquote>
+<p>在某些游戏中，抽取到一定次数后，会有保底机制，即抽取次数超过一定值后，会直接给予某个奖励。</p>
+</blockquote>
+<p>待续。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%BD%E5%A5%96/" rel="tag"># 抽奖</a>
+              <a href="/tags/%E5%A5%96%E6%B1%A0/" rel="tag"># 奖池</a>
+              <a href="/tags/%E6%9C%9F%E6%9C%9B/" rel="tag"># 期望</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/formula-seeding-pt/" rel="prev" title="PT 站中的做种公式（魔力值计算）分析">
+                  <i class="fa fa-angle-left"></i> PT 站中的做种公式（魔力值计算）分析
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/primes-algorith-with-sugar/" rel="next" title="素数算法，外加点糖">
+                  素数算法，外加点糖 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

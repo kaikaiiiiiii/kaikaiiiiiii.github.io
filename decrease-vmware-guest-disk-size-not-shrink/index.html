@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="默认情况下，vmware 虚拟机的硬盘空间可以在 vmware 的虚拟机设置里调整大小，但只能『扩展』，却无法缩小。 当输入较小数字时，按钮变灰，无法点击。 问题：为什么要缩小虚拟机硬盘一，vmware 的虚拟硬盘文件 *.vmdk 默认是动态分配空间的，没有数据的虚拟 “硬盘空间” 并不占用真实主机的实际硬盘空间。当虚拟机内需要储存更多数据时，对应的 vmdk 文件会相应增大，以便容纳新增的数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="减小 vmware 虚拟机的硬盘容量，不是压缩">
+<meta property="og:url" content="https://www.kaikai.men/decrease-vmware-guest-disk-size-not-shrink/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="默认情况下，vmware 虚拟机的硬盘空间可以在 vmware 的虚拟机设置里调整大小，但只能『扩展』，却无法缩小。 当输入较小数字时，按钮变灰，无法点击。 问题：为什么要缩小虚拟机硬盘一，vmware 的虚拟硬盘文件 *.vmdk 默认是动态分配空间的，没有数据的虚拟 “硬盘空间” 并不占用真实主机的实际硬盘空间。当虚拟机内需要储存更多数据时，对应的 vmdk 文件会相应增大，以便容纳新增的数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/vmware_2018-10-08_02-53-21.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/Code_2018-10-08_04-31-35.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/cmd_2018-10-08_05-12-07.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/%E6%9C%AA%E5%91%BD%E5%90%8D.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/%E6%9C%AA%E5%91%BD%E5%90%8D2.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2018/10/sublime_text_2018-10-08_06-23-00.png">
+<meta property="article:published_time" content="2018-10-07T18:58:23.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.139Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="vmware">
+<meta property="article:tag" content="vmdk">
+<meta property="article:tag" content="缩小容量">
+<meta property="article:tag" content="最大虚拟磁盘大小">
+<meta property="article:tag" content="虚拟硬盘">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2018/10/vmware_2018-10-08_02-53-21.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/decrease-vmware-guest-disk-size-not-shrink/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/decrease-vmware-guest-disk-size-not-shrink/","path":"/decrease-vmware-guest-disk-size-not-shrink/","title":"减小 vmware 虚拟机的硬盘容量，不是压缩"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>减小 vmware 虚拟机的硬盘容量，不是压缩 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BC%A9%E5%B0%8F%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98"><span class="nav-number">1.</span> <span class="nav-text">问题：为什么要缩小虚拟机硬盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E5%A6%82%E4%BD%95%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">问题：如何操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">相关细节：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/decrease-vmware-guest-disk-size-not-shrink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="减小 vmware 虚拟机的硬盘容量，不是压缩 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          减小 vmware 虚拟机的硬盘容量，不是压缩
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-10-07 18:58:23" itemprop="dateCreated datePublished" datetime="2018-10-07T18:58:23Z">2018-10-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>默认情况下，vmware 虚拟机的硬盘空间可以在 vmware 的虚拟机设置里调整大小，但只能『扩展』，却无法缩小。</p>
+<p><img src="/../attach/2018/10/vmware_2018-10-08_02-53-21.png" alt="截图" loading="lazy"><br>当输入较小数字时，按钮变灰，无法点击。</p>
+<h4 id="问题：为什么要缩小虚拟机硬盘"><a href="#问题：为什么要缩小虚拟机硬盘" class="headerlink" title="问题：为什么要缩小虚拟机硬盘"></a>问题：为什么要缩小虚拟机硬盘</h4><p>一，vmware 的虚拟硬盘文件 *.vmdk 默认是动态分配空间的，没有数据的虚拟 “硬盘空间” 并不占用真实主机的实际硬盘空间。当虚拟机内需要储存更多数据时，对应的 vmdk 文件会相应增大，以便容纳新增的数据。但当虚拟机内的数据被清理时，已经增大的 vmdk 文件却不会自动缩小。随着虚拟机的不断使用，『只增大不缩小』的情况会逐渐严重，直到 vmdk 体积达到预设的虚拟机硬盘完整容量为止。<br>临时文件、虚拟机快照、积累性的文件复制与删除操作等各种情况都会增大 vmdk 体积。vmware 针对这种情况提供了 shrink disk（压缩硬盘）功能，也就是在虚拟机数据已经被清除后，整体扫描一遍 vmdk 文件，清理无效数据，缩小真实体积。但这也有两个麻烦：</p>
+<ol>
+<li>因为膨胀永远存在，所以压缩也要经常进行，难免感觉在做无用功。</li>
+<li>Linux 下 shrink 功能有 bug，需要配合 dd 命令先以 0 数据充，相当于先撑大再缩小，耗时数倍。参考：<a href="./vmware-ubuntu-trivias">第四条豆知识</a></li>
+</ol>
+<p>二，很多情况下，我们安装虚拟机的用途都比较单一，虚拟机的实际硬盘占用也往往小于 vmware 的推荐值。这是实际需求方面及可操作方面。</p>
+<p>三，强迫症 &#x2F; 好奇 &#x2F; 无理由。</p>
+<p>于是，根据实际使用情况，适当降低虚拟机的硬盘容量，将『使用膨胀』的上限卡住，释放真实硬盘空间并避免经常的压缩操作，对时间和金钱都有好处。尤其是现在 SSD 逐步标配的阶段，虚拟机硬盘容量设置不当造成的浪费是很可观的。</p>
+<h4 id="问题：如何操作"><a href="#问题：如何操作" class="headerlink" title="问题：如何操作"></a>问题：如何操作</h4><p>我以一个当初决策不当分配了 40GB 硬盘空间的虚拟机 Windows XP 为例，重新调整的目标为 10GB。一般来说，全新安装的 Windows XP 大约占 4-5GB 空间，则我们还有约 5GB 空间可用来安装测试软件等，足够了。如果不够就自行酌情决定调整目标。</p>
+<p>一、清理删除当前虚拟机下的所有快照，如果这些快照很重要不能删，那接下来的操作对你就没意义了。</p>
+<p>二、确认虚拟机硬盘是拆分成多个文件的动态分配硬盘。本例子中，该虚拟机的所有文件放在 D:\Program files\Windows XP.vmwarevm 目录下。用 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a> 打开虚拟机目录下和虚拟机同名的 *.vmdk 文件，如 『Windows XP.vmdk』。找到 # Extent description 部分，检查描述部分，一看就懂了。如图：<br><img src="/../attach/2018/10/Code_2018-10-08_04-31-35.png" loading="lazy"><br>打开 vmdk 时几种可能的情况：</p>
+<ul>
+<li>如果有多行描述，并且每行写了 <span style="color: red;"> SPARSE </span> ，这就是我们需要的类型，拆分+动态分配磁盘。直接跳过后续转格式步骤，进入修改分区步骤即可。</li>
+<li>如果有多行描述，但每行写的是 <span style="color: red;"> FLAT </span>，则为拆分的预分配磁盘，需要转格式。</li>
+<li>只有一行描述，写的是 <span style="color: red;"> FLAT </span>，则是单一文件预分配磁盘，也需要转格式。</li>
+<li>如果乱码或者提示打不开，则是单一文件动态分配磁盘，还是需要转格式。</li>
+</ul>
+<p>VMWare 在新建虚拟机时会默认选择第一种类型，但玩家当初可能出于性能等考虑，选择了其它类型的虚拟硬盘。那么就需要使用 vmware 自带的一个命令行工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmware-vdiskmanager.exe</span><br></pre></td></tr></table></figure>
+<p>转换成第一种类型。该工具在 vmware 安装目录下，默认为 “C:\Program Files (x86)\VMware\VMware Workstation\vmware-vdiskmanager.exe”。</p>
+<blockquote>
+<p><strong>转换方法：</strong></p>
+<p>该工具的命令行写法为：</p>
+<table>
+<thead>
+<tr>
+<th>工具名</th>
+<th>参数 1</th>
+<th>源文件</th>
+<th>参数 2</th>
+<th>参数 3</th>
+<th>目标名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vmware-vdiskmanager</td>
+<td>-r（转格式）</td>
+<td>Windows XP.vmdk（例）</td>
+<td>-t（目的）</td>
+<td>1（目的磁盘类型，1 为拆分+动态分配）</td>
+<td>newdisk.vmdk</td>
+</tr>
+</tbody></table>
+<p>该命令中， <code>-r</code>，<code>-t 1</code> 两部分不需要变化，<code>目标名称</code> 随意，之后会改名覆盖源文件。<code>源文件名</code> 根据实际情况变化，而 <code>工具名</code> 通常要带上路径。</p>
+<p>所以完整的命令大约是如下样子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;c:\Program Files (x86)\VMware\VMware Workstation\vmware-vdiskmanager.exe&quot; -r &quot;d:\Program Files\Windows XP.vmwarevm\Windows XP.vmdk&quot; -t 1 &quot;d:\Program Files\Windows XP.vmwarevm\newdisk.vmdk&quot;</span><br></pre></td></tr></table></figure>
+
+<p>回车以后开始执行转换：</p>
+<p><img src="/../attach/2018/10/cmd_2018-10-08_05-12-07.png" loading="lazy"></p>
+<p>转换完成以后，删除旧的 “windows XP.vmdk” 和多个关联文件 “windows XP-s0xx.vmdk”，然后把新的 newdisk.vmdk 重命名成 “windows XP.vmdk” 以替换。其它 newdisk-s00x.vmdk 不用变。</p>
+</blockquote>
+<p>三，打开虚拟机，进入系统。</p>
+<ul>
+<li>在虚机机内，使用分区管理软件将硬盘分区缩小，并将空闲保留在右端，分区块保持在左端。我们的整体目标是从 40GB 缩到 10GB，则现在要多缩一点给后续操作留出余量。如图，暂时缩到 9GB。<br><img src="/../attach/2018/10/%E6%9C%AA%E5%91%BD%E5%90%8D.png" loading="lazy"><img src="/../attach/2018/10/%E6%9C%AA%E5%91%BD%E5%90%8D2.png" loading="lazy"></li>
+<li>Windows 7 以上系统，自带的磁盘管理就有『压缩卷』功能可以调整分区大小，WinXP 用的是 <a target="_blank" rel="noopener" href="http://www.diskgenius.cn/">DiskGenius</a> 免费版本。Win98 则需要寻找更古老的相应软件。</li>
+<li>中途可能需要重启虚拟机，无妨，调整完关闭虚拟机即可。</li>
+</ul>
+<p>四，加减乘除：</p>
+<p>再次打开 Windows XP.vmdk 文件，定位到 # Extent description 部分。这次重点放在第二部分数字内容上，经计算，该数字为每个分块文件对应虚拟硬盘的簇数量，每簇 512 Byte，2 簇 &#x3D; 1KB。我们的目标容量为 10GB，也就是：</p>
+<ul>
+<li>10(GB)*1024(MB&#x2F;GB)*1024(KB&#x2F;MB)&#x3D; 10485760 KB &#x3D; 20971520 簇。</li>
+</ul>
+<p>检查 # Extent description，前两个文件每个 8323072，则把第三行的数字改为</p>
+<ul>
+<li>20971520 – 8323072*2 &#x3D; 4325376</li>
+</ul>
+<p><img src="/../attach/2018/10/sublime_text_2018-10-08_06-23-00.png" loading="lazy"><br>并删掉后续各行及对应文件，我们就在 vmware 部分完成了虚拟机硬盘大小调整。</p>
+<p>五，补足余量：</p>
+<p>重开虚拟机。前次调整分区时，预留了 1GB 左右的余量。再次打开分区工具，把剩余未使用空间重新分配给各分区。</p>
+<p>因为对计算机分区而言，由于存在分区表、启动扇区等原因，物理上的 10GB 硬盘空间在系统内表现是略小于 10GB 的，『内』『外』之间有差额，这对于虚拟机也一样成立。如果一开始就分区 10GB 而外部调整也等 10GB 的话，再次启动虚拟机就会报分区表错误，界时修改起来反而麻烦。现在这样按先预留余量，而后补足分区操作就没问题了。</p>
+<p>六，清理死数据：</p>
+<p>由于直接修改了描述文件，改小了簇数量，-s003.vmdk 里原本存于 4325376 之后的数据变成了永久的『死数据』。关闭虚拟机后，需要使用 vmware-vdistmanager -r -t 1 再作一次转换。虽说是转换，但目的却是清理死数据。清理完以后直接单独替换新旧 -s003.vmdk 即可。（想想为什么？）</p>
+<p>————————————————-</p>
+<h4 id="相关细节："><a href="#相关细节：" class="headerlink" title="相关细节："></a>相关细节：</h4><ul>
+<li>虚拟机为 Linux 系统时原理一样。利用 GParted 等分区工具，首先缩小使用分区，并调整未分区块到尾端。关机编辑 vmdk 描述，开虚拟机调整补分区足余量，再用 vmware 提供的工具清理死数据即可。</li>
+<li>预分配类型的虚拟硬盘必须先 vdiskmanager 转类型，不能直接操作。追求性能的话在编辑完再转回去。不过追求性能的话应该上 SSD，一力降十会。</li>
+<li>编辑 .vmx 和 .vmdk 文件不要用 windows 自带的记事本。</li>
+<li>虚拟机备份直接复制整个目录即可。</li>
+<li>扩容不需要按本文操作，使用 vmware 自带功能即可。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vmware/" rel="tag"># vmware</a>
+              <a href="/tags/vmdk/" rel="tag"># vmdk</a>
+              <a href="/tags/%E7%BC%A9%E5%B0%8F%E5%AE%B9%E9%87%8F/" rel="tag"># 缩小容量</a>
+              <a href="/tags/%E6%9C%80%E5%A4%A7%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98%E5%A4%A7%E5%B0%8F/" rel="tag"># 最大虚拟磁盘大小</a>
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E7%A1%AC%E7%9B%98/" rel="tag"># 虚拟硬盘</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hybrid-script-solve-ps-script-cant-be-double-clicked-with-blank-in-path/" rel="prev" title="Hybrid Script 附一则：解决 PowerShell 无法双击打开路径含空格文件的 Bug">
+                  <i class="fa fa-angle-left"></i> Hybrid Script 附一则：解决 PowerShell 无法双击打开路径含空格文件的 Bug
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/japanese-ime-issues/" rel="next" title="日语输入法使用">
+                  日语输入法使用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

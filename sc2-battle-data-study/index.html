@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="星际争霸里的数值平衡是挺有意思，值得仔细咀嚼的东西。 预备知识： 虽然星际显示的所有数值都是整数，但在内部绝大部分则使用了更精确的小数计算形式。而只在结果上进行了向上&#x2F;向下取整处理。在不同场景下，这个计算特性也造成了一些数据结果的特性。比如：  虫族的满血单位在受攻击后会立刻回一点血。 取消建造返回 75% 资源但永远是整数。 人类维修在一矿一气内是先扣款再维修。 一次攻击最低造成 0.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="星际争霸 2 攻防数值研究">
+<meta property="og:url" content="https://www.kaikai.men/sc2-battle-data-study/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="星际争霸里的数值平衡是挺有意思，值得仔细咀嚼的东西。 预备知识： 虽然星际显示的所有数值都是整数，但在内部绝大部分则使用了更精确的小数计算形式。而只在结果上进行了向上&#x2F;向下取整处理。在不同场景下，这个计算特性也造成了一些数据结果的特性。比如：  虫族的满血单位在受攻击后会立刻回一点血。 取消建造返回 75% 资源但永远是整数。 人类维修在一矿一气内是先扣款再维修。 一次攻击最低造成 0.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-10-18T08:07:41.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.136Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="攻防">
+<meta property="article:tag" content="数值研究">
+<meta property="article:tag" content="星际2">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/sc2-battle-data-study/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/sc2-battle-data-study/","path":"/sc2-battle-data-study/","title":"星际争霸 2 攻防数值研究"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>星际争霸 2 攻防数值研究 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%8A%9B%EF%BC%8C%E6%8A%A4%E7%94%B2%E5%80%BC%EF%BC%8C%E8%A1%80%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">攻击力，护甲值，血量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%AB%E6%97%8F%E8%A2%AB%E5%8A%A8%E5%9B%9E%E8%A1%80%E4%B8%8E%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4"><span class="nav-number">2.</span> <span class="nav-text">虫族被动回血与向上取整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E9%98%B2%E5%8D%87%E7%BA%A7"><span class="nav-number">3.</span> <span class="nav-text">攻防升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E6%94%BB%E5%87%BB"><span class="nav-number">4.</span> <span class="nav-text">多重攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%AE%9A%E5%B1%9E%E6%80%A7%E5%8A%A0%E6%88%90"><span class="nav-number">5.</span> <span class="nav-text">特定属性加成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E9%97%B4%E9%9A%94"><span class="nav-number">6.</span> <span class="nav-text">攻击间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%9D%E7%A6%BB%E4%B8%8E%E4%BD%93%E7%A7%AF"><span class="nav-number">7.</span> <span class="nav-text">距离与体积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%86%E9%87%8E"><span class="nav-number">8.</span> <span class="nav-text">视野</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%84%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">射程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%80%9F%E5%BA%A6"><span class="nav-number">10.</span> <span class="nav-text">移动速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%B9%E9%81%93"><span class="nav-number">11.</span> <span class="nav-text">弹道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%9F%E7%81%B5%E6%8A%A4%E7%9B%BE%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">12.</span> <span class="nav-text">星灵护盾（一）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%9F%E7%81%B5%E6%8A%A4%E7%9B%BE%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%88%9A%E6%AF%85%E6%8A%A4%E7%9B%BE"><span class="nav-number">13.</span> <span class="nav-text">星灵护盾（二）：刚毅护盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%9C%E9%AD%94%E6%B3%95%E6%94%BB%E5%87%BB%E2%80%9D%EF%BC%88%E6%8A%80%E8%83%BD%E4%BC%A4%E5%AE%B3%EF%BC%89"><span class="nav-number">14.</span> <span class="nav-text">“魔法攻击”（技能伤害）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E9%87%8F"><span class="nav-number">15.</span> <span class="nav-text">能量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E6%80%A7%E6%94%BB%E9%98%B2%E6%8F%90%E5%8D%87"><span class="nav-number">16.</span> <span class="nav-text">临时性攻防提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E7%AE%97%E9%A1%BA%E5%BA%8F"><span class="nav-number">17.</span> <span class="nav-text">结算顺序</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/sc2-battle-data-study/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="星际争霸 2 攻防数值研究 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          星际争霸 2 攻防数值研究
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-10-18 08:07:41" itemprop="dateCreated datePublished" datetime="2014-10-18T08:07:41Z">2014-10-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">游戏中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>星际争霸里的数值平衡是挺有意思，值得仔细咀嚼的东西。</p>
+<p><strong>预备知识：</strong> 虽然星际显示的所有数值都是整数，但在内部绝大部分则使用了更精确的小数计算形式。而只在结果上进行了向上&#x2F;向下取整处理。在不同场景下，这个计算特性也造成了一些数据结果的特性。比如：</p>
+<ul>
+<li>虫族的满血单位在受攻击后会立刻回一点血。</li>
+<li>取消建造返回 75% 资源但永远是整数。</li>
+<li>人类维修在一矿一气内是先扣款再维修。</li>
+<li>一次攻击最低造成 0.5 伤害。</li>
+</ul>
+<p>等等……</p>
+<h4 id="攻击力，护甲值，血量"><a href="#攻击力，护甲值，血量" class="headerlink" title="攻击力，护甲值，血量"></a>攻击力，护甲值，血量</h4><p>对于战斗中的任意一次攻击行为，都是通过以上三项得到最后的伤害计算结果，计算公式为：</p>
+<blockquote>
+<p>伤害 &#x3D; max { 攻击力 – 护甲值, 0.5 }</p>
+</blockquote>
+<p>直观的公式，攻击力被护甲抵消掉一部分，剩下的对单位造成实际的伤害。</p>
+<blockquote>
+<ul>
+<li>人类枪兵默认 6 点伤害；</li>
+<li>人类地堡，默认 1 点护甲；</li>
+</ul>
+</blockquote>
+<p>则人类枪兵每次攻击对地堡造成 5 点伤害。</p>
+<p>当护甲值大于等于攻击力时，每次攻击至少造成 0.5 点伤害。</p>
+<blockquote>
+<ul>
+<li>SCV 攻击力 5；（战五渣）</li>
+<li>行星要塞，升级建筑护甲，护甲值 5。</li>
+</ul>
+</blockquote>
+<p>结果：SCV 每次攻击造成 0.5 伤害，由于显示数值均为向上取整的整数，所以实际上需要两次攻击以后才能看见 HP -1。</p>
+<h4 id="虫族被动回血与向上取整"><a href="#虫族被动回血与向上取整" class="headerlink" title="虫族被动回血与向上取整"></a>虫族被动回血与向上取整</h4><p>虫族的所有单位均有一个持续的回血速率，为 0.27 血&#x2F;秒。个别兵种，例如飞龙，或者埋地蟑螂，会有更高的回血速率。这一回血不受任何外界因素影响，也与是否战斗无关，永不停止，直到满血。</p>
+<p>星际的血量计算是存在小数数值的，包括伤害下限的 0.5 血，包括虫族回血的 0.27&#x2F;秒。但这属于内部数据，对外展示出来的最终结果，依然是整数。从真实的小数值到实际呈现的整数值，中间的取数办法是向上取整。也就是说，在任何情况下，<strong>只要血量真实值存在小数点，则显示数值均向上取一位。</strong></p>
+<p>例如虫族所有单位均有 0.27 血&#x2F;秒的回血速率（部分特殊兵种更高）。那么任何一个虫族兵种被攻击一次以后，只要不死，则会立刻启动回血过程，在小于半秒的时间内回复了 0.1 的血，在最终数值显示上便回了一点血。这也是那些初级数值研究文章里常说的，虫族在被攻击一次以后会回复一点血的原因。其真实原因如下：</p>
+<ul>
+<li>虫族单位的回血是任何时候只要小于满血量便永远存在的；</li>
+<li>虫族单位被攻击后进入不满血状态，该回血启动，回复 0.1 甚至更少的值；</li>
+<li>系统显示数值是向上取整而非四舍五入；</li>
+<li>故显示上是瞬间回 1 血；</li>
+</ul>
+<p>某些人认为的“1 点隐藏护甲”，则是完全完全错误的。尝试：</p>
+<blockquote>
+<ul>
+<li>零攻攻城坦克：攻城模式 35 点攻击力，重甲 +15；</li>
+<li>零防跳虫：35 血，0 护甲值，轻甲；</li>
+<li>一防跳虫：35 血，1 护甲值，轻甲；</li>
+</ul>
+</blockquote>
+<p>零防跳虫就是一炮死。因为来不及回血，也不存在什么隐藏护甲值。但是如果虫族升了一防，则坦克一炮轰上以后跳虫会有两格血，事实上是 35-1 &#x3D; 34 点伤害，剩余 1 血，同时虫族回血机制启动，极短时间回复 0.1 血（每秒是 0.27，开始回血时还不到 1 秒，几乎瞬间），由于数值向上取整，我们就会见到回复了 2 滴血。再尝试：</p>
+<blockquote>
+<ul>
+<li>一攻女妖：13×2 攻击力；</li>
+<li>三攻机枪兵：9 点攻击力</li>
+<li>零防跳虫：35 血，0 护甲值；</li>
+</ul>
+</blockquote>
+<p>则零防跳虫在经受了女妖和机枪兵的一轮攻击后，正好还剩下一点血。本来伤害量是正好 35 点的，但由于女妖和枪兵无法做到完全同时产生伤害，使得跳虫有短暂的时间回复零点几的血，从而在第一轮攻击中幸存下来。需要机枪兵额外一次攻击才能杀死。从这些数值可以明显地看出，虫族的 “第一次受攻击秒回一血” 只是一个结果，并不是原因，而 “隐藏护甲” 则简直是瞎扯。另外，虽然从结果上看 “受到攻击后立刻回 1 血” 有时候也正确，但由此衍生出来的什么 “回 1 血隐藏 CD” 也是错误的，单纯只是持续回血过程中是否正好巧合地遇上整数断点罢了。</p>
+<p>由于正常情况下伤害值都是整数，故虫族的小数点血量在实际效用上确实等同于整数 1 血。虽然真实血量是个斜线，但效用血量却是阶梯横线。</p>
+<p>除了护甲大于等于攻击情况，只有非零攻异龙的弹射攻击是小数点伤害数值，腐化者的腐化技能通过 debuff 加成可能产生大量的小数点伤害数值。奇葩都出在虫族。</p>
+<h4 id="攻防升级"><a href="#攻防升级" class="headerlink" title="攻防升级"></a>攻防升级</h4><p>每个种族都有针对绝大部分单位的攻防升级科技，可升级三次。攻防升级对已经在战场上的单位同样有效，因此可以利用刚升级完成的时间让大部队发动一次有攻防优势的进攻。</p>
+<p>三个种族的攻防升级具体影响的单位并不一样。人类分为生物部队攻防和机械部队攻防；星灵分陆军和空军攻防，另有所有单位的离子盾升级；虫族没有离子盾，但地面部队的近战攻击和远程攻击是分别升级的。</p>
+<p>此外，还存在针对个别单位的单独攻防升级项目。人类的建筑护甲升级（+2 甲），雷兽的硬化甲壳升级（+2 甲），人类的恶火对轻甲的伤害加成等。</p>
+<p>同一层攻击升级对不同单位的影响也不一。例如虫族地面近战攻击升级，跳虫是每层升 1 点，而雷兽则是每层 3 点。而三族所有防御升级却全是 +1，专项升级除外。因此三攻三防的枪兵内战，和零攻防的枪兵内战效果一模一样，但三攻三防的坦克对打起来却比零攻防的对打死得更快。高级兵种在攻防加成上享受到的比初级兵种更多一些。</p>
+<h4 id="多重攻击"><a href="#多重攻击" class="headerlink" title="多重攻击"></a>多重攻击</h4><p>在游戏中，“多重攻击”可以理解作“左右开弓”。也就是每次攻击有双份，每份独立进行攻防计算。游戏中除了星灵母舰是 6 重攻击以外，别的拥有多重攻击属性的都是双重攻击。</p>
+<p>大部分双重攻击的单位都可以从外观上直观地看出来，收割者是双枪党，显然是双重攻击；女妖导弹有明显的相互缠绕的轨迹，也是双重攻击，导弹塔也类似；狂热者是帅气的幽能双刀；巨像和凤凰的两道激光那么明显，女皇表示她也有两只爪子……</p>
+<p>例外的是行星要塞和不朽者。游戏中说明文字上写的行星要塞是加装了双管“伊比克斯”加农炮，外形上也很霸气，却不是双重攻击。不朽者的游戏背景资料写道，他们是仅存的龙骑士们加装了双重相位分裂炮，但实际游戏中也不是双重攻击。</p>
+<p>双重攻击意味着 “一轮攻击，两份效果”。通常来说，双重攻击的特性主要是为了数值平衡，“打了一半”的情况极少出现，但如果你刻意制造还是能做出来的，比如狂热者的两刀就是有先后的。</p>
+<p>在多重攻击下，伤害计算公式依然简单而符合逻辑：</p>
+<blockquote>
+<p>伤害 &#x3D; max { 攻击力-护甲值, 0.5 } x 多重攻击数</p>
+</blockquote>
+<p>例如：</p>
+<blockquote>
+<ul>
+<li>零攻收割者，攻击力 4×2；</li>
+<li>三防雷兽，护甲 4。</li>
+</ul>
+</blockquote>
+<p>每一轮攻击会造成 0.5×2 的伤害，也就是 1 点。而不是 0.5 点。通常来说，双重攻击在攻防优势时的收益更大，而劣势时的差距也更大。</p>
+<p>双重攻击存在完全同步的两次攻击（收割者），以及有先后的双重攻击（狂热者）两种情况，两者在极端情况下的表现会有微小的不同，但大致没有区别。</p>
+<h4 id="特定属性加成"><a href="#特定属性加成" class="headerlink" title="特定属性加成"></a>特定属性加成</h4><p>很多兵种对特定属性的对象的攻击力会有额外加成。例如劫掠者的普通伤害是 10，而对重甲单位的伤害是 20。被加成的属性通常有轻甲、重甲、生物单位等。目前还没有兵种对两种以上的属性有加成伤害。攻防升级对加成伤害同样有效，升级变化数值有些高于基础伤害的增加值。</p>
+<p>但加成伤害的具体数量并没有明确的规律可寻，孢子爬虫对生物单位的伤害高达基础伤害的 3 倍。（15→45），而执政官则只加成约 40%（25→35）。通过特定属性加成并且分别微调，暴雪给自己留了个方便的平衡性改动的口子。</p>
+<p>这些加成的计算优先级最高，只和攻击者及被攻击者的属性有关，计算时可以直接视为基础伤害。这造成了非常明显的兵种相克的链条，使用针对性的兵种能有效扩大优势夺取胜利。</p>
+<h4 id="攻击间隔"><a href="#攻击间隔" class="headerlink" title="攻击间隔"></a>攻击间隔</h4><p>每个可进行直接攻击的单位都有两次攻击间的时间间隔设置，数值也是游戏里的秒。不少资料简单理解为攻击频率，严格地说是不对的。频率定义的是每秒多少次，而不是两次间隔；</p>
+<ul>
+<li>攻击间隔是该单位两次攻击行为之间的最短时间间隔，这个时间被形象地称为 “Cooldown”，来源于工业机械的停机散热。并不是到时间就必须进行下一次攻击；</li>
+<li>对于分先后的多重攻击，攻击间隔严格描述的是多重攻击每轮攻击中 “第一发” 之间的时间间隔。例如狂热者的两轮攻击，两个第一刀之间的最短时间间隔为 1.2 秒。多重攻击内部间隙一般不考虑了；</li>
+<li>除凤凰战机以外，所有兵种在都要站定时才能攻击，也就导致了 “甩枪” 这一操作的出现；</li>
+<li>站定输出的实质在于产生一次攻击前有短暂的前置时间，随便理解成瞄准、深呼吸、扣扳机都行，这一时间各兵种有不同但都接近于零，实质上就是程序在判断输出时必须无移动指令；</li>
+<li>实战中，站定输出的前置时间长度确实存在，原因是网速。你网速越好，前置站定时间越短；</li>
+<li>站定输出的后置停止时间是装饰用的，打完了歇口气的感觉，可以通过手动移动指令覆盖；</li>
+<li>兴奋剂、肾上腺素等升级可以减少输出间隔，在相同时间内作出更多次攻击行为，提高伤害；</li>
+<li>射程相当时，在移动上有优势的单位可以通过操作把对方兵种的攻击频率拖到跟自己一样；</li>
+<li>巢虫领主、航母等附带单位的攻击间隙，主单位与附带单位的攻击间隙都是独立计算的；</li>
+<li>尽管攻击力除以攻击间隔就可以得到 DPS（每秒输出伤害）数值，但 DPS 数值并不能有效描述该类单位的实战输出强度；</li>
+<li>部分战斗系技能有冷却时间，不耗蓝技能的 CD 较长，而耗蓝技能出于平衡性因素也添加了一些 CD，比如灵能风暴的 2 秒；</li>
+<li>修理技能没有 CD，感染者扔异化作战体也没有 CD；</li>
+</ul>
+<h4 id="距离与体积"><a href="#距离与体积" class="headerlink" title="距离与体积"></a>距离与体积</h4><p>星际中的长度单位以“格”为基础单位，游戏中各种涉及到距离、长度、速度的数据，均以格为基础数据，用精确的小数衡量。“格”的范围在建造建筑时体会非常明显。</p>
+<p>尽管建筑占地为 2×2、3×3 之类，但建筑实际挤占的空间却略小于占地面积。在两个对角建造的建筑缝隙间，依然可以穿过体积小于 1 的兵种，比如机枪兵或者小狗。需要错一格才能严格封堵。对于 5×5 的主基地则更为特殊，错两格都依然能通过 1 体积兵种，错一格时甚至能通过一个追猎者。</p>
+<p>每个单位都有自己的体积，以指定半径的圆形描述，属于一个内部数据，与玩家选中单位时脚下的圆形没有关系，只能通过解析客户端数据获得。所有的占位、可穿过等与体积相关的特征，都与这个内部数据相关。当两个单位的圆形最近处宽度小于兵种自身直径时，寻路算法便不把两单位之间的缝隙视作一条通道了。部分单位在切换形态时，例如攻城坦克切换到攻城模式时，其体积会发生变化。另一个更实际的例子是星灵机械哨兵的力场，通过从某个特定坐标 “膨胀” 出一个圆形，从而对部队分布产生影响。</p>
+<p>而在建筑摆放时，则无视圆形体系这套系统，单纯以建筑网格判断是否可以建造。因此两个相邻建筑的碰撞体积圆周可能是相交的。所以有时候会出现攻城模式的坦克挡住了气矿，气矿无法建造的情况。</p>
+<p>空中单位也存在体积，区别在于空中单位并不强制碰撞，而是缓慢地相互分离，直到达到最后互不重合为止。</p>
+<h4 id="视野"><a href="#视野" class="headerlink" title="视野"></a>视野</h4><p>每个兵种与建筑都有自己的视野范围，呈圆形，在视野内才能看见敌方的动静，视野外则覆盖有战争迷雾，只能看见地形：</p>
+<ul>
+<li>地面单位的视野受地形影响更大一些，会受到树、草丛、柱子等影响，而空中单位则不会；</li>
+<li>所有友方单位的视野共享，包括多人游戏时的盟友视野，可以借助友方单位的视野进行一些必须有视野才能操作的动作，比如投放矿骡或者挖虫洞；</li>
+<li>建筑也拥有自己的视野，大多都是 9，但主基地和防御建筑的视野会更大一些；</li>
+<li>感应塔的视野是 12，但额外拥有 30 的感应范围，可感知敌人位置，但不属于视野；</li>
+<li>不考虑感应塔的特例，视野最大的建筑是萨尔那加塔，为 22，单位是星灵母舰，14；</li>
+<li>雷达可以全图开视野，半径为 13，这个都知道；</li>
+<li>所有的工程兵视野均为 8；</li>
+<li>建造中的建筑视野为 5，包括自身占据体积，对人类而言，建造中的 SCV 也会实际扩大这一区域的视野。</li>
+<li>虫茧，即正在变异中的毒爆、眼虫、巢虫领主和幼虫孵化各兵种时的状态，视野为 5。</li>
+<li>埋地单位视野减少为 4，但感染者和毒爆不变，异化作战体减少为 5；</li>
+<li>反隐可以认为是一种特殊的视野，反隐单位的反隐距离永远与视野一致；</li>
+<li>虽然如此，但视野会被地形遮挡，反隐能力却不会。悬崖下光子炮台，地形受限视野无法覆盖崖上，但借助友军视野，依然能侦测到高地上范围内的隐藏单位；</li>
+<li>视野详细数据见：<a target="_blank" rel="noopener" href="http://wiki.teamliquid.net/starcraft2/Sight">http://wiki.teamliquid.net/starcraft2/Sight</a></li>
+</ul>
+<h4 id="射程"><a href="#射程" class="headerlink" title="射程"></a>射程</h4><p>有距离的衡量单位以后，射程也就可以确定了。在游戏中射程的重要性受操作的影响非常大，更经常与地形、视野配合，获取更大的战斗优势。</p>
+<ul>
+<li>射程的起止点是从攻击单位的体积边缘一直到受伤害单位的体积边缘，以确保两个不同体积但相同射程的单位在无额外操作的情况下可以相互攻击到对方。最典型例如地堡枪兵（5+1）对抗追猎者（6）；</li>
+<li>因此在视觉上，重形单位射程比实际数值更大一些。典型例子：光子超载的星灵枢纽、仲裁官；</li>
+<li>每个单位都存在体积，其边缘和视觉并不完全一致，有的大有的小。具体数值解析客户端可得，实际往往通过聚团时大小靠感觉判定；</li>
+<li>尽管异龙的射程只有 3，但由于弹射另有 2 的射程，再加上建筑较大的自身体积，异龙能打到 7 以上的距离。借助建筑弹射绕路的地面部队也是异龙操作技巧之一；</li>
+<li>近战兵种也是有射程的，数值上视为 0.1，但毒爆的触发范围为 0.25，确保毒爆对近战单位的优势。毒爆的伤害范围为 2.2，以爆炸中心点开始计算；</li>
+<li>升级冲锋的狂热者在冲锋追上敌人后必定至少造成一次伤害，这次伤害的 “近战距离” 可能大于 0.1，是某个补丁后添加的特殊设计；</li>
+<li>大部分兵种的远程攻击距离是整数，但并非必然。收割者（4.5）、巢虫领主（9.5）表示有话说。</li>
+<li>蔽目毒云造成的近战距离也为 0.1；</li>
+<li>人类攻城模式坦克和星灵风暴战舰是仅有的两个最大射程比视野还大的兵种，需要友军帮助打开视野才能获得最大攻击范围；</li>
+<li>人类攻城模式坦克是唯一一个有最小攻击距离的单位，距离为 2；</li>
+<li>星灵航母的射程分两段，8 点为派出拦截机的触发距离，14 点为拦截机的强制回收距离。 <ul>
+<li>拦截机派出时间为 8 秒，8 秒后必须回到航母后再重新派出，因此以下内容在讨论距离为 8 – 14 范围时都假定在同一个 8 秒内；</li>
+<li>拦截机本身在动画上有射程，但该射程实际并无作用，拦截机有时在动画效果上会飞到接近 14 处，但依然不会攻击 14 以外的目标；</li>
+<li>在派出拦截机后，航母可以后撤，只要 14 范围内，拦截机在 8 秒内依然会攻击既定目标；</li>
+<li>拦截机也有视野，因此在攻击 8-14 范围目标时不需要额外开视野；</li>
+<li>在 8-14 范围内，目标死亡后，玩家可以手动点选一个新目标，拦截机可以不回舱直接转向新目标。此时航母会驶向目标，再次手动拖拽可以使它继续停在 8 以外，达到距离外切换目标的效果；</li>
+<li>但 8 为“派出距离”，也就是说如果敌方在 8-14 内时，尽管已经派出的拦截机会继续攻击，但新造的或者未派出的拦截机则不会继续派出；</li>
+<li>默认的 “派出间隔” 为 0.5 秒，4 秒全派出。可以通过升级提升到 0.125（前四）到 0.25（后四），1.5 秒全派出；</li>
+<li>拦截机的攻击间隔为 3 秒，基础攻击力 5×2 双重攻击，一次派出可以攻击三次；</li>
+<li>航母的攻击力完全来自于拦截机，相当于 5 点攻击力的 16 重攻击。因此敌方的护甲升级会产生巨大的影响；</li>
+<li>拦截机 25 血，虽然无法选中、无法手动点击，但可以被自动防御机制，例如防空塔、机枪兵、光子炮台等击中摧毁，因此航母需要时刻注意补充拦截机。友军人类开启 SCV 自动修理也可以修理拦截机；</li>
+<li>拦截机虽然不占用人口，但由于航母占用 6 人口，因此初始四架每架拦截机等效占用 1.5 人口，满载八架后每架等效占用 0.75 人口；</li>
+<li>空的航母在攻击指令下达后也会停在 8 格处，而不会飞到敌人脸上；</li>
+</ul>
+</li>
+</ul>
+<h4 id="移动速度"><a href="#移动速度" class="headerlink" title="移动速度"></a>移动速度</h4><p>移动速度是建立在游戏内距离和游戏内时间双重数值下的的一个兵种动态属性。速度的作用在于快速接近敌人、逃跑、追击、巡图、捡漏等，以建立整个对战过程中的战术优势。速度并不影响攻防数值，但却可能影响兵种相克。速度的衡量标准单位为 1 格&#x2F;秒，可以简写为 1。</p>
+<ul>
+<li>移动速度与攻击速度（攻击间隔）是分别的两个属性，例如时空折跃会将区域内敌方兵种移动速度降低到 50%，但并不改变其攻击速度，虽然从感觉上来说应该变；</li>
+<li>在较大部队行进时，每个兵种的速度是各自计算的，由于寻路与体积碰撞等因素，整个部队的移动速度会慢于组成兵种的移动速度；</li>
+<li>游戏中速度最快的是星灵航母的拦截机，速度为 7.5，但是考虑到拦截机属于特殊情况，而航母本身却只有可怜的 1.875 的速度，所以实战意义上的最快速度并不是它；</li>
+<li>可操作的最快速度是<strong>菌毯上的代谢加速跳虫</strong>，为 6.1088，其次紧随其后的是<strong>冲锋状态中的狂热者</strong>，速度为 6.05；</li>
+<li>那么显然问题来了，<del>冲锋技术哪家强</del> 冲锋狂热者能否追击到菌毯提速狗？</li>
+<li>答案当然是不能。事实上冲锋也是一个 BUFF，持续 3.5 秒，在此时间内差不多能冲过 22 格距离，相当于萨尔那加塔的视野，也差不多是一个屏幕的距离，然后就会慢下来；</li>
+<li>这与某次补丁的 “冲锋后至少能击中一下” 不矛盾，冲锋在两者距离小于 0.1 时会提前结束，当提前结束时，必然产生一次攻击。但如果是时间到结束，则相当于始终未曾接近，故不产生攻击行为；</li>
+<li>所以如果你够骚，可以尝试拿条跳虫把对方的狂热者带到一个屏幕外自己的大部队这里来消灭掉；</li>
+<li>速度第三是无菌毯提速狗，4.6991，所以穿狗入矿区必须靠建筑预防；</li>
+<li>并列第四的是推进器状态医疗艇、恶火和凤凰，均为 4.25；</li>
+<li>速度最慢的是未升级王虫，为 0.586；</li>
+<li>其它数据详见：<a target="_blank" rel="noopener" href="http://wiki.teamliquid.net/starcraft2/Speed">http://wiki.teamliquid.net/starcraft2/Speed</a>；</li>
+</ul>
+<h4 id="弹道"><a href="#弹道" class="headerlink" title="弹道"></a>弹道</h4><p>很多兵种发射的子弹都有明确的行进轨迹，人类的各种飞弹，星灵的蓝色激光，虫族的绿色喷吐。弹道并不仅仅是一个视觉效果上的设置，在数据方面也会产生一些变化。</p>
+<ul>
+<li>弹道类攻击从攻击方发射出来，到防御方受到攻击，中间存在一个时间差。这个时间差随着弹道长度会变化；</li>
+<li>随着目标的移动，弹道也会发生变化，最后总是会击中目标，即使目标已经移出自己的射程外；</li>
+<li>铁鸦的可以跑远躲开的自动导航炸弹是技能，不是弹道类普通攻击；</li>
+<li>子弹飞行时间的长短并不影响攻击兵种的攻击频率，间隔是按发射频率算的；</li>
+<li>弹道类攻击有更明显的发射前动作，而不光光是子弹的飞行时间。这使得 “甩枪” 动作需要停留的时间比机枪兵和收割者更慢一些；</li>
+<li>尽管常规移动并不影响弹道类飞行的命中，但确实可能通过某些手段回避掉已经发出的弹道类攻击。比如追猎者的闪烁，或者人类兵的快速上下医疗艇。原理是取消弹道类攻击的飞行终点；</li>
+<li>整个游戏唯一针对弹道类攻击的技能是铁鸦的定点防御靶机，但出于平衡性修正，个别视觉上属于弹道类的攻击也被排除在外了；</li>
+<li>所以上下医疗艇可以防御的弹道类攻击种类最多；</li>
+<li>弹道类攻击会出现很多子弹同时射向某个残血目标导致大量输出浪费的现象，原因也是弹道攻击的延时。尽管输出有先后，但在第一发子弹飞到目标前，大家都会认为目标还活着纷纷扔出自己的菜刀；</li>
+<li>在非常非常极端的情况下，瞬发技能也可能造成类似的输出浪费。这是因为星际在游戏机制上的最短时间间隔为 0.001 秒，即 1 毫秒，可以通过分析游戏录像包数据得到。这使得在同一个时间间隔内的动作变成 真•同时；</li>
+</ul>
+<h4 id="星灵护盾（一）"><a href="#星灵护盾（一）" class="headerlink" title="星灵护盾（一）"></a>星灵护盾（一）</h4><p>星灵护盾是星灵特有的属性，覆盖所有的建筑和兵种，甚至包括生产过程中的单位。在任何情况下，星灵单位受到伤害时，都优先扣除护盾值，到护盾为 0 时，再扣除 HP。星际 1 中存在蝎子毒血无视护盾直接伤害 HP，星际 2 不存在。</p>
+<p>护盾和护甲的防御是分别计算、单独升级的，所有单位的护盾防御初始值是 0，每级 +1。计算公式和护甲完全相同，即：</p>
+<blockquote>
+<p>伤害 &#x3D; max { 攻击力-护盾值, 0.5 } x 多重攻击数</p>
+</blockquote>
+<p>在最极端的情况下：</p>
+<blockquote>
+<ul>
+<li>零攻收割者，攻击力 4×2；</li>
+<li>机械哨兵，守护者之盾，使光环内友方单位受到的远程伤害减少 2 点；</li>
+<li>二盾狂热者，护盾防御 2 点。</li>
+</ul>
+</blockquote>
+<p>收割者每轮攻击为 (4-2)x2，而护盾防御也为 2，实际伤害为 0.5×2，即 1 点。当未开启守护者之盾时，则每轮实际伤害为 4 点。守护者之盾开启与否效果很明显。</p>
+<p>当护盾的总量不足以抵挡单次伤害时，则护盾防御与护甲防御同时起作用。比如：</p>
+<blockquote>
+<ul>
+<li>零攻掠夺者，对重甲伤害 20；</li>
+<li>一防一盾追猎者，护盾剩余 10 点，护盾防御 1 点，护甲防御 2 点，重甲；</li>
+</ul>
+</blockquote>
+<p>则掠夺的下一发伤害计算为：</p>
+<blockquote>
+<ol>
+<li>护盾防御减伤： 20-1&#x3D;19 点伤害；</li>
+<li>全部剩余护盾抵挡掉 10 点伤害，19-10&#x3D;9，剩余 9 点伤害传递给 HP 承受；</li>
+<li>9 点伤害被护甲抵消 2 点，剩余 7 点伤害实际作用于追猎的血量上。</li>
+</ol>
+</blockquote>
+<p>但当该临界点下的伤害被护甲完全防御时，并不造成额外 0.5 的伤害。比如：</p>
+<blockquote>
+<ul>
+<li>零攻狂热者，伤害 8×2；</li>
+<li>一防一盾机械哨兵，40 护盾 40 血，护盾防御 1 点，护甲防御 2 点；</li>
+<li>零防一盾机械哨兵，40 护盾 40 血，护盾防御 1 点，护甲防御 1 点；</li>
+</ul>
+</blockquote>
+<p>由于狂热者双重攻击有先后，则攻击过程为：</p>
+<blockquote>
+<ol>
+<li>前两轮打在护盾上，造成两次 (8-1)x2 &#x3D;14 伤害，哨兵剩余 12 盾 40 血；</li>
+<li>第三轮前一刀 8-1 点伤害盾完全吸收，后一刀 8-1 点伤害盾吸收 5 点，剩余 2 点打到护甲上；</li>
+<li>零防哨兵 1 护甲会损失 1 点血量，39 HP，一防哨兵 2 护甲则未损失血量，40HP；</li>
+<li>等待哨兵回复满盾后，再重复以上过程，零防哨兵再减 1 点血量，38HP，一防哨兵依然未损失 HP，40HP；</li>
+<li>两次过程积累后可看出，每次破盾后打在护甲上的伤害为 2 点，被护甲 2 点抵消后，不再产生额外 0.5 点伤害。</li>
+</ol>
+</blockquote>
+<p>零防哨兵的掉血曲线间接证明了狂热者双刀有先后，而一防哨兵未掉血，表明在临界点上，一次伤害如果已经对盾造成实际损伤，则即使剩余伤害被护甲完全抵消，也不会额外计算 0.5 伤害。理由大概是已经存在伤害，不需要再考虑伤害下限了。</p>
+<p>护盾会在最后一次伤害结算后 10 秒开始回复，回复速度为每秒 2 点。有些说明写的是脱战后 10 秒恢复，从语言表述上来说是不正确的。星际跟 WOW 不一样，并没有明确的“战斗状态”，也就没有进战脱战这种说法。只要 10 秒不受到伤害，在战头中也是可以回复的，下次用闪烁追猎记得多操作。</p>
+<p>建造中的建筑或折跃中的单位的护盾行为例外。建筑在放下的一瞬间就有 10% 的血量与护盾，而后按建造总时间与总护盾值匀速增长，没有 10 秒的结算时间，没有护盾防御加成，也没有额外的回复。例如：</p>
+<blockquote>
+<ul>
+<li>星灵枢纽：1000 血 1000 盾，建造时间 100 秒，放下的一瞬间有 100 血 100 盾，之后每秒增加 9 血 9 盾；</li>
+<li>零攻追猎者对重甲每次攻击 14 点伤害，1.44 秒攻击一次，100 秒攻击 69 次，造成 966 伤害；</li>
+</ul>
+</blockquote>
+<p>也就是说，只靠一个追猎者，在主基地建造过程中完全无法造成实质伤害……</p>
+<p>折跃兵种的过程也是一样，初始状态 10% 血量 10% 盾，因为折跃刷新的时间很短，兵种很快就会结束折跃满血满盾进入战斗。实战中不如集中火力打击水晶或运输船更合算。</p>
+<p>所有建筑的护盾和血量都相同，绝大部分的兵种血量都大于等于护盾，但黑暗圣堂和执政官除外。考虑到升级时间与升级费用，在对抗虫族时升级三防有时不如升级一盾更合算，尤其是队伍内有大量执政官时。对抗人类……因为有 EMP……还是算了吧。</p>
+<h4 id="星灵护盾（二）：刚毅护盾"><a href="#星灵护盾（二）：刚毅护盾" class="headerlink" title="星灵护盾（二）：刚毅护盾"></a>星灵护盾（二）：刚毅护盾</h4><p>刚毅护盾是星灵不朽者特有的被动技能，当护盾存在时，所有攻防结算伤害高于 10 点的攻击效果都降低为 10 点。这一上限是先由攻防结算后再作限定的，也就是说是 min{攻击力-护盾防御值, 10}。比如：</p>
+<blockquote>
+<p>零攻追猎者，普通伤害 10 点，对重甲伤害 14 点；<br>三盾不朽者，重甲，护盾防御 3 点，护盾满，刚毅护盾有效。</p>
+</blockquote>
+<p>则追猎打不朽，以重甲结算，攻击力为 14 点，不朽护盾防御力为 3 点，则攻防结算伤害为 11 点，触发了刚毅护盾，减少为 10 点，所以最终结果是不朽减 10 点盾，并发出刚毅护盾视觉效果。当不朽的护盾不足 10 点时，刚毅护盾效果依然存在，将高于 10 点的攻击伤害降为 10 点，剩下计算和普通的分界线计算一致，再次受到护甲减免。因此即使只有 1 点护盾，也可以抵抗一次高攻伤害。</p>
+<p>但刚毅护盾对固定伤害的技能性攻击是无效的。尽管星际2是个科幻背景游戏，不过把以下这些技能理解作是“魔法攻击”，会更方便一些。</p>
+<h4 id="“魔法攻击”（技能伤害）"><a href="#“魔法攻击”（技能伤害）" class="headerlink" title="“魔法攻击”（技能伤害）"></a>“魔法攻击”（技能伤害）</h4><p>星际2是个科幻背景游戏，但把这些技能理解作是“魔法攻击”，理解上会更方便一些。</p>
+<ul>
+<li>聚变打击（幽灵） – 较大范围内 300 点伤害。</li>
+<li>大和炮（战列巡航舰）- 单体 300 点伤害。</li>
+<li>EMP（幽灵） – 范围移除 100 点星灵护盾与 100 点能量（如果有能量）。</li>
+<li>哨兵导弹（寡妇雷） – 对攻击主体造成 125 点伤害（有护盾单位额外 +35 点），并造成 40 点溅射伤害（有护盾单位额外 40 点）。</li>
+<li>猎杀飞弹（铁鸦） – 攻击主体及范围内造成最多 100 点伤害。</li>
+<li>狙杀（幽灵） – 对生物单位造成 25 点伤害，对灵能单位额外造成 25 点伤害。</li>
+<li>能量反蚀（光明圣堂武士） – 消耗目标所有能量，每点能量造成 1 点伤害。</li>
+<li>灵能风暴（光明圣堂武士） – 范围内 8 次伤害每次 10 点，共计 4 秒。</li>
+<li>霉菌滋生（感染者） – 范围内 4 秒造成 30 点（重甲 40 点）伤害，且无法移动。</li>
+</ul>
+<p>以上为伤害性技能，其特点是：</p>
+<ul>
+<li>伤害值不受攻防升级影响</li>
+<li>伤害值无视护甲、护盾防御值</li>
+<li>伤害值无视守护者之盾，但是会受到腐化影响</li>
+<li>伤害值无视刚毅护盾</li>
+<li>除聚变打击外，所有的技能施放都需要能量值</li>
+</ul>
+<p>基于这些特性，认为是“魔法攻击”也并无不妥。是的，毒暴的伤害并不属于此类，毒暴的伤害是受攻防加成的。</p>
+<h4 id="能量"><a href="#能量" class="headerlink" title="能量"></a>能量</h4><p>能量值是大部分兵种和单位施放特殊技能的消耗性资源，在游戏中以紫色条显示。大部分有能量单位的能量上限为 200 点，并且永久地以每秒 0.5625 点回复能量，刚生产出来的单位初始拥有 50 能量，一些单位可以研发升级让初始技能变为 75 点。但有三个单位例外：</p>
+<blockquote>
+<ul>
+<li>星灵枢纽初始能量 0 点，上限 100 点；</li>
+<li>皇后初始能量 25 点；</li>
+<li>定点防御靶机初始能量 200 点，每秒回复 1 点能量。</li>
+</ul>
+</blockquote>
+<p>和血量相反，能量是向下取整的。</p>
+<p>没有任何方式改变能量的增长速度与技能消耗，但依然有两个技能可以影响敌方能量：</p>
+<ul>
+<li>EMP（人类，幽灵) ，范围内有能量的敌对单位减少 100 点能量；</li>
+<li>能量反蚀（星灵，高阶圣堂武士），清除敌对目标所有能量，并对其造成等量伤害。</li>
+</ul>
+<h4 id="临时性攻防提升"><a href="#临时性攻防提升" class="headerlink" title="临时性攻防提升"></a>临时性攻防提升</h4><p>特定的技能也会影响伤害数据：</p>
+<p><strong>守护者之盾：</strong></p>
+<p>星灵机械哨兵的主动技能，展开一个范围为 4 的力场，范围内所有友军单位受到的远程伤害降低两点。守护者之盾属于临时的、有限制的防御提升。要注意的几点是：</p>
+<ul>
+<li>跟攻击单位的位置无关，只跟受伤害的单位是否在范围内有关；</li>
+<li>同样，无法防御“魔法攻击”，比如寡妇雷的哨兵导弹；</li>
+<li>自己也同样受益；</li>
+<li>对友方误伤也同样起效果；</li>
+<li>近战攻击不受减免，<span style="color: #0000ff;">溅射伤害不受减免（未证实）</span></li>
+<li>蟑螂、刺蛇、宿主的蝗虫等，在与敌方贴脸攻击时，攻击动作会发生变化，属于近战，也不受减免</li>
+</ul>
+<p><strong>腐化：</strong></p>
+<p>腐化者主动技能，使目标在 30 秒内受到的伤害提升 20%。注意的点是：</p>
+<ul>
+<li>尽管腐化者是对空单位，但腐化技能也可以对地面单位释放；</li>
+<li>腐化后的伤害值是可能有小数点的，综合开篇讲的血量向上取整的特性，显示结果就是多次相同情况下的伤害值可能偏差 1 点；</li>
+<li>尽管它也属于技能，但并不直接产生伤害，而是依附于普通攻防，因此也受攻防升级影响；</li>
+<li><span style="color: #0000ff;">对技能伤害同样有加成，比如寡妇雷炸被腐化不朽伤害为 192 点。（未证实）</span></li>
+</ul>
+<p><strong>定点防御靶机：</strong></p>
+<p>铁鸦主动技能，在目标区域投放一个定点防御靶机，击落范围内所有向友方发射的弹道类攻击，每次防御消耗 10 点能量。防御机的工作原理是利用激光破坏飞向友方单位的弹道类攻击，包括人类导弹类攻击、星灵慢速弹道激光等等。注意点包括：</p>
+<ul>
+<li>与守护者之盾不同，无关攻击者的位置，甚至也无关友方位置，只要飞弹经过防御范围，定点防御靶机就有作用；</li>
+<li>与守护者之盾不同，靶机是直接免除某些类型的攻击，对不免的攻击则无影响，故不存在攻防值计算问题；</li>
+<li>与守护者之盾不同，靶机对友方误伤不防御；</li>
+<li>基于其工作原理，只对“有弹道、飞弹类”的远程攻击起作用，比如掠夺者、女妖、追猎者、凤凰，飞龙、腐化者，对瞬时远程攻击不起作用，比如机枪兵、不朽等。</li>
+<li>对航母的拦截机也有作用；</li>
+<li>同样基于其工作原理，雷神和落地维京的对地攻击也无法击落，只能击落雷神和维京的对空飞弹。</li>
+<li>所以靶机自身也是可以在不触发防御机制的情况下被击落的；</li>
+<li>对于多重攻击，每一重攻击都要消耗一份靶机能量；</li>
+<li>靶机能量回复速率比一般单位快，为每秒 1 点，故每存在 10 秒便可额外多击落一次弹道攻击；</li>
+<li>靶机属于建筑类型，工程站建筑护甲升级可以为靶机提供额外两点护甲，但它是轻甲，全星际唯一的轻甲建筑；</li>
+<li>因为是建筑，所以狙击、腐化、灵能风暴都无效；</li>
+<li>但你妈能量反蚀是有效的，一放一个准。50 血 200 能量初始还满能量的家伙……</li>
+<li>靶机在原理上属于攻击类，只不过攻击目标是弹道类子弹，所以工程站的研发项目“瞬时自动追踪”，也能让靶机的防御范围 +1，从 8 到 9。</li>
+<li>靶机的初始存在时间为 180 秒，最多可以防御 38 次攻击，可升级。升级后存在时间延长到 240 秒，至多防御 44 次攻击；</li>
+<li>可以被 SCV 修理，详见另一篇：<a href="/starcraft2-repair-build-detail/">《星际争霸2建造与修理详解》；</a></li>
+<li>幻像的攻击也会防御，一样消耗能量；</li>
+<li>攻防升级与靶机的防御能力无关，三攻子弹和零攻子弹一样防，所以越后期靶机减免的伤害越多，而守护者之盾则固定减伤 2 点，后期效果更弱；</li>
+<li>刺蛇、皇后等兵种在与敌方贴脸攻击时，属于近战，此时靶机不起作用</li>
+<li>多个靶机不会拦截同一发导弹，他们的防御能力总是累加的；</li>
+<li>特别注意：某个版本后，对巢虫领主也不起作用了；</li>
+</ul>
+<h4 id="结算顺序"><a href="#结算顺序" class="headerlink" title="结算顺序"></a>结算顺序</h4><p>参考以下事实：</p>
+<blockquote>
+<ul>
+<li>掠夺者，对重甲 20 点伤害；</li>
+<li>不朽者，重甲，拥有刚毅护盾，任何超过 10 点的伤害降低为 10 点，且站在守护者之盾范围内；</li>
+<li>掠夺者射出一枪，进入守护者之盾，对不朽造成 8 点伤害。</li>
+</ul>
+</blockquote>
+<p>关于腐化，也有类似的事实：</p>
+<blockquote>
+<ul>
+<li>掠夺者，对重甲 20 点伤害；</li>
+<li>不朽者，重甲，拥有刚毅护盾，任何超过 10 点的伤害降低为 10 点，但处于被腐化状态，受伤害增加 20%；</li>
+<li>掠夺者射出一枪，对不朽造成 12 点伤害。</li>
+</ul>
+</blockquote>
+<p>更复杂的：</p>
+<blockquote>
+<ul>
+<li>掠夺者，对重甲 20 点伤害，开兴奋剂增加 50% 攻速；</li>
+<li>不朽者，重甲，拥有刚毅护盾，任何超过 10 点的伤害降低为 10 点，但处于被腐化状态，受伤害增加 20%；</li>
+<li>附近的机械哨兵展开了守护者力场保护不朽者，所有的远程伤害减少 2 点；</li>
+<li>掠夺者射出一枪，对不朽造成 10 点伤害。</li>
+</ul>
+</blockquote>
+<p>根据这一事实，我们得出一个伤害结算顺序的概念：</p>
+<ul>
+<li>伤害值都是通过顺序，在一个最基础的值上根据条件进行数值修正或数值替换；</li>
+<li>首先计算永久性攻防值（兵种属性决定基础数值），在此基础上进行技能性攻防修正（兵种技能影响最终数值）；</li>
+<li>如果有多个永久性攻防值（兵种属性），先结算无附加条件的，再结算有附加条件的（护甲类型、兵种类型）；</li>
+<li>如果有多个临时性攻防修正（兵种技能），先结算无附加条件的，再结算有附加条件的（远程、弹道）；</li>
+<li>在以上四条确定的同一计算顺序内，先结算输出的伤害值（伤害别人的企图），再结算受到的伤害值（受伤害的企图）；</li>
+</ul>
+<p>比如上述例三：</p>
+<ol>
+<li>首先计算永久性攻防值（兵种属性）：掠夺者 10 点伤害，不朽者 0 盾防，伤害意图为 10 点；</li>
+<li>因为不朽者护盾防御值为 0，因此受伤害意图变为 10-0 &#x3D; 10 点；</li>
+<li>因为掠夺者有两个永久性攻击值，其中 “对重甲 +10” 属于有条件数值，攻击数值修正为 20，防御为 0，伤害企图为 20 点；</li>
+<li>因为不朽者没有针对远程攻击的有条件防御加成，因此受伤害图依然为 20-0 &#x3D; 20 点；</li>
+<li>判断掠夺者永久性攻击技能，有振荡弹，但对伤害数值无影响，因此伤害企图为 20+0 &#x3D; 20 点；</li>
+<li>判断不朽者永久性防御技能，有刚毅护盾，会产生效果，受伤害企图无视源伤害大小，强行修正为 10 点；</li>
+<li>判断掠夺者临时性技能，有兴奋剂，但对伤害数值无影响，伤害企图依然为 10 点；</li>
+<li>判断不朽者临时性技能，有两个，腐化和哨兵盾： <ul>
+<li>首先结算无附加条件的腐化，受伤害企图修正为 10 x ( 1+20% ) &#x3D; 12 点；</li>
+<li>再结算有附加条件的，哨兵盾只对 “远程攻击” 有效果，使得受到的远程伤害减少 2 点，受伤害企图修正为 10 点；</li>
+</ul>
+</li>
+<li>无其它条件，最后不朽受到 10 点伤害，进行盾数值、血量和护甲的计算。</li>
+</ol>
+<p>如果结算时是先哨兵后腐化，那么不朽的每次伤害只有 (10-2) x 1.2 &#x3D; 9.6 点，考虑到血&#x2F;盾的数值向上取整，我们就会见到单次伤害为 9 点，而非 10 点了。</p>
+<p>尽管未作测试，但可以大胆断言，在盾血边界的那次伤害上，星灵可以享受盾防御和护甲防御的双重减免，同时腐化也不会影响到转移到血量上的剩余伤害部分。因为在“伤害企图值→受伤害企图值”那次计算中，腐化的技能已经结算完毕。盾血边界的计算，其实是 “受伤害企图值” 与盾、血数值上的计算，而“受伤害企图值”本身已经包含了腐化的结算。否则就变成了一技能两次结算，属于 bug 了。也就是说三防 200 血 1 盾 4 护甲腐化不朽者，被三攻坦克轰了一炮以后，只也掉 7 滴血，而不会出现 (12-1) x 1.2 – 4 &#x3D; 9.2 血这种复杂的情况。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%94%BB%E9%98%B2/" rel="tag"># 攻防</a>
+              <a href="/tags/%E6%95%B0%E5%80%BC%E7%A0%94%E7%A9%B6/" rel="tag"># 数值研究</a>
+              <a href="/tags/%E6%98%9F%E9%99%852/" rel="tag"># 星际2</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/put-image-into-html-or-css/" rel="prev" title="将图片信息写入 HTML 和 CSS">
+                  <i class="fa fa-angle-left"></i> 将图片信息写入 HTML 和 CSS
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/recent-report-cosjiaoyi-com/" rel="next" title="C 酱近况通报">
+                  C 酱近况通报 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="Types→ 下载地址 Windows 7 开始没有了 XP 时代方便的对文件类型关联（主要是关联图标）的修改了。通过 Windows 打开方式  指定始终用某程序打开该类型文件以后，默认会关联一个很丑的图标，一个白底上带打开程序的图标：  在 Windows XP 时代，可以通过文件夹选项里的文件关联方式来指定图标，但 Windows 7 不知道为何取消了。于是花了一些时间找到了这个软件： Ty">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Types &amp;#8211; Windows 7 下简单而强大的文件类型关联编辑工具">
+<meta property="og:url" content="https://www.kaikai.men/types-file-association-tool-in-win-7/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="Types→ 下载地址 Windows 7 开始没有了 XP 时代方便的对文件类型关联（主要是关联图标）的修改了。通过 Windows 打开方式  指定始终用某程序打开该类型文件以后，默认会关联一个很丑的图标，一个白底上带打开程序的图标：  在 Windows XP 时代，可以通过文件夹选项里的文件关联方式来指定图标，但 Windows 7 不知道为何取消了。于是花了一些时间找到了这个软件： Ty">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/EB12DE8BE89A2700C54B2AA9F469A16D84FFA56E.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/A933519F4EC6424709B5FDF2D51E9EDCF4C0D929.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/E2DD04DCCE7C2F13DA21E9E94A162FC1D9768F93.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/BCF66D99D7A42CBAE812228A9A2743AA2A16406B.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/4EFA6E99D338BBC38DA8765CBF5318E814553B0E.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/721791E39C207FDCB0270C8678BBA2195BF5503C.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/Sublime_128x128.png">
+<meta property="og:image" content="http://izt.name/apps/types/i48.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2013/07/45FEAA2FC388859B80703AB401F3CCF58286A067.png">
+<meta property="article:published_time" content="2013-07-11T16:08:08.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.134Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="Types">
+<meta property="article:tag" content="Windows 7">
+<meta property="article:tag" content="关联图标">
+<meta property="article:tag" content="文件关联">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2013/07/EB12DE8BE89A2700C54B2AA9F469A16D84FFA56E.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/types-file-association-tool-in-win-7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/types-file-association-tool-in-win-7/","path":"/types-file-association-tool-in-win-7/","title":"Types &#8211; Windows 7 下简单而强大的文件类型关联编辑工具"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Types &#8211; Windows 7 下简单而强大的文件类型关联编辑工具 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types"><span class="nav-number">1.</span> <span class="nav-text">Types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-1"><span class="nav-number">2.</span> <span class="nav-text">Types</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/types-file-association-tool-in-win-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Types &#8211; Windows 7 下简单而强大的文件类型关联编辑工具 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Types &#8211; Windows 7 下简单而强大的文件类型关联编辑工具
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2013-07-11 16:08:08" itemprop="dateCreated datePublished" datetime="2013-07-11T16:08:08Z">2013-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Types"><a href="#Types" class="headerlink" title="Types"></a><span style="color: #006dac;font-size: 300%;">Types</span></h3><p><a target="_blank" rel="noopener" href="http://izt.name/apps/types/Types.Setup.exe">→ 下载地址</a></p>
+<p>Windows 7 开始没有了 XP 时代方便的对文件类型关联（主要是关联图标）的修改了。通过 Windows 打开方式</p>
+<p><img src="/../attach/2013/07/EB12DE8BE89A2700C54B2AA9F469A16D84FFA56E.png" alt="EB12DE8BE89A2700C54B2AA9F469A16D84FFA56E" loading="lazy"></p>
+<p>指定始终用某程序打开该类型文件以后，默认会关联一个很丑的图标，一个白底上带打开程序的图标：</p>
+<p><img src="/../attach/2013/07/A933519F4EC6424709B5FDF2D51E9EDCF4C0D929.png" alt="A933519F4EC6424709B5FDF2D51E9EDCF4C0D929" loading="lazy"></p>
+<p>在 Windows XP 时代，可以通过文件夹选项里的文件关联方式来指定图标，但 Windows 7 不知道为何取消了。于是花了一些时间找到了这个软件： Types。Types 可以方便地在 Win 7 下管理文件关联，包括关联打开的程序、分别设置“打开”与“编辑”使用不同的程序、更改图标、文件描述等，简单高效专注。</p>
+<p><img src="/../attach/2013/07/E2DD04DCCE7C2F13DA21E9E94A162FC1D9768F93.png" alt="E2DD04DCCE7C2F13DA21E9E94A162FC1D9768F93" loading="lazy"> <img src="/../attach/2013/07/BCF66D99D7A42CBAE812228A9A2743AA2A16406B.png" alt="BCF66D99D7A42CBAE812228A9A2743AA2A16406B" loading="lazy"></p>
+<p>我们把文件图标设置成和主程序图标一致即可：</p>
+<p><img src="/../attach/2013/07/4EFA6E99D338BBC38DA8765CBF5318E814553B0E.png" alt="4EFA6E99D338BBC38DA8765CBF5318E814553B0E" loading="lazy"></p>
+<p>在退出程序时，Types 自动刷新系统图标，于是图标就变成了程序自带的 ，任务就初步完成了。</p>
+<p><img src="/../attach/2013/07/721791E39C207FDCB0270C8678BBA2195BF5503C.png" alt="721791E39C207FDCB0270C8678BBA2195BF5503C" loading="lazy"></p>
+<p>如果你想再考究点，就单独指定程序图标，比如：</p>
+<p><img src="/../attach/2013/07/Sublime_128x128.png" alt="Sublime_128x128" loading="lazy"></p>
+<p>————————————–完——————————–</p>
+<h3 id="Types-1"><a href="#Types-1" class="headerlink" title="Types"></a><img src="http://izt.name/apps/types/i48.png" loading="lazy"><span style="color: #006dac;font-size: 300%;">Types</span></h3><p>Types 其实是绿色软件，安装包仅用于生成开始菜单等快捷方式。</p>
+<p>官网地址：<a target="_blank" rel="noopener" href="http://izt.name/apps/types/">http://izt.name/apps/types/</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://izt.name/apps/types/Types.Setup.exe">http://izt.name/apps/types/Types.Setup.exe</a></p>
+<p>官方简单中文包：<a target="_blank" rel="noopener" href="http://izt.name/apps/types/tongue/cn.tongue">http://izt.name/apps/types/tongue/cn.tongue</a></p>
+<p>下载以后把 cn.tongue 放到 Types 的安装目录里，启动 Types，按 F1 即可选择语言。</p>
+<p><img src="/../attach/2013/07/45FEAA2FC388859B80703AB401F3CCF58286A067.png" alt="45FEAA2FC388859B80703AB401F3CCF58286A067" loading="lazy"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Types/" rel="tag"># Types</a>
+              <a href="/tags/Windows-7/" rel="tag"># Windows 7</a>
+              <a href="/tags/%E5%85%B3%E8%81%94%E5%9B%BE%E6%A0%87/" rel="tag"># 关联图标</a>
+              <a href="/tags/%E6%96%87%E4%BB%B6%E5%85%B3%E8%81%94/" rel="tag"># 文件关联</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/lazors-walkthrough/" rel="prev" title="Lazors（光线解谜/激光反射）全攻略，All Level Walkthrough。">
+                  <i class="fa fa-angle-left"></i> Lazors（光线解谜/激光反射）全攻略，All Level Walkthrough。
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/my-ascend-p1-destroys-tf-cards/" rel="next" title="我的 Ascend P1 特别毁 TF 卡">
+                  我的 Ascend P1 特别毁 TF 卡 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="142857近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：  不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1&#x2F;n 与 n-1 位循环节">
+<meta property="og:url" content="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="142857近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：  不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/08/1_7_circle.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2024/08/circle_in_10e6.png">
+<meta property="article:published_time" content="2025-02-13T00:21:41.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.132Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="循环节">
+<meta property="article:tag" content="1&#x2F;n">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2024/08/1_7_circle.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/","path":"/1-over-n-and-n-1-recurring decimal/","title":"1/n 与 n-1 位循环节"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1/n 与 n-1 位循环节 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#142857"><span class="nav-number">1.</span> <span class="nav-text">142857</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.</span> <span class="nav-text">研究原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E4%BD%99"><span class="nav-number">2.1.</span> <span class="nav-text">同余</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6"><span class="nav-number">2.2.</span> <span class="nav-text">进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%AE%BA"><span class="nav-number">2.3.</span> <span class="nav-text">推论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">计算程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E8%BF%9B%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">其它进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E8%BF%9B%E5%88%B6-R-s-2"><span class="nav-number">3.2.</span> <span class="nav-text">特殊进制 $R&#x3D;s^2$</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E5%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">费马小定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E8%BF%90%E7%AE%97%E4%B8%8E%E5%8E%9F%E6%A0%B9"><span class="nav-number">5.</span> <span class="nav-text">模运算与原根</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%95-n"><span class="nav-number">5.1.</span> <span class="nav-text">欧拉函数 ϕ(n)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%8E%AF%E4%B8%8E%E6%9C%89%E9%99%90%E5%9F%9F"><span class="nav-number">5.2.</span> <span class="nav-text">整数环与有限域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9%E3%80%81%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E4%B8%8E%E9%98%B6"><span class="nav-number">5.3.</span> <span class="nav-text">原根、欧拉定理与阶</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86"><span class="nav-number">5.3.1.</span> <span class="nav-text">欧拉定理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%98%B6%E4%B8%8E%E5%8E%9F%E6%A0%B9"><span class="nav-number">5.3.2.</span> <span class="nav-text">阶与原根</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">5.3.3.</span> <span class="nav-text">应用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BC%98%E5%8C%96"><span class="nav-number">5.4.</span> <span class="nav-text">程序优化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/1-over-n-and-n-1-recurring%20decimal/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1/n 与 n-1 位循环节 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1/n 与 n-1 位循环节
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-13 00:21:41" itemprop="dateCreated datePublished" datetime="2025-02-13T00:21:41Z">2025-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="142857"><a href="#142857" class="headerlink" title="142857"></a>142857</h3><p>近期刷到了一个视频，说 142857 这串数字如何的神秘，与古埃及有如何如何的关系。由于它分别乘以 1~6 都还是这串数，所以叫什么走马灯数，如何如何。抛开神秘学话题，这就是简单的 1&#x2F;7 循环节：</p>
+<p><img src="/../attach/2024/08/1_7_circle.png" alt="1/7 Circle" loading="lazy"></p>
+<p>不过『走马灯数』这个概念还是有点意思的。它最显著的特征是循环节长度 &#x3D; n-1，同时附带的性质是当乘以 $1, 2, 3, \cdots, n-1$ 时，循环节顺序和长度不变，只是起始位置换了一下。因此写了段程序简单搜索一下还有没有其它的 n 也有这个特征。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">loop</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> pool = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        a = (a % n) * <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (a === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">        &#125; <span class="comment">// 除尽没有循环节</span></span><br><span class="line">        <span class="keyword">let</span> digi = (a / n) | <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> b = a + digi;</span><br><span class="line">        <span class="keyword">if</span> (pool.<span class="title function_">has</span>(b)) &#123;</span><br><span class="line">            <span class="comment">// 当当前位的值和当前余数都出现过时，新的循环开始了</span></span><br><span class="line">            <span class="keyword">let</span> loop = [...pool];</span><br><span class="line">            <span class="keyword">let</span> index = loop.<span class="title function_">findIndex</span>(<span class="function">(<span class="params">i</span>) =&gt;</span> i === b);</span><br><span class="line">            <span class="keyword">let</span> str = loop</span><br><span class="line">                .<span class="title function_">slice</span>(index)</span><br><span class="line">                .<span class="title function_">map</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> e % <span class="number">10</span>)</span><br><span class="line">                .<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pool.<span class="title function_">add</span>(b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> start = <span class="number">7</span>;</span><br><span class="line"><span class="keyword">while</span> (start &lt; <span class="number">1000</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="title function_">loop</span>(start);</span><br><span class="line">    <span class="keyword">if</span> (str.<span class="property">length</span> == start - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(start, str);</span><br><span class="line">    &#125;</span><br><span class="line">    start++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果出乎意料地多：</p>
+<table>
+<thead>
+<tr>
+<th>1&#x2F;n</th>
+<th>循环节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1&#x2F;7</td>
+<td>142857</td>
+</tr>
+<tr>
+<td>1&#x2F;17</td>
+<td>0588235294117647</td>
+</tr>
+<tr>
+<td>1&#x2F;19</td>
+<td>052631578947368421</td>
+</tr>
+<tr>
+<td>1&#x2F;23</td>
+<td>0434782608695652173913</td>
+</tr>
+<tr>
+<td>1&#x2F;29</td>
+<td>0344827586206896551724137931</td>
+</tr>
+<tr>
+<td>1&#x2F;47</td>
+<td>0212765957446808510638297872340425531914893617</td>
+</tr>
+<tr>
+<td>1&#x2F;59</td>
+<td>0169491525423728813559322033898305084745762711864406779661</td>
+</tr>
+<tr>
+<td>1&#x2F;61</td>
+<td>016393442622950819672131147540983606557377049180327868852459</td>
+</tr>
+<tr>
+<td>1&#x2F;97</td>
+<td>010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567</td>
+</tr>
+<tr>
+<td>1&#x2F;109</td>
+<td><span style="font-size:15px">009174311926605504587155963302752293577981651376146788990825688073394495412844036697247706422018348623853211 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;113</td>
+<td><span style="font-size:14px">0088495575221238938053097345132743362831858407079646017699115044247787610619469026548672566371681415929203539823 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;131</td>
+<td><span style="font-size:12px">0076335877862595419847328244274809160305343511450381679389312977099236641221374045801526717557251908396946564885496183206106870229 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;149</td>
+<td><span style="font-size:11px">0067114093959731543624161073825503355704697986577181208053691275167785234899328859060402684563758389261744966442953020134228187919463087248322147651 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;167</td>
+<td><span style="font-size:10px">0059880239520958083832335329341317365269461077844311377245508982035928143712574850299401197604790419161676646706586826347305389221556886227544910179640718562874251497 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;179</td>
+<td><span style="font-size:9px">0055865921787709497206703910614525139664804469273743016759776536312849162011173184357541899441340782122905027932960893854748603351955307262569832402234636871508379888268156424581 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;181</td>
+<td><span style="font-size:9px">005524861878453038674033149171270718232044198895027624309392265193370165745856353591160220994475138121546961325966850828729281767955801104972375690607734806629834254143646408839779 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;193</td>
+<td><span style="font-size:8px">005181347150259067357512953367875647668393782383419689119170984455958549222797927461139896373056994818652849740932642487046632124352331606217616580310880829015544041450777202072538860103626943 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;223</td>
+<td><span style="font-size:7px">004484304932735426008968609865470852017937219730941704035874439461883408071748878923766816143497757847533632286995515695067264573991031390134529147982062780269058295964125560538116591928251121076233183856502242152466367713 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;229</td>
+<td><span style="font-size:7px">004366812227074235807860262008733624454148471615720524017467248908296943231441048034934497816593886462882096069868995633187772925764192139737991266375545851528384279475982532751091703056768558951965065502183406113537117903930131 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;233</td>
+<td><span style="font-size:7px">0042918454935622317596566523605150214592274678111587982832618025751072961373390557939914163090128755364806866952789699570815450643776824034334763948497854077253218884120171673819742489270386266094420600858369098712446351931330472103 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;257</td>
+<td><span style="font-size:6px">0038910505836575875486381322957198443579766536964980544747081712062256809338521400778210116731517509727626459143968871595330739299610894941634241245136186770428015564202334630350194552529182879377431906614785992217898832684824902723735408560311284046692607 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;263</td>
+<td><span style="font-size:6px">0038022813688212927756653992395437262357414448669201520912547528517110266159695817490494296577946768060836501901140684410646387832699619771863117870722433460076045627376425855513307984790874524714828897338403041825095057034220532319391634980988593155893536121673 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;269</td>
+<td><span style="font-size:6px">0037174721189591078066914498141263940520446096654275092936802973977695167286245353159851301115241635687732342007434944237918215613382899628252788104089219330855018587360594795539033457249070631970260223048327137546468401486988847583643122676579925650557620817843866171 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;313</td>
+<td><span style="font-size:5px">003194888178913738019169329073482428115015974440894568690095846645367412140575079872204472843450479233226837060702875399361022364217252396166134185303514376996805111821086261980830670926517571884984025559105431309904153354632587859424920127795527156549520766773162939297124600638977635782747603833865814696485623 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;337</td>
+<td><span style="font-size:4px">002967359050445103857566765578635014836795252225519287833827893175074183976261127596439169139465875370919881305637982195845697329376854599406528189910979228486646884272997032640949554896142433234421364985163204747774480712166172106824925816023738872403560830860534124629080118694362017804154302670623145400593471810089020771513353115727 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;367</td>
+<td><span style="font-size:4px">002724795640326975476839237057220708446866485013623978201634877384196185286103542234332425068119891008174386920980926430517711171662125340599455040871934604904632152588555858310626702997275204359673024523160762942779291553133514986376021798365122615803814713896457765667574931880108991825613079019073569482288828337874659400544959128065395095367847411444141689373297 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;379</td>
+<td><span style="font-size:4px">002638522427440633245382585751978891820580474934036939313984168865435356200527704485488126649076517150395778364116094986807387862796833773087071240105540897097625329815303430079155672823218997361477572559366754617414248021108179419525065963060686015831134564643799472295514511873350923482849604221635883905013192612137203166226912928759894459102902374670184696569920844327176781 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;383</td>
+<td><span style="font-size:4px">0026109660574412532637075718015665796344647519582245430809399477806788511749347258485639686684073107049608355091383812010443864229765013054830287206266318537859007832898172323759791122715404699738903394255874673629242819843342036553524804177545691906005221932114882506527415143603133159268929503916449086161879895561357702349869451697127937336814621409921671018276762402088772845953 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;389</td>
+<td><span style="font-size:4px">0025706940874035989717223650385604113110539845758354755784061696658097686375321336760925449871465295629820051413881748071979434447300771208226221079691516709511568123393316195372750642673521850899742930591259640102827763496143958868894601542416452442159383033419023136246786632390745501285347043701799485861182519280205655526992287917737789203084832904884318766066838046272493573264781491 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;419</td>
+<td><span style="font-size:3px">0023866348448687350835322195704057279236276849642004773269689737470167064439140811455847255369928400954653937947494033412887828162291169451073985680190930787589498806682577565632458233890214797136038186157517899761336515513126491646778042959427207637231503579952267303102625298329355608591885441527446300715990453460620525059665871121718377088305489260143198090692124105011933174224343675417661097852028639618138424821 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;433</td>
+<td><span style="font-size:3px">002309468822170900692840646651270207852193995381062355658198614318706697459584295612009237875288683602771362586605080831408775981524249422632794457274826789838337182448036951501154734411085450346420323325635103926096997690531177829099307159353348729792147806004618937644341801385681293302540415704387990762124711316397228637413394919168591224018475750577367205542725173210161662817551963048498845265588914549653579676674364896073903 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;461</td>
+<td><span style="font-size:3px">0021691973969631236442516268980477223427331887201735357917570498915401301518438177874186550976138828633405639913232104121475054229934924078091106290672451193058568329718004338394793926247288503253796095444685466377440347071583514099783080260303687635574837310195227765726681127982646420824295010845986984815618221258134490238611713665943600867678958785249457700650759219088937093275488069414316702819956616052060737527114967462039045553145336225596529284164859 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;487</td>
+<td><span style="font-size:3px">002053388090349075975359342915811088295687885010266940451745379876796714579055441478439425051334702258726899383983572895277207392197125256673511293634496919917864476386036960985626283367556468172484599589322381930184804928131416837782340862422997946611909650924024640657084188911704312114989733059548254620123203285420944558521560574948665297741273100616016427104722792607802874743326488706365503080082135523613963039014373716632443531827515400410677618069815195071868583162217659137577 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;491</td>
+<td><span style="font-size:3px">0020366598778004073319755600814663951120162932790224032586558044806517311608961303462321792260692464358452138492871690427698574338085539714867617107942973523421588594704684317718940936863543788187372708757637474541751527494908350305498981670061099796334012219959266802443991853360488798370672097759674134419551934826883910386965376782077393075356415478615071283095723014256619144602851323828920570264765784114052953156822810590631364562118126272912423625254582484725050916496945010183299389 </span></td>
+</tr>
+<tr>
+<td>1&#x2F;499</td>
+<td><span style="font-size:3px">002004008016032064128256513026052104208416833667334669338677354709418837675350701402805611222444889779559118236472945891783567134268537074148296593186372745490981963927855711422845691382765531062124248496993987975951903807615230460921843687374749498997995991983967935871743486973947895791583166332665330661322645290581162324649298597194388777555110220440881763527054108216432865731462925851703406813627254509018036072144288577154308617234468937875751503006012024048096192384769539078156312625250501</span></td>
+</tr>
+</tbody></table>
+<p>简化代码并扩大计算量搜索后，得到 100 万以内的走马灯数分布：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">n_devide_len</span> = (<span class="params">n</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">        pool = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        a = (a % n) * <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123;</span><br><span class="line">            <span class="keyword">return</span> pool.<span class="property">size</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pool.<span class="title function_">add</span>(a);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../attach/2024/08/circle_in_10e6.png" alt="100 万以内的走马灯数分布" loading="lazy"></p>
+<p>有点意思。</p>
+<hr>
+<h3 id="研究原因"><a href="#研究原因" class="headerlink" title="研究原因"></a>研究原因</h3><p>对于任意由 1&#x2F;n 形成的循环小数，$\frac{1}{n} &#x3D; 0.\overline{******}$，设循环节部分为 $r$，其长度为 $l$，都可以写成一个无穷级数之和：</p>
+<p>$$\frac{1}{n} &#x3D; \frac{r}{10^l}+\frac{r}{10^{2l}}+\cdots+\frac{r}{10^{kl}} +\cdots &#x3D; \sum_{k&#x3D;1}^\infty\frac{r}{10^{kl}}$$</p>
+<p>对这个无穷等比数列重新求和，$S&#x3D;1&#x2F;n$，$10^l * S-S &#x3D; r$，得到 $S &#x3D; \frac{r}{10^l-1} &#x3D; \frac{1}{n}$，所以 $n&#x3D;\frac{10^l - 1}{r}$ ，或者写成 $r&#x3D;\frac{\overbrace{999\cdots999}^l}{n}$，这里的 r 一定是整数。这个方法同时也是将循环小数化为分数的标准方法。</p>
+<ul>
+<li><p>当 $n &#x3D; 7, l &#x3D; 6$ 时，也就得到了 $142857 &#x3D; \frac{\overbrace{999999}^6}{7}$，所以 $1&#x2F;7 &#x3D; 0.\overline{142857}$</p>
+</li>
+<li><p>当 $n &#x3D; 3, l &#x3D; 2$ 时，得到 $r &#x3D; \frac{99}{3} &#x3D; 33$，所以 $1&#x2F;3 &#x3D; 0.\overline{33}$，逻辑上其实也是对的，只是一般来说小数循环时只考虑最小周期，所以正确的写法应该是 $1&#x2F;3 &#x3D; 0.\overline{3}$。</p>
+</li>
+<li><p>当 $n &#x3D; 11, l&#x3D; 10$ 时，得到 $r &#x3D; \frac{9999999999}{11} &#x3D; 0909090909$，要注意这是循环节的计算因此首位的 0 不能去掉，所以 $1&#x2F;11 &#x3D; 0.\overline{0909090909}$，正写为 $1&#x2F;11&#x3D;0.\overline{09}$</p>
+</li>
+</ul>
+<blockquote>
+<p>对于 $1&#x2F;6 &#x3D; 0.1\overline{6}$ 这类存在非循环小数部分的，可以通过乘 10 等操作，把非循环部分移到整数上并抛弃，即化为 $10&#x2F;6 \rightarrow 4&#x2F;6 &#x3D; 2&#x2F;3 &#x3D; 0.\overline{6}$，考察 $0.\overline{6}$ 即可。</p>
+</blockquote>
+<h4 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h4><p>在上述 $n&#x3D;3, n&#x3D;11$ 两个例子中，虽然得到了逻辑上可行的循环节，但不符合通常的习惯，于在结果上进行了缩减，变为符合习惯的最小循环节。</p>
+<ul>
+<li><p>$10^k-1$ 本身就是 3 的倍数，所以循环节永远只有一位。</p>
+</li>
+<li><p>11 因其自身的特殊性质，11 &#x3D; 10 + 1，天然地符合 10 为底的级数的结构，如果一个数字各位数值相同，那么奇数位数字对 11 都是同余的，偶数位也是。所以 $10^k-1 (mod\ 11)$ 只有两个结果 9 和 0。并且在两者间不断跳转。</p>
+</li>
+</ul>
+<p>可见，循环节长度即是最早出现同余时的 k 值，若要 1&#x2F;n 的循环节长度为 n-1，需要 $10^k \ mod\ n$ 在 $k &#x3D; 1, \cdots, n-1$ 时都不同余。</p>
+<h4 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h4><p>从上可见，循环小数与进制密切相关。例如在 8 进制中，9（在 8 进制中也写为 11）的性质将和 10 进制中的 11 相似，也会出现奇位同余偶位同余的情况。所以 $1&#x2F;11_{(8)} &#x3D; 0.\overline{07}_{(8)}$，形式上完全一致。</p>
+<p>而 $1&#x2F;7_{(8)}$ 则变为了 $0.\overline{1}_{(8)}$，因为 $8^k-1_{(8)} &#x3D; {\overbrace{77\dots7}^{k}}_{(8)}$ 各位恒为 7，也就不存在什么神秘数字循环了。</p>
+<p>由于和进制本身高度相关，因此某个 1&#x2F;n 是否有 n-1 位循环节，取决于它和进制 $R^k - 1$ 之间的相除结果，这个关系不知道数论中是否已有结论。</p>
+<h4 id="推论"><a href="#推论" class="headerlink" title="推论"></a>推论</h4><ol>
+<li><p>n-1 位循环节天然存在，只是因为有可能内部重复导致长度缩减。而在 n-1 基础上的缩减不会破坏原有模式，因此最小循环节长度一定是 n-1 的因数。</p>
+</li>
+<li><p>只有当 n 为素数时，才有可能实际出现 n-1 位循环节。由于余数需要遍历 1 到 n-1 的所有数。若 n &#x3D; pq，余数会在 q-1 与 p-1 的共同作用下循环，但 p-1 与 q-1 至少含有公因素 2，不可能产生所有 {0, p-1} 与 {0, q-1} 之间的全部两两组合。</p>
+</li>
+<li><p>一切循环节在若干次乘 10 排除不循环部分，整理为 $0.\overline{******}$ 形式后，都可以用 $a * 1&#x2F;n$ 来表示。</p>
+</li>
+<li><p>如果 n 为素数，而其循环节长度 $l$ 不为 n-1，则必有互相不能抵达的 $\frac{n-1}{l}$ 套循环，进入哪套循环取决于分子 $a$ 的值。因为素数没有因数，$a&#x2F;n (a&#x3D;1, 2,\dots, n-1)$ 必然有 n-1 个不同余数。</p>
+</li>
+<li><p>如果 n 为素数，则 1&#x2F;n 的循环节必然形如 $0.\overline{******}$，从小数点后就开始，即使起始是若干个 0 也是循环节的一部分。</p>
+</li>
+<li><p>如果 n 是若干个不同素数乘积，则循环节长度是这些素数对应的循环节长度的最小公倍数。如果 n 是素数 p 的 k 次方时，循环节长度是 $l * p^{k-1},(p&gt;3)$ 或 $l * p^{k-2},(p&#x3D;3)$。</p>
+<blockquote>
+<p>$p&#x3D;3$ 的特例在于 $p^2&#x3D;9$ 仍然小于 10，没有触发进退位，即当 p^k 仍小于对应进制单位时，不往上叠加循环节长度。在 8 进制下就是正常的 $l*p^{k-1}$ 了。</p>
+</blockquote>
+</li>
+<li><p>不存在比 n-1 更长的循环节。</p>
+</li>
+<li><p>不同进制下的走马灯数具体是不一样的，例如 7 在 10 进制下是走马灯数，但在 8 进制下不是。2 在一切奇数进制下都是走马灯数，因为只要除不尽，循环节长度就至少为 1。</p>
+</li>
+<li><p>除 2 以外，走马灯数的循环节长必度是偶数，将循环节的两段拆分后相加，一定是 $999\cdots$。例如 $1&#x2F;7 &#x3D; 0.\overline{142857}$，则 $142 + 857 &#x3D; 999$。上述结论在其它进制下也成立，例如 8 进制下为 $777\cdots_{(8)}$。</p>
+<p> 证明：设一个循环小数 $\frac{1}{n}$ 的循环节两段分别为 $\overline{r_1r_2}$，总长度为$2k$，则其既可以表达为</p>
+<p> \begin{align*} \frac{1}{n} &#x3D; \frac{\overline{r_1r_2}}{10^{2k}} + \frac{\overline{r_1r_2}}{10^{4k}} + \cdots + \frac{\overline{r_1r_2}}{10^{pk}}+\cdots &#x3D; \frac{\overline{r_1r_2}}{10^{2k}-1} &amp;&amp;(1) \end{align*}</p>
+<p> 也可以表示为：</p>
+<p> \begin{align*} \frac{1}{n} &#x3D;\frac{r_1}{10^k} + \frac{\overline{r_2r_1}}{10^{3k}} + \cdots + \frac{\overline{r_2r_1}}{10^{(p+1)k}}+\cdots &amp;&amp;(2) \end{align*}</p>
+<p> $(2)$ 式乘以 $10^n$ 再加 $(1)$ 式，得到：</p>
+<p> \begin{align*} \frac{(10^k+1)}{n} &#x3D; r_1 + \frac{(r_1+r_2)(10^k+1)}{10^{2k}-1} &#x3D; r_1 +\frac{r_1+r_2}{10^k-1} &amp;&amp;(3) \end{align*}</p>
+<p> 再将 $(1)$ 式分子分母同除 $10^n+1$ 得到：</p>
+<p> \begin{align*}<br> &amp;&amp;\frac{1}{n} &#x3D; \frac{\overline{r_1r_2}}{10^{2k}-1} &#x3D; \frac{\overline{r_1r_2}&#x2F;(10^k+1)}{(10^{2k}-1)(10^k+1)} &#x3D; \frac{\frac{\overline{r_1r_2}}{10^k+1}}{10^k-1} &amp;&amp;(4) \\<br> \Rightarrow &amp;&amp;\frac{\overline{r_1r_2} * n}{10^k+1} &#x3D; 10^k-1 &amp;&amp;(5)<br> \end{align*}</p>
+<p> 其中，$(4)$ 中分子 $\frac{\overline{r_1r_2}}{10^k+1}$ 不可能为整数，否则直接可以化简：</p>
+<p> \begin{align*} \frac{1}{n} &#x3D; \frac{\frac{\overline{r_1r_2}}{10^k+1}}{10^k-1} &#x3D; \frac{r_k}{10^k-1} &amp;&amp;(6) \end{align*}</p>
+<p> 循环节长度直接由 2k 降为 k，这与之前的假设不符。因此在 $(5)$ 式中，$n$ 与 $(10^k+1)$ 必然存在公因数。而 n 为素数，则 $(10^k+1)$ 为 $n$ 的倍数。即 $(3)$ 式中 $\frac{(10^k+1)}{n}$ 为整数。</p>
+<p> 因此，$r_1 + \frac{r_1+r_2}{10^k-1}$ 为整数。$r_1$ 本来就是提出来的前半循环节为整数，而 $\frac{r_1+r_2}{10^k-1}$ 是由两个长度为 k 的半循环节加和得到的分子，要求其为整数只可能是 1。所以 $r_1+r_2 &#x3D; 10^k-1 &#x3D; \overbrace{999\cdots}^k$</p>
+<p> 得证。其它进制下的证明将底数 10 替换为对应进制即可。</p>
+</li>
+</ol>
+<h3 id="计算程序"><a href="#计算程序" class="headerlink" title="计算程序"></a>计算程序</h3><p>走马灯数搜索程序在得到以上结论后可以提升一些效率：</p>
+<ol>
+<li>使用 <a href="/primes-algorith-with-sugar/#%E6%AC%A7%E6%8B%89%E7%AD%9B%E6%B3%95">欧拉筛法</a>，只在素数堆里进行验证。</li>
+<li>如果循环节小于 n-1，由于推论 1，则其至多 $\frac{n-1}{2}$，因此当计算到第 $\frac{n+1}{2}$ 项时，便可得出结论而不必计算后半段。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">searchCarousel</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">let</span> carousels = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">isCarousel</span> = (<span class="params">p, radix = <span class="number">10</span></span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">            pool = <span class="keyword">new</span> <span class="title class_">Set</span>(),</span><br><span class="line">            end = (p + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (pool.<span class="property">size</span> &lt; end) &#123;</span><br><span class="line">            a = (a % p) * radix;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pool.<span class="title function_">add</span>(a);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i);</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isCarousel</span>(i)) &#123;</span><br><span class="line">                carousels.<span class="title function_">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>; <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> carousels;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">searchCarousel</span>(<span class="number">1000</span>));</span><br><span class="line"><span class="comment">// [7, 17, 19, 23, 29, 47, 59, 61, 97, 109, 113, 131, 149, 167, 179, 181, 193, 223, 229, 233,  257, 263,</span></span><br><span class="line"><span class="comment">// 269, 313, 337, 367, 379, 383, 389, 419,  433, 461, 487, 491, 499, 503, 509, 541, 571, 577,  593, 619,</span></span><br><span class="line"><span class="comment">// 647, 659, 701, 709, 727, 743, 811, 821, 823, 857, 863, 887, 937, 941, 953, 971, 977, 983]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="其它进制"><a href="#其它进制" class="headerlink" title="其它进制"></a>其它进制</h4><p>根据前文继续厘清思路，在其它进制下：</p>
+<ul>
+<li>循环节长度的度量和进制数无关，表述形式不改变数值大小，在 10 进制下若为 16，在 8 进制下就写为 20，但都指的是同一个值。</li>
+<li>但循环节的生成和进制有关，在当前位下不满足该进制条件下的整除，产生余数，就会退到下一位。</li>
+<li>在其它进制下，$r &#x3D; \frac{R^{n-1}-1}{n}$ 仍然成立，这是循环小数定义公式的变形。</li>
+<li>仍然只需要在素数表中搜索走马灯数，因为 r 需要由 $n-1$ 个不同余的结果来确保循环长度上限。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 计算各进制下的走马灯数 */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">searchCarousel</span>(<span class="params">n</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>; <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">isCarousel</span> = (<span class="params">p, radix = <span class="number">10</span></span>) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (p === <span class="number">2</span> &amp;&amp; radix % <span class="number">2</span> !== <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 2 在奇数进制下必然是 1 位循环</span></span><br><span class="line">        <span class="keyword">let</span> a = <span class="number">1</span>,</span><br><span class="line">            pool = <span class="keyword">new</span> <span class="title class_">Set</span>(),</span><br><span class="line">            end = (p + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span> (pool.<span class="property">size</span> &lt; end) &#123;</span><br><span class="line">            a = (a % p) * radix;</span><br><span class="line">            <span class="keyword">if</span> (a == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (pool.<span class="title function_">has</span>(a)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pool.<span class="title function_">add</span>(a);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (thisRadix = <span class="number">2</span>; thisRadix &lt; <span class="number">100</span>; thisRadix++) &#123;</span><br><span class="line">        <span class="keyword">let</span> carousels = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; primes.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isCarousel</span>(primes[i], thisRadix)) &#123;</span><br><span class="line">                carousels.<span class="title function_">push</span>(primes[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(thisRadix, carousels.<span class="property">length</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">searchCarousel</span>(<span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>搜索在各不同进制下， 10000 以内的走马灯数的数量，结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+<th>进制</th>
+<th>走马灯数数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td>21</td>
+<td>447</td>
+<td>41</td>
+<td>460</td>
+<td>61</td>
+<td>457</td>
+<td>81</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>470</td>
+<td>22</td>
+<td>472</td>
+<td>42</td>
+<td>476</td>
+<td>62</td>
+<td>482</td>
+<td>82</td>
+<td>455</td>
+</tr>
+<tr>
+<td>3</td>
+<td>477</td>
+<td>23</td>
+<td>459</td>
+<td>43</td>
+<td>490</td>
+<td>63</td>
+<td>457</td>
+<td>83</td>
+<td>453</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>24</td>
+<td>461</td>
+<td>44</td>
+<td>460</td>
+<td>64</td>
+<td>0</td>
+<td>84</td>
+<td>466</td>
+</tr>
+<tr>
+<td>5</td>
+<td>493</td>
+<td>25</td>
+<td>1</td>
+<td>45</td>
+<td>483</td>
+<td>65</td>
+<td>477</td>
+<td>85</td>
+<td>468</td>
+</tr>
+<tr>
+<td>6</td>
+<td>470</td>
+<td>26</td>
+<td>455</td>
+<td>46</td>
+<td>445</td>
+<td>66</td>
+<td>469</td>
+<td>86</td>
+<td>464</td>
+</tr>
+<tr>
+<td>7</td>
+<td>466</td>
+<td>27</td>
+<td>278</td>
+<td>47</td>
+<td>477</td>
+<td>67</td>
+<td>471</td>
+<td>87</td>
+<td>478</td>
+</tr>
+<tr>
+<td>8</td>
+<td>277</td>
+<td>28</td>
+<td>451</td>
+<td>48</td>
+<td>468</td>
+<td>68</td>
+<td>459</td>
+<td>88</td>
+<td>454</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1</td>
+<td>29</td>
+<td>465</td>
+<td>49</td>
+<td>1</td>
+<td>69</td>
+<td>461</td>
+<td>89</td>
+<td>470</td>
+</tr>
+<tr>
+<td>10</td>
+<td>467</td>
+<td>30</td>
+<td>488</td>
+<td>50</td>
+<td>471</td>
+<td>70</td>
+<td>473</td>
+<td>90</td>
+<td>478</td>
+</tr>
+<tr>
+<td>11</td>
+<td>444</td>
+<td>31</td>
+<td>469</td>
+<td>51</td>
+<td>471</td>
+<td>71</td>
+<td>471</td>
+<td>91</td>
+<td>453</td>
+</tr>
+<tr>
+<td>12</td>
+<td>459</td>
+<td>32</td>
+<td>372</td>
+<td>52</td>
+<td>460</td>
+<td>72</td>
+<td>470</td>
+<td>92</td>
+<td>464</td>
+</tr>
+<tr>
+<td>13</td>
+<td>458</td>
+<td>33</td>
+<td>474</td>
+<td>53</td>
+<td>470</td>
+<td>73</td>
+<td>465</td>
+<td>93</td>
+<td>446</td>
+</tr>
+<tr>
+<td>14</td>
+<td>459</td>
+<td>34</td>
+<td>473</td>
+<td>54</td>
+<td>471</td>
+<td>74</td>
+<td>447</td>
+<td>94</td>
+<td>485</td>
+</tr>
+<tr>
+<td>15</td>
+<td>454</td>
+<td>35</td>
+<td>461</td>
+<td>55</td>
+<td>486</td>
+<td>75</td>
+<td>471</td>
+<td>95</td>
+<td>462</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0</td>
+<td>36</td>
+<td>0</td>
+<td>56</td>
+<td>461</td>
+<td>76</td>
+<td>467</td>
+<td>96</td>
+<td>464</td>
+</tr>
+<tr>
+<td>17</td>
+<td>451</td>
+<td>37</td>
+<td>466</td>
+<td>57</td>
+<td>451</td>
+<td>77</td>
+<td>449</td>
+<td>97</td>
+<td>471</td>
+</tr>
+<tr>
+<td>18</td>
+<td>472</td>
+<td>38</td>
+<td>466</td>
+<td>58</td>
+<td>478</td>
+<td>78</td>
+<td>451</td>
+<td>98</td>
+<td>459</td>
+</tr>
+<tr>
+<td>19</td>
+<td>473</td>
+<td>39</td>
+<td>489</td>
+<td>59</td>
+<td>465</td>
+<td>79</td>
+<td>466</td>
+<td>99</td>
+<td>476</td>
+</tr>
+<tr>
+<td>20</td>
+<td>487</td>
+<td>40</td>
+<td>458</td>
+<td>60</td>
+<td>455</td>
+<td>80</td>
+<td>490</td>
+<td>100</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>这里最有特点的是当进制为偶数的完全平方时，没有走马灯数，当进制为奇数的完全平方时，只有唯一一个走马灯数 2，循环节长度为 1。</p>
+<h4 id="特殊进制-R-s-2"><a href="#特殊进制-R-s-2" class="headerlink" title="特殊进制 $R&#x3D;s^2$"></a>特殊进制 $R&#x3D;s^2$</h4><p>无论在哪种进制下，循环节公式 $r &#x3D; \frac{R^{n-1}-1}{n}$ 都仍然是成立的。其中 $R$ 为指定的进制数，$n$ 为测试数字， $r$ 为对应的循环节。根据前文所述，在一些情况下循环节会缩减。即当 r 的数字序列内部出现重复时，需要用更短的循环节代替。前文 $\frac{1}{11} &#x3D; 0.\overline{0909090909} &#x3D; 0.\overline{09}$ 便是例子。</p>
+<p>而当 $R$ 为完全平方数 $s^2$ 时，将循环节公式展开为；</p>
+<p>$$ r_{(R)} &#x3D; \frac{(s^2)^{n-1}-1}{n} &#x3D; \frac{(s^{n-1}+1)(s^{n-1}-1)}{n} &#x3D; (s^{n-1}+1) \cdot \frac{s^{n-1}-1}{n}$$</p>
+<p>因为 $s$ 是整数，注意到 $\frac{s^{n-1}-1}{n}$ 实际上是在 $s$ 进制下的 $\frac{1}{n}$ 的循环节表达式 $r_{s(s)}$，必定是有整数解的，并且在 $s$ 进制下的长度至多为 $n-1$ 。</p>
+<p>现在将 $r_{s}$ 的数值从 $s$ 进制转到 $R$ 进制。因为$R&#x3D;s^2$，$R$ 进制下一位数值可以容纳 $s$ 进制下两位。其长度在转换后正好一半 $\frac{n-1}{2}$，n 为素数。则：</p>
+<p>$$r_{(R)} &#x3D;(s^{n-1} + 1) * r_{s(s)} \overset{s\rightarrow R}{&#x3D;\!&#x3D;\!&#x3D;}  (R^{\frac{n-1}{2}} + 1) * r_{s(R)}$$</p>
+<p>除 2 以外的 n 都是素数，所以 $\frac{n-1}{2}$ 是整数，$(R^{\frac{n-1}{2}} + 1)$ 是形如 $\overbrace{100\cdots01}^{(n+1)&#x2F;2}$ 的整数，长度上正好使 $r_{s(R)}$ 重复两遍，而不会有叠加进位。</p>
+<p>因此当进制 $R$ 为完全平方数时，任意 $n$ 的 $r_{(R)} &#x3D; \frac{R^{n-1}-1}{n}$ 数字序列至少会内部重复一次，所以长度一定小于 $n-1$，也就不存在跑马灯数。</p>
+<blockquote>
+<p>推论：当进制 $R&#x3D;s^{(2^n)}$ 时，对应的最长循环节为 $\frac{n-1}{2^n}$ 向上取整。</p>
+</blockquote>
+<h3 id="费马小定律"><a href="#费马小定律" class="headerlink" title="费马小定律"></a>费马小定律</h3><p>在前文中数次使用 $r&#x3D;(R^{n-1}-1)&#x2F;n$，并且认定它是整数，是因为该式是从循环节的级数表示法计算出来的，而循环节本身一定是 n-1 位的整数，所以认为是整数。这个推论是单薄的，不能证明任意 $(R^{n-1}-1)&#x2F;n$ 一定是整数。但其实关于这一点的正向证明早就在三百多年前就被书空白写不下学家完成了：</p>
+<p>$(R^{n-1}-1)&#x2F;n$ 为整数，其实本身就是 <strong><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86">费马小定理</a></strong> 的一部分，即：</p>
+<ul>
+<li>假如 $a$ 是整数，$p$ 是素数，那么 $a^p \equiv a (mod\ p)$</li>
+<li>如果 $a$ 不是 $p$ 的倍数，则 $a^{p-1} \equiv 1 (mod\ p)$，这其实就是我们用的循环节公式。</li>
+<li>如果 $a$ 是 $p$ 的倍数，则 $a^{p-1} \equiv 0 (mod\ p)$，这时就除尽不构成循环节了。</li>
+</ul>
+<p>我们之前提到，进制的转换会影响循环节数字序列的变化，但不影响素数、整除等基于数本身的性质，因此这里的 R 在整除判定上反而和进制本身没什么关系，就是一个单纯的幂底数。</p>
+<h3 id="模运算与原根"><a href="#模运算与原根" class="headerlink" title="模运算与原根"></a>模运算与原根</h3><p>当引入费马小定律后，我们进入了数论中模运算的领域。在前文中有一条推论 2：</p>
+<blockquote>
+<p>只有当 n 为素数时，才有可能出现 n-1 位循环节。由于余数需要遍历 1 到 n-1 的所有数。若 n &#x3D; pq，余数会在 q-1 与 p-1 的共同作用下循环，但 p-1 与 q-1 至少含有公因素 2，不可能产生所有 {0, p-1} 与 {0, q-1} 之间的全部两两组合。</p>
+</blockquote>
+<p>其实是在数论的门外匆匆一瞥。思而不学则民科，在查询了一些资料后，发现其实这些走马灯数在数论中早已有深入的讨论。本文前半篇是从计算中发现现象，再从现象中思索原因。后半篇打算从原理出发，厘清前因后果全套链条。</p>
+<h4 id="欧拉函数-ϕ-n"><a href="#欧拉函数-ϕ-n" class="headerlink" title="欧拉函数 ϕ(n)"></a>欧拉函数 ϕ(n)</h4><p>为了循序渐进，先来熟悉一下欧拉函数，其定义为：</p>
+<p>$$\phi(n)&#x3D;小于正整数 n 且与 n 互素（即最大公约数为1）的正整数的个数。$$</p>
+<blockquote>
+<p>注意这些正整数不一定是素数，例如 8 与 9 是互素的，但两个都不是素数。</p>
+</blockquote>
+<p>这个函数描述相比一般函数通俗得多，这也是数论领域的特色。尽管如此，这个函数实际上却并不用真的去逐个数个数，它确实是有公式通解的：</p>
+<p>一般地，若 $n&#x3D;p_1^{k_1}\cdot p_2^{k_2}\cdot \cdots \cdot p_m^{k_m}$，$p_m$为 n 的素因数，则：<br>$$\phi(n)&#x3D;n\cdot\left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right)\cdots\left(1-\frac{1}{p_m}\right)$$</p>
+<ul>
+<li>当 n 为素数时，所有 $1\leq k &lt; n$ 均有效，$\phi(7)&#x3D;7-1&#x3D;6.$</li>
+<li>当 $n&#x3D;p^k$ 为单一素数的幂时，, $\phi(8)&#x3D;\phi(2^3)&#x3D;2^3-2^2&#x3D;4.$</li>
+</ul>
+<p>欧拉公式便是上文 <strong>推论 6</strong> 的完整表述。略一思索也可以很快得出结论：『互素』其实就要求所有数都『避开』n 的所有素因数及其构成的合数集，这其实就是个变形的组合数与容斥问题，形式上类似于：</p>
+<p>$$\phi(n)&#x3D;n -\sum{\frac{n}{p_i}} + \sum{\frac{n}{p_ip_j}} - \sum{\frac{n}{p_ip_jp_k}} + \cdots + (-1)^{m-1}\frac{n}{p_1p_2\cdots p_m}$$</p>
+<p>整理便可得到通项公式。</p>
+<blockquote>
+<p>另外值得注意的是，欧拉公式中并没有显式地使用到幂数 $k_1 \cdots k_m$，实际上是因为 $n&#x3D;p_1^{k_1}\cdot p_2^{k_2}\cdot \cdots \cdot p_m^{k_m}$ 中已经包含了所有的 $k$。</p>
+</blockquote>
+<h4 id="整数环与有限域"><a href="#整数环与有限域" class="headerlink" title="整数环与有限域"></a>整数环与有限域</h4><p>在模运算 $\ mod\ n$ 中，所有余数相同的整数都被视为等价的，即 $a+kn \equiv a \ mod\ n$，通常用最小非负余数 $[0],[1],[2],…,[n−1]$ 表示这些等价类。所有的余数类构成一个集合，称之为 n 的<strong>整数环</strong>，用奇怪符号 $\Bbb{Z}&#x2F;n\Bbb{Z}$ 表示。</p>
+<p>整数环也有类似一般逻辑的『加法』与『乘法』运算：</p>
+<p>$$[a]+[b]&#x3D;[a+b]\ (mod\ n)$$<br>$$[a]\cdot[b]&#x3D;([a] \times [b])\ (mod\ n)$$</p>
+<blockquote>
+<p>从进制的角度也很好理解，大于 n 的部分『进位』上去了，无法影响最后一位余数的运算。尽管模运算本身没有提到进制，但进制本身就是模的一种应用，通过两者的相似性有助于理解问题。</p>
+</blockquote>
+<p>因为同余的是一类数而不是一个数，因此没法直接做除法运算，但可以定义一个 <strong>乘法逆元</strong>，当：</p>
+<p>$$[a] \times [b] \equiv 1 \ mod\ n$$</p>
+<p>时，$[a]$ 与 $[b]$ 就互为乘法逆元。</p>
+<p>同样地，和乘法中 0 类似，模运算也会出现 $a \times b \equiv 0 \ mod\ n$ 的情况，零因子没有逆元。出现零因子的原因也很简单，当 n 为合数时，a b 两个非零元素相乘后结果能被 n 整除。</p>
+<p>整数环仅仅是个称谓，任意整数 n 都有长度为 n 的整数环，并不能体现什么特殊性。但 n 不同会使得对应的整数环内部表现出不同的性质，则是深入探究的目标。</p>
+<p>前面也看到，有些整数环内部存在零因子，有些则没有。判断方法很简单，当 n 为素数时，其整数环内部没有零因子，所有非零同余类都有对应的乘法逆元。这就和上面的 <em>推论 2</em> 一致了。此时整数环获得了一个新名字：<strong>有限域</strong>。</p>
+<h4 id="原根、欧拉定理与阶"><a href="#原根、欧拉定理与阶" class="headerlink" title="原根、欧拉定理与阶"></a>原根、欧拉定理与阶</h4><p>当我们在关注循环小数的循环节时，本质上是对其不断循环取除的过程，将余数乘以进制，除以 n 以后再取余数，如此不断循环。如果将这个过程抽象一下，其实就是如下表述：</p>
+<blockquote>
+<p>在模 n 的整数环中，对整数 $r$ 的幂次 $(r^1, r^2, \cdots, r^k)$ 不断进行模运算，则其或落入零因子，或者在一或多个非零同余间循环。</p>
+</blockquote>
+<p>——实际上就是 r 进制下 1&#x2F;n 的循环节计算过程，或者被整除，或者处于某个循环。</p>
+<p>在数论课本中，对上述内容做了展开，有更严谨而完备的表述与证明过程：</p>
+<h5 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h5><blockquote>
+<p>若 a 与 n 互素，则 $a^{\phi(n)} \equiv 1 \ mod\ n$</p>
+</blockquote>
+<p>欧拉定理的证明过程大致分为四步：</p>
+<ol>
+<li><p>设模 n 的简化剩余系为 $S &#x3D; {r_1, r_2, \cdots, r_{\phi(n)}}$ 满足 $gcd(r_i, n) &#x3D; 1 $，且任意两项不同余，即 $r_i \not\equiv r_j$。</p>
+</li>
+<li><p>将 $S$ 每个元素乘以 a，得到 $a\cdot S&#x3D; {a\cdot r_1, a\cdot r_2, \cdots, a\cdot r_{\phi(n)}}$。此时若 $a\cdot r_i \equiv a\cdot r_j \ mod\ n$，则因 a 与 n 互素可消去，得到 $r_i \equiv r_j$，矛盾。 故 $a\cdot S$ 仍为简化剩余系，与 $S$ 包含相同的剩余类，仅顺序不同。</p>
+</li>
+<li><p>由于两者同余，$S$ 和 $a\cdot S$ 的乘积相等：</p>
+<p> $$\prod_{i&#x3D;1}^{\phi(n)} r_i \equiv P\ mod\ n \equiv a^{\phi(n)} \cdot P\ mod\ n \equiv \prod_{i&#x3D;1}^{\phi(n)} (a \cdot r_i) $$</p>
+</li>
+<li><p>由于 $P$ 是乘积，$r_i$ 与 n 互素，故 $P$ 也与 n 互素，两边同乘 $P$ 的逆元 $P^{-1}$，得到 $ a^{\phi(n)}\equiv 1 \ mod\ n$</p>
+</li>
+</ol>
+<h5 id="阶与原根"><a href="#阶与原根" class="headerlink" title="阶与原根"></a>阶与原根</h5><p>由欧拉定理，可以定义 <strong>阶</strong> 与 <strong>原根</strong>：</p>
+<blockquote>
+<ol>
+<li>$a$ 和 $n$ 为互素的正整数，则 $a$ 模 $n$ 的阶是满足 $a^k \equiv 1\ mod\ n$ 的最小正整数 $k$。</li>
+<li>若整数 a 与 n 互素，且其模 n 的乘法阶数等于 ϕ(n)，则称 a 是模 n 的一个原根。</li>
+</ol>
+</blockquote>
+<p>或者使用另一个等效表述：</p>
+<blockquote>
+<p>在模 n 的整数环中，若存在整数 $a$ 使得 $(a^1, a^2, \cdots, a^{\phi(n)})$ 能够遍历所有与 n 互素的剩余类，则 $a$ 称为模 n 的一个<strong>原根</strong>。</p>
+</blockquote>
+<p>一次能遍历所有可能的余数，也就是循环节达到了最大值，这个最大值就是欧拉函数 $\phi(n)$。存在原根和最长循环是一体两面的。</p>
+<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><p>进一步地，若要 $\phi(n) &#x3D; n-1$ 则 n 必须是素数，也就是说，走马灯数的分母 n 必须是素数。而当 $n&#x3D;p $（素数）时，$\phi(n)&#x3D;p-1$，欧拉定理简化为：$a^{p-1}\equiv 1 \ mod\ p $，这就是费马小定理！</p>
+<p>到这里，就和前文的推论 2, 6, 7, 8 都对上了，甚至进一步地和 1, 4 也都能对上，一切全联系起来了！甚至我们还发现了之前没有注意到的 <strong>推论 10：</strong>n 可能有多个原根，则 1&#x2F;n 可能在多个进制下有循环小数，并且所有可能的进制下，循环节的长度都是一样的。</p>
+<p>接下来就是在欧拉定理的指导下，科学地判定走马灯数了：</p>
+<ol>
+<li>当 $n &#x3D; 1, 2, 4, p^k, 2p^k$ 时存在原根，且阶为 $\phi(n)$。但只有 $\phi(n) &#x3D; n - 1$ 时才能称为『走马灯数』，所以 n 必须是素数。</li>
+<li>当且仅当 $a^{n-1} \equiv 1\ mod\ n$ 时，a 即为原根，对应的 n-1 即为循环节长度。</li>
+<li>只需排查任意 $n-1$ 的真因子 $d$ 是否会使得 $a^d \equiv 1\ mod\ n$，如果有，则 $a$ 不是 $n$ 的原根。</li>
+</ol>
+<h4 id="程序优化"><a href="#程序优化" class="headerlink" title="程序优化"></a>程序优化</h4><ol>
+<li>添加 n-1 的真因子 d 的计算过程，这是个因式分解过程。考虑到我们之前已经计算出了素数表用于 n 的选择，这里可以复用。</li>
+<li>在实际计算中，$a^{\phi(n)}$ 仍然是个巨大的数，容易有溢出风险，但模运算支持乘法，因此可以把 $a^b\ mod\ n$ 的指数$b$拆分求模：<br>$$((a\ mod\ n )^{b_1} \times (a\ mod\ n )^{b_2} \times \cdots \times (a\ mod\ n )^{b_k})\ mod\ n$$</li>
+<li>只验证所有 d 下 $a^d \not\equiv 1\ mod\ n$，有 false 直接退出。即排除推论 4 描述的情况。</li>
+</ol>
+<p>据此我们写出了最终的走马灯数快速算法，直接应用欧拉定理，分解 n-1 的素因数，代替原来的试除法进行验证，并使用模运算的乘法分解式来计算 $a^b$ 以避免大数问题。这个算法在 n 较大时的效率比原来有了很大提升。旧算法搜索 100 万以内的走马灯数约需 20 分钟，新算法不到 1 秒，提升了 1000 倍。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">searchCarousel</span>(<span class="params">n, radix = <span class="number">10</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> primes = [];</span><br><span class="line">    <span class="keyword">let</span> eularboard = <span class="keyword">new</span> <span class="title class_">Array</span>(n + <span class="number">1</span>).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">    <span class="keyword">let</span> result = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 去重列举 n 的所有素因数</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">primeFactors</span>(<span class="params">n</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> factors = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line">        <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (n &gt; <span class="number">1</span> &amp;&amp; primes[i] &lt; n) &#123;</span><br><span class="line">            <span class="keyword">while</span> (n % primes[i] === <span class="number">0</span>) &#123;</span><br><span class="line">                factors.<span class="title function_">add</span>(primes[i]);</span><br><span class="line">                n = n / primes[i];</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n &gt; <span class="number">1</span>) factors.<span class="title function_">add</span>(n);</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Array</span>.<span class="title function_">from</span>(factors);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算 a^b mod n 的值</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">modExp</span>(<span class="params">a, b, mod</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> result = <span class="number">1n</span>;</span><br><span class="line">        a = <span class="title class_">BigInt</span>(a) % <span class="title class_">BigInt</span>(mod);</span><br><span class="line">        b = <span class="title class_">BigInt</span>(b);</span><br><span class="line">        mod = <span class="title class_">BigInt</span>(mod);</span><br><span class="line">        <span class="keyword">while</span> (b &gt; <span class="number">0n</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (b % <span class="number">2n</span> === <span class="number">1n</span>) &#123;</span><br><span class="line">                result = (result * a) % mod;</span><br><span class="line">            &#125;</span><br><span class="line">            a = (a * a) % mod;</span><br><span class="line">            b = b / <span class="number">2n</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Number</span>(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否为全循环质数（原根验证法）</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">isCarousel</span>(<span class="params">p, radix</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> phi = p - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">modExp</span>(radix, phi, p) !== <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 费马小定理</span></span><br><span class="line">        <span class="keyword">const</span> factors = <span class="title function_">primeFactors</span>(phi);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">const</span> factor <span class="keyword">of</span> factors) &#123;</span><br><span class="line">            <span class="keyword">const</span> d = phi / factor; <span class="comment">// 因为 factor 是独立最小素因数，使用对应的 d 可以最大化否决。</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">modExp</span>(radix, d, p) === <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 欧拉筛获得素数表</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (eularboard[i]) &#123;</span><br><span class="line">            primes.<span class="title function_">push</span>(i);</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_">isCarousel</span>(i, radix)) &#123;</span><br><span class="line">                result.<span class="title function_">push</span>(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; primes.<span class="property">length</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i * primes[j] &gt; n) <span class="keyword">break</span>; <span class="comment">// 上限判断</span></span><br><span class="line">            eularboard[i * primes[j]] = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (i % primes[j] === <span class="number">0</span>) <span class="keyword">break</span>; <span class="comment">// 跳过本轮后续筛选</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">searchCarousel</span>(<span class="number">1000000</span>));</span><br><span class="line"><span class="comment">//[ 7, 17, 19, 23, 29, 47, 59, 61, 97, 109, 113, 131, 149, 167, 179, 181, 193, 223, 229, 233, 257, 263, 269, 313, 337, 367, 379, 383,</span></span><br><span class="line"><span class="comment">// 389, 419, 433, 461, 487, 491, 499, 503, 509, 541, 571, 577, 593, 619, 647, 659, 701, 709, 727, 743, 811, 821, 823, 857, 863, 887,</span></span><br><span class="line"><span class="comment">// 937, 941, 953, 971, 977, 983, 1019, 1021, 1033, 1051, 1063, 1069, 1087, 1091, 1097, 1103, 1109, 1153, 1171, 1181, 1193, 1217, 1223,</span></span><br><span class="line"><span class="comment">// 1229, 1259, 1291, 1297, 1301, 1303, 1327, 1367, 1381, 1429, 1433, 1447, 1487, 1531, 1543, 1549, 1553, 1567, 1571, 1579, 1583, 1607, 1619,</span></span><br><span class="line"><span class="comment">//...29400 more items]</span></span><br></pre></td></tr></table></figure>
+
+<p>进一步地，搜索非 10 原根即非 10 进制下的走马灯数时，除了 n 质数这一条件不变之外，其它也有一些应用定理可以优化的点：</p>
+<ol>
+<li>若 $g$ 的阶为 $\phi(n)$，则 $g^k$ 的阶为 $\frac{\phi(n)}{gcd(k,\phi(n))}$</li>
+<li>当且仅当 $gcd(k,\phi(n)) &#x3D; 1$ 时，$g^k$ 的阶仍为 $\phi(n)$</li>
+</ol>
+<p>故，假设 $g$ 是模 n 的一个原根，则所有其它原根可表示为 $g^k\ mod\ n$，其中 $gcd(k,\phi(n))&#x3D;1$</p>
+<p>所以算法上，应当从 $g&#x3D;2$ 开始搜索第一个原根，先与 n 做互素判定，再应用上文的 isCarousel() 函数。找到 $g$ 后，再寻找 $k$ 令 $gcd(k,\phi(n))&#x3D;1$，则其它原根即为 $g^k\ mod\ n$。gcd() 函数的计算比 modExp() 函数更高效。</p>
+<ul>
+<li>以 n &#x3D; 7 为例，$\phi(7) &#x3D; 6$，</li>
+<li>搜索到第一个 $g&#x3D;3$，$3^6 \equiv 1\ mod\ 7$，且验证了 $3^2 \not\equiv 1\ mod 7$ 和 $3^3 \not\equiv 1\ mod 7$，所以 3 是原根。</li>
+<li>搜索 $k$ 使 $gcd(k,6)&#x3D;1$，且 $1&lt;k&lt;6$，有唯一解 $k&#x3D;5$，计算 $3^{k&#x3D;5}\ mod\ 7$，<code>madExp(3,5,7) == 5</code>，即 5 为第二个原根。注意 $g_2&#x3D;5$ 与 $k&#x3D;5$ 是两个独立的计算过程，虽然值一样。</li>
+<li>对于其它进制，例如 7 应当在 10 进制下也是 6 位循环，是因为 $10\ mod\ 7 \equiv 3\ mod\ 7$。若要在程序的输出结果上体现出来更大的进制，只需要输出前加个循环即可。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码略</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AA%E7%8E%AF%E8%8A%82/" rel="tag"># 循环节</a>
+              <a href="/tags/1-n/" rel="tag"># 1/n</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/age-s-dress-rehearsal/" rel="prev" title="虚岁是长大提前一年的预演">
+                  <i class="fa fa-angle-left"></i> 虚岁是长大提前一年的预演
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/calcaulate-the-pi/" rel="next" title="圆周率：从割圆法到级数展开">
+                  圆周率：从割圆法到级数展开 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

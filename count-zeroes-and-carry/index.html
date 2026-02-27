@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="最近 AlphaGo 与李世石的人机围棋大赛很火，也蹦出一大波跳梁小丑。你会发现什么热点事件都少不了这种人，总是挡在路上污人视线，比如那个输入法王。我记得上次 SoloLens 它也跳出来大谈 Matrix 来着。 牢骚完毕，这次深夜短篇不是写围棋也不是写计算机的，只说数数，更严格的说，只是数『0』。比如：  围棋棋盘共有 19×19 个点，每个点有『无子』、『黑子』、『白子』三种可能性。不考虑无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="……数零与进位">
+<meta property="og:url" content="https://www.kaikai.men/count-zeroes-and-carry/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="最近 AlphaGo 与李世石的人机围棋大赛很火，也蹦出一大波跳梁小丑。你会发现什么热点事件都少不了这种人，总是挡在路上污人视线，比如那个输入法王。我记得上次 SoloLens 它也跳出来大谈 Matrix 来着。 牢骚完毕，这次深夜短篇不是写围棋也不是写计算机的，只说数数，更严格的说，只是数『0』。比如：  围棋棋盘共有 19×19 个点，每个点有『无子』、『黑子』、『白子』三种可能性。不考虑无">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-14T20:39:51.000Z">
+<meta property="article:modified_time" content="2026-02-27T05:37:02.138Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="乘法">
+<meta property="article:tag" content="尾 0">
+<meta property="article:tag" content="质因数">
+<meta property="article:tag" content="进制">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/count-zeroes-and-carry/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/count-zeroes-and-carry/","path":"/count-zeroes-and-carry/","title":"……数零与进位"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>……数零与进位 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">129</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">405</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">405</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/count-zeroes-and-carry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="……数零与进位 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ……数零与进位
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-03-14 20:39:51" itemprop="dateCreated datePublished" datetime="2016-03-14T20:39:51Z">2016-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近 AlphaGo 与李世石的人机围棋大赛很火，也蹦出一大波跳梁小丑。你会发现什么热点事件都少不了这种人，总是挡在路上污人视线，比如那个输入法王。我记得上次 SoloLens 它也跳出来大谈 Matrix 来着。</p>
+<p>牢骚完毕，这次深夜短篇不是写围棋也不是写计算机的，只说数数，更严格的说，只是数『0』。比如：</p>
+<blockquote>
+<p>围棋棋盘共有 19×19 个点，每个点有『无子』、『黑子』、『白子』三种可能性。不考虑无气提子等特殊情况，则一共有 3^361 种盘面。如果考虑到下子进程，则有 361! 种棋谱。</p>
+</blockquote>
+<p>因为有围棋规则在，实际数字会小一些，但这不是本文重点。这两个数字分别是一个 173 位数和一个 769 位数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3^361=17408965065903192790718823807056436794660272495026354119482811870680105167618464984116279288988714938612096988816320780613754987181355093129514803369660572893075468180597603</span><br><span class="line"></span><br><span class="line">361!=1437923258884890654832362511499863354754907538644755876127282765299227795534389618856841908003141196071413794434890585968383968233304321607713808837056557879669192486182709780035899021100579450107333050792627771722750412268086775281368850575265418120435021506234663026434426736326270927646433025577722695595343233942204301825548143785112222186834487969871267194205609533306413935710635197200721473378733826980308535104317420365367377988721756551345004129106165050615449626558110282424142840662705458556231015637528928999248573883166476871652120015362189137337137682618614562954409007743375894907714439917299937133680728459000034496420337066440853337001284286412654394495050773954560000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+<p>呼应本文标题的问题来了——<strong>这两个数字末尾各有多少个『0』？</strong></p>
+<p>你当然可以靠眼力劲儿去数，前者容易看出末尾没有 0，后者大概费些功夫能数出有 88 个 0。当然你也可以使用查找替换，数起来方便些。</p>
+<p>但是如果没有事先把总数算出来，又如何数出一个数的末尾有多少个 0 呢？毕竟连乘 300 多次算个 700 多位的数字恐怕是更累的一件事情。能少算就少算点吧。</p>
+<p>办法是有的，数质因素 5 就可以了。</p>
+<p>要注意到，无论多少个数连乘，只有 2×5 才会在末尾添加一个 0。有人说 8×5 也会出 0，4×25 会出两个 0。但 8×5&#x3D;40&#x3D;2<sup>2</sup>x2x5，有两个 2 其实浪费掉了。而 4×25 &#x3D; (2×5)<sup>2</sup>，本质上正好是两对 2×5 相乘，完全符合之前的设定。又因为在阶乘中，2 作为质因数的出现次数远远超过质因数 5 出的次数。每个偶数都能至少贡献一个质因素 2，而每个 5 个数字才能贡献一或若干个质因数 5。因此可得结论：</p>
+<p>只要数清连乘中一共有多少个质因数 5，就知道最终数字末尾有多少个 0 了。</p>
+<p>对于 3^361，显然一个质因数 5 都没有。所以末尾没有 0。</p>
+<p>对于 361!，</p>
+<ul>
+<li>每隔 5 个数字，可以提供一个 5。即 5, 10, 15, 20, 25, 30, ……, 360。一共 361 &#x2F; 5 向下取整，有 72 个。</li>
+<li>每隔 25 个数字，可以一次提供两个 5。即 25, 50, 75, ……。一共 361 &#x2F; 25 向下取整，有 14 个。由于上一条已经重复计算一次，因此这里的 14 不必再翻倍了。</li>
+<li>每隔 125 个数字，可以一次提供三个 5。即 125, 250。一共 361 &#x2F; 125 向下取整，有 2 个。由于上一条已经重复计算一次，因此这里的 2 不必再翻倍了。</li>
+</ul>
+<p>再上去是 625，直接超了。于是数 5 活动就此停止。</p>
+<p>一共有 72+14+2&#x3D;88，而 2 的数量肯定是足够的，于是会产生 88 组 2×5，即末尾有 88 个『0』。</p>
+<p>这个方法可以广泛用于各类无聊的数 0 活动中，例如：</p>
+<blockquote>
+<p>任取一个足够大的数字 N，比如 10<sup>100</sup> 即 1 googol，把小于 N 的所有素数乘起来，那么多素数的乘积的末尾有几个 0？</p>
+</blockquote>
+<p>——答案是只有一个 0，算对了么？</p>
+<p>那么第二个问题来了，为什么数 5 知 0？</p>
+<p>答案是，这个和 10 进制有关。</p>
+<p>仔细思考，『进制』的本义就是每满多少就 <strong>归 0 进位</strong>。换句话说，如果 <strong>要让末尾为 0，就必须不多不少，最末尾那些余量恰恰等于当前进制。</strong>这个 『余量』不是严谨的用词，意会即可。在 10 进制里，你总要正好凑出 10 个或者 10 的倍数个，才能让末尾是 0。在 8 进制里就要凑 8 的倍数个让末尾是 0。16 进制凑 16，N 进制凑 N。</p>
+<p>所以归根结底，要让若干个数连乘得到末尾零，就是看能凑出几份当前进制。10 进制就是要凑 2×5，8 进制要凑 2x2x2，每三份质因数 2 会多一位尾 0，只看 2，别的都没用。</p>
+<p>既然 10 进制下，10 的唯一质因数分解就是 2×5，而 2 又远多于 5，所以数 5 知 0 就变成了最简单的办法。</p>
+<p>理解了这些，下面这些问题也不难回答了：</p>
+<blockquote>
+<p>3<sup>361</sup>在 3 进制下，末尾有几个 0？</p>
+</blockquote>
+<p>答案是 361 个 0。这个问题等效于 10 进制下 10<sup>361</sup>末尾有几个 0，等效于 N 进制下 N<sup>361</sup>末尾有几个 0。——都是361个。</p>
+<blockquote>
+<p>2<sup>1024</sup>在 16 进制下，末尾有几个 0？</p>
+</blockquote>
+<p>答案是 256 个。因为 16 &#x3D; 2<sup>4</sup>，1024 &#x2F; 4 &#x3D; 256。</p>
+<p>最后一个问题：</p>
+<blockquote>
+<p>3<sup>1024</sup>在 2 进制下，末尾有几个 0？</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B9%98%E6%B3%95/" rel="tag"># 乘法</a>
+              <a href="/tags/%E5%B0%BE-0/" rel="tag"># 尾 0</a>
+              <a href="/tags/%E8%B4%A8%E5%9B%A0%E6%95%B0/" rel="tag"># 质因数</a>
+              <a href="/tags/%E8%BF%9B%E5%88%B6/" rel="tag"># 进制</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/html5-audio-issues/" rel="prev" title="HTML5 &lt;audio&gt; 粗考">
+                  <i class="fa fa-angle-left"></i> HTML5 &lt;audio&gt; 粗考
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/excel-big-calc/" rel="next" title="Excel 计算缺陷与大数计算">
+                  Excel 计算缺陷与大数计算 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

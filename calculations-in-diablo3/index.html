@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content=".legend {color: #F76516;}     .number {color: darkorange;}     .skill{color: #118Cf3;}     .error{color: #f00;}     .build{color: green;}     .char img{display:inline-block;vertical-align:middle}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暗黑破坏神3：游戏内的数值计算">
+<meta property="og:url" content="https://www.kaikai.men/calculations-in-diablo3/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content=".legend {color: #F76516;}     .number {color: darkorange;}     .skill{color: #118Cf3;}     .error{color: #f00;}     .build{color: green;}     .char img{display:inline-block;vertical-align:middle}">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/d3weapon.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/skill-script.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/details.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/strickenlevels.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/strickenvsminions.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/taiji.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/archery.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/steadyaim60.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/archery60.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/details60.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/resist.png">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/altar.jpg">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/diablo-iii-distances-in-relation-to-our-characters-v0-3dqw5ih4he171.webp">
+<meta property="og:image" content="https://www.kaikai.men/attach/2025/05/zeishen.jpg">
+<meta property="article:published_time" content="2025-05-04T09:41:00.000Z">
+<meta property="article:modified_time" content="2026-04-19T07:01:22.926Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="暗黑破坏神3">
+<meta property="article:tag" content="数值计算">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.kaikai.men/attach/2025/05/d3weapon.png">
+
+
+<link rel="canonical" href="https://www.kaikai.men/calculations-in-diablo3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/calculations-in-diablo3/","path":"/calculations-in-diablo3/","title":"暗黑破坏神3：游戏内的数值计算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>暗黑破坏神3：游戏内的数值计算 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">128</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">411</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%A4%E5%AE%B3%E5%8A%A0%E6%88%90%E4%B8%8E%E7%8B%AC%E7%AB%8B%E8%AE%A1%E7%AE%97"><span class="nav-number">1.</span> <span class="nav-text">伤害加成与独立计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%A2%9E%E5%B9%85%E6%97%B6%E7%9A%84%E5%9F%BA%E5%BA%95"><span class="nav-number">1.1.</span> <span class="nav-text">计算增幅时的基底</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A4%E5%AE%B3%E5%88%86%E7%B1%BB%E4%B8%8E%E5%80%8D%E7%8E%87"><span class="nav-number">1.2.</span> <span class="nav-text">伤害分类与倍率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E7%9B%AE%E6%A0%87%E7%9A%84%E5%AD%98%E6%B4%BB%E6%97%B6%E9%97%B4%E6%9D%A5%E8%AE%A1%E7%AE%97%E7%9C%9F%E5%AE%9E%E5%A2%9E%E4%BC%A4"><span class="nav-number">1.3.</span> <span class="nav-text">以目标的存活时间来计算真实增伤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%97%E7%BD%9A%E8%80%85%E4%B9%8B%E7%81%BE%E7%9A%84%E5%8F%A0%E5%B1%82%E8%A7%84%E5%88%99%E4%B8%8E%E8%AE%A1%E7%AE%97"><span class="nav-number">1.4.</span> <span class="nav-text">受罚者之灾的叠层规则与计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E7%B1%BB%E7%9A%84%E7%89%B9%E6%AE%8A%E6%80%A7%E4%B8%8E%E5%8E%9F%E5%9B%A0%E8%80%83%E7%A9%B6"><span class="nav-number">1.5.</span> <span class="nav-text">A 类的特殊性与原因考究</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-%E7%B1%BB%E5%A2%9E%E4%BC%A4%E7%9A%84%E6%B5%8B%E8%AF%95%E5%88%97%E8%A1%A8"><span class="nav-number">1.6.</span> <span class="nav-text">A 类增伤的测试列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B1-A-%E6%8A%80%E8%83%BD%E5%B8%A6%E5%87%BA-B-%E6%8A%80%E8%83%BD%E6%97%B6%E7%9A%84%E5%A2%9E%E4%BC%A4%E8%AE%A1%E7%AE%97"><span class="nav-number">1.7.</span> <span class="nav-text">由 A 技能带出 B 技能时的增伤计算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%8F%E8%80%97%E3%80%81%E5%87%8F%E4%BC%A4%E3%80%81%E5%87%8F-CD"><span class="nav-number">2.</span> <span class="nav-text">减耗、减伤、减 CD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%87%8F%E8%AF%8D%E6%9D%A1%E7%9A%84%E7%8B%AC%E7%AB%8B%E8%AE%A1%E7%AE%97%E8%A7%84%E5%88%99"><span class="nav-number">2.1.</span> <span class="nav-text">三减词条的独立计算规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A4%E7%94%B2%E4%B8%8E%E6%8A%97%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">护甲与抗性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%97%E6%80%A7%E5%87%8F%E4%BC%A4%E9%87%8C%E7%9A%84-A-B"><span class="nav-number">2.3.</span> <span class="nav-text">抗性减伤里的 A% + B%</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%AA%E5%BC%8F%E7%A5%AD%E5%9D%9B"><span class="nav-number">3.</span> <span class="nav-text">仪式祭坛</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%96%9D%E8%8D%AF%E5%85%89%E5%9C%88%E4%B8%8E%E5%9B%9B%E7%A7%8D%E5%96%9D%E8%8D%AF%E5%9C%A3%E5%9D%9B%E6%95%88%E6%9E%9C"><span class="nav-number">3.1.</span> <span class="nav-text">三种喝药光圈与四种喝药圣坛效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%AA%E5%BC%8F%E7%A5%AD%E5%9D%9B%E8%AF%8D%E6%9D%A1"><span class="nav-number">3.2.</span> <span class="nav-text">仪式祭坛词条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%A0%E5%A5%87%E5%AE%9D%E7%9F%B3"><span class="nav-number">4.</span> <span class="nav-text">传奇宝石</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%BC%E7%A5%9E%E7%9A%84%E5%A4%8D%E4%BB%87%E4%B9%8B%E7%9F%B3"><span class="nav-number">4.1.</span> <span class="nav-text">贼神的复仇之石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%AA%E6%9E%81%E7%9F%B3"><span class="nav-number">4.2.</span> <span class="nav-text">太极石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%97%E7%BD%9A%E8%80%85%E4%B9%8B%E7%81%BE"><span class="nav-number">4.3.</span> <span class="nav-text">受罚者之灾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%B0%E8%80%85%E4%B9%8B%E7%81%BE-%E9%97%AA%E8%80%80%E5%86%B0%E6%99%B6"><span class="nav-number">4.4.</span> <span class="nav-text">困者之灾 &amp; 闪耀冰晶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E7%85%9E%E5%AE%9D%E7%9F%B3"><span class="nav-number">4.5.</span> <span class="nav-text">转煞宝石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AA%E7%94%B5%E5%8D%8E%E5%86%A0"><span class="nav-number">4.6.</span> <span class="nav-text">闪电华冠</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%8C%E4%B8%9A%EF%BC%9A%E7%8C%8E%E9%AD%94%E4%BA%BA"><span class="nav-number">5.</span> <span class="nav-text">职业：猎魔人</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%A4%8D%E4%BB%87%E5%85%A8%E8%A6%86%E7%9B%96"><span class="nav-number">5.1.</span> <span class="nav-text">关于复仇全覆盖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%89%AB%E5%B0%84%E6%94%BB%E9%80%9F%E6%A1%A3%E4%BD%8D"><span class="nav-number">5.2.</span> <span class="nav-text">关于扫射攻速档位</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%8C%E4%B8%9A%EF%BC%9A%E9%AD%94%E6%B3%95%E5%B8%88"><span class="nav-number">6.</span> <span class="nav-text">职业：魔法师</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%A5%A5%E9%99%A8%E8%83%BD%E8%80%97"><span class="nav-number">6.1.</span> <span class="nav-text">关于奥陨能耗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-A-%E4%BC%A4"><span class="nav-number">6.2.</span> <span class="nav-text">关于 A 伤</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">411</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/yourkaikai##gmail.com" title="Email → yourkaikai##gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/calculations-in-diablo3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="暗黑破坏神3：游戏内的数值计算 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          暗黑破坏神3：游戏内的数值计算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-04 09:41:00" itemprop="dateCreated datePublished" datetime="2025-05-04T09:41:00Z">2025-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%B8%B8%E6%88%8F%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">游戏中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><style>
+    .legend {color: #F76516;}
+    .number {color: darkorange;}
+    .skill{color: #118Cf3;}
+    .error{color: #f00;}
+    .build{color: green;}
+    .char img{display:inline-block;vertical-align:middle}
+</style>
+
+<blockquote>
+<p>这是对暗黑3游戏过程中的一些计算结果的整理，也包括之前发布于论坛上的帖子的内容整合。由于与游戏内容高度相关，本文不会解释一些游戏名词与常识，默认读者已知晓。同时，本文提及的数值计算与运作方式已经过本人测试，由他人测试后的结论或历史结论均会单独注明。</p>
+</blockquote>
+<h1 id="伤害加成与独立计算"><a href="#伤害加成与独立计算" class="headerlink" title="伤害加成与独立计算"></a>伤害加成与独立计算</h1><h2 id="计算增幅时的基底"><a href="#计算增幅时的基底" class="headerlink" title="计算增幅时的基底"></a>计算增幅时的基底</h2><p>总的来说，计算装备更替技能调整的伤害变化，总是要 <strong>新属性</strong> &#x2F; <strong>旧属性</strong> 两者比较的。因为 D3 装备众多，大多数时候你并不需要全身属性全算一遍，只直接比较受到影响的部分属性就行。下文关于增伤类的讨论就会详细讲述哪些互不影响。</p>
+<p>这时候唯一要注意的就是，当你已经有部分属性时，在同属性上再加些数值，带来的实际增长比率要比看上去小。这些 <strong>已有的属性</strong> 作为分母，缩小了装备新增&#x2F;改善带来的增伤，使实际增益不如装备上描述的那么高了。</p>
+<p>你已经有 20000 敏捷，再加 5000 只增长了 25%；<br>你已经有 50 级困者之类(+30%)，再升到 150级(+60%)，实际只增长了 30% &#x2F; (1+30%) &#x3D; 23%。<br>你已经有 30% 面板的技能伤%，再加个 50 级太级石(+40%)，实际只增长了 40% &#x2F; (1+30%) &#x3D; 31%</p>
+<p>你已经有的部分会降低新增部分带来的实际收益，我们把这些旧装备 <strong>已有的数值</strong> 称为基底值。</p>
+<p>下文我们会看到，有些属性的基底值只要考虑这件物品属性本身就行，另一些属性的基底值可能还要考虑别的装备的影响。</p>
+<h2 id="伤害分类与倍率"><a href="#伤害分类与倍率" class="headerlink" title="伤害分类与倍率"></a>伤害分类与倍率</h2><p>得益于早年的科普帖：<a target="_blank" rel="noopener" href="https://bbs.nga.cn/read.php?tid=8111152">https://bbs.nga.cn/read.php?tid=8111152</a>，『A 伤』的概念深入人心。但是这帖子里，作者只是语焉不详地提到：『除了其它伤以外都是 A 伤』，实际应用时仍有很多迷惑的地方。尽管该文明确提到了『相同类型是先相加，再和不同类型相乘』，但该文作者对分类的表述不甚严谨，分类有时用于乘法间隔，有时又用于整理性质的分组，甚至使用了大类小类这种二级分类，同时将各分类主观命名 ABCD。这些不严谨的表述可能造成理解上的歧义。</p>
+<p>考虑到习惯因素，本文有时仍会沿袭 ABCD 类这个称呼方便对应解释，但会严格厘清并定义伤害分类的区别，并尝试溯源 A 类多且杂的原因，并给出列表。</p>
+<p>从计算角度讲，我们把 “类” 作为乘法的分隔，存在多个条目以加法形式共同作于增伤的，称为一类。同类内部需要相加(additive)，不同类间需要相乘(multiplicative)。于是相比于原文，这里的分类的称呼稍有变化：</p>
+<ol>
+<li>A 类仍然以 A 伤称呼，因为其多且杂，但会给出列表及判定方法。</li>
+<li>B &#x2F; C &#x2F; D 类不再以字母称之，其有更直接明确的名字，“元素伤” &#x2F; “精英伤” &#x2F; “亡灵伤” 等等。</li>
+<li>将“伤害类别” 概念与 “同类中的条目&#x2F;词缀数量” 明确分隔为两个概念。同一类中可以有多条增伤，也可以只有一条。 如果某类里目前只有一条增伤，那就是独自成类，也就是大家一般说的独立增伤了。</li>
+<li>放弃出于整理或文学性质的分组，严格将类作为计算用词汇，同类内部相加(additive)，不同类间相乘(multiplicative)。</li>
+</ol>
+<p>玩家的每一次攻击，其伤害可以被精确计算如下：</p>
+<p>\begin{align*}<br>    攻击伤害 &#x3D; DPH &amp;\times 技能自身描述 \times (1 + 技能伤害加成 + 指定的技能加成) \times (1 + 暴击几率\times暴击增伤) \\<br>         &amp;\times  (1 + 主属性增伤 ) \times (1 + 元素属性增伤) \times (1 + 精英目标增伤) \times (1 + 亡灵目标增伤) \times \cdots \\<br>         &amp;\times (1 + 武器特效) \times (1 + 副手特效) \times (1 + 指环特效) \times (1 + 腰带特效)  \times \cdots\\<br>         &amp;\times (1 + 困者宝石特效) \times (1 + 贼神宝石特效) \times (1 + 至简宝石特效) \times \cdots\\<br>         &amp;\\<br>         &#x3D; DPH &amp;\cdot 技能描述 \cdot (1 + 技能伤 + 指定技能伤)(1 + 暴率\times暴伤)\cdot\prod(1+各类增伤)<br>\end{align*}</p>
+<p><img src="/../attach/2025/05/d3weapon.png" alt="武器截图" loading="lazy"></p>
+<p><strong>DPH：</strong> 这是一件武器，上面有很多不同的条目，每个条目都为玩家的全局属性加一些数值。其中 DPH (Damage per Hit) 是武器的一项属性，表示一次攻击造成的伤害。在图中 <span class="number">2036-2364</span> 确定了武器的 DPH，虽然存在上下限，但通常来说计算伤害时使用其平均值即中间值 <span class="number">$\frac{2364+2036}{2} &#x3D; 2200$</span> 即可。</p>
+<p>注意不要看大白字，那是『每秒伤害』，是综合了每次攻击造成的伤害，和每秒攻击次数得到的数值，但攻击频率和要计算的每次伤害无关。它会影响到最终的总输出，但不会影响到每次伤害的计算。</p>
+<p><strong>技能自身描述：</strong></p>
+<p><img src="/../attach/2025/05/skill-script.png" alt="技能截图" loading="lazy"></p>
+<p>每次陨石会造成 <span class='warn'>740%</span> 的伤害，并且在3秒内额外造成 <span class="number">235%</span> 的伤害。也就是 <span class="number">$2200 * 740\% + 2200 * 235\%$</span>。</p>
+<p><strong>1 + 技能伤害加成 + 指定的技能加成</strong></p>
+<p><img src="/../attach/2025/05/details.png" alt="人物数据面板" loading="lazy"></p>
+<p>在人物的详细信息数据面板里，我们可以看到第二行『技能伤害加成』<span class="number">20%</span>，最后一行『陨石术伤害加成』<span class="number">52%</span>。这两个数字是需要合并计算的，也就是说，如果你放的是陨石术，那么会在这两条一共享受到 72% 的增伤，如果你放的是其它技能，则只享受 20% 的增伤。</p>
+<p>这也是旧科普所说的 『A 伤』。所有你选择的技能、装备、被动天赋，如果其增伤体现在这个人物面板的这两个条目内，就属于 A 伤。其伤害增加值需要合并到一个整体中，增量比例并没有条目描述的那么高。比如魔法师主动技能 <span class="skill">魔法武器</span>、<span class="skill">魔星-烈焰火花</span>，被动技能 <span class="skill">玻璃大炮</span>、<span class="skill">坚定意志</span>，猎魔人的<span class="skill">箭术高超（弓）</span>，传奇宝石的<span class="skill">太极石</span>增伤，都是 A 伤。某些效果并不会展示在面板中，而是对怪物产生影响的，也是 A 伤，比如魔法师被动技能 <span class="skill">冷血</span>。对于后者属于哪一类，需要具体测试才能确认。</p>
+<p><strong>1 + 暴击几率✕暴击增伤</strong></p>
+<p>详细信息面板中的六七两行数据，<span class="number">61.5%</span> 和 <span class="number">+423%</span>。因为存在『不暴击』的情况，其实际公式是：</p>
+<p>\begin{align*}<br>    伤害加成 &amp;&#x3D; 暴击率 * 暴击伤害 + 不暴击 * 不暴击伤害 \\<br>            &amp;&#x3D; CR \times (1+CE) + (1-CR) \times 1 \\<br>            &amp;&#x3D; 1 + CR \times CE<br>\end{align*}</p>
+<blockquote>
+<p>注意整个暗黑3里，所有的增伤描述都是以『额外增加 xx%』展示的，当增伤项值为 0 时，表示其没有额外增伤效果，而不是让整个乘法链条归 0。</p>
+</blockquote>
+<p><strong>1 + 主属性增伤</strong></p>
+<p>详细信息面板的第一行数据『智力伤害加成』<span class="number">33909%</span>，增加了 339 倍伤害。不同人物的主属性不一，非主属性不带来增伤效果。</p>
+<p><strong>1+其它增伤</strong></p>
+<p>详细信息面板已经列举了精英伤和元素伤，它们内部都是相加(additive)的，也就是说，像技能增伤一样，有多个位置都提供了元素伤害，会被一并加和到这个条目中，然后再以乘法和其它条目相乘(multiplicative)进行最终增伤的计算。</p>
+<p>传奇宝石（太极石除外）、单件装备增伤等都不在面板中显示，主要因为只有多条相加(additive)的数据，才需要额外显示方便一并展示，而只有单条相乘(multiplicative)的数据，不需要额外显示，也没有那么多空展示。</p>
+<h2 id="以目标的存活时间来计算真实增伤"><a href="#以目标的存活时间来计算真实增伤" class="headerlink" title="以目标的存活时间来计算真实增伤"></a>以目标的存活时间来计算真实增伤</h2><p>乘数性增伤和加法增伤计算很直观，基数是什么，多少百分比。但其实这都是表像，归根结底，更高的伤害都是为了更快地干掉怪物冲更高的层，因此增伤的真实计算方式其实是：</p>
+<p>$$增伤倍率 &#x3D; 怪物原存活时间 &#x2F; 怪物新存活时间 - 1$$</p>
+<p>比如原本怪能活 300 秒(5 分钟)，现在怪只能活 60 秒，那你的实际火力无疑是原来的五倍，也就是增伤了 400%。</p>
+<p>对于全额百分比增伤的伤害，增伤比例和怪存活时间的缩短是一致的，因此直接讨论增伤即可。但有些场景下则不能直接算，比如 <span class="skill">伏击</span>、<span class="skill">脆弱</span> 等与敌方血量或其它非全程状态相关的增益。</p>
+<p><strong><span class="skill">伏击</span>：</strong> 原本怪有 $1000$ 血你每秒攻击 $10$ 血，怪能扛 $100$ 秒。伏击提供了前 $250$ 血时每次攻击 $14$ 滴，后 $750$ 血不变，则怪能存活 $250&#x2F;14+750&#x2F;10 &#x3D; 92.857$ 秒。因此伏击的真实增伤为 $100&#x2F;92.857-1 &#x3D; 7.69\%$</p>
+<p><strong>有<span class="legend">死者遗物</span>箭袋时的<span class="skill">伏击</span>：</strong> 原本怪有 $1000$ 血你每秒攻击 $10$ 血，遗物箭袋下怪能存活 $400&#x2F;10+600&#x2F;20&#x3D;70$ 秒。伏击提供了前 $250$ 血 $40%$ 增伤，则怪的存活时间为 $250&#x2F;14+150&#x2F;10+600&#x2F;20&#x3D;62.857$ 秒。伏击的真实增伤为 $70&#x2F;62.857 &#x3D; 11.36%$。多重套配伏击就是这么来的。</p>
+<p><strong><span class="skill">脆弱</span>：</strong> 直接杀死血量低于 85% 的敌人。原本活 $100$ 秒的敌人现在活 $85$ 秒，等效增伤是 $100&#x2F;85-1 &#x3D; 17.647\%$。如果有受罚者，则这个技能的等效增伤会减少，具体计算放在后面。</p>
+<p><strong><span class="skill">受罚者之灾</span>：</strong> 受罚者之灾的存活时长的缩短和存活时间&#x2F;攻击次数以及多怪分担数量相关，攻击又分为像多重这种每下均匀的，和刀扇这种极端的。考虑到大部分配装都是不断重复主力伤害技能，因此我根据前一种大概跑了一下随机过程模拟，结论如下图：</p>
+<p><img src="/../attach/2025/05/strickenlevels.jpg" alt="受罚者之灾" loading="lazy"><br><img src="/../attach/2025/05/strickenvsminions.jpg" alt="受罚者之灾" loading="lazy"></p>
+<p>在数值模拟中我设定了极端的上限 1000 次攻击，通常来说一趟大秘境大约需要花费 4-5 分钟左右击杀 boss。以每秒 1.5 次攻击的频率，总共需要进行 350-450 次攻击，则受罚者加成大约在 180% 左右。</p>
+<p><strong>有<span class="legend">受罚者之灾</span>时的<span class="skill">脆弱</span>：</strong> </p>
+<p>由于受罚者之灾是逐渐增伤的，因此原本 <span class="skill">脆弱</span> 等效的最后 15% 处于高受罚叠层的状态，本身的存活时间并不占全部存活时间的 15%。具体计算如下：</p>
+<p>在有受罚者之灾（以 150 级石头每次增伤 2.3% 为例）的情况下，总共 n 次攻击的总伤害为 $\frac{1 + 1 + (n-1)2.3\%}{2}\cdot n$，而需要完成其 85% 伤害的 $n&#39;$ 次攻击的总伤害为 $\frac{1 + 1 + (n&#39;-1)2.3\%}{2}\cdot n&#39;$。即求解：</p>
+<p>$$n&#39;^2+\frac{1977}{23}n&#39; &#x3D; 0.85\cdot(n^2+\frac{1977}{23}n)$$</p>
+<p>而要求的是 $k&#x3D;n&#x2F;n&#39;$ 沿 n 的变化，这个式子虽然具体数值唬人，但无论是具体 n 对应的 k ，或者 k 的极限，都不算困难。在前文所述的 350-450 次攻击时，<span class="skill">脆弱</span> 的等效增伤约为 9% ~ 9.5%，而极限则可以直接消去一次项，得</p>
+<p>$$\lim_{n&#39;,n \to +\infty} k &#x3D;\frac{1}{\sqrt{0.85}}\approx 1.08465$$</p>
+<p>即，在有受罚者之灾的情况下，<span class="skill">脆弱</span> 的等效增伤不低于 8.465%，不高于 15%，通常在 9% 多一些。</p>
+<p><strong>有<span class="legend">受罚者之灾</span>时的<span class="skill">伏击</span>：</strong> </p>
+<p>我原以为和 <span class="legend">死者遗物</span> 类似，<span class="legend">受罚者之灾</span> 缩短了后半程的存活时间，会变相提升 <span class="skill">伏击</span> 的价值。计算方法完全类似，原本 n 次攻击的总伤害为 D，现在前 25% 血量需要 a 次攻击，，后 75% 血量需要 b 次攻击，则：</p>
+<p>\begin{equation*}<br>    \begin{cases}<br>        D &#x3D; \frac{1 + 1 + (n-1)2.3\%}{2}\cdot n \\<br>        D \cdot 25\%&#x3D; 1.4\cdot\frac{1 + 1 + (a-1)2.3\%}{2}\cdot a \\<br>        D \cdot 75\%&#x3D; \frac{1 +a\cdot2.3\%+ 1 + (a+b-1)2.3\%}{2}\cdot b \\<br>        E &#x3D; \frac{n}{a+b}-1<br>    \end{cases}<br>\end{equation*}</p>
+<p>但当实际计算时，才发现 $\lim_{n \to +\infty} E \approx 1.03775$，在通常的 350-450 次左右也只有 4%，甚至比原本的更差了。细究原因，主要是因为受罚者本身的伤害严重依赖于叠层，因此虽然 <span class="skill">伏击</span> 形式上是额外削减了前期 10% 的怪物生命，但相当于把整个叠层进度整体往后挪了，真正削减的实质上是最后 10% 血量对应的最高受罚叠层攻击时间，因此其最终折算增伤甚至不如平稳伤害的 7.69%。</p>
+<p>当然，大密境有 2&#x2F;3 以上的时间是在清理小怪。对小怪而言受罚的效果几乎没有，此时伏击仍然发挥了原有的作用，要根据自己实际的冲层情况选择。</p>
+<h2 id="受罚者之灾的叠层规则与计算"><a href="#受罚者之灾的叠层规则与计算" class="headerlink" title="受罚者之灾的叠层规则与计算"></a>受罚者之灾的叠层规则与计算</h2><p>150 级宝石提供每次攻击 2.30% 的伤害叠加。这个伤害是加法叠加的，也就是第一次攻击 100% 伤害的话，第二次就是 102.3%，然后是 104.6% 106.9% 109.2% 111.5%……。</p>
+<p>但是，每次攻击后有 CD，CD 期间再有其它攻击不再叠层 ，典型比如猎魔人 <span class="skill">扫射</span>。扫射一次技能施放有三次实际攻击，也就是伤害为 100% 一次, 102.3% 3次, 104.6% 3次，类推。</p>
+<p>内置 CD 具体时间为 0.9&#x2F;面板攻速，确保大多数技能每一次释放都能叠一层(不妨仔细想想)。某次改版后对 <span class="legend">杨的反曲弓</span>这类特定技能加速也有效，杨弓多重受罚的内置 CD &#x3D; 0.9&#x2F;面板攻速&#x2F;2，确保杨弓每次攻击也都能叠一层。</p>
+<p>内置 CD 具体多长，与有效叠层的那次攻击的攻速有关。而实际叠层还与子弹飞行速度有关，怪的距离够远，杨弓多重后的闪避射击有可能不叠加。扫射带出来的技能必然不叠加。火多重的导弹不叠加。但如果多重空了，则导弹叠加。</p>
+<p>有玩家曾分析称，巫医的火墙之类高频小额伤害的，可以偷一些额外的叠层出来。比如你一个技能本来是1秒释放一次，虽然内置 CD 是 0.9秒，但你下一次放技能还是得 1 秒以后，实际只能一秒叠一层。但如果你这个技能是 1 秒放一次，实际伤害是分 10 次计算每次 0.1 秒。那么在过了 0.9 秒以后，你第一发技能的第 10 次结算就能叠层，第二发技能的第8次计算能叠层，依此类推，你的 10 发技能就可以叠出 11 层。类似的情况还有魔法师塔拉夏陨石：陨石术有伤害，砸地后续有地面伤害，又有风暴护甲电人，又有魔星补输出，各种伤害高频地打向boss，其叠层也比正常的攻速快一些。</p>
+<p>一个可以击中多个怪的技能，例如多重，也只会对其中的一个怪叠一层(默认为第一个击中的怪)，其它怪仍然有伤害但不叠受罚。对于箭雨这类一个技能有多次独立范围伤害的，多波伤害也和巫医一样，需要在 0.9 倍攻击时间后的下一波才能再叠一层。</p>
+<p>简单来说：在可触发叠层时，为第一个受到伤害的敌人叠加一层，然后就进入 CD 期。直到 CD 期结束进入下一次叠层计算，CD 时长为攻击间隔的 0.9 倍。</p>
+<h2 id="A-类的特殊性与原因考究"><a href="#A-类的特殊性与原因考究" class="headerlink" title="A 类的特殊性与原因考究"></a>A 类的特殊性与原因考究</h2><p>先看图：139 级太极石，面板直接增加 <span class="number">75.6%</span> 技能伤害，是 A 类。</p>
+<p><img src="/../attach/2025/05/taiji.png" alt="太极增伤" loading="lazy"></p>
+<p><span class="skill">箭术高超(弓)</span>，面板增加 8% 技能伤，是 A 类。</p>
+<p><img src="/../attach/2025/05/archery.png" alt="箭术高超(弓)" loading="lazy"></p>
+<p>无独有偶……有仨……有n……魔法法爷的多个技能和被动，巫医的穿透迷障等被动也是 A 类。</p>
+<p><span class="skill">稳固瞄准</span>(猎魔人被动)，不在面板展示，独立增伤。<span class="skill">伏击</span>((猎魔人被动)，不在面板展示，独立增伤。两者也相互独立。</p>
+<p>同样是被动，差在哪里？</p>
+<p>在纷繁的内容中我最终还是找到了线索：伏击是 64 级被动。</p>
+<p>我们知道，暗黑 3 原版并不算成功，而其资料片夺魂之镰则带来了大密境、天梯、橙装特效等一系列改进，指明了奈非天的飞升之路。大密境指数性的难度增长，也要求玩家伤害也有对应的指数增长，于是带来了大量新的增伤类目，且确定了增伤类目间的乘法运算规则。</p>
+<p>那么原版的伤害加成呢？如你所料，都是加法。原版的计算逻辑就是把所有的增伤，都视为对全部技能的增伤，直接加到面板上。词缀提供的特定技能增伤，也单独加在面板的技能伤害上，而这两条之间，又仍是以加法叠加。</p>
+<p>所以 64 级新增的伏击，作为全新的增伤被动以独立类目的形式加入了游戏，而箭术高超则仍是原版的加法逻辑，至今未作修改。</p>
+<p>那么稳固瞄准，尽管是 16 级解锁被动，按上述推测应该也是夺魂之镰才加入的新被动。</p>
+<p>为了验证这个观点，我查到原版暗黑3于2012年5月15发行，夺魂之镰于2014年3月25日发布。但确实稳固瞄准被动在2012年就有讨论帖了，并非 70 级添加的。猜想错了么？</p>
+<p>经过一番搜索，我找到了这个视频(已从油管转载到 B 站)：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qFVyzMEpf/?t=630">https://www.bilibili.com/video/BV1qFVyzMEpf/?t=630</a></p>
+<p><img src="/../attach/2025/05/steadyaim60.png" alt="steadyaim60" loading="lazy"><br><img src="/../attach/2025/05/archery60.png" alt="archery60" loading="lazy"><br><img src="/../attach/2025/05/details60.png" alt="details60" loading="lazy"></p>
+<p>视频中非常明确地显示了，在原版 60 级的暗黑 3 中，稳固瞄准是 20% 以加法添加到所有技能伤害栏，而箭术高超则以加法 15% 添加，两者共同提升了 35% 的所有技能伤害。</p>
+<p>猜想成立。</p>
+<p>到 70 级后，稳固瞄准改为了独立增伤，箭术高超则不但没改独立增伤，还将数值从 15% 下调到了 8%，我猜这可能一半是有意为之，一半是忘了改。具体见下文A伤测试。</p>
+<p>由于时间古老搜索不便，只做了稳固瞄准、力士护腕等少数的搜索验证，但可以断言暗黑3原版的增伤全是加法，暴击暴伤是唯一的乘法类目。“不同类别增伤相乘” 是从夺魂之镰资料片，随着大秘境的添加而添加的新计算逻辑。由于要新旧兼容，因此有大量的算法和文本要逐步修改，导致了一些虽然文字描述都是“所有伤害增加”，但实际效果却不一致的情况。</p>
+<p>结论：<span class="number">A 伤多且繁杂，绝大多数都是原版暗黑3遗留问题，并且在版本更新中也在不断改少，但个别是有意为之</span>，比如太极石和力士护腕。</p>
+<h2 id="A-类增伤的测试列表"><a href="#A-类增伤的测试列表" class="headerlink" title="A 类增伤的测试列表"></a>A 类增伤的测试列表</h2><p>其它直接体现在面板上技能伤和具体技能伤的装备就不测了，只提几个有说法的。</p>
+<p><strong><span class="skill">稳固瞄准</span>：</strong> 这个被动为弓&#x2F;双手弩&#x2F;双持单手弩提供了三种不同加成。其中，双手弩 +50% 暴伤在人物有 62% 暴率 460% 暴伤的情况下，可以提供 8.1% 的增益。</p>
+<p>如果人物双持单手弩，有双武器绿宝石提供暴伤的情况下，人物满暴击暴伤属性大约在 45% 550% 或更多，此时该被动 6% 的暴击能提供 9.5% 的增伤。同时还有回憎效果，以抵消武器词条不如箭袋多的劣势。</p>
+<p>人物若带弓与箭袋，则这个被动为 A 伤，在三条技能增伤的情况下，只能提供 $8\% &#x2F; 145\% &#x3D; 5.52\%$ 的增伤，且不说还有太极等其它 A 伤增高基底，使其增益更少。</p>
+<p>考虑到从 60 级到 70 级时，暴雪特意将该被动的弓增伤从 15% 下调到 8%，因此可以大胆推测，这个被动的 A 伤是暴雪忘了改类目，它应当也被改为独立增伤，这样三种不同的武器才有大致相当的收益。</p>
+<p>另一个证据是，<span class="skill">伏击</span> 被动在无遗物箭袋的情况下，其收益也就是 $1-1&#x2F;(0.25&#x2F;1.4+0.75)&#x3D;7.69\%$ 的收益。按暴雪一贯以来 “根据情况有不同选择” 的设计思路来看，稳固瞄准的弓类没理由不是独立增伤。</p>
+<p>所以双枪机轮冰吞流其实是可以考虑一下这个稳固瞄准被动的。</p>
+<p><strong><span class="legend">太极石</span>：</strong> 现有配装下对 DH 而言，其实除了三条技能词缀以外一般没有 A 伤了。150 级太极石能提供的增益是 80&#x2F;145 &#x3D; 55.17%。</p>
+<p>相比之下，150 级困者是 60%，贼神是 16-80%。但是如果你技能伤小于 33.33%(比如箭袋没出+15技能伤)，那同等级太极是高于困者的，况且太极还有减伤。因此这是暴雪有意为之。</p>
+<p><strong><span class="number">力士护腕</span>：</strong> 其特效是对目标的一个持续 6 秒的减益效果，但属于 A 伤。因为是加在目标身上的减益效果，会对小队所有人生效，且多人的减益效果以加法叠加。这与一般的减益效果只取最高效果的不同。</p>
+<p>如果玩家 1 对该怪施放了特效，那么所有人对怪的伤害都增加 30&#x2F;145(假如所有人都有三条技能伤词缀)，如果四名玩家同时对该怪释放特效，则增伤 120&#x2F;145。由于一人释放多人共享多人释放叠加共享的特性，它也只能分类到 A 伤，否则如果是乘法在多人游戏中就过于强大了(假设是乘法则增伤 1.3^4-1&#x3D;185%)。因此这是暴雪有意为之。</p>
+<p><strong><span class="number">深渊挖掘裤</span> 与 <span class="number">杨先生的妖法裤</span>：</strong></p>
+<p>前者是独立增伤，后者是 A 伤，但我找不到什么原因。我猜暴雪可能是认为妖法裤特效主要在于能量生成方面。在某些下能量生成多 25% 能否意味着伤害也能增加 25%？另一方面可能原因是，即使是 70 级引入了大量的乘法因子，但最初的数字也没有目前这样多次改版闭眼按 0 那么夸张，也没有<span class="build">克里森船长</span>等铁匠套装填充六件套外的位置，妖法裤作为过渡装或者特定玩法是有一席之地的，哪怕其增伤属于 A 类。</p>
+<p><strong><span class="skill">某些职业被动<span>：</strong> 如上所述，大多是 60 级遗留问题，且会在面板的全部技能伤位置显示，因此不再具体列举。</p>
+<h2 id="由-A-技能带出-B-技能时的增伤计算"><a href="#由-A-技能带出-B-技能时的增伤计算" class="headerlink" title="由 A 技能带出 B 技能时的增伤计算"></a>由 A 技能带出 B 技能时的增伤计算</h2><p><span class="build">跑马天拳</span>、<span class="build">恐惧冰吞</span>或者<span class="build">圣化扫射</span>等构筑玩法中，反复释放的是 A 技能，但实际对敌人发动有效攻击的是 B 技能。这种情况下，你对 A 技能的增伤通常无法作用于 B 技能，你需要针对 B 技能配置增伤词条。典型误区之一是为<span class="build">恐惧冰吞</span>添加<span class="skill">扫射</span>技能的增伤词条。但另一方面要注意的是，如果为 A 技能添加词条有助于更高效地触发 B 技能，那么该词条仍然是有价值的，例如在冲高层时为<span class="build">恐惧冰吞</span>搭配<span class="legend">维拉的遗赠</span>。</p>
+<h1 id="减耗、减伤、减-CD"><a href="#减耗、减伤、减-CD" class="headerlink" title="减耗、减伤、减 CD"></a>减耗、减伤、减 CD</h1><h2 id="三减词条的独立计算规则"><a href="#三减词条的独立计算规则" class="headerlink" title="三减词条的独立计算规则"></a>三减词条的独立计算规则</h2><p>和伤害计算不一样，几乎所有的三减词条都是独立计算的。你的装备上有两条 +15% 技能伤词条，该技能的增伤是两个词条之和也就是 +30%。但如果你有两个减 8% CD 词条，你的总减 CD 并不是 16%，而是 $100\%-92\%\cdot92\%&#x3D;15.36\%$。这个原因也很简单，你总不能凑两条 50% 减伤词条，就能拼出一个无敌效果吧。</p>
+<p>$$总减量 &#x3D;100\% - (1-三减词条1)\cdot(1-三减词条2)\cdot(1-三减词条3)\cdots$$</p>
+<p>但其实，虽然三减词条的数值计算看起来相对复杂一些，但实际在装备选择上反而更简单，你完全不必考虑其它装备词条，不必考虑基底值。只要这个词条上写的减 10%，那它就是在你现有承受伤害的基础上减 10%，也就是增加了 11.11% 的生存时间。</p>
+<p>另外，在详细信息面板上，你也可以看到已经计算完成的三减词条的最终计算结果，例如 CDR、减耗等，也不需要你真的逐一相乘。</p>
+<h2 id="护甲与抗性"><a href="#护甲与抗性" class="headerlink" title="护甲与抗性"></a>护甲与抗性</h2><p>两者独立地为人物提供减伤效果，其计算公式分别为：</p>
+<p>$$护甲减伤 &#x3D; 1-\frac{50 \times 敌人等级}{50 \times 敌人等级+护甲值}$$</p>
+<p>$$对应属性抗性减伤 &#x3D; 1-\frac{5 \times 敌人等级}{5 \times 敌人等级+对应属性抗性值}$$</p>
+<ul>
+<li>通常来说，敌人是 70 级的。</li>
+<li>护甲数值起到的效果正好是抗性的 10 倍。</li>
+<li>这两者是完全独立的，也就是说，敌人对你的一次物理攻击，会被护甲减伤计算一次，然后会被物理抗性减伤再计算一次，如果还有其它减伤效果，再另行计算一次。</li>
+<li><span class="number">一次法术攻击，同样会被护甲减伤计算一次</span>，然后被对应属性的抗性减伤计算一次，如果还有其它减伤效果，再另行计算一次。</li>
+<li>要注意的是，『护甲和抗性提供了减伤』并不是『护甲和抗性就是减伤词条』，这两属性是先通过加法计算出一个总和值，再通过公式为人物计算一个减伤比例。这与三减词条逻辑不一样。</li>
+<li>你可以通过智力主属性获得抗性，也可以直接通过抗性宝石、装备属性获得抗性值，护甲值也一样。同时还有其它一些对应的增加百分比的词条或效果。</li>
+<li>对不同的职业，其计算公式是一样的，智力职业在护甲值上获得的减伤幅度和力敏职业完全相同，反之亦然，力敏职业在抗性上和智力职业也相同。</li>
+</ul>
+<p>另外，在人物面板上也可以看到，每点力量敏捷主属性都会为人物提供 1 点护甲，每点智力主属性会为人物提供 0.1 点抗性。结合上述公式，可知每点主属性给到对应人物的减伤效果是完全一致的。</p>
+<h2 id="抗性减伤里的-A-B"><a href="#抗性减伤里的-A-B" class="headerlink" title="抗性减伤里的 A% + B%"></a>抗性减伤里的 A% + B%</h2><p><img src="/../attach/2025/05/resist.png" alt="抗性双减" loading="lazy"></p>
+<p>有时我们会在抗性属性的鼠标提示里看到有如图所示的 A% + B% 两个减伤值。这个提示中间的 <strong><span class="legend">+</span></strong> 并不是把前后两个值加起来的意思（否则通常都会超过 100%）。而是说，这里有两条独立的减伤词条，前者 <span class="number">74.82%</span> 是物理抗性对应的减伤，后者 <span class="number">61.08%</span> 通常是 <span class="build">奥吉德</span>、<span class="build">克里林船长</span> 等套装提供的减伤。如果同时装备了两者，这里的减伤也已经是两者效果叠加计算后的值了。</p>
+<h1 id="仪式祭坛"><a href="#仪式祭坛" class="headerlink" title="仪式祭坛"></a>仪式祭坛</h1><p>一张网图：<br><img src="/../attach/2025/05/altar.jpg" alt="仪式祭坛" loading="lazy"></p>
+<h2 id="三种喝药光圈与四种喝药圣坛效果"><a href="#三种喝药光圈与四种喝药圣坛效果" class="headerlink" title="三种喝药光圈与四种喝药圣坛效果"></a>三种喝药光圈与四种喝药圣坛效果</h2><p><strong><span style="color:deeppink">洋红色增伤光圈</span>：</strong> 独立增伤 50%，持续 7 秒。增伤不如<span class="legend">神目指环</span>(<span class="number">70%-85%</span>)，所以只有神目环位置不好，或者 boss 战无神目期间比较合适站红圈，但也存在神目与红环重叠的可能，此时能站就站，高达 <span class="number">277.5%</span> 倍伤害。</p>
+<p><strong><span style="color:limegreen">草绿色降耗光圈</span>：</strong> 降耗 50%，持续 7 秒。适合&lt;span class&#x3D;&quot;build&gt;火多重</span>、&lt;span class&#x3D;&quot;build&gt;塔陨</span>等对能耗要求高的构建。</p>
+<p><strong><span style="color:skyblue">天蓝色减 CD 光圈</span>：</strong> 持续 7 秒。与普通 CDR 词缀不同，这个光环的运作方式是固定每 0.5 秒后减 1 秒所有技能 CD。 虽然长 CD 下基本等效于 -66% 的 CD 时间，但实际上会略小一些。例如对于一个 10 秒技能，在 6 个 0.5 秒后减去 9 秒 CD，再过 0.5 秒，理论上能再减1秒，实际也只有 0.5 秒可减。所以在光圈内需要 3.5 秒才能走完 CD。</p>
+<p>光圈半径10码，并不一定刷在脚下，会在离人物 10-30 码的位置随机刷，甚至有可能刷在墙里面，但一定有边缘在墙内可供站立。</p>
+<p>光圈的出现机率未实际测试，预期应为 1 : 1 : 1。</p>
+<p>喝药只会出四种圣坛效果：飞驰 <span class="number">+25%</span> 移速，狂暴 <span class="number">+25%</span> 攻速，祝福 <span class="number">+25%</span> 减伤，启迪 <span class="number">+25%</span> 经验，但喝不出来强能圣坛与强盗圣坛的效果。四种情况出现机率预期应该是相同的，未实际测试。</p>
+<h2 id="仪式祭坛词条"><a href="#仪式祭坛词条" class="headerlink" title="仪式祭坛词条"></a>仪式祭坛词条</h2><p>仪式祭坛提供的各类效果词条和人物装备、巅峰等提供的效果都是一致的，伤害同样遵循同类相加异类相乘的规则，祭坛词条通常也会合并在人物面板详细信息一并显示。</p>
+<h1 id="传奇宝石"><a href="#传奇宝石" class="headerlink" title="传奇宝石"></a>传奇宝石</h1><h2 id="贼神的复仇之石"><a href="#贼神的复仇之石" class="headerlink" title="贼神的复仇之石"></a><span class="legend">贼神的复仇之石</span></h2><p>[ <a target="_blank" rel="noopener" href="https://www.reddit.com/r/Diablo/comments/nl96tm/diablo_iii_distances_in_relation_to_our_characters/">图片来源</a> ] <del>由此可见主角至少有5米高，不愧是奈非天</del></p>
+<p>容易判断的是屏幕左右边缘是 50 码。</p>
+<p><img src="/../attach/2025/05/diablo-iii-distances-in-relation-to-our-characters-v0-3dqw5ih4he171.webp" alt="贼神的复仇之石" loading="lazy"></p>
+<p>我自己的测试结果（注意，图片中虽然在右边，但 0 线其实是在屏幕正中间的）：</p>
+<p><img src="/../attach/2025/05/zeishen.jpg" alt="贼神距离测试" loading="lazy">   </p>
+<p>结果显示， <span class="legend">贼神在近战范围就有最低增伤，而在 40 码外就满效果了。</span>文字描述的『上限50码』，实际意思是『第50码的位置没有第六次伤害提档』，而不是『50码外才有满伤害』。</p>
+<h2 id="太极石"><a href="#太极石" class="headerlink" title="太极石"></a><span class="legend">太极石</span></h2><p>由于对 A 伤的嫌弃，现在大多数职业 build 中，一般都只有三条 15% 技能伤词缀是 A 伤了。所以尽管太极石也是 A 伤，但 150 级太极实际提供的增益是 80&#x2F;145 &#x3D; 55.17%。</p>
+<p>相比之下，150 级困者是 60%，贼神是 16~80%。但是如果你技能伤小于 33.33%(比如箭袋没出多重)，那同等级太极是高于困者的，况且太极还有减伤。自行取舍。</p>
+<h2 id="受罚者之灾"><a href="#受罚者之灾" class="headerlink" title="受罚者之灾"></a><span class="legend">受罚者之灾</span></h2><p><a href="#%E4%BB%A5%E7%9B%AE%E6%A0%87%E7%9A%84%E5%AD%98%E6%B4%BB%E6%97%B6%E9%97%B4%E6%9D%A5%E8%AE%A1%E7%AE%97%E7%9C%9F%E5%AE%9E%E5%A2%9E%E4%BC%A4">上文已述</a>，不再重复。</p>
+<h2 id="困者之灾-闪耀冰晶"><a href="#困者之灾-闪耀冰晶" class="headerlink" title="困者之灾 &amp; 闪耀冰晶"></a><span class="legend">困者之灾</span> &amp; <span class="legend">闪耀冰晶</span></h2><p>很多冰系技能其实并不会为敌人添加 <span class="skill">寒冷</span> 效果，<span class="legend">闪耀冰晶</span> 就是这时候用的。但 <span class="skill">寒冷</span> 本身是带 60% 减速的（另外还减攻速），所以它是一种更强的减速效果，一般的减速效果通常只减移动速度。寒冷效果可以触发困者之灾，并不需要其它额外条件。<span class="legend">困者之灾</span>本身在 25 级时也会提供一个小范围的减速效果。</p>
+<p>尽管如此，<span class="legend">闪耀冰晶</span> 并不会拿来和 <span class="legend">困者之灾</span> 一起用，因为有更多的办法达成减速而触发困者，而不是非得用 <span class="skill">寒冷</span> 效果。冰晶更多出现在多人组队时的辅助职业上。</p>
+<h2 id="转煞宝石"><a href="#转煞宝石" class="headerlink" title="转煞宝石"></a><span class="legend">转煞宝石</span></h2><p>两条效果是独立的，第二条的减伤只在生命值 50% 以下时生效。要注意的是其抗性值增加 75% 并不是减伤直接增加 75%。按上面的公式，其有效减伤为：</p>
+<p>$$\frac{350 + 你的抗性值\cdot 175\%}{350 + 你的抗性值}$$</p>
+<p>如果你有 4000 抗，那其效果能接近 70%，如果你只有 1000 抗，那它效果为 55%。</p>
+<h2 id="闪电华冠"><a href="#闪电华冠" class="headerlink" title="闪电华冠"></a><span class="legend">闪电华冠</span></h2><p>最强黄装搭配宝石。如果你刚到 70 级一身黄装开始打大密境，还没凑齐合适套装和对应宝石时，可以用它过渡一下。</p>
+<h1 id="职业：猎魔人"><a href="#职业：猎魔人" class="headerlink" title="职业：猎魔人"></a>职业：猎魔人</h1><h2 id="关于复仇全覆盖"><a href="#关于复仇全覆盖" class="headerlink" title="关于复仇全覆盖"></a>关于复仇全覆盖</h2><p><span class="skill">前提</span>：你已经有巅峰的 10% CDR(Cooldown Reduction)，头部钻石(无瑕的皇家钻石)12.5% CDR，以及萃取&#x2F;满减黎明。</p>
+<p><span class="skill">结论</span>：你在装备上需要三条 CDR 词缀(所有技能的冷却时间缩短 x%)，可以从 肩、武器、箭袋、手套、指环、项链，魔女任意位置出，这三条只要加起来大于等于 21 就行。</p>
+<p>无论是 10% 6% 5%(19.936秒)，或者 7% 7% 7%(19.953秒) 都可以满足复仇 CD 小于 20 秒。但 10% 5% 5%(20.149秒)或者 7% 7% 6%(20.168秒)就不行了。当然，更高的 CDR 仍然能带给你更余裕的操作时间，10% 8% 8% 能到 18.896 秒，8% 8% 8% 也能到 19.316 秒。</p>
+<p>对，前文说了 CDR 每条词缀是独立计算不是直接加的。</p>
+<p>但简化版结论更好记，从结果上也是正确的，尽管不同组合的实际结果不同，但都满足 &lt;20 的要求。你可以认为只是巧合。严格来说是面板 CDR 数值 &gt; 36.51%。</p>
+<p>其实从计算结果来看，极限情况下，指环x2+肩出三条的“成本”反而是最低的，但条件苛刻掉率低。实际来看不如考虑船长套。</p>
+<h2 id="关于扫射攻速档位"><a href="#关于扫射攻速档位" class="headerlink" title="关于扫射攻速档位"></a>关于扫射攻速档位</h2><p><span class="skill">背景</span>： 攻速会加快无 CD 技能释放的频率从而提升伤害。但由于暗黑3本身的限制，一个攻击动作的动画必须在整数帧里播放完成，因此这些提升是分档位的。在同一档内，即使面板攻速数值上有差别，在战斗中实际技能释放频率却是一样的。因此攻速调整到适当档位，省出词缀提升其它伤害更合理。</p>
+<p>对于猎魔人的扫射，还有一个额外的限制：由扫射带出来的技能，两次间隔之间最短不少于 9 帧。也就是说，如果你的扫射在第 1 帧和第 9 帧分别攻击了一次，不管是不是同一个敌人，第二次的攻击都不会带出另一个技能（比如机轮甲的冰吞箭，或者圣化赛季的多重、三刀），你需要等到第 17 帧的第三次攻击才会带出第二次伤害技。也就是说，随着攻速增加，你的有效伤害技能的施放速度从 60&#x2F;9 帧掉到了 60&#x2F;16，伤害反而下降了 43.75%。这意味着，理论上 9 帧间隔是最高频率，否则就应该考虑缩短间隔一轮的帧数。尽量把攻速堆到 6f 甚至 5f，而避开削减最大的 8f 7f 阶段。</p>
+<p><span class="skill">前提</span>： 巅峰有 10% 攻速。开了祭坛喝药随机圣坛 buff，随从带了圣坛手10分钟，认为喝药狂暴圣坛 25% 是接近常驻的 。低层割草药水随便喝，冲层本来就有赌图，进门喝药赌狂暴也很正常。</p>
+<p><span class="skill">结论</span>： </p>
+<ol>
+<li><p>对于弓(杨弓旅途终点)。装备+魔女攻速 &gt;&#x3D;19（通常为完美箭袋）。能 8f-&gt;7f，理论伤害提升+16.67%。如果无常驻药水狂暴，那么箭袋外，武器也要出攻速。 </p>
+</li>
+<li><p>对于单手弩(黎明要塞弩机)。方案一(建议)：武器出攻速，箭袋攻速 18 以上，不喝药 6f，喝药5f，喝药狂暴不要和加速塔叠加。方案二：武器不出攻速，箭袋攻速 18 以上。不点巅峰攻速，加速塔喝药狂暴可叠加。因为加速塔喝药狂暴叠加的情况毕竟相对少数，方案一还是高一档的，建议选方案一。</p>
+</li>
+<li><p>对于家妮，武器完全不需要洗攻速，箭袋攻速也是有就行。不喝药7f，喝药狂暴6f，喝药狂暴+加速塔 5f。</p>
+</li>
+<li><p>对于双手弩(暴雪重炮)。方案一，武器无攻速，箭袋+巅峰攻速&lt;&#x3D;26，药水狂暴不与加速塔叠加，但最好有一个。方案二：巅峰+10%。箭袋+武器攻速&gt;&#x3D;25，不带圣坛手，不喝药不开塔，必须喝药就赌不出，出了忍两分钟。理论上方案二是冰吞最高伤害。</p>
+</li>
+</ol>
+<h1 id="职业：魔法师"><a href="#职业：魔法师" class="headerlink" title="职业：魔法师"></a>职业：魔法师</h1><h2 id="关于奥陨能耗"><a href="#关于奥陨能耗" class="headerlink" title="关于奥陨能耗"></a>关于奥陨能耗</h2><p><span class="skill">陨石术 - 星辰契约</span> 的伤害如其技能描述，是初始  40 点产生 740% 伤害 + 235% 地板伤害持续 3 秒，多余的每点奥能额外增加 20% 伤害。</p>
+<p>由于地板伤害并不会叠加，在 1.4 攻速的情况下，连续扔陨石实际生效的只有 $740\%+235\%\cdot\frac{2}{9} &#x3D; 795.95%$，很接近后续每点 20% 的伤害。所以对奥陨来说，如果没有其它因素，有能量就扔和满能量才扔的伤害是差不多的。但考虑到<span class="legend">受罚者之灾</span>和<span class="legend">蕴火之心</span>，尽量满攻速扔就变成了更好的选择。</p>
+<p>进一步地，在 <span class="legend">大维兹尔之伏</span> 和 <span class="skill">风暴护甲-风暴之力</span> 以及其它减耗词条的帮助下，初始能量降到不足 17 奥能，而伤害是不变的，这使得初始奥能的伤害比更高，理论上最高伤害就变成了有能量就扔、能扔就扔，而不再是满能量才扔。</p>
+<h2 id="关于-A-伤"><a href="#关于-A-伤" class="headerlink" title="关于 A 伤"></a>关于 A 伤</h2><p>法师的技能 <span class="skill">魔法武器</span> 和 <span class="skill">魔星-烈焰火花</span> 以及被动 <span class="skill">玻璃大炮</span> 等都是 A 伤，会在面板上体现。<span class="skill">冷血</span> 不展现在面板上但也是 A 伤。前两个技能是 <span class="build">塔拉夏陨石</span> 的构筑技能，套装要求必须四系法术，所以需要注意可以避开的也就是 <span class="skill">玻璃大炮</span> 和 <span class="skill">冷血</span> 了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9A%97%E9%BB%91%E7%A0%B4%E5%9D%8F%E7%A5%9E3/" rel="tag"># 暗黑破坏神3</a>
+              <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag"># 数值计算</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/calcaulate-the-pi/" rel="prev" title="圆周率：从割圆法到级数展开">
+                  <i class="fa fa-angle-left"></i> 圆周率：从割圆法到级数展开
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/lonely-primes-define-and-algo/" rel="next" title="『孤独素数』的定义与搜索算法">
+                  『孤独素数』的定义与搜索算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

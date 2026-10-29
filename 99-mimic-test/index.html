@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="※ 本文有 AI 参与写作：Kimi M3.1 Flash 根据作者大纲构建了本文第一版，Deeepseek V4.1 Flash 和 GLM-5.3-Flash 帮助改写和清理逻辑。但三个模型都无法很好地处理话题转换时的过渡小段，且在文章过长时不再遵守 AGENTS.md 和 skill.md。  在 《葬送的芙莉莲》 里，精灵大法师芙莉莲有一手鉴定魔法，看一眼就知道眼前的箱子是不是伪装的宝箱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="99% 准确率的宝箱怪检测魔法">
+<meta property="og:url" content="https://www.kaikai.men/99-mimic-test/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="※ 本文有 AI 参与写作：Kimi M3.1 Flash 根据作者大纲构建了本文第一版，Deeepseek V4.1 Flash 和 GLM-5.3-Flash 帮助改写和清理逻辑。但三个模型都无法很好地处理话题转换时的过渡小段，且在文章过长时不再遵守 AGENTS.md 和 skill.md。  在 《葬送的芙莉莲》 里，精灵大法师芙莉莲有一手鉴定魔法，看一眼就知道眼前的箱子是不是伪装的宝箱">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-27T23:41:11.000Z">
+<meta property="article:modified_time" content="2026-10-29T00:06:33.347Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="芙莉莲">
+<meta property="article:tag" content="葬送的芙莉莲">
+<meta property="article:tag" content="宝箱怪">
+<meta property="article:tag" content="贝叶斯">
+<meta property="article:tag" content="假阳性">
+<meta property="article:tag" content="假阴性">
+<meta property="article:tag" content="罕见病">
+<meta property="article:tag" content="筛查">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/99-mimic-test/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/99-mimic-test/","path":"/99-mimic-test/","title":"99% 准确率的宝箱怪检测魔法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>99% 准确率的宝箱怪检测魔法 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">132</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">433</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%8199-%EF%BC%8C%E5%87%A0%E4%B9%8E%E4%BB%80%E4%B9%88%E9%83%BD%E4%B8%8D%E6%98%AF"><span class="nav-number">1.</span> <span class="nav-text">一、99%，几乎什么都不是</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E6%84%8F%E4%B9%89%E7%9A%84-99"><span class="nav-number">1.1.</span> <span class="nav-text">无意义的 99%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%B9%E7%94%A8%E5%AE%83%E6%9D%A5%E5%B9%B2%E4%BB%80%E4%B9%88"><span class="nav-number">1.2.</span> <span class="nav-text">她用它来干什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8E%E6%98%AF%E8%A6%81%E6%8A%8A%E4%B8%A4%E8%BE%B9%E5%88%86%E5%BC%80%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">于是要把两边分开数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%89%E5%9C%A8%E4%B8%80%E8%B5%B7%E7%9A%84%E6%95%B0%E5%AD%97%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">揉在一起的数字为什么会塌</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%BC%8F%E6%8E%89%E5%92%8C%E8%AF%AF%E4%BC%A4%E4%B8%8D%E6%98%AF%E5%90%8C%E4%B8%80%E7%A7%8D%E9%94%99"><span class="nav-number">2.</span> <span class="nav-text">二、漏掉和误伤不是同一种错</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%9D%E7%89%A9%E7%8E%87%E4%B8%8D%E6%98%AF%E5%B8%B8%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">三、宝物率不是常数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">贝叶斯公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A9-p-%E8%B7%91%E8%B5%B7%E6%9D%A5"><span class="nav-number">3.2.</span> <span class="nav-text">让 p 跑起来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%80%E6%9C%89%E5%BA%A6%E6%98%AF%E6%8C%87%E6%95%B0"><span class="nav-number">3.3.</span> <span class="nav-text">稀有度是指数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%8A%E5%85%88%E9%AA%8C%E6%8A%AC%E4%B8%8A%E5%8E%BB"><span class="nav-number">3.4.</span> <span class="nav-text">把先验抬上去</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%8C%96%E5%87%BA%E6%9D%A5%E6%98%AF%E6%9D%82%E7%89%A9%E7%AE%B1%EF%BC%9A%E7%AC%AC%E4%B8%89%E7%A7%8D%E7%BB%93%E5%B1%80"><span class="nav-number">4.</span> <span class="nav-text">四、挖出来是杂物箱：第三种结局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%BC%80%E4%B8%80%E6%AC%A1%E4%B8%8D%E5%A4%9F%EF%BC%9A%E7%BA%A7%E8%81%94%EF%BC%8C%E5%92%8C%E4%B8%80%E4%B8%AA%E5%8F%8D%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">五、开一次不够：级联，和一个反例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%81%9A%E5%87%A0%E6%AC%A1"><span class="nav-number">5.1.</span> <span class="nav-text">多做几次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A7%E8%81%94%EF%BC%9A%E8%8A%99%E8%8E%89%E8%8E%B2%E7%9C%9F%E6%AD%A3%E5%9C%A8%E5%81%9A%E7%9A%84%E4%BA%8B"><span class="nav-number">5.2.</span> <span class="nav-text">级联：芙莉莲真正在做的事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E5%BE%92%E5%92%8C%E6%89%B9%E9%87%8F%EF%BC%9A%E6%8A%8A%E6%88%90%E6%9C%AC%E5%8E%8B%E4%B8%8B%E6%9D%A5"><span class="nav-number">5.3.</span> <span class="nav-text">学徒和批量：把成本压下来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%8A%8A%E8%BF%99%E5%8F%B0%E6%9C%BA%E5%99%A8%E6%90%AC%E5%87%BA%E5%B9%BB%E6%83%B3%E4%B8%96%E7%95%8C"><span class="nav-number">6.</span> <span class="nav-text">六、把这台机器搬出幻想世界</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%90%E9%A1%B9%E5%AF%B9%E5%BA%94"><span class="nav-number">6.1.</span> <span class="nav-text">逐项对应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%BB%BD%E5%AF%B9%E5%BA%94%E4%B8%8D%E6%98%AF%E5%B9%BB%E6%83%B3"><span class="nav-number">6.2.</span> <span class="nav-text">这份对应不是幻想</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%9B%9B%E6%A0%BC%E8%A1%A8%E8%BF%9B%E8%AF%8A%E5%AE%A4"><span class="nav-number">7.</span> <span class="nav-text">七、四格表进诊室</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E4%B8%AA%E6%95%B0%E5%AD%97%EF%BC%8C%E5%85%B3%E5%BF%83%E7%9A%84%E4%BA%BA%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="nav-number">7.1.</span> <span class="nav-text">四个数字，关心的人不一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E4%B8%80%E6%A0%B9%E9%AA%8C%E5%AD%95%E6%A3%92%EF%BC%8C%E4%BB%8E-92-%E5%88%B0-9"><span class="nav-number">7.2.</span> <span class="nav-text">同一根验孕棒，从 92% 到 9%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%80%E5%BA%93%E9%87%8C%E7%9A%84%E4%B8%80%E5%9C%BA%E6%8E%A5%E5%8A%9B"><span class="nav-number">7.3.</span> <span class="nav-text">血库里的一场接力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%AA%E7%AA%84%E7%9A%84%E6%97%B6%E5%80%99"><span class="nav-number">7.4.</span> <span class="nav-text">窗口太窄的时候</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B4%E9%BE%84%E5%A6%82%E4%BD%95%E5%86%B3%E5%AE%9A%E4%B8%80%E4%B8%AA%E6%A3%80%E6%B5%8B%E6%9C%89%E5%A4%9A%E5%87%86"><span class="nav-number">7.5.</span> <span class="nav-text">年龄如何决定一个检测有多准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%A9%E5%9B%BD%E7%94%B2%E7%8A%B6%E8%85%BA%EF%BC%9A%E4%B8%80%E6%AC%A1%E6%95%99%E7%A7%91%E4%B9%A6%E7%BA%A7%E7%9A%84%E7%8E%B0%E5%9C%BA%E5%AE%9E%E9%AA%8C"><span class="nav-number">7.6.</span> <span class="nav-text">韩国甲状腺：一次教科书级的现场实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%A3%80%E6%B5%8B%E6%AF%AB%E6%97%A0%E9%97%AE%E9%A2%98%E3%80%81%E9%A1%B9%E7%9B%AE%E4%BB%8D%E7%84%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E6%A1%88%E4%BE%8B"><span class="nav-number">7.7.</span> <span class="nav-text">一个检测毫无问题、项目仍然失败的案例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A1%94%E6%96%AF%E5%9F%BA%E5%90%89%EF%BC%9A-c-FN-infty-%E8%A2%AB%E5%8D%A1%E4%BD%8F%E4%BA%86"><span class="nav-number">7.8.</span> <span class="nav-text">塔斯基吉：$c_{FN} &#x3D; \infty$ 被卡住了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%AD%9B%E6%9F%A5%E9%A1%B9%E7%9B%AE%E6%98%AF%E6%80%8E%E4%B9%88%E6%8B%BC%E5%87%BA%E6%9D%A5%E7%9A%84"><span class="nav-number">8.</span> <span class="nav-text">八、筛查项目是怎么拼出来的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%9B%9E%E5%88%B0%E9%82%A3%E5%8F%AA%E7%AE%B1%E5%AD%90"><span class="nav-number">9.</span> <span class="nav-text">九、回到那只箱子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%8A%E8%8A%99%E8%8E%89%E8%8E%B2%E7%9A%84%E6%9C%9F%E6%9C%9B%E6%94%B6%E7%9B%8A%E7%AE%97%E4%B8%80%E9%81%8D"><span class="nav-number">9.1.</span> <span class="nav-text">把芙莉莲的期望收益算一遍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%B9%E5%81%9A%E7%9A%84%E6%AD%A3%E6%98%AF%E7%BA%A7%E8%81%94"><span class="nav-number">9.2.</span> <span class="nav-text">她做的正是级联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%A5%B9%E8%83%BD%E6%94%B9%E4%B8%80%E4%BB%B6%E4%BA%8B"><span class="nav-number">9.3.</span> <span class="nav-text">如果她能改一件事</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E8%B1%86%E7%9F%A5%E8%AF%86"><span class="nav-number">10.</span> <span class="nav-text">一些豆知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E7%BE%8E%E4%BD%BF%E7%94%A8%E4%B8%8E%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">10.1.</span> <span class="nav-text">完美使用与一般使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E3%80%8C%E7%BD%95%E8%A7%81%E3%80%8D%E7%9A%84%E5%AE%9A%E4%B9%89%E9%9D%9E%E5%B8%B8%E9%9A%8F%E6%84%8F"><span class="nav-number">10.2.</span> <span class="nav-text">「罕见」的定义非常随意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E5%B7%A7%E5%90%88"><span class="nav-number">10.3.</span> <span class="nav-text">一个数字巧合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%89"><span class="nav-number">11.</span> <span class="nav-text">参考（节选）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">433</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1409060072" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1409060072" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kaikai-34" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kaikai-34" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=151493994&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;151493994&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourkaikai@gmail.com" title="Email → mailto:yourkaikai@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/resume/" title="Resume → &#x2F;resume&#x2F;" rel="noopener me"><i class="fa fa-id-card fa-fw"></i>Resume</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/99-mimic-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="99% 准确率的宝箱怪检测魔法 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          99% 准确率的宝箱怪检测魔法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-10-27 23:41:11" itemprop="dateCreated datePublished" datetime="2026-10-27T23:41:11Z">2026-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A1%AC%E7%94%A8%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">硬用数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>※ 本文有 AI 参与写作：Kimi M3.1 Flash 根据作者大纲构建了本文第一版，Deeepseek V4.1 Flash 和 GLM-5.3-Flash 帮助改写和清理逻辑。但三个模型都无法很好地处理话题转换时的过渡小段，且在文章过长时不再遵守 AGENTS.md 和 skill.md。</p>
+</blockquote>
+<p>在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/bangumi/play/ep779775">《葬送的芙莉莲》</a> 里，精灵大法师芙莉莲有一手鉴定魔法，看一眼就知道眼前的箱子是不是伪装的宝箱怪。故事中，这手魔法的准确率高达 99%。</p>
+<p>然后她一次又一次地开，一次又一次地被吞。</p>
+<p>这个设计好笑的地方在于：99% 已经是一个高到离谱的数字，现实世界里的检测大多不敢吹到 99%。而动画里芙莉莲的失败率看着比设定的 1% 高得多，多到让人怀疑这个 99% 是不是抄错了行。</p>
+<p>先别管动画抄没抄错。有意思的是「99%」这个数字本身，到底是什么。</p>
+<h2 id="一、99-，几乎什么都不是"><a href="#一、99-，几乎什么都不是" class="headerlink" title="一、99%，几乎什么都不是"></a>一、99%，几乎什么都不是</h2><h3 id="无意义的-99"><a href="#无意义的-99" class="headerlink" title="无意义的 99%"></a>无意义的 99%</h3><p>假设漫长的时光里，大部分真宝箱早被别的冒险者探索过了。荒野里剩下的每 100 只宝箱中，只有 1 只是真宝箱。那么倘若这所谓「鉴定魔法」只是个假魔法，永远一律判定为宝箱怪，它是不是也能打出 99% 的准确率？</p>
+<p>$$\frac{99}{100} &#x3D; 99\%$$</p>
+<p>一分不差。而这么一个假魔法，干了什么有用的事？一次都没有。它甚至比闭着眼睛乱猜更没价值：乱猜至少偶尔能撞上，而它把荒野里仅存的那一个真宝箱，精确地排除掉了。</p>
+<p>这不是巧合，而是一整类情况。把这片荒野的不同时期排开来看：</p>
+<table>
+<thead>
+<tr>
+<th>时期</th>
+<th>真宝箱</th>
+<th>假定它是假的：准确率</th>
+<th>它能找到的宝箱</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无人踏足时</td>
+<td>满地都是</td>
+<td>$0\%$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>探索中期</td>
+<td>每 100 箱有 1 个</td>
+<td>$99\%$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>后来者</td>
+<td>每 1000 箱有 1 个</td>
+<td>$99.9\%$</td>
+<td>$0$</td>
+</tr>
+<tr>
+<td>终于被翻干净</td>
+<td>一个不剩</td>
+<td>$100\%$</td>
+<td>$0$</td>
+</tr>
+</tbody></table>
+<p>四行里三行的准确率在 99% 以上，四行的战果全是零。「99% 的准确率」可以是对的，也可以同时是一句空话。这一点不需要任何公式，在荒野上走一圈就明白了。</p>
+<p>大魔法师芙莉莲自然知道这手鉴定魔法是真的。可真魔法又能如何呢，99% 只是个虚妄的数字，这一点她同样是清楚的。更何况，宝物的珍贵足以让她情愿被多咬上几口。</p>
+<p>那个假想的魔法压根没在做鉴定这件事，可它的分数偏偏很高。问题出在「准确率」的定义方式：它把所有判断一视同仁地数一遍，报对算一分。于是这个分数的高低，不仅取决于鉴定魔法有多灵，更取决于这批箱子里真宝箱和宝箱怪各占多少。而这个比例从来不是固定的：刚到一片野外，宝箱多；走了一天，宝箱少。同一手鉴定魔法，在不同地方可以有天差地别的准确率。</p>
+<p>所以要评价这手鉴定魔法，第一步不是算它的准确率，是先问：想靠它知道什么？</p>
+<h3 id="她用它来干什么"><a href="#她用它来干什么" class="headerlink" title="她用它来干什么"></a>她用它来干什么</h3><p>芙莉莲站在一个箱子前，掏出鉴定魔法。她只问一件很具体的事：「这个箱子里有没有东西？」</p>
+<p>「找到宝物」这件事对鉴定魔法提出两种要求，两件看似相似实则截然无关的事：</p>
+<ul>
+<li>有宝的时候，它能不能认出来，这是「灵敏度」。衡量它，等于把全部真宝箱摆到鉴定魔法面前，看它捞得出多少。</li>
+<li>没宝的时候，它会不会乱说，这是「特异度」。衡量它，等于把全部假箱子摆上去，看它有多少会瞎报。</li>
+</ul>
+<p>这两个方向可以彻底背离。这手魔法完全可能把有货的全认出来，同时把没货的也全说成有货。「准确率」不够用，不是因为它算错了，是因为它把两件本来非分开不可的事情，揉成了一个数。</p>
+<p>还有一个问题：这两种判断，她更关心哪一种？她在迷宫中走了一整天，遇到 100 只箱子，其中 1 只真宝箱。</p>
+<ul>
+<li>一种情况：她认出了那个宝箱，打开，带走一件东西。这一趟有收获，而那件东西只在这里有。</li>
+<li>另一种情况：她把宝箱怪当成了宝箱，被咬了一口。只有发型乱一点，明天还能接着找。</li>
+</ul>
+<p>这两件事要记的，不是同一本账。前者记的是「拿到一件遗落的宝物，错过就不会再有第二次机会」，后者记的是「付掉一次无伤大雅的代价」。挨咬的代价可以反复支付，挨三口和挨一口差不太多；收获不能反复，那件东西只在那一个箱子里，也只在这一次。所以结论很干脆：</p>
+<blockquote>
+<p><strong>芙莉莲要的是宝物。被咬一口，只是去拿它要付的价钱。</strong></p>
+</blockquote>
+<p>「准确率」数的不是「有没有拿到」，而是「总共有几个判断对了」。而她要的那个量是：它说有货的时候，值不值得走过去。这两件事在空箱被错报成「有货」多到一定程度之后会分道扬镳，而「准确率」这个数字看不见这件事。</p>
+<h3 id="于是要把两边分开数"><a href="#于是要把两边分开数" class="headerlink" title="于是要把两边分开数"></a>于是要把两边分开数</h3><p>把真实情况和鉴定回答交叉起来，一共四个格子：</p>
+<table>
+<thead>
+<tr>
+<th>格子</th>
+<th>名字</th>
+<th>意思</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>有货 + 说有货</td>
+<td>真阳性</td>
+<td>真宝箱</td>
+</tr>
+<tr>
+<td>有货 + 说没货</td>
+<td>假阴性</td>
+<td>漏掉了</td>
+</tr>
+<tr>
+<td>没货 + 说有货</td>
+<td>假阳性</td>
+<td>被咬了</td>
+</tr>
+<tr>
+<td>没货 + 说没货</td>
+<td>真阴性</td>
+<td>躲对了</td>
+</tr>
+</tbody></table>
+<p>四个格子各自对应一种性质不同的收益或损失：同样「说对了」，左上角让她心满意足，右下角让她毫发无损；同样「说错了」，一个挨咬，一个错失。合成一个数的那一刻，信息就没了。</p>
+<p>灵敏度，在所有真有货的箱子里有多大比例被正确认出来：</p>
+<p>$$Se &#x3D; P(+\mid\text{有货}) &#x3D; \frac{TP}{TP + FN}$$</p>
+<p>特异度，在所有没货的箱子里有多大比例被正确说成没货：</p>
+<p>$$Sp &#x3D; P(-\mid\text{没货}) &#x3D; \frac{TN}{TN + FP}$$</p>
+<p>有了四格表，还差一个量：它说有货的时候，值不值得走过去。这个量叫阳性预测值，下文记作 PPV。</p>
+<p>到这里，「99% 准确率」就显出了它的问题：它可以指 $Se$，可以指 $Sp$，可以指两者都 99%，还可以指某种把它们揉起来的东西。四个数字都叫「准确率」，都不算撒谎，但回答的是四个不同的问题。</p>
+<h3 id="揉在一起的数字为什么会塌"><a href="#揉在一起的数字为什么会塌" class="headerlink" title="揉在一起的数字为什么会塌"></a>揉在一起的数字为什么会塌</h3><p>把四格揉成一个最常用的数：报对算一分，</p>
+<p>$$\mathrm{Acc} &#x3D; \frac{TP + TN}{N}$$</p>
+<p>设这片地图上的宝物率为 $p$，这个数可以重写成一个加权平均：</p>
+<p>$$\boxed{\mathrm{Acc} &#x3D; p\cdot Se + (1-p)\cdot Sp}$$</p>
+<p>看它的两个极端：宝物极其罕见时，$\lim_{p\to 0}\mathrm{Acc} &#x3D; Sp$，准确率塌成特异度。原因很直白：罕见时绝大多数格子是「说没货」，默认答案几乎全对，分数自然漂亮。开头那个假想的撒谎鉴定，在这里现出了原形：它的准确率高，只是因为「说不是」在这个地方恰好是对的。</p>
+<p>可芙莉莲要的不是「总共报对几个」，是「它说有货的时候，箱子里到底有没有」。这个量得单独算。</p>
+<p>还是这片荒野，鉴定的都是同一手魔法。探索中期，10000 个箱子里有 100 个真货；快被翻完的时候，10000 个箱子里只剩 1 个真货。把两段时光并排：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>探索中期</th>
+<th>快被翻完</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>先验 $p$</td>
+<td>$0.01$</td>
+<td>$0.0001$</td>
+</tr>
+<tr>
+<td>$Se &#x3D; Sp$</td>
+<td>$99\%$</td>
+<td>$99\%$</td>
+</tr>
+<tr>
+<td>$\mathrm{Acc}$</td>
+<td>$99\%$</td>
+<td>$99\%$</td>
+</tr>
+<tr>
+<td>阳性预测值</td>
+<td>$50\%$</td>
+<td>$0.98\%$</td>
+</tr>
+</tbody></table>
+<p>Acc 一模一样，阳性预测值差了 51 倍。变化只来自一件事：它被用在了什么地图上。这个错误有个专门的名字，叫基率谬误：只看「有货的时候它报对的条件概率」，忘了先问「这里到底还有多少货」。</p>
+<h2 id="二、漏掉和误伤不是同一种错"><a href="#二、漏掉和误伤不是同一种错" class="headerlink" title="二、漏掉和误伤不是同一种错"></a>二、漏掉和误伤不是同一种错</h2><p>挨咬的代价可以反复支付，错过的不能。既然两笔账轻重悬殊，判断就不能只数对错，得把损益直接摆开来记。设开到宝物得到收益 $b$，开错挨咬损失 $c_{FP}$。她可以去开箱，也可以放弃：不开的期望收益是零，开的期望收益是 $b$ 乘「说有货时真有货的概率」，减去 $c_{FP}$ 乘「说有货时其实没货的概率」。整理成比值，开箱的条件是：</p>
+<p>$$\boxed{\frac{P(\text{有宝物}\mid\text{说有宝物})}{P(\text{没宝物}\mid\text{说有宝物})} &gt; \frac{c_{FP}}{b}}$$</p>
+<p>「她不怕被咬，她怕错过」这句话在数学上的全部内容，就是右边这个 $\dfrac{c_{FP}}{b}$。</p>
+<p>如果开箱子的代价是零呢？$c_{FP} &#x3D; 0$，判据右边是零，无论这片地图多空，都应该开。而这是对的。「反正开了不亏」，那当然一直开。</p>
+<blockquote>
+<p>在一个「开箱完全免费」的世界里，「见到箱子就开」是可以论证的最优行为，而不是某个角色的性格缺陷。</p>
+</blockquote>
+<p>这句话反转了批评的方向：要批评一个人乱开箱，必须先说清楚他的 $c_{FP}$ 不为零。芙莉莲的真实约束是，她的 $c_{FP}$ 不是零，但也差不了多少——她可以承受连续几次被吞，承受不了错过那件东西。</p>
+<p>代价不会消失，只会换形态。代价明显不对称的场景至少有三种：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>$c_{FP}$</th>
+<th>$c_{FN}$</th>
+<th>现实后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>市集地摊</td>
+<td>小</td>
+<td>中</td>
+<td>收摊了白忙一天，但能再摆一天</td>
+</tr>
+<tr>
+<td>传说难度区段</td>
+<td>中</td>
+<td>极大</td>
+<td>错过的东西不会再刷，且会卡住进度</td>
+</tr>
+<tr>
+<td>炼金熔炉</td>
+<td>极大</td>
+<td>小</td>
+<td>投入的材料不可逆，失败就报废</td>
+</tr>
+</tbody></table>
+<p>同一套开箱判据，在这三张桌子上的答案完全不同：地摊前尽管随便挑，传说区里值得反复确认，而熔炉边恰恰要反过来——宁可错杀，不可错放。判据的形状没变，变的是代价的相对大小；每一个场景的阈值 $p^{*}$，画在哪里由代价决定，鉴定只通过 $LR_+$ 一个数进去。</p>
+<h2 id="三、宝物率不是常数"><a href="#三、宝物率不是常数" class="headerlink" title="三、宝物率不是常数"></a>三、宝物率不是常数</h2><h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><p>魔法报「有宝物」的箱子里，真有宝物的占多少？设宝物率为 $p$：</p>
+<p>$$PPV &#x3D; P(\text{有宝物}\mid\text{报有}) &#x3D; \frac{Se\cdot p}{Se\cdot p + (1-Sp)(1-p)}$$</p>
+<p>它讲的事情一句话能念出来：分子是报「有」的箱子里真宝箱的那一份，分母是全部报「有」的箱子，真宝箱和被冤枉的空箱都算在里面。它是全文最重要的一个式子，一共只有三个成分——灵敏度、特异度、先验——缺一不可。来源就是贝叶斯公式：把分母 $P(\text{报有})$ 用全概率公式展开，再代入 $P(\text{报有}\mid\text{没货}) &#x3D; 1-Sp$ 与 $P(\text{没货}) &#x3D; 1-p$，即得。</p>
+<p>它有个对称的量，阴性预测值，回答「说没宝物，敢不敢信」：</p>
+<p>$$NPV &#x3D; \frac{Sp(1-p)}{Sp(1-p) + (1-Se)p}$$</p>
+<p>先验越低，它越贴近一。这是筛查里出名的不对称：先验低的地方，阴性很可信，阳性很可疑。</p>
+<p>这两个量分别服务两种人。对输不起的冒险者，判「没宝物」就绕开走是他唯一的选择，漏掉的真宝箱不进开箱的账，NPV 就是他的全部世界。芙莉莲不在这本账里——判定对她从来不是开不开的开关，她用的是鉴定魔法，然后无视鉴定魔法。漏掉在她这里几乎不存在，存在的只是挨咬。</p>
+<p>而野外的存货也只有这样，才能留给芙莉莲去尝试。判「有宝物」又真是宝箱的，大部分当场就被人开走了；能一路留到她面前的真宝箱，恰恰是一次一次被判「没宝物」的那些。她翻找的货架，是前面所有人按各自的判定筛剩的阴性堆。宝物率一年比一年低，不是箱子长了腿，是真货那一堆先见了底。</p>
+<h3 id="让-p-跑起来"><a href="#让-p-跑起来" class="headerlink" title="让 p 跑起来"></a>让 p 跑起来</h3><p>为了让 PPV 达到某个值 $q$，先验至少要多少？令 $q$ 等于上式右边，两边乘分母、把含 $p$ 的项移到一边、提取公因式，解出：</p>
+<p>$$\boxed{p_q &#x3D; \frac{q(1-Sp)}{Se - q(Se + Sp - 1)}}$$</p>
+<p>代 $Se &#x3D; Sp &#x3D; 0.99$，令 $q &#x3D; 0.9$，得 $p_{0.9} \approx 0.083$。想让一个 99%&#x2F;99% 的鉴定给出九成可信的结论，地图上的宝物率至少要到 8.3%，一个相当高的门槛。再取 $q &#x3D; 0.99$，得 $p_{0.99} &#x3D; 0.5$：先验得有一半是真宝箱，PPV 才追得上灵敏度。</p>
+<p>还有一个退化情形：$Se + Sp &#x3D; 1$ 时 $p_q &#x3D; q$，魔法只是把先验原样搬过去，一个数字都没有改。$Se + Sp$ 这个和是衡量「信号含量」的粗略指标，它在 1 附近时这手魔法几乎没用。</p>
+<p>而先验趋近零时，$PPV \approx \dfrac{Se}{1-Sp}p$，先验把 PPV 压向零，$Se$ 和 $Sp$ 决定的只是压下去的坡度。所以单独吹嘘其中任何一样都没有意义。</p>
+<h3 id="稀有度是指数"><a href="#稀有度是指数" class="headerlink" title="稀有度是指数"></a>稀有度是指数</h3><p>前面反复出现「宝物率很低」，这句话在数学上意味着什么？一个真宝箱留到今天，不是躲过了一关，是躲过了很多关。</p>
+<p>芙莉莲不是第一个站到这些箱子面前的人。漫长的岁月里，每个箱子前面都来过别的冒险者。他们不像芙莉莲，被咬是真会没命的：只要判成宝箱怪，碰都不会碰。设每个路过的冒险者把真宝箱留下的概率是 $c$，一个箱子先后被 $m$ 个互不相干的冒险者路过还能留到今天：</p>
+<p>$$P(\text{留到今天}) &#x3D; c^{m}$$</p>
+<p>代数字看它塌得多快：$c &#x3D; 1&#x2F;20$ 时，$m &#x3D; 2$ 是 $2.5\times10^{-3}$，$m &#x3D; 4$ 是 $6.25\times10^{-6}$，$m &#x3D; 8$ 是 $3.91\times10^{-11}$。所以<strong>「稀有」不是一个形容词，是一个指数</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>路过的冒险者 $m$</th>
+<th>$c&#x3D;1&#x2F;20$ 时的留存概率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>$0.05$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$2.5\times10^{-3}$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$6.25\times10^{-6}$</td>
+</tr>
+<tr>
+<td>8</td>
+<td>$3.91\times10^{-11}$</td>
+</tr>
+</tbody></table>
+<p>这带来三个后果：</p>
+<ol>
+<li>稀有度不均匀。一个地段被多少人路过全看它的名气，难度相邻的两片地图，宝物率可以差一个数量级。</li>
+<li>稀有度可以被制造。在一个箱子前面多摆一道独立的鉴定，稀有度立刻乘一个 $c$。</li>
+<li>中段最危险。$10^{-4}$ 落在「说不准但不至于没人信」的区间里，会被大量尝试；$10^{-8}$ 落在「根本没人会去找」的区间里，不会被。于是人们系统性地把注意力集中在最不该集中的那一档上。</li>
+</ol>
+<p>第三条是本文后半段所有故事的引擎。</p>
+<p>还有一件事在现实里的用处比看起来大：四次放行分给四个陌生人，和四次放行落在同一个人头上，对「箱子能否留到今天」来说是同样罕见的两件事。决定稀有度的是独立判定的道数，不是做判定的人数。所以「多拉几个人一起看就更保险」在数学上站不住，除非那些判定本身相关。</p>
+<h3 id="把先验抬上去"><a href="#把先验抬上去" class="headerlink" title="把先验抬上去"></a>把先验抬上去</h3><p>先验低不是不可改变的。抬 $p$ 有四种正当手段，按成本从低到高排：</p>
+<table>
+<thead>
+<tr>
+<th>手段</th>
+<th>机制</th>
+<th>宝箱版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打听</td>
+<td>用别的信息源筛一次</td>
+<td>问路过的商人这层有没有宝</td>
+</tr>
+<tr>
+<td>看相</td>
+<td>用与鉴定无关的独立特征</td>
+<td>箱子的成色、铭牌、封蜡</td>
+</tr>
+<tr>
+<td>换地图</td>
+<td>只去宝物率更高的区段</td>
+<td>只进传说难度区</td>
+</tr>
+<tr>
+<td>加一道鉴定</td>
+<td>换一个原理的鉴定魔法</td>
+<td>找第二个鉴定魔法复核</td>
+</tr>
+</tbody></table>
+<p>代一组数字：普通区段先验 $0.005$，一个 $Se &#x3D; Sp &#x3D; 0.99$ 的鉴定魔法给出的 PPV 只有 33%；先用一次前置筛选把先验抬到 $0.026$，同一个魔法给出 72%。差距 2.2 倍，而鉴定魔法一个字没改。</p>
+<blockquote>
+<p>提高先验是性价比最高的动作，因为它不需要动鉴定魔法，只需要动「谁来开箱」。</p>
+</blockquote>
+<h2 id="四、挖出来是杂物箱：第三种结局"><a href="#四、挖出来是杂物箱：第三种结局" class="headerlink" title="四、挖出来是杂物箱：第三种结局"></a>四、挖出来是杂物箱：第三种结局</h2><p>前面所有结局都是二元的：有宝物 &#x2F; 没宝物。现实里还有一类情况不在这个划分里。</p>
+<p>荒野里还有这样一种箱子：鉴定魔法说「有宝物」，判定没有错。挖开之后，里面确实有东西——不是空的，也没有宝箱怪，而是满满一箱瓶瓶罐罐，件件寻常，拉到集市上也换不来几个铜板。</p>
+<p>检测完全正确，而整个动作仍然是错的。它之所以需要单独讨论，是因为它的严重性被四格表遮蔽了：在四格表里这一箱被记为 $TP$，属于「成功」那一列。统计上它漂亮，账上它是个坑。</p>
+<p>设鉴定后被挖开的箱子总数为 $D_{\text{det}}$，其中「不鉴定也会被别人挖走并用上」的为 $D_{\text{surf}}$，空挖率定义为</p>
+<p>$$\mathrm{OF} &#x3D; \frac{D_{\text{det}} - D_{\text{surf}}}{D_{\text{det}}}$$</p>
+<p>麻烦在于 $D_{\text{surf}}$ 是反事实，「如果不挖会发生什么」没法数。但不需要它精确，需要的是一个能推翻它的证据。记录两个数：鉴定制度铺开后的年挖箱总数 $I_{\text{after}}$，和其中真正进入市场并成交的数量。一个不挖也会自然出现的箱子，也会自然地流入市场成交，所以 $D_{\text{surf}}$ 不超过铺开前的成交量 $V_{\text{before}}$，于是</p>
+<p>$$\mathrm{OF} \ge \frac{I_{\text{after}} - V_{\text{before}}}{I_{\text{after}}}$$</p>
+<p>代一组数字，$I_{\text{before}} &#x3D; 35$，$I_{\text{after}} &#x3D; 96$：至少 63.5% 是白挖。这个推导只用了两个数字和一个不等式，每一个前提都写在纸面上。它给的是下界，真实值通常更高。</p>
+<p>这个不等式能证明「有白挖」，证明不了「有多少」和「是哪一类」。要加强它，需要更细的证据。一条是分布不变：如果被挖箱子的成色分布和处理成本分布在制度铺开前后都几乎一样，那么多出来的那批箱子在行为上无法与原有的区分，就不能声称它们「本来也会被挖」。另一条是分层：把箱子按「东西能不能出手」「要花多少工夫」分档，如果每一档都同比例上涨，那是整体普涨，也就是白挖；如果只有最低那一档在涨，那只是正常的品质下沉。</p>
+<p>空挖的代价也不止「白挖一次」：</p>
+<table>
+<thead>
+<tr>
+<th>代价成分</th>
+<th>宝箱版</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直接</td>
+<td>搬运费、处理费</td>
+</tr>
+<tr>
+<td>机会</td>
+<td>那一天本可以用来找传说箱</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>从出发到空手而回的全过程</td>
+</tr>
+<tr>
+<td>记录</td>
+<td>这个人手上有一次「挖了个空」的经历</td>
+</tr>
+<tr>
+<td>心理</td>
+<td>未来的箱子会更难让人相信</td>
+</tr>
+</tbody></table>
+<p>后两项是会累积的：一次空挖不是一次性成本，它是一条会跟着这个人走的记录。所以空挖的真实代价不是空挖率本身，而是它乘上一个随时间增长的因子。</p>
+<p>最后记一个幻想世界里数不出来的东西：怪物吃人，被挖开的箱子越多，遇到怪物的次数越多，死亡人数应该跟着涨。如果挖箱数涨而死亡数不动，多出来的挖箱就有问题了。这个「谁都不在意的、但确实存在的」外部终点，现在只是个类比。后面会遇到一个真实的领域，那里有真实可靠的外部终点，同样的推理一字不差地成立。</p>
+<h2 id="五、开一次不够：级联，和一个反例"><a href="#五、开一次不够：级联，和一个反例" class="headerlink" title="五、开一次不够：级联，和一个反例"></a>五、开一次不够：级联，和一个反例</h2><h3 id="多做几次"><a href="#多做几次" class="headerlink" title="多做几次"></a>多做几次</h3><p>单道灵敏度 $Se$、各道相互独立时，$m$ 道全部漏掉的概率是 $(1-Se)^m$，累积灵敏度：</p>
+<p>$$Se_m &#x3D; 1 - (1-Se)^m$$</p>
+<p>增长很快：$Se &#x3D; 0.8$ 时，一道 80%，两道 96%，三道 99.2%。这就是「多道确认」的全部合法性来源：便宜的、灵敏度中等的鉴定，做三次比做一次强得多。反过来，单道灵敏度 20% 的鉴定，要做 21 道才能到 99%。</p>
+<p>但这个公式有一个前提：各道独立。同一个箱子反复鉴定恰恰不独立——它的成色、封蜡状态决定了每一次鉴定的读数，第一道和第二道共享了几乎全部的物理信息。设相关性为 $\rho$，$m$ 道的有效道数不是 $m$，而是 $\dfrac{m}{1+(m-1)\rho}$。代 $Se &#x3D; 0.8$、$m &#x3D; 3$、$\rho &#x3D; 0.5$：独立假设给出 99.2%，考虑相关性后只有 91.1%。真正安全的做法是每次用不同的手法，针对箱子的不同侧面——先听，后照，再拆封蜡。</p>
+<h3 id="级联：芙莉莲真正在做的事"><a href="#级联：芙莉莲真正在做的事" class="headerlink" title="级联：芙莉莲真正在做的事"></a>级联：芙莉莲真正在做的事</h3><p>$1-(1-Se)^m$ 描述的是「对全体箱子重复鉴定」，而现实里的多道确认是级联的：第一道说有宝物的，才进第二道。这个差别是决定性的，因为级联的每一道都在重新估计先验。</p>
+<p>设定：$N &#x3D; 10000$ 个箱子，$p &#x3D; 10^{-4}$，1 个真宝箱。$Se &#x3D; Sp &#x3D; 0.99$，各道独立。第一道对全体做，阳性池 $0.99 + 99.99 &#x3D; 100.98$ 个，PPV 约 0.98%。第二道只做这 100.98 个，阳性池缩到 1.98 个，PPV 49.5%。第三道只做 1.98 个，阳性池 0.98 个，PPV 98.98%。</p>
+<p>0.98% → 49.5% → 98.98%。一个百分点的起点，三道之后是九成九。</p>
+<p>用几率形式交叉验证一遍。先验几率是 $OD_0 &#x3D; 10^{-4}&#x2F;(1-10^{-4})$，每道鉴定的 $LR_+ &#x3D; 0.99&#x2F;0.01 &#x3D; 99$，三道独立则几率连乘：$OD_3 &#x3D; OD_0\times99^3 &#x3D; 97.04$，转回概率得 0.98980——和级联链算出的结果一致到小数点后五位。两条路对上了：级联的有效性确实来自每道先验的重新估计，而「全体重复」的 $1-(1-Se)^m$ 和它不是一回事。</p>
+<p>再做一个反例：同样三道，但都对全体做，任何一道报「有宝物」就算有。累积灵敏度还是 97%，可一个不是宝箱的箱子三道至少错报一次的概率是 2.97%，阳性池涨到 298 个，PPV 只有 0.33%，比一道的 0.98% 还低三倍。在低先验场景给同一个对象做三道独立鉴定，等于给了它三次被冤枉的机会。</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>阳性池</th>
+<th>PPV</th>
+<th>累积灵敏度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一道</td>
+<td>$100.98$</td>
+<td>$0.98\%$</td>
+<td>$99.0\%$</td>
+</tr>
+<tr>
+<td>三道全体</td>
+<td>$297.94$</td>
+<td>$0.33\%$</td>
+<td>$97.0\%$</td>
+</tr>
+<tr>
+<td>三道级联</td>
+<td>$0.98$</td>
+<td>$98.98\%$</td>
+<td>$97.0\%$</td>
+</tr>
+</tbody></table>
+<p>三道级联和三道全体的灵敏度几乎相同，阳性池差了 300 倍。这一行对比是本文最想让人记住的东西：</p>
+<blockquote>
+<p><strong>同样的灵敏度提升，可以花 300 倍的代价去换。</strong>区别只在于有没有把中间那 99 个空箱挡在门外。而挡住它们的不是更好的鉴定，是流程设计。</p>
+</blockquote>
+<h3 id="学徒和批量：把成本压下来"><a href="#学徒和批量：把成本压下来" class="headerlink" title="学徒和批量：把成本压下来"></a>学徒和批量：把成本压下来</h3><p>芙莉莲的鉴定魔法贵。便宜的替代品是让学徒看一眼，$Se \approx Sp \approx 0.95$。单独用不行：代进 PPV 公式，$p &#x3D; 0.01$ 时只有</p>
+<p>$$\frac{0.95\times0.01}{0.95\times0.01 + 0.05\times0.99} \approx 16\%$$</p>
+<p>但学徒能一次看很多个箱子：把 $b$ 个箱子混成一批整批判一次，判阳的批再逐个细查。批处理的总成本在</p>
+<p>$$b^{*} &#x3D; \frac{1}{\sqrt{p}}$$</p>
+<p>处最低。$p &#x3D; 10^{-4}$ 时最优批是 100，总成本只有逐个细查的 2%。</p>
+<p>批处理还顺手做了一件事：富集。判阳批里真宝箱的比例是</p>
+<p>$$p_{\text{pool}} \approx \frac{1}{b}$$</p>
+<p>在成本最优的 $b^{*} &#x3D; 1&#x2F;\sqrt p$ 上，细查池的先验恰好是 $\sqrt p$：$p &#x3D; 10^{-4}$ 的地图，批处理把细查池的先验抬到 1%，抬高了 100 倍。批处理本身就是一个前置筛选，和「打听、看相」是同一个数学现象。</p>
+<p>但批处理不是免费的。一个真宝箱拖着整批 $b - 1$ 个无辜箱子进细查，这叫污染；批越大，单个真宝箱的信号被摊得越薄，可能整批判阴，那一个真宝箱被漏掉，这叫稀释。池化的正确性依赖「混合之后信号仍然可检出」，这个前提的成立范围必须实测，不能假设。</p>
+<h2 id="六、把这台机器搬出幻想世界"><a href="#六、把这台机器搬出幻想世界" class="headerlink" title="六、把这台机器搬出幻想世界"></a>六、把这台机器搬出幻想世界</h2><p>在奇幻故事里挑一个开宝箱的小段子，展开这么一大篇计算，像是在认真地搞笑。</p>
+<p>至少，认真是真的。</p>
+<p>因为现实中也有一种东西，同样重要到错过就损失巨大，值得不惜代价把它检测出来。</p>
+<p>它不是宝物。但一路读下来，应该也能猜到了：它是罕见病，而医学筛查就是鉴定魔法。</p>
+<h3 id="逐项对应"><a href="#逐项对应" class="headerlink" title="逐项对应"></a>逐项对应</h3><p>前几节攒下来的每一样东西，在现实里都有一个对应物：</p>
+<ul>
+<li>真宝箱，对应病人；宝箱怪、空箱、杂物箱，对应健康人。</li>
+<li>鉴定输出的「有宝物 &#x2F; 没宝物」，对应检测结果的阳性 &#x2F; 阴性。</li>
+<li>灵敏度与特异度，名字照旧；$PPV$ 与 $NPV$，对应阳性预测值与阴性预测值。</li>
+<li>先验 $p$（宝物率），对应患病率。</li>
+<li>宝物价值 $b$，对应早发现早治疗的收益。</li>
+<li>挨咬代价 $c_{FP}$ 与错过代价 $c_{FN}$，对应假阳性与假阴性各自的代价。</li>
+<li>被放行 $m$ 次才留到今天的箱子 $c^m$，对应罕见病。</li>
+<li>学徒目视加批量，对应廉价初筛加批量检测。</li>
+<li>外部终点「尸体数量」，对应死亡率。</li>
+<li>空挖，对应过度诊断。</li>
+</ul>
+<p>把这份清单填进去之后，有一件听起来夸张但确实是事实的事：<strong>前几节的每一个公式，一个符号都不需要改。</strong></p>
+<p>现实里的检测没有一台是假的，搬过来的是数学，不是怀疑。这不是巧合。回头数一数，全部推导只用到六样东西：两个不交且并为全体的类，一个二元判定，两种错误，一个先验，一笔代价，一条判定规则。没有一条依赖「箱子里装的是什么」。只要一个领域同时满足这六条，它就自动获得本文的全部结论。</p>
+<h3 id="这份对应不是幻想"><a href="#这份对应不是幻想" class="headerlink" title="这份对应不是幻想"></a>这份对应不是幻想</h3><p>第三节埋过：一个真宝箱要在漫长的岁月里留到今天，它面前的每个冒险者都得放行，概率是 $c^m$。现实里有一件事和这个结构完全一致：一个人要发病，必须同时从父母双方各拿到一个罕见的致病基因。</p>
+<p>以常染色体隐性遗传病为例，设致病等位基因频率为 $q$，携带者频率为 $c \approx 2q$，则发病率是 $q^2 \approx c^2&#x2F;4$。这就是 $c^m$，其中 $m &#x3D; 2$。代几个真实数字：脊髓性肌萎缩（SMA）发病率约 $1&#x2F;10000$，反推携带者频率约 $1&#x2F;50$；苯丙酮尿症（PKU）在欧洲人群中的携带者频率约 $1&#x2F;30$ 到 $1&#x2F;60$，报道发病率恰在 $1&#x2F;10000$ 量级。罕见不是偶然的社会现象，它是 $c^m$ 这个函数的性质。</p>
+<p>于是第一节开头那个循环闭合了：稀有 $\Rightarrow$ 先验低 $\Rightarrow$ PPV 低 $\Rightarrow$ 阳性结果不可信 $\Rightarrow$ 需要二轮、三轮确认试验。而四种抬先验的手段在这里全部有名字：打听是问诊和暴露史，看相是体格检查和影像，换地图是高危人群门诊，加一道鉴定是换一种原理的检测。批处理的两种新错误也有对应：污染，是一个阳性标本带崩整批复查；稀释，是标本混得太多、信号低于检出下限。</p>
+<h2 id="七、四格表进诊室"><a href="#七、四格表进诊室" class="headerlink" title="七、四格表进诊室"></a>七、四格表进诊室</h2><h3 id="四个数字，关心的人不一样"><a href="#四个数字，关心的人不一样" class="headerlink" title="四个数字，关心的人不一样"></a>四个数字，关心的人不一样</h3><table>
+<thead>
+<tr>
+<th>数字</th>
+<th>回答什么</th>
+<th>谁关心它</th>
+<th>典型误解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>灵敏度 $Se$</td>
+<td>有病的时候仪器灵不灵</td>
+<td>筛查项目负责人</td>
+<td>以为它等于「阳性结果可信」</td>
+</tr>
+<tr>
+<td>特异度 $Sp$</td>
+<td>没病的时候仪器会不会乱报</td>
+<td>实验室与临床</td>
+<td>以为它等于「阴性结果可信」</td>
+</tr>
+<tr>
+<td>阳性预测值 $PPV$</td>
+<td>仪器说有病，真有病的概率</td>
+<td>拿到阳性报告的人</td>
+<td>以为它只由仪器决定</td>
+</tr>
+<tr>
+<td>阴性预测值 $NPV$</td>
+<td>仪器说没病，真没病的概率</td>
+<td>拿到阴性报告的人</td>
+<td>以为高 $NPV$ 就能排除</td>
+</tr>
+<tr>
+<td>总体准确率 $Acc$</td>
+<td>什么也回答不了</td>
+<td>广告牌</td>
+<td>以为它有任何诊断意义</td>
+</tr>
+</tbody></table>
+<p>最常见的一处错位是：$Se$ 回答的是 $P(\text{阳性}\mid\text{有病})$，$PPV$ 回答的是 $P(\text{有病}\mid\text{阳性})$。一对互逆的条件概率，在人群构成改变时会朝相反方向移动。</p>
+<h3 id="同一根验孕棒，从-92-到-9"><a href="#同一根验孕棒，从-92-到-9" class="headerlink" title="同一根验孕棒，从 92% 到 9%"></a>同一根验孕棒，从 92% 到 9%</h3><p>家庭验孕棒的 $Se$ 和 $Sp$ 都在 99% 上下，广告写的「准确率 99%」说的就是这个。差别全在使用它的队列：</p>
+<table>
+<thead>
+<tr>
+<th>使用场景</th>
+<th>大致先验 $p$</th>
+<th>$PPV$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>停经六周、自述有性生活</td>
+<td>$10\%$</td>
+<td>$92\%$</td>
+</tr>
+<tr>
+<td>同房后几天、来查「到底有没有事」</td>
+<td>$1\%$</td>
+<td>$50\%$</td>
+</tr>
+<tr>
+<td>育龄女性健康体检普筛</td>
+<td>$0.1\%$</td>
+<td>$9\%$</td>
+</tr>
+</tbody></table>
+<p>同一根验孕棒，同一批生产标准，从 92% 到 9%。而广告说的 99% 是哪一行，没人说明。</p>
+<p>临床里同样的账天天在算。急诊胸痛患者做主动脉夹层的增强 CT，$Se \approx 98\%$，$Sp \approx 99\%$，够好了；可夹层在胸痛患者里的比例只有千分之二上下，算出来 PPV 约 16%。剩下六分之五的阳性是各种形态学上的临界情况，影像科给它们起了个诚实的名字：「不能排除」。它不是诊断，也不是排除，是一个中间态；临床真正负责的工作，是把这些假阳性从「疑似夹层」的队列里挪出去。</p>
+<h3 id="血库里的一场接力"><a href="#血库里的一场接力" class="headerlink" title="血库里的一场接力"></a>血库里的一场接力</h3><p>1985 年，第一个 HIV 抗体检测（ELISA）进入血库筛查。它不差：$Se$ 和 $Sp$ 都在 99.5% 上下。可献血人群的感染率只有约万分之五，代进 PPV 公式：</p>
+<p>$$PPV &#x3D; \frac{0.995\times0.0005}{0.995\times0.0005 + 0.005\times0.9995} \approx 0.09$$</p>
+<p>9%。每报出 11 个阳性，10 个是假的。这个数字远低于血库能接受的水平，但血库不能不筛——假阴性放出去的是一袋能传染 HIV 的血。出路就是级联：ELISA 阳性的标本全部送去做第二道原理不同的确证试验（Western blot），它把病毒蛋白逐条分开识别抗体，特异性高得多；后来又加入第三道核酸检测，直接找病毒的 RNA，顺带把「感染了但还测不出抗体」的窗口期也压掉了几天。</p>
+<p>三道级联下来，阳性才敢用来拦截一袋血。这是级联在现实里最成熟的一个样板，而它的每一环，都对应前面算过的那一层：第一道负责不漏（灵敏度优先），后面的道数负责不冤枉（特异性优先），先验在每一道之间重新抬升。</p>
+<h3 id="窗口太窄的时候"><a href="#窗口太窄的时候" class="headerlink" title="窗口太窄的时候"></a>窗口太窄的时候</h3><p>级联的每一环都要花时间，而有一类疾病连时间都不给。婴儿型克拉伯病（Krabbe 病）是一种常染色体隐性的代谢病，有效治疗只有脐血造血干细胞移植一种，而且必须赶在症状出现之前做，通常认为出生后六个月以内是有效窗口。麻烦在于，这个病的可检出时点（酶活性测得极低）和症状出现时点几乎重合：等到症状出现再确诊，等于确诊即宣告失败。所以对它，新生儿筛查是唯一有意义的形态——必须在孩子还完全正常的时候就知道。</p>
+<p>算一下账。患病率约 $1&#x2F;80000$，酶活性检测取 $Se &#x3D; 0.95$、$Sp &#x3D; 0.99$。对已经有过患儿的家庭，先验约 $1&#x2F;300$，代进 PPV 公式约 24%；对未治疗即死亡的病，$c_{FN}$ 近乎无穷大，代进开箱判据，实际先验高出阈值两个数量级，筛查压倒性地值得做。</p>
+<p>但这个案例真正难的部分不在算术。一个孩子被确诊时六个月大，完全健康；移植可能救他，也可能在婴儿期把他杀死；不移植，他会在一年内开始不可逆的神经退化。筛查把一个原本由自然承担的痛苦，转成了一道必须由父母在两周之内做完的选择题。这是筛查伦理里最棘手的部分，公式帮不上忙。</p>
+<h3 id="年龄如何决定一个检测有多准"><a href="#年龄如何决定一个检测有多准" class="headerlink" title="年龄如何决定一个检测有多准"></a>年龄如何决定一个检测有多准</h3><p>产前筛查是这套数学最好的展示窗口，因为先验 $p$ 是一个可以直接查表的已知量，而且它随母亲年龄变化得极其剧烈。</p>
+<p>取无创产前筛查（NIPT）对 21 三体的性能：$Se &#x3D; 0.995$，假阳性率 $5\times10^{-4}$，仪器这一侧进步巨大。把四个年龄代进 PPV 公式：</p>
+<table>
+<thead>
+<tr>
+<th>母亲年龄</th>
+<th>先验 $p$</th>
+<th>$PPV$</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>20 岁</td>
+<td>$1&#x2F;2000$</td>
+<td>$49.9\%$</td>
+</tr>
+<tr>
+<td>25 岁</td>
+<td>$1&#x2F;1400$</td>
+<td>$58.7\%$</td>
+</tr>
+<tr>
+<td>35 岁</td>
+<td>$1&#x2F;400$</td>
+<td>$83.3\%$</td>
+</tr>
+<tr>
+<td>40 岁</td>
+<td>$1&#x2F;100$</td>
+<td>$95.3\%$</td>
+</tr>
+</tbody></table>
+<p>同一个检测，同一批试剂，同一个实验室，PPV 几乎翻倍，而一个物理量都没变，变的只是母亲的生日。</p>
+<p>18 三体和 13 三体更糟：它们的灵敏度本身只有 0.90 左右，先验也更低，算出来 PPV 分别约 26% 和 13%。这直接产生了一条指南规则：NIPT 对 13 和 18 三体报阳性，必须做侵入性产前诊断才能做任何不可逆的决定。理由不是「这个结果不可靠」，而是「这个结果的 PPV 只有 13% 到 26%」。这两句话听起来像，但只有后一句能被引用、被质疑、被检验。</p>
+<p>单次检测的假阳性看着温和，多年累积起来就是另一回事。Elmore 等人 2005 年发表的研究里，连续 10 年每年做一次钼靶筛查的 962 名女性中，49.2% 至少收到过一次假阳性结果，其中 145 人经历了活检。单次假阳性率约 5%，若 10 次之间完全独立，累积概率是 $1-0.95^{10} \approx 40\%$；实测的 49.2% 更高，因为同一个人的重复筛查之间存在正相关。同一批数据，收益是每 1000 人检出 11 到 13 例乳腺癌，成本是每 1000 人约 150 次活检。「检出 1 例，付出约 12 次活检」，这个比值比「99% 准确率」有信息得多。</p>
+<h3 id="韩国甲状腺：一次教科书级的现场实验"><a href="#韩国甲状腺：一次教科书级的现场实验" class="headerlink" title="韩国甲状腺：一次教科书级的现场实验"></a>韩国甲状腺：一次教科书级的现场实验</h3><p>第四节那个空挖率公式，在现实里等着一组现成的数字。</p>
+<p>2011 年起，韩国把甲状腺超声检查纳入国民癌症筛查项目。2012 年约 76.8 万人接受检查，发现 3104 例甲状腺癌；2013 年约 103.5 万人，发现 5865 例。发病率从筛查前大约每 10 万人 35 例，涨到 2014 年的约 96 例。</p>
+<p>关键的一行在下面：同期甲状腺癌死亡率基本没有变化，维持在每 10 万人 4 例上下。</p>
+<p><strong>发病率涨了近三倍，死亡率一动不动。</strong>这正是空挖率不等式要抓的东西：筛查前「本来也会出现」的病例必然包含在历史发病率里，多出来的部分必须另找解释。代进去，$I_{\text{before}} &#x3D; 35$，$I_{\text{after}} &#x3D; 96$：</p>
+<p>$$\mathrm{OF} \ge \frac{96-35}{96} \approx 0.635$$</p>
+<p>至少 63.5% 是过度诊断。换一组口径更宽的统计，$6 \to 35$，算出至少 83%。后续研究给出的估计范围大致在 50% 到 90% 之间。</p>
+<p>被多检出来的绝大多数是很小的甲状腺乳头状癌，影像上可疑，生物学上几乎不会进展。代价是数万台切除术、数万人终身服用左甲状腺素、数百万次随访超声——最后这一项还挤占着别人的影像资源，机会代价在这里是零和的。值得强调的是，这不是哪台机器坏了，检测本身没有问题；是把全人群倒进检测器这个动作出了问题。普查没有入口约束，它提高的不是先验，是假阳性。</p>
+<p>神经母细胞瘤筛查是这个案例的姊妹篇。1990 年代美、日、欧几项大规模试验结果一致：筛查确实检出了更多病例，但死亡率不变，死亡年龄分布不变，各期生存率也不变。三条判据同时成立，说明新检出的病例和原有病例在临床行为上无法区分。这大概是医学史上过度诊断最干净的例子，代价是几万个孩子接受了手术和化疗，其中一部分本可以只是观察。</p>
+<h3 id="一个检测毫无问题、项目仍然失败的案例"><a href="#一个检测毫无问题、项目仍然失败的案例" class="headerlink" title="一个检测毫无问题、项目仍然失败的案例"></a>一个检测毫无问题、项目仍然失败的案例</h3><p>先天梅毒在美国消失了四十年，然后回来了。2013 到 2014 年降到历史最低点，每 10 万活产不到 10 例；之后曲线掉头向上，到 2022 年前后重新回到每 10 万活产 100 例以上。</p>
+<p>第一反应是「检测变差了」。但梅毒的血清学检测几十年没变，实验室的标准化程度比二十年前更高。变的是检测之外的东西：产前检查的覆盖率、无症状梅毒的识别率、无保险和无稳定住所人群的比例。</p>
+<p>把机制写成公式：设有效筛查强度为 $Se_{\text{eff}} &#x3D; c\cdot Se\cdot\alpha$，其中 $c$ 是筛查覆盖率，$\alpha$ 是查出后真正完成治疗的比例。取 $Se &#x3D; 0.95$、$\alpha &#x3D; 0.90$，覆盖率从 95% 掉到 60%，有效灵敏度就从 81% 掉到 51%，检测性能一个数字没改。病例数还正比于患病率 $p$ 和查出不治的传播概率 $\beta$——五个因子里只有 $Se$ 属于实验室。</p>
+<blockquote>
+<p><strong>筛查项目的有效性等于检测性能乘以可达性乘以依从性乘以治疗可得性。</strong>四个因子里，只有第一个属于技术。</p>
+</blockquote>
+<p>原因很简单：$Se$ 从 0.90 提到 0.99 需要一次实验室级别的技术突破，而覆盖率从 0.90 掉到 0.70，只需要一次预算削减。</p>
+<h3 id="塔斯基吉：-c-FN-infty-被卡住了"><a href="#塔斯基吉：-c-FN-infty-被卡住了" class="headerlink" title="塔斯基吉：$c_{FN} &#x3D; \infty$ 被卡住了"></a>塔斯基吉：$c_{FN} &#x3D; \infty$ 被卡住了</h3><p>1932 年起，美国公共卫生服务部在阿拉巴马州塔斯基吉县观察梅毒的自然史，数百名黑人男性患病而不被告知、不被治疗。1947 年青霉素已成为标准治疗，项目仍决定不给。</p>
+<p>这个案例常被当作伦理丑闻引用，但它同时是第二节那个开箱判据的一个标本。梅毒三期致死，$c_{FN}$ 是无穷大，而判据阈值</p>
+<p>$$p^{*} &#x3D; \frac{c_{FP}}{b\cdot LR_+ + c_{FP}} \to 0$$</p>
+<p>塌到零：任何阳性都必须按患者处理，没有例外，不存在任何「值得再权衡」的余地。所以塔斯基吉不是「当初不知道有青霉素」，也不是「权衡之后选了不治」，它是在 $c_{FN} &#x3D; \infty$ 的情形下做出了 $c_{FN} &#x3D; 0$ 的决策。这是逻辑上的失败，不是知识上的失败。</p>
+<p>疾病定义没变，治疗能力变了，而决策框架没变。前面说过，检测的定义、诊断阈值和治疗方案三者是耦合的，改掉任何一个，另外两个都必须重新审视。这套结构直到 1974 年《国家研究法案》要求所有联邦资助的人体研究通过伦理委员会审查，才被制度性堵住——而那已经是事件暴露之后的事。制度总是跟着丑闻走，而不是提前于丑闻。</p>
+<h2 id="八、筛查项目是怎么拼出来的"><a href="#八、筛查项目是怎么拼出来的" class="headerlink" title="八、筛查项目是怎么拼出来的"></a>八、筛查项目是怎么拼出来的</h2><p>1968 年，世界卫生组织出版了 Wilson 和 Jungner 的《疾病筛查的原则与实践》，二十几页的小册子，地位相当于这个领域的 Koch 推定列表。十条原则里最值得注意的是：没有一条要求「筛查必须被证明有益」。其余几条倒是和前文的量一一对应：要求疾病有一段可识别的无症状期，那是筛查的唯一立足点；要求对已识别的患者有可接受的治疗，因为没有治疗，$c_{FN}$ 就是无穷大；要求查找病例的费用与整体医疗支出相平衡，那是成本效果分析的位置。</p>
+<p>这个缺陷后来被补上，现代标准要求随机对照试验证据优先。门槛实际变高了：美国处于某种形式筛查推荐中的疾病，从 1995 年前后的约 110 种降到 2012 年的约 50 种，删掉的大部分不是被证明有害，而是被证明「证据不足」。</p>
+<p>RCT 之所以必要，是因为筛查的收益必须用死亡率来量，而死亡率是最不容易被过度诊断污染的终点；之所以昂贵，是因为样本量由效应量的平方决定：死亡率相对下降 20% 的项目，两组各需约 1700 人；下降 10%，各需约 7000 人；再往下，样本量很快把项目判死。罕见病筛查做不了 RCT，不是因为效应量小，而是因为事件数根本凑不出来——发病率 $1&#x2F;50000$ 的病，要凑 30 个死亡事件需要一百五十万人和一二十年随访。</p>
+<p>只讲失败会让人以为筛查都不行，所以值得记几个被广泛认为成功的项目。先天梅毒的孕期筛查加青霉素预防：检测便宜稳定，治疗一次性且代价极小，婴儿的结局可以被观察，筛查效果能被独立验证。血库的 HIV 与肝炎筛查：单看 PPV 只有 9%，但假阳性的后果只是扔掉一袋血，假阴性的后果近乎无穷大，而且同一份血天然被多个独立的检测系统交叉覆盖——那是级联的实践形态。乙型肝炎表面抗原筛查加疫苗：筛查的输出能直接转化成一次便宜、有效的干预。归纳起来就三条：治疗便宜有效，窗口够宽，假阳性有便宜的出路。三者齐备，筛查才立得住。</p>
+<p>如果只从这篇文章带走一份操作性清单，可以是这几条：</p>
+<ol>
+<li>看到「准确率 X%」，先问哪个方向：$Se$、$Sp$、$PPV$ 还是 $Acc$。</li>
+<li>看到任何 $PPV$，先问先验。没有先验的 $PPV$ 是一个没有单位的数字。</li>
+<li>低先验下，$Sp$ 比 $Se$ 值钱：提高 $Se$ 的边际收益是 $p$ 量级，提高 $Sp$ 的边际代价是 $(1-p)$ 量级。</li>
+<li>多轮筛查的正确形式是级联，不是叠加。</li>
+<li>批量检测是富集操作：先验从 $p$ 抬到约 $1&#x2F;b$，成本在 $b &#x3D; 1&#x2F;\sqrt p$ 处最低。</li>
+<li>阈值是决策，不是性能。美国儿童血铅干预线从 40 降到 10，测量数据没变，变的是「多高的血铅值得干预」这个决策。</li>
+<li>排序不产生信息：没有额外信息时，从 100 个箱子里挑「最可疑」的一个，命中率就是 $p$。</li>
+<li>警惕金标准本身有误差，那会让所有误差估计都偏乐观。</li>
+<li>过度诊断三判据：发病率升而死亡率不动；生存曲线不变；各期生存率不变。</li>
+<li>筛查项目最脆弱的环节是可达性，不是检测。</li>
+</ol>
+<h2 id="九、回到那只箱子"><a href="#九、回到那只箱子" class="headerlink" title="九、回到那只箱子"></a>九、回到那只箱子</h2><h3 id="把芙莉莲的期望收益算一遍"><a href="#把芙莉莲的期望收益算一遍" class="headerlink" title="把芙莉莲的期望收益算一遍"></a>把芙莉莲的期望收益算一遍</h3><p>现在回到芙莉莲。设开到宝物的收益 $b &#x3D; 100$，挨咬代价 $c_{FP} &#x3D; 1$，$Se &#x3D; Sp &#x3D; 0.99$。开一次箱的期望收益是 $E &#x3D; 101\cdot PPV - 1$，对几个先验算一遍：</p>
+<table>
+<thead>
+<tr>
+<th>先验 $p$</th>
+<th>$PPV$</th>
+<th>期望收益</th>
+<th>该不该开</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$0.01$</td>
+<td>$50.0\%$</td>
+<td>$+49.5$</td>
+<td>疯狂开</td>
+</tr>
+<tr>
+<td>$0.001$</td>
+<td>$9.0\%$</td>
+<td>$+8.1$</td>
+<td>开</td>
+</tr>
+<tr>
+<td>$0.0001$</td>
+<td>$0.98\%$</td>
+<td>$-0.01$</td>
+<td>五五开</td>
+</tr>
+<tr>
+<td>$0.00005$</td>
+<td>$0.49\%$</td>
+<td>$-0.50$</td>
+<td>别开</td>
+</tr>
+</tbody></table>
+<p>零点在 $p \approx 1.01\times10^{-4}$。把 $c_{FP}$ 换成 5 再算一遍：期望收益变成 $105\cdot PPV - 5$，零点上移到 $5\times10^{-4}$。这个敏感性值得摆出来：在极低先验的场景里，「挨一次咬的代价有多大」这个纯主观判断，比「鉴定魔法有多准」更能决定行为。精度从 99% 提到 99.9%，相当于把 $LR_+$ 从 99 提到 999，开箱阈值只降到原来的十分之一；而「一次失败能忍」和「一次失败就退出」之间，是 $10^{-4}$ 到 $5\times10^{-4}$ 的差距。修正信念的收益，不如修正偏好。</p>
+<h3 id="她做的正是级联"><a href="#她做的正是级联" class="headerlink" title="她做的正是级联"></a>她做的正是级联</h3><p>一个 $Se &#x3D; Sp &#x3D; 99\%$ 的鉴定魔法，在宝物率 $10^{-4}$ 的环境里，单次阳性只有 0.98% 可信。而级联那一节算过那串数字：0.98% → 49.5% → 98.98%。所以芙莉莲做的事情，在结构上等价于级联确证，她的确证方式是把箱子打开看。至于「一次又一次被吞」，从上面的表看，是 $c_{FP}$ 取值偏低时必然的均衡状态：期望收益为正，但单次成功率不到 5%。她在持续为正期望的赌局付费。</p>
+<blockquote>
+<p>「99% 准确率」没有错，只是它回答的问题和观众以为的不是同一个。观众以为它说的是「我开箱有九成把握」，它实际说的是「我判断宝箱时，看错的概率是 1%」。从前者到后者，要走一遍条件概率，要走一遍先验，要走一遍代价比较。而绝大多数误读，都发生在以为可以跳过这三步的地方。</p>
+<p>医院里没有宝箱怪，但有检验单。有检验单的地方，就有 $PPV$。</p>
+</blockquote>
+<h3 id="如果她能改一件事"><a href="#如果她能改一件事" class="headerlink" title="如果她能改一件事"></a>如果她能改一件事</h3><p>假设给芙莉莲三个选项。起点 $p &#x3D; 10^{-4}$，用几率形式算：每做一轮鉴定，后验几率乘一个 $LR_+ &#x3D; \dfrac{Se}{1-Sp}$，$n$ 轮之后</p>
+<p>$$OD &#x3D; \frac{p}{1-p}\cdot LR_+^n, \qquad PPV &#x3D; \frac{OD}{1+OD}$$</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>每轮 $LR_+$</th>
+<th>轮数</th>
+<th>$PPV$</th>
+<th>相对成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始</td>
+<td>99</td>
+<td>1</td>
+<td>$0.98\%$</td>
+<td>1</td>
+</tr>
+<tr>
+<td>换更准的魔法（99.9%）</td>
+<td>999</td>
+<td>1</td>
+<td>$9.1\%$</td>
+<td>极高</td>
+</tr>
+<tr>
+<td>加一道独立鉴定</td>
+<td>$\times 99$</td>
+<td>2</td>
+<td>$49.5\%$</td>
+<td>中</td>
+</tr>
+<tr>
+<td>便宜鉴定重复三次（$Se &#x3D; 0.80$，$Sp &#x3D; 0.98$）</td>
+<td>$\times 40$</td>
+<td>3</td>
+<td>$20.4\%$</td>
+<td>低</td>
+</tr>
+</tbody></table>
+<p>加一道独立鉴定胜出得毫无悬念，但背后的结构规律比这个具体比较更通用。对上式取对数：对数几率是加法，每一次检测贡献一个 $\ln LR$，与先验相加。所以「信息」是可以相加的资源，它的单价是 $\ln LR$ 除以成本：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>$\ln LR$</th>
+<th>假设成本</th>
+<th>单价</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>换更准的魔法</td>
+<td>$6.9$</td>
+<td>$100$</td>
+<td>$0.069$</td>
+</tr>
+<tr>
+<td>加一道独立鉴定</td>
+<td>$4.6$</td>
+<td>$50$</td>
+<td>$0.092$</td>
+</tr>
+<tr>
+<td>便宜鉴定重复</td>
+<td>$3.7$</td>
+<td>$2$</td>
+<td>$1.84$</td>
+</tr>
+</tbody></table>
+<p>便宜鉴定的单价高出 20 倍以上。只要它允许重复足够多次，它一定能赢。</p>
+<blockquote>
+<p><strong>在先验极低的地方，信息必须便宜。</strong>精确度的提升在成本上是指数级的，而把同一份信息重复采多遍是线性叠加的。所以在「十次里九次都是坏消息」的检测环境里，正确的策略是「用便宜的手段多做几次」，而不是「花钱做一次准的」。芙莉莲真正做对的事不是「她的鉴定魔法很准」，而是「她反复确认」。</p>
+</blockquote>
+<h2 id="一些豆知识"><a href="#一些豆知识" class="headerlink" title="一些豆知识"></a>一些豆知识</h2><h3 id="完美使用与一般使用"><a href="#完美使用与一般使用" class="headerlink" title="完美使用与一般使用"></a>完美使用与一般使用</h3><p>1970 年代口服避孕药上市时，广告上的「超过 99% 有效」指完美使用条件下的有效率；一般使用条件下失败率约每年 7%，实际有效率约 93%，差距几乎全部来自忘记吃药。同一句话里的两个 99%，一个指条件概率，一个指无条件概率。</p>
+<h3 id="「罕见」的定义非常随意"><a href="#「罕见」的定义非常随意" class="headerlink" title="「罕见」的定义非常随意"></a>「罕见」的定义非常随意</h3><p>欧盟的定义是患病人数少于 5000，日本和台湾用年发病率低于万分之一，美国用患病人数少于 20 万。同一疾病在三个定义下的罕见程度可以差几十倍，而这直接决定它能不能进筛查清单、能不能进医保目录、有没有药厂愿意做临床试验。</p>
+<h3 id="一个数字巧合"><a href="#一个数字巧合" class="headerlink" title="一个数字巧合"></a>一个数字巧合</h3><p>本文前面算出，$Se &#x3D; Sp &#x3D; 0.99$ 的鉴定魔法在宝物率低于 $10^{-4}$ 时不值得开箱；又算出，常染色体隐性遗传病的发病率是携带者频率的平方，携带率 $1&#x2F;50$ 对应发病率 $1&#x2F;10000$。两个 $10^{-4}$ 在这里碰上了。当然这是巧合，一个讲物品稀有度，一个讲基因频率。</p>
+<p>但如果把「宝箱」理解成「致病等位基因」，把「鉴定」理解成「症状」，那么医学史上有很长一段时期，人类处理罕见病的方式确实就是这样：靠症状去找，等于拿着一个 99% 准确的检测器，在宝物率万分之一的地图上乱逛。直到新生儿筛查把「确认」这个环节从「症状」换成「实验室指标」，这个局面才改变。前面那个级联算例，就是这次替换的数学写照。</p>
+<h2 id="参考（节选）"><a href="#参考（节选）" class="headerlink" title="参考（节选）"></a>参考（节选）</h2><ul>
+<li>Wilson JMG, Jungner G. <em>Principles and Practice of Screening for Disease</em>. WHO Public Health Papers 5. 1968.</li>
+<li>Elmore JG, et al. Screening for Breast Cancer. <em>N Engl J Med</em>. 2005; 352(15): 1495-1504.</li>
+<li>Welch HG. <em>Overdiagnosis: What It Is and What It Means</em>. Johns Hopkins University Press. 2011.</li>
+<li>关于韩国甲状腺癌筛查的前后对比分析，<em>New England Journal of Medicine</em>. 2016.</li>
+<li>关于 Krabbe 病纳入新生儿筛查的早期报道，含纽约州项目启动后首批病例的经过。</li>
+<li>国家卫生健康委员会，第一批罕见病目录（2018 年）与第二批罕见病目录（2023 年）。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%8A%99%E8%8E%89%E8%8E%B2/" rel="tag"># 芙莉莲</a>
+              <a href="/tags/%E8%91%AC%E9%80%81%E7%9A%84%E8%8A%99%E8%8E%89%E8%8E%B2/" rel="tag"># 葬送的芙莉莲</a>
+              <a href="/tags/%E5%AE%9D%E7%AE%B1%E6%80%AA/" rel="tag"># 宝箱怪</a>
+              <a href="/tags/%E8%B4%9D%E5%8F%B6%E6%96%AF/" rel="tag"># 贝叶斯</a>
+              <a href="/tags/%E5%81%87%E9%98%B3%E6%80%A7/" rel="tag"># 假阳性</a>
+              <a href="/tags/%E5%81%87%E9%98%B4%E6%80%A7/" rel="tag"># 假阴性</a>
+              <a href="/tags/%E7%BD%95%E8%A7%81%E7%97%85/" rel="tag"># 罕见病</a>
+              <a href="/tags/%E7%AD%9B%E6%9F%A5/" rel="tag"># 筛查</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/firefox-decodinginfo-hang/" rel="prev" title="Firefox 158 中 decodingInfo 永不返回的 bug">
+                  <i class="fa fa-angle-left"></i> Firefox 158 中 decodingInfo 永不返回的 bug
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

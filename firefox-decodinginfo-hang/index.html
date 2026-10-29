@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="今天遇到一个问题，Firefox 打开 B 站直播，没有画面和声音，而弹幕和聊天一切正常。 控制台有几百行黄色的「Referrer 策略」警告，但查证后确认是无害噪音：Firefox 对跨站请求强制使用更严格的默认 referrer 策略，B 站声明的老策略被忽略，每加载一个跨站资源就记一条日志，请求本身照常发出。 初步排查 同一局域网的 Win10 和 MacBook 上，同版本 Firefox">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Firefox 158 中 decodingInfo 永不返回的 bug">
+<meta property="og:url" content="https://www.kaikai.men/firefox-decodinginfo-hang/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="今天遇到一个问题，Firefox 打开 B 站直播，没有画面和声音，而弹幕和聊天一切正常。 控制台有几百行黄色的「Referrer 策略」警告，但查证后确认是无害噪音：Firefox 对跨站请求强制使用更严格的默认 referrer 策略，B 站声明的老策略被忽略，每加载一个跨站资源就记一条日志，请求本身照常发出。 初步排查 同一局域网的 Win10 和 MacBook 上，同版本 Firefox">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-24T21:40:17.000Z">
+<meta property="article:modified_time" content="2026-10-29T00:06:33.347Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="Firefox">
+<meta property="article:tag" content="decodingInfo">
+<meta property="article:tag" content="Bilibili">
+<meta property="article:tag" content="Bugzilla">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/firefox-decodinginfo-hang/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/firefox-decodinginfo-hang/","path":"/firefox-decodinginfo-hang/","title":"Firefox 158 中 decodingInfo 永不返回的 bug"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Firefox 158 中 decodingInfo 永不返回的 bug | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">132</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">433</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E6%8E%92%E6%9F%A5"><span class="nav-number">1.</span> <span class="nav-text">初步排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%85%A5%E6%8E%92%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">深入排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">解决办法</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">433</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1409060072" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1409060072" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kaikai-34" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kaikai-34" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=151493994&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;151493994&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourkaikai@gmail.com" title="Email → mailto:yourkaikai@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/resume/" title="Resume → &#x2F;resume&#x2F;" rel="noopener me"><i class="fa fa-id-card fa-fw"></i>Resume</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/firefox-decodinginfo-hang/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Firefox 158 中 decodingInfo 永不返回的 bug | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Firefox 158 中 decodingInfo 永不返回的 bug
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-10-24 21:40:17" itemprop="dateCreated datePublished" datetime="2026-10-24T21:40:17Z">2026-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E8%84%9A%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">代码脚本</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>今天遇到一个问题，Firefox 打开 B 站直播，没有画面和声音，而弹幕和聊天一切正常。</p>
+<p>控制台有几百行黄色的「Referrer 策略」警告，但查证后确认是无害噪音：Firefox 对跨站请求强制使用更严格的默认 referrer 策略，B 站声明的老策略被忽略，每加载一个跨站资源就记一条日志，请求本身照常发出。</p>
+<h2 id="初步排查"><a href="#初步排查" class="headerlink" title="初步排查"></a>初步排查</h2><ul>
+<li>同一局域网的 Win10 和 MacBook 上，同版本 Firefox 158.0.1 一切正常；排除 IP 级风控问题。</li>
+<li>本机 Edge 正常；排除网络链路和 CDN 问题。</li>
+<li>B 站点播正常；排除解码、渲染整条媒体管线的问题，故障只在直播播放器的初始化。</li>
+<li>本机全新安装、零配置的 Zen-browser（Gecko 内核）一样黑屏；锁定 Gecko 内核。</li>
+<li>清空 Cookie 缓存、新建配置文件、关闭跟踪保护，hosts、防火墙、代理逐一核对，均无影响。</li>
+</ul>
+<p>至此故障的触发条件已经收得相当窄：要「本机 × Gecko 内核 × 直播」三个条件同时成立，缺一不可。问题从「为什么放不出视频」变成「初始化卡在哪一步」。</p>
+<h2 id="深入排查"><a href="#深入排查" class="headerlink" title="深入排查"></a>深入排查</h2><p>用调试协议在页面加载前往直播间注入钩子，包装 <code>fetch</code> 和 <code>XMLHttpRequest</code> 记录调用。播放器拿到了播放地址：接口返回 200，avc、hevc 的流列表一项不缺，然后就没有然后了，页面里没有创建任何 video 元素，也没有向 CDN 发出一条拉流请求，初始化卡死。在页面里对照测了一圈媒体 API：</p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>requestMediaKeySystemAccess(&#39;com.widevine.alpha&#39;, …)</code></td>
+<td>1 毫秒正常返回</td>
+</tr>
+<tr>
+<td><code>mediaCapabilities.decodingInfo(…)</code></td>
+<td>永不返回</td>
+</tr>
+</tbody></table>
+<p>最简单的复现代码，任意非 B 站网页的控制台粘贴即可，四秒后见分晓：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="title function_">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> t = <span class="title class_">Date</span>.<span class="title function_">now</span>();</span><br><span class="line">  <span class="keyword">let</span> ok = <span class="number">0</span>, rej = <span class="number">0</span>, ms = <span class="number">0</span>;</span><br><span class="line">  navigator.<span class="property">mediaCapabilities</span>.<span class="title function_">decodingInfo</span>(&#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;media-source&#x27;</span>,</span><br><span class="line">    <span class="attr">video</span>: &#123; <span class="attr">contentType</span>: <span class="string">&#x27;video/mp4; codecs=&quot;avc1.64001F&quot;&#x27;</span>, <span class="attr">width</span>: <span class="number">1920</span>, <span class="attr">height</span>: <span class="number">1080</span>, <span class="attr">bitrate</span>: <span class="number">8e6</span>, <span class="attr">framerate</span>: <span class="number">60</span> &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123; ok = <span class="number">1</span>; ms = <span class="title class_">Date</span>.<span class="title function_">now</span>() - t; &#125;, <span class="function">() =&gt;</span> &#123; rej = <span class="number">1</span>; ms = <span class="title class_">Date</span>.<span class="title function_">now</span>() - t; &#125;);</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">r</span> =&gt;</span> <span class="built_in">setTimeout</span>(r, <span class="number">4000</span>));</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(ok ? <span class="string">`正常，<span class="subst">$&#123;ms&#125;</span>ms 返回`</span> : rej ? <span class="string">`<span class="subst">$&#123;ms&#125;</span>ms 被拒绝`</span> : <span class="string">&#x27;挂死，四秒未返回&#x27;</span>);</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<p>钩住 <code>decodingInfo</code> 后发现，播放器初始化时调了它四次，探测 HEVC 和 AV1 的支持情况，四个 Promise 全部悬空。编码探测不返回，播放器就永远停在选编码这一步，弹幕和聊天走另一条路，所以一切如常。写了个 150 毫秒超时保底的垫片脚本注入，直播立刻能放，因果链闭合。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>在撰写向 Bugzilla 提交的反馈时，发现已经有相关问题汇报了：这是 Mozilla 自己的回归，见 <a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=2082265">bug 2082265</a>，Twitch 和 Prime Video 的播放器是同款受害者：</p>
+<ol>
+<li>Firefox 158 修 <a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=2051510">bug 2051510</a>（MediaCapabilities 在远程进程上报编码支持之前抢先回答，把不支持的 HEVC 报成支持）时，把每个视频能力查询都改成了等待所有远程媒体进程上报完毕再回答，等待对象包括 media engine CDM 工具进程。</li>
+<li>在部分 Windows 机器上，这个进程在 LPAC 沙箱下永远启动不完，于是查询永远在等，Promise 永远悬空。</li>
+<li>修复进了 159.0b4 和 160，158 标记 wontfix 不修。</li>
+</ol>
+<p>顺带排除了所有本机嫌疑：rdd、utility 进程、硬件解码、WMF 的开关逐个关掉再测，全部照挂；两台机器六千二百多项生效配置全量 diff，零相关差异；进程里没有第三方注入 DLL；显卡驱动从 591.86 换到最新 621.01 也没用。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>按省事程度排：</p>
+<ol>
+<li><code>about:config</code> 里把 <code>media.wmf.media-engine.enabled</code> 设为 <code>0</code>，实测 27 毫秒恢复。副作用是关闭 WMF Media Engine 播放路径，B 站用不到它，哪天 DRM 场景出问题改回 <code>2</code> 即可。</li>
+<li>升级 Firefox 159.0b4 及以上，根治。</li>
+<li>或者用油猴脚本给 <code>decodingInfo</code> 加超时垫片顶着。我已经写了个脚本：<a target="_blank" rel="noopener" href="https://github.com/kaikaiiiiiii/firefox-158-decodingInfo-bugfix">firefox B 站直播无视频声音修复脚本</a>。</li>
+</ol>
+<p>至于这台机器为什么落在「部分机器」里，沙箱里那个进程为什么偏偏启动不完，bug 下面也没人给出答案，就这样吧。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Firefox/" rel="tag"># Firefox</a>
+              <a href="/tags/decodingInfo/" rel="tag"># decodingInfo</a>
+              <a href="/tags/Bilibili/" rel="tag"># Bilibili</a>
+              <a href="/tags/Bugzilla/" rel="tag"># Bugzilla</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/the-hidden-capitalist-river/" rel="prev" title="中国历史中的资本暗流">
+                  <i class="fa fa-angle-left"></i> 中国历史中的资本暗流
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/99-mimic-test/" rel="next" title="99% 准确率的宝箱怪检测魔法">
+                  99% 准确率的宝箱怪检测魔法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.kaikai.men","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqusjs","storage":true,"lazyload":false,"nav":{"disqusjs":{"text":"Load Disqus","order":-1}},"activeClass":"disqusjs"},"stickytabs":true,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/config.min.js"></script>
+
+    <meta name="description" content="一、一个价格差同一条马路，隔两个路口，两家理发店。北边一家门脸窄，玻璃上贴着手写的「洗剪吹 38」；南边一家装修新，最低一档是「洗剪吹 68」。项目一样，耗时相近，都做生客。 三十块的差额，手艺解释不了：两位理发师出自同一家培训班，一位甚至可能是另一位的师兄。租金也解释不全：便宜那家未必不想搬，他算过账，搬过去的客流增量补不上多交的房租。再往下拆：商圈成熟度、客流结构、平台佣金、合规支出、这一带的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="本地服务价格的分解：以理发市场为例">
+<meta property="og:url" content="https://www.kaikai.men/local-service-price-decomposition/index.html">
+<meta property="og:site_name" content="小名开开">
+<meta property="og:description" content="一、一个价格差同一条马路，隔两个路口，两家理发店。北边一家门脸窄，玻璃上贴着手写的「洗剪吹 38」；南边一家装修新，最低一档是「洗剪吹 68」。项目一样，耗时相近，都做生客。 三十块的差额，手艺解释不了：两位理发师出自同一家培训班，一位甚至可能是另一位的师兄。租金也解释不全：便宜那家未必不想搬，他算过账，搬过去的客流增量补不上多交的房租。再往下拆：商圈成熟度、客流结构、平台佣金、合规支出、这一带的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-21T14:20:00.000Z">
+<meta property="article:modified_time" content="2026-11-21T14:18:29.268Z">
+<meta property="article:author" content="kaikai">
+<meta property="article:tag" content="理发">
+<meta property="article:tag" content="不可贸易品">
+<meta property="article:tag" content="价格离散">
+<meta property="article:tag" content="巴拉萨-萨缪尔森效应">
+<meta property="article:tag" content="鲍莫尔成本病">
+<meta property="article:tag" content="菜单成本">
+<meta property="article:tag" content="本地经济">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.kaikai.men/local-service-price-decomposition/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.kaikai.men/local-service-price-decomposition/","path":"/local-service-price-decomposition/","title":"本地服务价格的分解：以理发市场为例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>本地服务价格的分解：以理发市场为例 | 小名开开</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="/css/collapse.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小名开开" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小名开开</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">在春天的光影里喘息</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">133</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">440</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%80%E4%B8%AA%E4%BB%B7%E6%A0%BC%E5%B7%AE"><span class="nav-number">1.</span> <span class="nav-text">一、一个价格差</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%A7%82%E6%B5%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%80%A7%E8%B4%A8"><span class="nav-number">2.</span> <span class="nav-text">二、观测对象的四个性质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%B7%E6%A0%BC%E5%88%86%E8%A7%A3%E4%B8%8E%E8%AF%86%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">三、价格分解与识别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%9D%87%E8%A1%A1%E6%9D%A1%E4%BB%B6%E4%B8%8E%E5%B7%AE%E5%88%86%E8%AF%86%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">四、均衡条件与差分识别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%89%E4%B8%AA%E5%81%8F%E7%A6%BB%E6%A0%B7%E6%9C%AC"><span class="nav-number">5.</span> <span class="nav-text">五、三个偏离样本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E8%B0%83%E6%95%B4%E9%80%9F%E5%BA%A6%EF%BC%9A%E8%8F%9C%E5%8D%95%E6%88%90%E6%9C%AC%E4%B8%8E%E4%BF%A1%E4%BB%BB%E5%93%81"><span class="nav-number">6.</span> <span class="nav-text">六、调整速度：菜单成本与信任品</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%BD%92%E5%9B%A0%E4%B8%8E%E5%8F%A3%E5%BE%84%E7%9A%84%E5%88%86%E6%AD%A7"><span class="nav-number">7.</span> <span class="nav-text">七、归因与口径的分歧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%88%90%E6%9C%AC%E7%97%85%E5%86%8D%E8%A7%A3%E9%87%8A"><span class="nav-number">8.</span> <span class="nav-text">八、成本病再解释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%8C%87%E6%A0%87%E6%9E%84%E9%80%A0"><span class="nav-number">9.</span> <span class="nav-text">九、指标构造</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E8%BE%B9%E7%95%8C"><span class="nav-number">10.</span> <span class="nav-text">十、边界</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kaikai"
+      src="/images/boat.jpg">
+  <p class="site-author-name" itemprop="name">kaikai</p>
+  <div class="site-description" itemprop="description">当时只道是寻常</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">440</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kaikaiiiiiii" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/kaikaiiiiiii" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;kaikaiiiiiii" rel="noopener me" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1409060072" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1409060072" rel="noopener me" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/kaikai-34" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;kaikai-34" rel="noopener me" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=151493994&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;151493994&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener me" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourkaikai@gmail.com" title="Email → mailto:yourkaikai@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>Email</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/resume/" title="Resume → &#x2F;resume&#x2F;" rel="noopener me"><i class="fa fa-id-card fa-fw"></i>Resume</a>
+      </span>
+  </div>
+<!--
+<div class="sidebar-button animated">
+  <a target="_blank" rel="noopener" href="https://app.gitter.im/#/room/#next:gitter.im">
+    <i class="fab fa-gitter"></i>
+    Gitter Chat
+  </a>
+</div>
+<div class="cc-license animated" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="120" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+-->
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.kaikai.men/local-service-price-decomposition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/boat.jpg">
+      <meta itemprop="name" content="kaikai">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小名开开">
+      <meta itemprop="description" content="当时只道是寻常">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="本地服务价格的分解：以理发市场为例 | 小名开开">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          本地服务价格的分解：以理发市场为例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-11-21 14:20:00" itemprop="dateCreated datePublished" datetime="2026-11-21T14:20:00Z">2026-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%8F%E4%B8%96%E6%B5%8E%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">经世济学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="一、一个价格差"><a href="#一、一个价格差" class="headerlink" title="一、一个价格差"></a>一、一个价格差</h1><p>同一条马路，隔两个路口，两家理发店。北边一家门脸窄，玻璃上贴着手写的「洗剪吹 38」；南边一家装修新，最低一档是「洗剪吹 68」。项目一样，耗时相近，都做生客。</p>
+<p>三十块的差额，手艺解释不了：两位理发师出自同一家培训班，一位甚至可能是另一位的师兄。租金也解释不全：便宜那家未必不想搬，他算过账，搬过去的客流增量补不上多交的房租。再往下拆：商圈成熟度、客流结构、平台佣金、合规支出、这一带的竞争密度。每一样都在里面，但没有一样能单独拿出来看。</p>
+<p>本地服务的价格大多是这个样子：几样本地要素一起定价，彼此还互相牵连。要从价格里读出区域经济的消息，得挑一个结构简单到能看清的对象。</p>
+<p>下面说的是正规经营的男士基础理发：洗剪吹，做陌生客，取门店最低价。结论分三层。价格可以拆成两块，一块是技能定价，一块是制度性附加。技能定价随劳动力流动在地区间趋平，所以地区间的价格差，量的是附加那块的差。附加那块是个残差，大小测得出，里面装什么，要到现场去认。</p>
+<h1 id="二、观测对象的四个性质"><a href="#二、观测对象的四个性质" class="headerlink" title="二、观测对象的四个性质"></a>二、观测对象的四个性质</h1><p>一个价格要担起这件事，得满足四个条件。理发市场四条都近。</p>
+<p>其一，搬不走。</p>
+<p>洗剪吹的生产和消费必须同时同地，存不下，运不走。可贸易性近于零，一价定律就管不到它。世界银行讲巴拉萨-萨缪尔森效应，拿来举例的就是理发：达卡和纽约的理发师剪一个头，花的时间差不多，价钱差好几倍 <a target="_blank" rel="noopener" href="https://blogs.worldbank.org/en/endpovertyinsouthasia/what-s-behind-south-asia-s-low-exports">[1]</a>。更硬的证据是一份覆盖 11 个 OECD 国家分项价格的研究：加拿大和美国的理发价格，长期看竟然不相关 <a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/002219969401354U">[2]</a>。不是弱相关，是不相关。集装箱和汇率都拿它没办法。</p>
+<p>其二，需求硬，价格松，档位还连着排。</p>
+<p>理发的刚性不在喜欢，在规矩。头发长到某个程度就得剪，这个下限由别人替你定。价格那头则很松：同一个人，手头紧时去快剪，宽裕时进沙龙，中间还隔着十几档。需求硬、价格松、档位连着，整条价格分布就都带着信息，不只是中间那个数。</p>
+<p>其三，供给这头有个门槛，压不下去。</p>
+<p>入门要专门学，记作 $X$。$X$ 不大，但真实存在，也没法用日常生活抵掉。拿网约车和即时配送一比就清楚：开车、骑车是生活技能，学习成本早在过日子的时候付完了，有效门槛接近零，甚至是负的：车本来就要买，顺手送个外卖。只要有利润，人立刻涌进来，利润压到零附近，价格信号给冲得很淡。</p>
+<p>理发不是这样。没有人能在一个星期里学会剪头，被裁员的也不会转去拿推子。短期供给曲线几乎竖着，中短期的价格变动主要由需求那头推。</p>
+<p>常见的反对意见是：衰退期别的行业裁员，人会溢到理发业，把价格压下来。这条不成立。溢出只发生在零门槛的行当里：开车、骑车、分拣，技能早就在日常生活里付过账了。理发不在此列。哪儿的理发价格真在跌，多半是需求缩了，不是供给多了。</p>
+<p>其四，人带着技能走。</p>
+<p>理发师跟门店多是分成合作，不是雇佣。换一家店，成本就是一次搬迁；换一座城，成本就是一张车票。人在地区之间来回走，就在价格上压出一股拉平的力量。下一节的均衡条件，靠的就是这一条。</p>
+<p>四条合起来，凑出一个现实里并不存在的东西：完全本地，要素随便走，有个正门槛，服务与购买成对发生。姑且叫它基准职业。它不是用来描述世界的，是用来定零点的。实际价格离它有多远，才是能看见的量。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>理发师</th>
+<th>网约车司机</th>
+<th>即时配送骑手</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>技能门槛</td>
+<td>正，需专门投入</td>
+<td>低于零</td>
+<td>近于零</td>
+</tr>
+<tr>
+<td>技能外部可用性</td>
+<td>近于零</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>短期供给弹性</td>
+<td>近于零</td>
+<td>近于无穷</td>
+<td>近于无穷</td>
+</tr>
+<tr>
+<td>价格信号质量</td>
+<td>高</td>
+<td>低</td>
+<td>低</td>
+</tr>
+</tbody></table>
+<p>表中前三行是职业属性，第四行是这些属性落到价格上的样子。落得越清楚，这个价格越能用来推本地的要素成本。</p>
+<p>挑这个标的，也顺手排掉三种常用的代理。房价由存量资产和土地供给撑着，中间隔着杠杆和预期，离当期的劳动回报太远。人均 GDP 算的是产出，不进分配，说不清同一份产出在别的制度下归谁。社会平均工资受统计口径限制，又夹着大量跟着本地物价一起走的部分，独立的信息不多。</p>
+<p>三样都有用，可都不提供「一次交易要花多少」这一层的信息。理发价格正好停在这一层：一次性、存不下、不可分、不带资产属性。</p>
+<h1 id="三、价格分解与识别"><a href="#三、价格分解与识别" class="headerlink" title="三、价格分解与识别"></a>三、价格分解与识别</h1><p>（一）计算口径</p>
+<p>一单交易里有几个量，每个都有名义和真实两种写法。</p>
+<ul>
+<li>顾客付的，是名义价格 $P$，就是价目表上那个数。</li>
+<li>理发师拿的，是名义收入 $I$，门店分成、平台佣金、代扣税费都扣完之后的到手数。</li>
+<li>$V$ 是顾客付了、理发师没拿到的那一块，装的是所有外部支出：财政税费、店铺租金、设备摊薄，还有别处伸过来分走的一份。</li>
+</ul>
+<p>三者对上，就得到价格的定义式：</p>
+<p>$$P &#x3D; I + V$$</p>
+<p>它只是把同一笔钱的去向分开记账，不解释任何东西。</p>
+<p>再往下是两种折算。真实收益 $U$，是 $I$ 按理发师面对的物价水平平减后的结果：</p>
+<p>$$U &#x3D; \frac{I}{PL_r}$$</p>
+<p>与之并列的真实价格：</p>
+<p>$$P_{real} &#x3D; \frac{P}{PL_c}$$</p>
+<p>同一座城里，$PL_r$ 和 $PL_c$ 可以当作同一个指数。跨区域、跨国比较时两者不一样：理发师买的是住房、食品、通勤，顾客买的是服务和耐用品，篮子的权重不同。混用这两个指数是这类比较最容易出的错，错的方向还不一定。当地住房权重偏高时，拿顾客指数去平减，会把理发师的真实收益系统性高估。</p>
+<p>（二）恒等式不是行为方程</p>
+<p>这条式子是会计恒等式，不是行为方程。它不解释价格怎么形成，只规定三个量怎么对上。所以它没法被检验，只能被拿来用。能检验的是另外两样：$V$ 里装了什么，$U$ 有没有真的趋平。</p>
+<p>恒等式还有一层意思：$V$ 可以是负的。平台的新客补贴由平台掏，顾客少付，理发师照原价结算；政府对门店的稳岗补贴；套餐里低价剪发由染烫的利润补上；学徒反过来给门店交学艺的钱。这四种情形，$I$ 都高过顾客看见的价格，$V$ 就是负的。正规市场的样本里少见，乡镇和家庭作坊里并不稀奇。样本里真出现负的 $V$，先查口径，再谈补贴。</p>
+<p>（三）楔子，以及三个相邻概念</p>
+<p>$V$ 在术语里叫楔子：买方付的和卖方拿的之间那道缝。税收楔子只是其中一个特例。监管合规的成本、平台在双边市场上的抽成、地方上非正式的支付，凡是能在这笔交易上设个收费点的，抽走的都算。</p>
+<p>要跟三个近邻分清。</p>
+<p>跟加成率。加成率是价格对边际成本的比例，量的是定价能力；楔子是价格对生产者所得之差，量的是交易被截走的程度。有定价能力却没人在中间抽头的市场，加成率高，楔子小；竞争充分但税负和合规压得重的市场，加成率低，楔子大。两样不能互相顶替。</p>
+<p>跟经济租。经济租是要素收入里高过机会成本的那一段，归要素所有者；楔子只量支付与所得的差，不问归谁。理发师的技能溢价进了他自己口袋，那是 $I$ 内部的事，不是 $V$。</p>
+<p>跟成本。成本是生产者为了做出服务而付出去的投入；楔子是顾客付了、却没走到生产者手上的那一块。地租一头占两样——对门店是成本，对交易是楔子。这个双重身份，下一小节要处理。</p>
+<p>（四）$V$ 与 $k$ 的边界</p>
+<p>框架里有两个「额外」：$V$，和后文的技能溢价倍数 $k$。分界不在名目，在收款人。</p>
+<p>同一道制度限制，若把租金留给理发师，它抬高的是 $k$，不进 $V$：许可卡住供给，价格抬上去，差额进了理发师的口袋。若把成本压给理发师，它进 $V$，压低 $I$：办证、消防、社保，都是硬支出。一部法规可以同时干这两件事，方向还相反。所以「监管成本」不能笼统塞进 $V$，得先问这笔钱最后落在谁手里。</p>
+<p>跨国比较时这一点尤其要命。执业许可在美国各州普遍存在，主要效果是卡住供给、抬高从业者收入，那属于 $k$。许可宽松的地方，同样一项服务便宜下来，差额谁也没拿到。两样都记成「制度成本」，得出的政策含义正好相反。</p>
+<p>（五）残差的理由</p>
+<p>把 $V$ 预先切成地租、平台、监管、垄断四格，会撞上两个问题。</p>
+<p>一是切不全。乡镇那笔 $V$，多半来自客流太稀、固定成本摊不开，这一项在四格里没有位置：不是地租（租金可能很低），不是监管，也不是垄断（当地可能还有两家店在打）。</p>
+<p>二是四格会互相挤。平台抽成上去，门店付租的能力就下来，租金跟着降；准入放宽，合规成本降，从业者收入也降。能看见的是净额，几项此消彼长，分类相加并不等于总量。</p>
+<p>所以 $V$ 只能这么用：先量总量、量差分，再带着具体假说到现场去认。认出来的结论是定性判断，不是分解结果。</p>
+<p>四格这件事我做过一遍，代价是发现一格都套不上。</p>
+<p>（六）地租与基础设施：在等号里，不在解释清单上</p>
+<p>地租在 $V$ 里，这一点不用回避：顾客付的钱，确有一部分流到房东手上。要问的是另一样：它算不算区域间 $P_{real}$ 差异的独立解释项。</p>
+<p>不算。理由两层。</p>
+<p>一层是账面的。国内美发业有条经验比例：一次洗剪吹，约等于一平方米月租金的三分之一，独立店和连锁店都适用 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/688155280">[3]</a>。这条比例若在各地都稳，地租就跟价格同比例动；而本地物价本身含着地租，$P$ 和 $PL_c$ 一起往上走，一除，地租项基本抵掉。地租在水平上要紧，在差分上没有独立解释力。</p>
+<p>另一层是行为上的。门店位置是经营者自己挑的，租金和客流的账，在定价之前就算完了。高租金的地段之所以撑得住高租金，是因为客流密、客单价高。价目表上那个数，是选址决策的结果，不是选址成本的加总。</p>
+<p>两层合起来：地租是 $V$ 的组成部分，不是 $V$ 的独立解释项。把「不进解释清单」读成「不在等式里」，是概念混了；把「在等式里」读成「必须单列归因」，是重复计算。</p>
+<p>基础设施溢价是同一类。供电稳、消毒合格、空调能开，那是位置的属性，不是服务的属性，已经算进租金，也已经跟着物价在平减里抵掉。单列出来，是把同一笔成本算两遍。</p>
+<p>只有一个例外：租约期限。商业租约通常一签一到三年，期内地租跳涨，人搬不走。这类冲击认得出来：同期本地别的服务没跟着涨，而这一带商业租金在跳。认出来当噪声剔掉就行。</p>
+<h1 id="四、均衡条件与差分识别"><a href="#四、均衡条件与差分识别" class="headerlink" title="四、均衡条件与差分识别"></a>四、均衡条件与差分识别</h1><p>$U$ 能不能当常数，看要素走不走得动。</p>
+<p>设一个理发师，在北京一天理二十个头，单价 25，日收入 500，房租吃住去掉 400，剩 100；北京电影票 50，这一百块看两场。到了绍兴，一天还是二十个头，单价 10，日收入 200，吃住去掉 150，剩 50；绍兴电影票 20，这五十块看两场半。按本地消费篮子折算，绍兴那边的真实收益更高，人有动力往绍兴走，一直走到两边按篮子计的收益相等。</p>
+<p>这里要澄清「等效」是哪一种等效。流行的一种读法，是把它读成分位等效：北京月入 5000，腾冲月入 2000，各自在本地的收入分布里都排第四十百分位，就算等效。这个读法不成立。两地能换到的实物和服务若在绝对量上不等，人就有动力走，走起来会把绝对量拉平。等效只能是绝对购买力上的等效，不能是分位上的等效。分位口径的毛病在于，任何差距都能被判成「已经均衡」，价格差分也就不带信息了。这条路我走过一段，走到发现任何差异都能被说圆，框架当场作废。</p>
+<p>按绝对购买力，均衡条件写成：</p>
+<p>$$P_{real} &#x3D; \frac{P}{PL} &#x3D; U + V_{real}$$</p>
+<p>国内比较时 $PL_r &#x3D; PL_c &#x3D; PL$，上式直接成立。$U$ 在地区间趋平，$P_{real}$ 的地区差就是 $V_{real}$ 的地区差。这个比值在文献里叫内部实际汇率：拿不可贸易品的价格比本地一般物价，量的是区域之间的相对价格水平。它跟外部实际汇率（可贸易品比不可贸易品）不是一回事，一个做区域比较，一个做汇率分析。</p>
+<p>要紧的是：这套办法只能做差分，不能做水平。想从 $k$ 反推 $I$，得先知道 $V$；$V$ 又是残差，绕回去了。能认的是 $\Delta P_{real} &#x3D; \Delta V_{real}$，认不出的是 $V$ 的绝对水平。绝对水平只能到现场去问：租金多少、佣金多少、合规花多少、还有没有人按月来收别的钱。</p>
+<p>要破这个局，得有外生变动：一次准入改革，一次平台费率调整，一次租金管制的改动。只有这类冲击能把 $V$ 的某一项单独顶起来，让它现形。这也是为什么这套东西的证据只能从准自然实验里找，横截面回归给不出。</p>
+<h1 id="五、三个偏离样本"><a href="#五、三个偏离样本" class="headerlink" title="五、三个偏离样本"></a>五、三个偏离样本</h1><p>框架好不好，不看它能不能解释常态，常态谁都会解释；要看它碰上偏离时，要不要临时加假设。</p>
+<p>（一）乡镇比城里贵</p>
+<p>部分县城和乡镇，男士基础理发已经涨到二十到三十块；同期城市城中村的快剪，十五块 <a target="_blank" rel="noopener" href="https://www.zyjjw.cn/article/20260618/178175037529294.html">[4]</a>。价格和收入反着走，表面上是个反例。</p>
+<p>不用加假设。$U$ 没动，偏离由别的项承担。能指出来的有四样：人往外流，客流稀了，一个师傅一天等不到几个头，铺面的固定成本摊到每个头上反而更重，这是规模不经济；供应链到了末梢，耗材贵出两成；门店资本和手艺没有分开，理发师只好自己盘店，垫钱、担风险，还得担一种更隐蔽的风险——他被这家店锁住了，走不掉，只好在能挣的时候把溢价收回来；竞争不密的地方，还长出区域性的垄断租金。</p>
+<p>这四样在等式里的落点不一样。前两样由房东和供应商拿走，落在 $V$；后两样进了经营者自己的口袋，落在 $k$，表现为 $I$ 高过同类地区的技能报酬。于是有个口径上的麻烦：劳动和资本由同一个人出，观测上分不开，$k$ 抬高的那部分里混着资本回报。</p>
+<p>所以乡镇样本能说明偏离的方向，不能直接拿来检验 $U$ 的收敛。它测到的是技能报酬和资本报酬的混合物。</p>
+<p>倒挂不是反例，是同一条等式换了参数。解释它不用新理论，只要新数据。</p>
+<p>有个能查的推论。某地若真出现了纵向分离：出钱的人租铺、雇师、分成，自己不拿推子，那儿的价钱应该往城区靠。这个推论的作用正是把混合项拆开：分开之后，$k$ 只剩技能，$V$ 只剩场地和耗材。没验过，但验得了。</p>
+<p>（二）总监一百八十八</p>
+<p>另一头是往上走：精剪 98，设计总监套餐 128，要预约，剪的时候还有分工 <a target="_blank" rel="noopener" href="https://app.xinhuanet.com/news/article.html?articleId=38c9d4a8-9843-48cb-91af-f1b2802c320c">[5]</a>。</p>
+<p>这一档离日常很远。我原以为这行的门槛可以忽略。自己去剪，被剪坏过很多回，出门的心情接近受骗。这说明消费一直停在入门层：几天培训，会推平头，就能上岗。</p>
+<p>而它不在前面说的观测对象里。技能梯度是超线性的。能稳定做出女性复杂发型的人，靠的不只是手上的活，还有对面型、发质、潮流的判断，以及一种常被低估的本事：听懂「稍微修一下」到底指什么。有从业者估过，从入门到能独立接高端女客，有效训练三千小时以上，其中相当一段是跟师，不是自己练。</p>
+<p>三千小时，这条供给曲线在中期里就挪不动。高端市场的紧是结构性的，不是周期性的。它价格里高出来的那一块，该记作准租金：由一时稀缺的手艺生出来，手艺一扩散就衰减，不是均衡价格。</p>
+<p>这一条对框架的作用是做减法：定义收窄，只取男士基础洗剪吹。高端市场量的是稀缺，不是本地的要素成本。</p>
+<p>（三）十元快剪</p>
+<p>第三个样本在低端。一个师傅、两张椅子，不洗不吹、不推销不办卡，一天七八十个头，月净入两万 <a target="_blank" rel="noopener" href="https://finance.sina.com.cn/wm/2025-07-04/doc-infehynr9556210.shtml">[6]</a>。</p>
+<p>它把服务里非技能的环节剥得干干净净，价格贴着纯人力成本走。对拿它当观测物的人来说，这是两重麻烦。</p>
+<p>一是它掉在「洗剪吹」这个定义外面。洗和吹不是废话：热水、洗发的人手、毛巾消毒、能开的空调，这些恰恰是本地服务业的基础设施密度。剥掉之后价格更纯，信息也少了。</p>
+<p>二是它的份额本身就是个信号。一个城里快剪越多，说明愿意只为「剪短」掏钱的人越多。这是需求端降级的直接指标，比均价灵。</p>
+<p>所以读数要看分布，不能只看中心。均价对结构变化不敏感：一半店降价、另一半涨价，均值可以一动不动。价格离散度和分布偏度不会。</p>
+<h1 id="六、调整速度：菜单成本与信任品"><a href="#六、调整速度：菜单成本与信任品" class="headerlink" title="六、调整速度：菜单成本与信任品"></a>六、调整速度：菜单成本与信任品</h1><p>理发的价格名义上很黏。</p>
+<p>涨价的成本不在印价目表，在跟老客解释。德国那份定价研究里有个细节：老客对价格构成越理解，门店越敢调价；卡在价格分布中段的店，实际价格最僵 <a target="_blank" rel="noopener" href="https://bonndoc.ulb.uni-bonn.de/xmlui/bitstream/handle/20.500.11811/10867/7096.pdf?sequence=2&isAllowed=y">[7]</a>。中段店的客源最脆，换个地方剪，成本最低。</p>
+<p>由此得到两点。</p>
+<p>一是这个价格是滞后指标。它滤掉短期波动，记下来的是被反复确认过的价位。拿高频宏观指标的标准看，它不够灵；拿地区比较的标准看，这正是好处。</p>
+<p>二是调整的方向不对称。往上灵：需求一起来，新增供给要几个月才养得出，价格先涨。往下黏：需求一退，技能在别处不值钱，退出的成本高，人就赖在店里，价格跌不下来。所以看见哪儿的价钱没跌，推不出需求没缩，只能推出还没人退场。</p>
+<p>还有一层摩擦来自商品本身。理发是信任品：剪之前分不出好坏，剪完要过几天才验得出。客源是时间的函数，搬迁的沉没成本高过一般体力活。均衡收敛因此不是瞬时的，中短期内地区之间可以长期存在真实收益的差。这个差本身就能测，它量的是本地劳动力市场连得多紧。</p>
+<p>另有一处测度上的麻烦：价格序列分不开涨价和质量变化。理发没有可比的质量调整办法，门店翻新、耗材换牌、服务时长变化，都会和纯价格变动混在一起。跨时比较因此比跨区域比较更不可靠，这套东西主要用在横截面。</p>
+<h1 id="七、归因与口径的分歧"><a href="#七、归因与口径的分歧" class="headerlink" title="七、归因与口径的分歧"></a>七、归因与口径的分歧</h1><p>这套东西的骨架不新。巴拉萨-萨缪尔森效应早给了不可贸易品价格的跨国解释；德国那份 CPI 研究直接把男士理发当同质品，用县级固定效应解释价格变异，$R^2$ 在九成以上 <a target="_blank" rel="noopener" href="https://bonndoc.ulb.uni-bonn.de/xmlui/bitstream/handle/20.500.11811/10867/7096.pdf?sequence=2&isAllowed=y">[7]</a>；前面那份 OECD 研究也拿理发价格检验过不可贸易品模型。学术界早就把这个市场当观测对象了。</p>
+<p>分歧在归因的层次。</p>
+<p>巴拉萨-萨缪尔森把不可贸易品的价格挂到可贸易部门的工资上：可贸易部门生产率高，工资就高；不可贸易部门要留住人，得跟上这个工资，价格自然高。这条链子隐含一个前提：落后经济体还有把人往工业里塞的余地，溢出之后才轮到服务业。</p>
+<p>实际顺序是农业转工业，工业吃得饱和、人溢出来，服务业才起来。所以不是工业的工资在给服务业定价，是同一个劳动力市场里，人往哪儿去给价格划了下限。一个地方的服务业干一天只够一顿饭，人会回去种地，不会站在店里等客。拿工业的工资解释服务的价格，跳过了更基本的问题：这些人为什么没走。在劳动力市场分割的经济体里，这个问题尤其要紧。</p>
+<p>另一处分歧在口径。巴拉萨-萨缪尔森讲的是名义价格和汇率，要解释的是购买力平价为什么在不可贸易品上系统性失效。这里讲的是另一件事：一次服务，按本地消费篮子算，能换回多少社会产出。同一个现象的两种写法，后一种更贴分配。</p>
+<p>中美那组数字常被拿来说：北京男士短发五十块上下，曼哈顿五十美元上下，隐含比率接近 1:1，官方汇率 1:7 <a target="_blank" rel="noopener" href="https://hk.crntt.com/doc/1018/3/5/6/101835606.html?coluid=7&kindid=0&docid=101835606&mdate=0915000336">[8]</a>。这个偏离不是异常，它是巴拉萨-萨缪尔森效应的定义性特征。</p>
+<blockquote>
+<p>※ 《经济学人》一九八六年的巨无霸指数走的是同一条路，只是标的换成了可贸易品。可贸易品受套利约束，不可贸易品不受，所以前者量汇率偏离，后者量本地要素价格的偏离。</p>
+</blockquote>
+<p>值得看的是偏离里没法用生产率解释的那部分。两地可贸易部门的生产率之比若是 3，价格比却隐含 7，剩下那截就得出地租、合规成本、平台佣金和消费文化来解释。框架的作用不是指出偏离存在，是给一个基准，让偏离能被拆开。</p>
+<p>国际比较里，曾考虑留一个额外项。若承认 $U$ 在国际间不等，平衡式该写成：</p>
+<p>$$P_{real} &#x3D; U + \Delta U + V_{real}$$</p>
+<p>$\Delta U$ 是同一份手艺在不同经济体里的报酬差，对应生产率红利往劳动端传导的那一段。这个写法看着完整，其实用不了：$\Delta U$ 和 $V_{real}$ 只以和的形式进观测，什么数据都拆不开这两样。加一项不添解释力，只添一个没法赋值的自由参数。</p>
+<p>所以这里反着来：假定 $U$ 在国际间等效，把全部偏离记到 $V$ 上。理由不是等效更可信，是它把认不出的东西从等式里删掉了。代价是国际比较的结论比国内的弱：它给出同一份劳动量的相对价格，不给出制度摩擦的国际差异。</p>
+<p>留学生互剪像一场天然实验。价钱十五到三十美元，比正规价低四到七成 <a target="_blank" rel="noopener" href="https://www.dealmoon.com/post/2548522">[9]</a>，铺面、执照、小费、预约系统全剥掉，成本几乎只剩时间。它和正规价的比值，直接量出正规市场里非技能成本的比重：比值低，市场接近纯手艺定价；比值高，价格的大头被别的东西吃了。</p>
+<h1 id="八、成本病再解释"><a href="#八、成本病再解释" class="headerlink" title="八、成本病再解释"></a>八、成本病再解释</h1><p>鲍莫尔成本病的标准说法是：服务业的生产率涨得比制造业慢，工资却要跟着制造业涨，服务于是相对越来越贵，服务业占支出比重越高，实际产出却没涨多少。</p>
+<p>这个定性，描述上成立，评价上可疑。</p>
+<p>理发师一小时还是剪那么几个头，一百年没大变。变快的是他身后那个经济体：电力、化工、食品工业、公路、冷链。同样一小时，在一种经济里换得一顿饭加两瓶可乐，在另一种里只换得少量初级农产品。差别不在劳动，在劳动所在的生产结构。</p>
+<p>所以服务的相对价格往上走，不是病，是生产率红利经由要素市场散到所有劳动身上的结果。制成品便宜了，服务就显得贵；时间的机会成本随收入升上去，自家做的服务换成市场上买的。家庭照护的货币化是同一个过程：照护这件事没变，它的机会成本变了。</p>
+<p>这个解释顺带给出一个监测的用处：基础设施和公共品若是退化，理发价格可以一动不动，而从业者的实际收益在往下掉。价格不是福利的充分统计量。</p>
+<h1 id="九、指标构造"><a href="#九、指标构造" class="headerlink" title="九、指标构造"></a>九、指标构造</h1><p>指标定死为：正规经营、男士洗剪吹、面向陌生客、区域内最低价。</p>
+<p>四个限定词各挡一样东西。正规，挡掉非正规经营省下的合规成本。洗剪吹，挡掉快剪对基础设施信息的剥离。男士，挡掉品牌和信任溢价，也把偏好的差异压小。陌生客，挡掉熟客价，还挡掉一样更隐蔽的——师傅在建立信任的头几年会用偏低的价格做隐性支付，那是投资，不是市价。</p>
+<p>指标构造里有一个被否掉的替代方案：拿快剪的中位数当基准。它好就好在价格更贴纯人力成本，噪声少；坏也坏在这里，信息一起被剥掉了。洗和吹背着的是本地服务业的基础设施密度：热水、消毒、空调、洗发的人手。这一层正是地区差异的来源之一。更麻烦的是，快剪的份额本身就是需求端的信号；让同一个量既当基准又当信号，自相矛盾。</p>
+<p>真实收益看不见，可以拆成一个倍数和一个底：</p>
+<p>$$U &#x3D; k \cdot S$$</p>
+<p>$S$ 是本地一个年轻人独立活下去的最低真实工资，保留工资的下限。它不是法定最低工资，是不要求经验的岗位实际给的价：传菜、收银、理货、分拣。这条线还得分人：老保安可以低于它，因为有房、不用交租、吃得也少；刚进城的年轻人没有这个条件。所以 $S$ 只取青年无技能岗位的最低真实工资。</p>
+<p>$S$ 按基本生活篮子算，各地差别不大：一顿饭、一张床、一趟通勤。$k$ 稳，$U$ 就稳。前面那条「$U$ 在地区间趋平」的假设，落到操作上，等价于「$k$ 在地区间稳」，而后者是可以查的。</p>
+<p>$k$ 一偏，就是警报。$k \lt 1$，说明理发师的真实收益掉到本地生存线以下。这不是便宜，是有人被锁住了：欠着债、押着钱、租约转不掉、消息传不出去。所以 $k \lt 1$ 当失效标记用，不当结论用。它标的是这套东西在那儿不成立。</p>
+<p>有一种读法把 $k \lt 1$ 当市场描述，说基础理发师在被系统性压价。这个读法站不住。压价和锁定在数据上长出同一个 $k$，差别在于前者是能走没走，后者是走不了。压价若真成立，供给会缩；看见从业者稳稳当当待着，说明退出的代价高过收入的损失，那就是锁，不是压。同一个读数，解释方向相反，这是滥用这个指标最容易踩的坑。</p>
+<p>分位数要配一个分配结构才好读。同样排第四十百分位，在基尼系数 0.3 和 0.6 的社会里不是一回事。分位数只说位置，基尼说形状。</p>
+<p>两样都只能当参照，不能当检验。拿分位数的跨地区稳定去检验 $U$ 的收敛，等于把前面否掉的分位口径又请回来：分位数稳，完全可以和绝对购买力上的差异并存。能用的检验只剩两个——$k$ 在地区间稳不稳，以及纵向分离出现之后，价格有没有往城区靠。</p>
+<p>数据不算难找。美国 O*NET 和 BLS 有城市级的职业工资，理发师在 39-5011.00 这个码下，十分位到九十分位都有；「不要求正式教育凭证」的那一百多个职业，正好拿来当 $S$ 的代理 <a target="_blank" rel="noopener" href="https://www.onetonline.org/link/localwages/39-5011.00">[10]</a>。生存工资得找专门算篮子的：MIT 的生活工资计算器、WageIndicator 的全球数据集，比官方统计贴题，官方统计从来不发布「活下去要多少钱」这个口径 <a target="_blank" rel="noopener" href="https://wageindicator.org/documents/publicationslist/publications-2024/lw-report-2024_final.pdf">[11]</a>。中国这头的 $P$，按平台「洗剪吹」的价格排序，取正规门店的最低价。</p>
+<p>两项修正不能省。</p>
+<p>平台佣金通常五到十五个点，是从 $I$ 里扣的。低价店更靠平台引流，对佣金更敏感。样本价格越低，越要记下它的团购占比。</p>
+<p>准入制度更麻烦：它一头构成 $V$（执照、卫生许可、消防、社保），一头抬高 $k$：许可卡住供给，多出来的租金归了理发师。同一道制度两边同时使劲，观测到的 $U$ 就混进了制度租金。跨区域比较不控这一项，会把「准入严」读成「手艺贵」。</p>
+<p>国际比较同理。$P$ 按本地物价平减后的差，仍是 $\Delta V$，前提是 $U$ 等效。这个前提的理由和代价前面已经交代：等效不是结论，是为了保住可识别性做的一个选择。</p>
+<h1 id="十、边界"><a href="#十、边界" class="headerlink" title="十、边界"></a>十、边界</h1><p>这个指标量的是本地经济里「非技能、非位置、非偏好」那一块成本，不是富不富。说得再白一点：一个普通人做完一笔最简单的买卖，要多掏多少制度摩擦的钱。这笔钱不进任何人的劳动报酬，只在某些位置上分掉。</p>
+<p>所以它替代不了 GDP，也替代不了人均可支配收入。它能补一句：两个 GDP 相近的城，同一件小事上的实际成本能差多少，差在哪儿。这句话宏观指标说不出来。</p>
+<p>要说清楚的是，这套东西没跑过数据。样本怎么取、口径怎么统一、「正规」的边界划在哪儿，都还没定。它现在是一个识别策略，不是一条结论。哪个城要是 $k$ 大面积低于一，更可能的解释是这套东西在那儿失效，不是那儿的劳动力市场出了怪事。</p>
+<p>它确定的用处不是给答案，是把「这笔钱去了哪儿」变成一个能问、能追的问题。从前看价目表，只看见贵和便宜；往后会多一层：这个数里，多少归劳动，多少归位置。</p>
+<p>框架能不能站住，看三个变量：手艺的可替代性、平台的抽成结构、社会对仪容的下限。三个都在变。</p>
+<p>至少下一次坐上那张椅子，价目表上那个数，仍然是个待拆的东西。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%90%86%E5%8F%91/" rel="tag"># 理发</a>
+              <a href="/tags/%E4%B8%8D%E5%8F%AF%E8%B4%B8%E6%98%93%E5%93%81/" rel="tag"># 不可贸易品</a>
+              <a href="/tags/%E4%BB%B7%E6%A0%BC%E7%A6%BB%E6%95%A3/" rel="tag"># 价格离散</a>
+              <a href="/tags/%E5%B7%B4%E6%8B%89%E8%90%A8-%E8%90%A8%E7%BC%AA%E5%B0%94%E6%A3%AE%E6%95%88%E5%BA%94/" rel="tag"># 巴拉萨-萨缪尔森效应</a>
+              <a href="/tags/%E9%B2%8D%E8%8E%AB%E5%B0%94%E6%88%90%E6%9C%AC%E7%97%85/" rel="tag"># 鲍莫尔成本病</a>
+              <a href="/tags/%E8%8F%9C%E5%8D%95%E6%88%90%E6%9C%AC/" rel="tag"># 菜单成本</a>
+              <a href="/tags/%E6%9C%AC%E5%9C%B0%E7%BB%8F%E6%B5%8E/" rel="tag"># 本地经济</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/99-mimic-test/" rel="prev" title="99% 准确率的宝箱怪检测魔法">
+                  <i class="fa fa-angle-left"></i> 99% 准确率的宝箱怪检测魔法
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments disqusjs-container">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2012 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">kaikai</span>
+  </div><div class="footer-custom">
+</div>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="120" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/pjax.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/math/mathjax.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/styles/disqusjs.css" integrity="sha256-71XarXwNr1Td27HmZI9zjY+rMzRdush6/glo6VFXp7o=" crossorigin="anonymous">
+
+<script class="next-config" data-name="disqusjs" type="application/json">{"enable":true,"api":"https://disqus.kaikai.men/api/","apikey":"C2pY6mOd3bemkdJokRCJZC5mdjrKjLZzM5b0U9P341OLdPfUYGUmj8ePLZahvfx4","shortname":"kaikaiiiiiii","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/disqusjs/3.0.2/disqusjs.es2015.umd.min.js","integrity":"sha256-okP99ZQKVpIy7+NogAMpGlIQzJa9XKXhIJcFgdju5bU="}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.0/third-party/comments/disqusjs.min.js"></script>
+
+<!-- hexo injector body_end start -->
+<script src="/js/collapse.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
